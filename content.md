@@ -1,0 +1,3 @@
+- niente framework, solo HTML/CSS/JS
+- niente build step, solo file statici
+- lancio server locale con cosapython3 -m http.server %porta%
