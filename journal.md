@@ -242,4 +242,6 @@ Aggiunto `.c-step-card__audio` (`<audio controls>` nativo, nessun player custom 
 
 Cartella `assets/temp/` (i 3 SVG originali passati durante l'esplorazione, ora ridondanti — le copie definitive sono in `assets/images/`) eliminata su richiesta esplicita dell'utente.
 
+**Aggiornamento stesso giorno**: aggiunti anche gli audio di step 2 e 3 (`assets/audio/step-card-audio-2.m4a`/`-3.m4a`, stessa convenzione di naming di step 1). Tutti e 3 gli step hanno ora un audio — `.c-step-card__audio` resta comunque un elemento opzionale del pattern (non richiesto per ogni card futura), non è diventato un requisito della variante `sketch`. Aggiornata la galleria in `componenti.html#step-card`: l'esempio "attuale in produzione" mostra ora la combinazione SVG+audio, quello senza audio resta come riferimento per il caso senza.
+
 Bug/promemoria emerso nel test: il browser ha servito una versione cache di `content.html` (mostrava ancora `ghost`) nonostante il file su disco e la risposta del server (verificata via `curl`) fossero già `sketch` — stesso tipo di problema di cache discusso in precedenza per il CSS, stavolta sull'HTML. Risolto con hard refresh.
