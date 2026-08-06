@@ -4,7 +4,6 @@
 
 1. [Il problema del Junior Designer da quando c'è AI](#il-problema-del-junior-designer-da-quando-cè-ai)
    - [3 sfide per il Junior Designer di oggi](#3-sfide-per-il-junior-designer-di-oggi)
-   - [Le soluzioni che offre questo corso](#le-soluzioni-che-offre-questo-corso)
 2. [Ciao, mi chiamo Luca Leone](#ciao-mi-chiamo-luca-leone)
 3. [Mini corso gratis](#mini-corso-gratis)
 4. [Non è il corso giusto per tutti](#non-è-il-corso-giusto-per-tutti)
@@ -26,11 +25,11 @@ Sono rimasto in contatto con parecchi miei ex studenti del corso di UX/UI Design
 
 ### 3 sfide per il Junior Designer di oggi
 
-1. molte delle cose che sa fare, le sa fare anche AI
+1. non sa bene come usare l'AI per disegnare interfacce
 2. non ha un portfolio lavori forte (come è normale che sia)
 3. non ha una strategia di ricerca del lavoro efficace (spoiler: la strategia "_creare un buon profilo LinkedIn e applicare per posizioni Junior_" non lo è)
 
-### Le soluzioni che offre questo corso
+Le 3 soluzioni che offre il corso non sono più un elenco di testo con un proprio heading — sono comunicate visivamente dalle step-card (sketch + audio, vedi `componenti.md`). Il contenuto delle 3 card:
 
 1. abbracciare AI: da UX/UI Designer a Design Engineer, cioè un Designer che usa l'AI per progettare e prototipare
 2. migliorare il portfolio
