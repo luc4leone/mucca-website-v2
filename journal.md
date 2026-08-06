@@ -231,3 +231,5 @@ Esplorazione in worktree (`../mucca-website-step-cards-v2`), confronto side-by-s
 Bug del workflow, non del componente: durante l'iterazione, una modifica a `align-items` in `step-cards.css` è stata fatta per errore nel repo principale (`muccaWebsiteV2`, servito su :8000) invece che nella worktree (:8001) — i due sono copie indipendenti, non collegate. Nessun effetto visibile finché la modifica non è stata rifatta nel file giusto.
 
 **Decisione**: `sketch` va in produzione (`content.html`), sostituisce `ghost`. Nessuna variante viene cancellata — stesso principio già in uso per i branch scartati: `ghost` (e le altre: `corner`/`bar`/`badge`/`outline`) restano nel CSS e nella galleria `componenti.html#step-card`, solo l'etichetta "attuale in produzione" si sposta. Worktree rimossa dopo il merge; branch `feature/step-cards-v2` mantenuto nella cronologia.
+
+**Nota a margine**: nella worktree è comparso un file non tracciato (`assets/audioRecords/step1.m4a`), non legato a questo lavoro — spostato in `assets/audioRecords/` su `main` prima di rimuovere la worktree, per non perderlo. Non committato, resta solo su disco.
