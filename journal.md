@@ -233,3 +233,13 @@ Bug del workflow, non del componente: durante l'iterazione, una modifica a `alig
 **Decisione**: `sketch` va in produzione (`content.html`), sostituisce `ghost`. Nessuna variante viene cancellata — stesso principio già in uso per i branch scartati: `ghost` (e le altre: `corner`/`bar`/`badge`/`outline`) restano nel CSS e nella galleria `componenti.html#step-card`, solo l'etichetta "attuale in produzione" si sposta. Worktree rimossa dopo il merge; branch `feature/step-cards-v2` mantenuto nella cronologia.
 
 **Nota a margine**: nella worktree è comparso un file non tracciato (`assets/audioRecords/step1.m4a`), non legato a questo lavoro — spostato in `assets/audioRecords/` su `main` prima di rimuovere la worktree, per non perderlo. Non committato, resta solo su disco.
+
+## 2026-08-06 — Audio opzionale sotto step 1
+
+**Stato:** implementato e verificato.
+
+Aggiunto `.c-step-card__audio` (`<audio controls>` nativo, nessun player custom — coerente con "nessun framework") dentro la card di step 1 in `content.html`, sotto la SVG. File rinominato da `assets/audioRecords/step1.m4a` (nota a margine dell'entry precedente) ad `assets/audio/step-card-audio-1.m4a` — cartella rinominata `audioRecords` → `audio` per coerenza con le altre cartelle di `assets/` (`images`, `portfolio`, nomi semplici senza suffisso). Pensato come pattern riusabile per tutti e 3 gli step, ma opzionale: per ora solo step 1 ha un file audio, step 2/3 no. Documentato in `componenti.md` e in galleria (`componenti.html#step-card`, esempio con audio a fianco di quello senza).
+
+Cartella `assets/temp/` (i 3 SVG originali passati durante l'esplorazione, ora ridondanti — le copie definitive sono in `assets/images/`) eliminata su richiesta esplicita dell'utente.
+
+Bug/promemoria emerso nel test: il browser ha servito una versione cache di `content.html` (mostrava ancora `ghost`) nonostante il file su disco e la risposta del server (verificata via `curl`) fossero già `sketch` — stesso tipo di problema di cache discusso in precedenza per il CSS, stavolta sull'HTML. Risolto con hard refresh.

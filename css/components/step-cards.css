@@ -118,6 +118,13 @@
   padding: 0;
 }
 
+/* Audio opzionale sotto la SVG — non tutti gli step ne hanno uno. */
+.c-step-card__audio {
+  display: block;
+  width: 100%;
+  margin-top: var(--space-12);
+}
+
 @media (min-width: 768px) {
   .c-step-cards {
     flex-direction: row;

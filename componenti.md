@@ -116,6 +116,8 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 - `data-variant="ghost"` — **precedente in produzione**, mantenuta come riferimento (non cancellata, stesso principio dei branch scartati): numero enorme e tenue come sfondo decorativo, testo sopra.
 - `data-variant="sketch"` — **attuale in produzione**, markup diverso dalle altre varianti (eccezione al "stessa markup" generale): nessun `.c-step-card__number`/`<p>`, solo un `<img class="c-step-card__sketch">`. La SVG (sketch fornito dall'utente, disegnato in Excalidraw) contiene già numero, illustrazione e testo — sostituisce del tutto il contenuto della card, il `<div class="c-step-card">` resta solo un contenitore di layout (`background: none; padding: 0`). Una SVG dedicata per step: `assets/images/step-card-sketch-1.svg`/`-2.svg`/`-3.svg` — l'`alt` di ogni `<img>` porta comunque la label testuale dello step, come alternativa accessibile al testo scritto a mano dentro la SVG.
 
+**Audio opzionale per step (`.c-step-card__audio`)**: elemento aggiuntivo dentro `.c-step-card` (variante `sketch`), sotto la SVG — `<audio class="c-step-card__audio" controls src="...">`. Controlli nativi del browser, nessun player custom (coerente con "nessun framework/build step"). Pattern pensato riusabile per ciascuno dei 3 step, ma opzionale: al momento presente solo su step 1 (`assets/audio/step-card-audio-1.m4a`), step 2/3 non hanno ancora un file audio.
+
 **Stile**: minimalista — nessun bordo nel default, radius `--radius-12`. Freccia: emoji `➡️`, marcata `aria-hidden="true"` perché puramente decorativa (l'ordine è già chiaro dai numeri e dall'ordine del DOM).
 
 ## Masonry (`.c-masonry`)
