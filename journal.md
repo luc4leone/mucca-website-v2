@@ -221,3 +221,13 @@ Spinner con `animation` avvolta in `@media (prefers-reduced-motion: no-preferenc
 **Stato:** implementato, prima versione ("per iniziare", da iterare).
 
 L'utente ha chiesto un leggero sfondo per il blocco FAQ (h3 + accordion) dentro "Il problema del Junior Designer da quando c'è AI" — prima non erano wrappati in nessun div. Aggiunto `.c-faq` (`css/components/faq.css`): `background: var(--zinc-100)`, `border-radius: var(--radius-8)`, `padding: var(--space-24)`. Wrappa `<h3 id="faq-problema">` + `<details class="c-accordion">` in `content.html`. Nessun problema di margini: la regola già esistente `h3:first-child { margin-top: 0 }` in `base.css` azzera automaticamente il margine superiore dell'h3 come primo figlio del box. Verificato senza overflow orizzontale a 500px e 1280px, accordion si espande correttamente dentro il box.
+
+## 2026-08-06 — Step card: nuova variante "sketch" sostituisce "ghost" in produzione
+
+**Stato:** deciso e applicato (merge di `feature/step-cards-v2` in `main`).
+
+Esplorazione in worktree (`../mucca-website-step-cards-v2`), confronto side-by-side su due server locali (8000 baseline `ghost`, 8001 variante). Idea di partenza dell'utente: non un'icona accanto al numero/testo, ma la SVG (sketch Excalidraw fornito dall'utente) che sostituisce **del tutto** il contenuto della card — niente `.c-step-card__number`/`<p>`, il `<div class="c-step-card">` resta solo un contenitore di layout per un `<img class="c-step-card__sketch">`. Prima iterazione con una sola SVG placeholder riusata per i 3 step, poi completata con una SVG dedicata per step (`assets/images/step-card-sketch-1/2/3.svg`).
+
+Bug del workflow, non del componente: durante l'iterazione, una modifica a `align-items` in `step-cards.css` è stata fatta per errore nel repo principale (`muccaWebsiteV2`, servito su :8000) invece che nella worktree (:8001) — i due sono copie indipendenti, non collegate. Nessun effetto visibile finché la modifica non è stata rifatta nel file giusto.
+
+**Decisione**: `sketch` va in produzione (`content.html`), sostituisce `ghost`. Nessuna variante viene cancellata — stesso principio già in uso per i branch scartati: `ghost` (e le altre: `corner`/`bar`/`badge`/`outline`) restano nel CSS e nella galleria `componenti.html#step-card`, solo l'etichetta "attuale in produzione" si sposta. Worktree rimossa dopo il merge; branch `feature/step-cards-v2` mantenuto nella cronologia.
