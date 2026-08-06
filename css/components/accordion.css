@@ -1,0 +1,37 @@
+.c-accordion {
+  border-bottom: var(--border-width-1) solid var(--color-border);
+}
+
+.c-accordion summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  padding: var(--space-18) 0;
+  list-style: none;
+  font-weight: var(--font-weight-600);
+  cursor: pointer;
+}
+
+.c-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.c-accordion summary::after {
+  content: "+";
+  flex-shrink: 0;
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-400);
+  line-height: 1;
+}
+
+.c-accordion[open] summary::after {
+  content: "×";
+}
+
+.c-accordion > ul,
+.c-accordion > ol,
+.c-accordion > p {
+  margin-top: 0;
+  padding-bottom: var(--space-18);
+}

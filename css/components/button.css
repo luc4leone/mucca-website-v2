@@ -1,0 +1,32 @@
+.c-button {
+  --button-bg: var(--celadon);
+  --button-fg: var(--color-on-primary);
+
+  display: inline-block;
+  appearance: none;
+  border: none;
+  border-radius: var(--radius-8);
+  padding: var(--space-12) var(--space-24);
+  background: var(--button-bg);
+  color: var(--button-fg);
+  font-family: inherit;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-600);
+  line-height: var(--line-height-normal);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.c-button:hover {
+  filter: brightness(0.93);
+}
+
+.c-button:active {
+  filter: brightness(0.87);
+}
+
+.c-button:disabled {
+  cursor: not-allowed;
+  opacity: var(--opacity-disabled);
+}

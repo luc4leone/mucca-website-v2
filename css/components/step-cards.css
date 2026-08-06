@@ -1,0 +1,121 @@
+.c-step-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  max-width: var(--space-420);
+  margin: 0 auto var(--space-18);
+}
+
+.c-step-cards__arrow {
+  display: none;
+}
+
+.c-step-card {
+  position: relative;
+  background: var(--step-card-bg, var(--zinc-100));
+  border-radius: var(--radius-12);
+  padding: var(--space-24);
+  text-align: center;
+}
+
+.c-step-card__number {
+  position: absolute;
+  top: var(--space-12);
+  right: var(--space-12);
+  font-weight: var(--font-weight-600);
+  color: var(--color-text-muted);
+}
+
+.c-step-card p {
+  margin: 0;
+  font-weight: var(--font-weight-400);
+  font-size: var(--font-size-16);
+}
+
+/* ---------------------------------------------------------------
+   Varianti estetiche — stessa markup, CSS diverso per il numero.
+   Documentate in componenti.html (galleria visiva permanente).
+--------------------------------------------------------------- */
+
+/* Variante "bar": barra scura a piena larghezza in alto, numero dentro. */
+.c-step-card[data-variant="bar"] {
+  padding: 0;
+  overflow: hidden;
+}
+
+.c-step-card[data-variant="bar"] .c-step-card__number {
+  position: static;
+  display: block;
+  padding: var(--space-12);
+  background: var(--step-card-number-bg, var(--zinc-800));
+  color: var(--step-card-number-fg, var(--zinc-50));
+  font-weight: var(--font-weight-700);
+}
+
+.c-step-card[data-variant="bar"] p {
+  padding: var(--space-24);
+}
+
+/* Variante "badge": pallino che sborda dall'angolo in alto a destra. */
+.c-step-card[data-variant="badge"] .c-step-card__number {
+  top: calc(-1 * var(--space-12));
+  right: calc(-1 * var(--space-12));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-48);
+  height: var(--space-48);
+  border-radius: var(--radius-full);
+  background: var(--step-card-number-bg, var(--zinc-600));
+  color: var(--step-card-number-fg, var(--zinc-50));
+  font-weight: var(--font-weight-700);
+}
+
+/* Variante "outline": nessun riempimento, bordo, numero a sinistra in accento. */
+.c-step-card[data-variant="outline"] {
+  background: transparent;
+  border: var(--border-width-2) solid var(--step-card-border, var(--color-border));
+}
+
+.c-step-card[data-variant="outline"] .c-step-card__number {
+  right: auto;
+  left: var(--space-12);
+  font-weight: var(--font-weight-700);
+  color: var(--step-card-number-fg, var(--color-primary));
+}
+
+/* Variante "ghost": numero enorme e tenue come sfondo decorativo. */
+.c-step-card[data-variant="ghost"] {
+  border: var(--border-width-1) solid var(--color-border);
+  overflow: hidden;
+}
+
+.c-step-card[data-variant="ghost"] .c-step-card__number {
+  top: var(--space-6);
+  font-size: var(--font-size-72);
+  font-weight: var(--font-weight-700);
+  color: var(--step-card-number-fg, var(--zinc-200));
+  line-height: 1;
+}
+
+.c-step-card[data-variant="ghost"] p {
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .c-step-cards {
+    flex-direction: row;
+    align-items: center;
+    max-width: none;
+  }
+
+  .c-step-card {
+    flex: 1;
+  }
+
+  .c-step-cards__arrow {
+    display: block;
+    flex-shrink: 0;
+    font-size: var(--font-size-24);
+  }
+}

@@ -1,0 +1,66 @@
+/* Masonry via CSS multi-column: nessun supporto nativo affidabile per
+   grid-template-rows: masonry nei browser stabili, quindi si usa questo
+   approccio (approssimazione a colonne, non vera masonry riga per riga). */
+.c-masonry {
+  column-count: 1;
+  column-gap: var(--space-18);
+}
+
+.c-masonry img {
+  width: 100%;
+  display: block;
+  margin-bottom: var(--space-18);
+  border-radius: var(--radius-8);
+  break-inside: avoid;
+}
+
+@media (min-width: 768px) {
+  .c-masonry {
+    column-count: 3;
+  }
+}
+
+.c-masonry img {
+  cursor: pointer;
+}
+
+/* Overlay: fixed verticalmente (segue il viewport, l'immagine è sempre
+   centrata su schermo indipendentemente dallo scroll nella griglia,
+   che può essere molto più alta del viewport) — ma left/width vengono
+   impostati via JS per limitarlo orizzontalmente alla sola colonna
+   contenuto, senza coprire la sidebar. Vedi design-system.md. */
+.c-masonry-overlay {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-overlay);
+  z-index: var(--z-overlay);
+  cursor: pointer;
+}
+
+.c-masonry-overlay[hidden] {
+  display: none;
+}
+
+.c-masonry-overlay__img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: var(--radius-8);
+}
+
+.c-masonry-overlay__close {
+  position: absolute;
+  top: var(--space-12);
+  right: var(--space-12);
+  appearance: none;
+  border: none;
+  background: none;
+  color: var(--zinc-50);
+  font-size: var(--font-size-30);
+  line-height: 1;
+  cursor: pointer;
+}

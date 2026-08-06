@@ -1,0 +1,5 @@
+.c-faq {
+  background: var(--zinc-100);
+  border-radius: var(--radius-8);
+  padding: var(--space-24);
+}

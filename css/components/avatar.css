@@ -1,0 +1,7 @@
+.c-avatar {
+  display: block;
+  width: var(--space-120);
+  height: var(--space-120);
+  object-fit: cover;
+  border-radius: var(--radius-full);
+}

@@ -45,6 +45,7 @@ Sezioni previste:
 - Nessun brand kit completo esistente.
 - Asset parziali già disponibili: immagini, logo, font — incompleti, verificare cosa manca prima di darli per scontati.
 - Riferimenti/ispirazioni da raccogliere man mano (link, screenshot) quando disponibili.
+- Convenzioni sul "contenitore" (variabili di tema, naming componenti, interfaccia via CSS custom property) in `design-system.md`. Rispettarle quando si scrive CSS o markup di componenti.
 
 ## Workflow di iterazione (worktree)
 
@@ -63,8 +64,14 @@ Prima di iniziare una nuova variante: committare lo stato corrente su `main`, po
 
 Guide di riferimento nel repo:
 
-- `spiega-worktree.md` — spiegazione tecnica completa (sintassi, esempi, pubblicazione varianti).
-- `spiega-worktree-conversazione.md` — stesso contenuto in formato domanda/risposta.
+- `spiega/spiega-worktree.md` — spiegazione tecnica completa (sintassi, esempi, pubblicazione varianti).
+- `spiega/spiega-worktree-conversazione.md` — stesso contenuto in formato domanda/risposta.
+
+## Journal
+
+`journal.md` documenta per l'utente le scelte fatte e da fare (struttura, decisioni di design, motivazioni), a differenza di questo file che sono istruzioni operative per Claude.
+
+Quando si propone o si decide qualcosa di rilevante (struttura file, scelte di design, cambi di rotta), registrarlo in `journal.md`.
 
 ## Note operative per Claude
 

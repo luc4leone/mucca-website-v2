@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interfacce che ho progettato — Master UX/UI Design</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components/masonry.css">
+</head>
+<body>
+
+<section class="l-section" id="portfolio">
+  <div class="l-section__intro">
+    <p><a href="content.html#ciao-mi-chiamo-luca-leone">← Torna a Mucca Master UX/UI Design</a></p>
+    <h2>Interfacce che ho progettato</h2>
+  </div>
+  <div class="l-section__content">
+    <div class="c-masonry-container">
+      <div class="c-masonry"></div>
+      <div class="c-masonry-overlay" hidden>
+        <button type="button" class="c-masonry-overlay__close" aria-label="Chiudi">×</button>
+        <img class="c-masonry-overlay__img" src="" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const container = document.querySelector('.c-masonry-container');
+  const grid = container.querySelector('.c-masonry');
+  const overlay = container.querySelector('.c-masonry-overlay');
+  const overlayImg = overlay.querySelector('.c-masonry-overlay__img');
+
+  fetch('assets/portfolio/manifest.json')
+    .then((res) => res.json())
+    .then((data) => {
+      grid.innerHTML = data.images
+        .map((name, i) => `<img src="assets/portfolio/${name}" alt="Screenshot ${i + 1} di un'interfaccia progettata da Luca Leone" loading="lazy">`)
+        .join('');
+    });
+
+  function updateOverlayBounds() {
+    const rect = container.getBoundingClientRect();
+    overlay.style.left = rect.left + 'px';
+    overlay.style.width = rect.width + 'px';
+  }
+
+  function closeOverlay() {
+    overlay.hidden = true;
+    overlayImg.src = '';
+  }
+
+  grid.addEventListener('click', (e) => {
+    if (e.target.tagName === 'IMG') {
+      updateOverlayBounds();
+      overlayImg.src = e.target.src;
+      overlayImg.alt = e.target.alt;
+      overlay.hidden = false;
+    }
+  });
+
+  overlay.addEventListener('click', closeOverlay);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !overlay.hidden) closeOverlay();
+  });
+
+  window.addEventListener('resize', () => {
+    if (!overlay.hidden) updateOverlayBounds();
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+/*
+  Design token. Vedi design-system.md per le motivazioni.
+
+  Breakpoint (768px, mobile-first) NON è qui: le custom property non
+  funzionano dentro @media, quindi resta una costante documentata da
+  ripetere letteralmente in ogni `@media (min-width: 768px)`.
+*/
+
+/* Font: Lora (variable, asse wght 400–700), file in assets/Lora/.
+   TTF variable, niente build step: format("truetype-variations"). */
+@font-face {
+  font-family: "Lora";
+  src: url("../assets/Lora/Lora-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("../assets/Lora/Lora-Italic-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 400 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* ---------------------------------------------------------------
+     Tipografia
+  --------------------------------------------------------------- */
+  --font-size-12: 12px;
+  --font-size-14: 14px;
+  --font-size-16: 16px;
+  --font-size-18: 18px;
+  --font-size-20: 20px;
+  --font-size-24: 24px;
+  --font-size-30: 30px;
+  --font-size-36: 36px;
+  --font-size-48: 48px;
+  --font-size-60: 60px;
+  --font-size-72: 72px;
+
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+
+  /* pesi statici effettivamente inclusi nel font (Regular/Medium/SemiBold/Bold) */
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+
+  --line-height-tight: 1.1;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.7;
+
+  /* naming per fascia, non per valore: decimali (anche negativi) scomodi come suffisso */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.08em;
+
+  /* ---------------------------------------------------------------
+     Spaziatura e dimensioni — stessa scala per margin/padding/gap
+     e per dimensioni di elementi (larghezze, altezze, icone...)
+  --------------------------------------------------------------- */
+  --space-6: 6px;
+  --space-12: 12px;
+  --space-18: 18px;
+  --space-24: 24px;
+  --space-30: 30px;
+  --space-36: 36px;
+  --space-48: 48px;
+  --space-60: 60px;
+  --space-72: 72px;
+  --space-84: 84px;
+  --space-96: 96px;
+  --space-108: 108px;
+  --space-120: 120px;
+  --space-144: 144px;
+  --space-168: 168px;
+  --space-192: 192px;
+  --space-216: 216px;
+  --space-240: 240px;
+  --space-300: 300px;
+  --space-360: 360px;
+  --space-420: 420px;
+  --space-480: 480px;
+  --space-540: 540px;
+  --space-600: 600px;
+  --space-660: 660px;
+  --space-720: 720px;
+  --space-780: 780px;
+
+  /* ---------------------------------------------------------------
+     Colori — primitive e semantiche
+  --------------------------------------------------------------- */
+
+  /* primitive: scala di grigio neutro (zinc, Tailwind) */
+  --zinc-50: #fafafa;
+  --zinc-100: #f4f4f5;
+  --zinc-200: #e4e4e7;
+  --zinc-300: #d4d4d8;
+  --zinc-400: #a1a1aa;
+  --zinc-500: #71717a;
+  --zinc-600: #52525b;
+  --zinc-700: #3f3f46;
+  --zinc-800: #27272a;
+  --zinc-900: #18181b;
+  --zinc-950: #09090b;
+
+  /* primitive: colori brand */
+  --midnight-violet: #3b1c32ff;
+  --hot-pink-web: #ff69b4ff;
+  --celadon: #a4d4b4ff;
+  --apricot-cream: #ffcf9cff;
+  --cinnamon-wood: #b96d40ff;
+
+  /* primitive: colore funzionale (non di brand) — nessun rosso nella
+     palette data, serve per errore e deve restare riconoscibile
+     indipendentemente dal mood del brand */
+  --red-600: #dc2626;
+
+  /* semantiche, consumate dai componenti */
+  --color-background: var(--zinc-50);
+  --color-text: var(--zinc-900);
+  --color-text-muted: var(--zinc-600);
+  --color-border: var(--zinc-200);
+
+  --color-primary: var(--hot-pink-web);
+  --color-on-primary: var(--zinc-900);
+
+  --color-secondary: var(--midnight-violet);
+  --color-on-secondary: var(--zinc-50);
+
+  /* uso limitato a elementi grandi/decorativi: con testo piccolo sopra
+     il contrasto è al limite della soglia AA (~4:1) */
+  --color-accent: var(--cinnamon-wood);
+
+  --color-icon-primary: var(--zinc-900);
+  --color-icon-secondary: var(--zinc-400);
+
+  /* success: celadon, verde tenue già in palette, riserva usata qui.
+     Contrasto: testo scuro sopra (~10.7:1), non testo chiaro (~1.7:1). */
+  --color-success: var(--celadon);
+  --color-on-success: var(--zinc-900);
+
+  /* error: rosso funzionale, non di brand. Contrasto: testo chiaro
+     sopra (~4.8:1, passa AA), non testo scuro piccolo (~3.7:1). */
+  --color-error: var(--red-600);
+  --color-on-error: var(--zinc-50);
+
+  /* overlay: sfondo dietro modale/lead-magnet, tinto di zinc-900 */
+  --color-overlay: rgba(24, 24, 27, 0.5);
+
+  /* apricot-cream: ancora non mappata, riserva per iterazioni future */
+
+  /* ---------------------------------------------------------------
+     Radius — naming per valore, più --radius-full per pillole/cerchi
+     (eccezione di naming: "full" non è un px, è un concetto a sé)
+  --------------------------------------------------------------- */
+  --radius-2: 2px;
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-full: 9999px;
+
+  --border-width-1: 1px;
+  --border-width-2: 2px;
+  --border-width-4: 4px;
+
+  /* ---------------------------------------------------------------
+     Ombre — naming per fascia (sm/md/lg), non per valore: sono
+     composite (offset+blur+colore), non un singolo numero.
+     Tinte di zinc-900 invece di nero puro: ombra più morbida.
+  --------------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(24, 24, 27, 0.06);
+  --shadow-md: 0 4px 8px rgba(24, 24, 27, 0.08);
+  --shadow-lg: 0 12px 24px rgba(24, 24, 27, 0.12);
+
+  /* ---------------------------------------------------------------
+     Transizioni — durata per valore (coerente con font-size/space),
+     easing per nome (curve bezier, non un numero singolo)
+  --------------------------------------------------------------- */
+  --duration-150: 150ms;
+  --duration-250: 250ms;
+  --duration-400: 400ms;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ---------------------------------------------------------------
+     Z-index
+  --------------------------------------------------------------- */
+  --z-base: 0;
+  --z-sticky: 10;
+  --z-overlay: 20;
+  --z-modal: 30;
+  --z-toast: 40;
+
+  /* ---------------------------------------------------------------
+     Focus (accessibilità) — midnight-violet: verificato ≥3:1 sia su
+     sfondo chiaro (zinc-50, ~14:1) sia su --color-primary (~5.7:1).
+     Componenti su altri sfondi colorati vanno verificati caso per
+     caso e possono sovrascrivere --focus-ring-color.
+  --------------------------------------------------------------- */
+  --focus-ring-color: var(--color-secondary);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
+  /* ---------------------------------------------------------------
+     Layout — valore deciso in container.md
+  --------------------------------------------------------------- */
+  --container-max-width: 1080px;
+
+  /* ---------------------------------------------------------------
+     Opacity — primo caso d'uso reale: stato disabled di .c-button
+  --------------------------------------------------------------- */
+  --opacity-disabled: 0.5;
+}
+
+/*
+  Promemoria — non ancora token, da valutare quando serve davvero:
+
+  - Aspect-ratio (video, lead magnet): dubbio se debba essere un token
+    o un valore per-istanza — l'aspect-ratio giusto è spesso dettato
+    dal contenuto stesso (rapporto nativo del video), non da una
+    scelta di stile da applicare ovunque. Valutare quando si disegna
+    quella sezione, non anticipare ora.
+*/
