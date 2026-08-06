@@ -32,6 +32,12 @@
   font-size: var(--font-size-16);
 }
 
+.c-step-card__sketch {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* ---------------------------------------------------------------
    Varianti estetiche — stessa markup, CSS diverso per il numero.
    Documentate in componenti.html (galleria visiva permanente).
@@ -102,10 +108,20 @@
   position: relative;
 }
 
+/* Variante "sketch": la SVG (numero + illustrazione + testo già disegnati
+   dentro) sostituisce del tutto il contenuto della card — nessun
+   .c-step-card__number/p separato, il div resta solo un contenitore di
+   layout. Img (non background-image): il contenuto è informativo, non
+   decorativo, serve un testo alternativo reale per l'accessibilità. */
+.c-step-card[data-variant="sketch"] {
+  background: none;
+  padding: 0;
+}
+
 @media (min-width: 768px) {
   .c-step-cards {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     max-width: none;
   }
 

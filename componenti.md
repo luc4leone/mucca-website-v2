@@ -84,21 +84,21 @@ Override per istanza, es. bottone secondario:
 
 **File**: `css/components/step-cards.css`
 
-**Markup**:
+**Markup** (variante `sketch`, attuale in produzione):
 
 ```html
 <div class="c-step-cards">
-  <div class="c-step-card">
-    <span class="c-step-card__number">1</span>
-    <p>Diventa Design Engineer</p>
+  <div class="c-step-card" data-variant="sketch">
+    <img class="c-step-card__sketch" src="assets/images/step-card-sketch-1.svg" alt="Step 1: Diventa Design Engineer">
   </div>
   <span class="c-step-cards__arrow" aria-hidden="true">➡️</span>
-  <div class="c-step-card">
-    <span class="c-step-card__number">2</span>
-    <p>Migliora la qualità e la presentazione dei tuoi lavori</p>
+  <div class="c-step-card" data-variant="sketch">
+    <img class="c-step-card__sketch" src="assets/images/step-card-sketch-2.svg" alt="Step 2: Migliora la qualità e la presentazione dei tuoi lavori">
   </div>
 </div>
 ```
+
+Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-step-card__number`/`<p>` invece della SVG): vedi `componenti.html#step-card`.
 
 **Variabili (interfaccia)**: `--step-card-bg`, più per variante (vedi sotto) `--step-card-number-bg`, `--step-card-number-fg`, `--step-card-border`.
 
@@ -113,7 +113,8 @@ Override per istanza, es. bottone secondario:
 - `data-variant="bar"` — barra scura a piena larghezza in alto, numero centrato dentro (sketch utente).
 - `data-variant="badge"` — pallino scuro che sborda dall'angolo in alto a destra (sketch utente).
 - `data-variant="outline"` — nessun riempimento, bordo, numero a sinistra in `--color-primary`.
-- `data-variant="ghost"` — **attuale in produzione**: numero enorme e tenue come sfondo decorativo, testo sopra.
+- `data-variant="ghost"` — **precedente in produzione**, mantenuta come riferimento (non cancellata, stesso principio dei branch scartati): numero enorme e tenue come sfondo decorativo, testo sopra.
+- `data-variant="sketch"` — **attuale in produzione**, markup diverso dalle altre varianti (eccezione al "stessa markup" generale): nessun `.c-step-card__number`/`<p>`, solo un `<img class="c-step-card__sketch">`. La SVG (sketch fornito dall'utente, disegnato in Excalidraw) contiene già numero, illustrazione e testo — sostituisce del tutto il contenuto della card, il `<div class="c-step-card">` resta solo un contenitore di layout (`background: none; padding: 0`). Una SVG dedicata per step: `assets/images/step-card-sketch-1.svg`/`-2.svg`/`-3.svg` — l'`alt` di ogni `<img>` porta comunque la label testuale dello step, come alternativa accessibile al testo scritto a mano dentro la SVG.
 
 **Stile**: minimalista — nessun bordo nel default, radius `--radius-12`. Freccia: emoji `➡️`, marcata `aria-hidden="true"` perché puramente decorativa (l'ordine è già chiaro dai numeri e dall'ordine del DOM).
 
