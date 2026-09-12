@@ -306,7 +306,7 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 
 **Dove**: `portfolio.html`, uno per progetto, dentro la `<section>` del cluster.
 
-**Markup**: vedi il primo `<article class="c-project">` in `portfolio.html`. `<dl>` per il template (etichetta = `<dt>`, testo = `<dd>`): da 768px griglia a due colonne (`--space-144` + 1fr), sotto etichetta sopra testo. Una riga del template può essere omessa (es. `Result` se non c'è nulla di onesto da dire), mai riempita.
+**Markup**: vedi il primo `<article class="c-project">` in `portfolio.html`. Sul branch `feature/portfolio-themes` l'article ha `data-tags="hmi"` (più tag separati da spazio) e una riga `.c-project__tags` sotto il meta con i tag come link `?tag=…`. `<dl>` per il template (etichetta = `<dt>`, testo = `<dd>`): da 768px griglia a due colonne (`--space-144` + 1fr), sotto etichetta sopra testo. Una riga del template può essere omessa (es. `Result` se non c'è nulla di onesto da dire), mai riempita.
 
 **Variabili esposte**: nessuna.
 
@@ -329,4 +329,26 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 ```
 
 **Variabili esposte**: nessuna. **Stati**: nessuno.
+
+## Tag filter (`.c-tag-filter`) — branch `feature/portfolio-themes`
+
+**Scopo**: filtra i progetti per tipo di lavoro. Le sezioni della pagina sono le 4 tesi ("I simplify complex software"…), i tag sono i tipi (HMI, ecommerce…). Un tag attivo nasconde i progetti senza quel tag e le sezioni rimaste vuote.
+
+**Dove**: `portfolio.html`, sotto l'intestazione.
+
+**Markup**:
+
+```html
+<nav aria-label="Filter by type of work">
+  <ul class="c-tag-filter">
+    <li><a href="?" aria-pressed="true">All</a></li>
+    <li><a href="?tag=hmi" aria-pressed="false">HMI &amp; embedded</a></li>
+  </ul>
+  <p class="c-tag-filter__empty" hidden>No projects with this tag yet.</p>
+</nav>
+```
+
+**Comportamento** (`js/portfolio-filter.js`): progressive enhancement. Senza JS i link ricaricano la pagina con `?tag=…`; lo script legge il parametro al caricamento e applica il filtro, e intercetta i click solo per evitare il reload (`history.replaceState`). Funziona anche dai link `.c-project__tags` dentro i progetti. URL linkabile: `portfolio.html?tag=hmi#simplify`.
+
+**Stati**: `[aria-pressed="true"]` → sottolineatura in `--color-accent`, unico accento della pagina.
 

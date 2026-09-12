@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Luca Leone — UX/UI portfolio</title>
+<title>Works — Luca Leone</title>
 <meta name="description" content="I simplify complex software. Selected work: UX audits, ecommerce, HMI and embedded interfaces, my own products.">
-<meta property="og:title" content="Luca Leone — UX/UI portfolio">
+<meta property="og:title" content="Works — Luca Leone">
 <meta property="og:description" content="I simplify complex software. Selected work: UX audits, ecommerce, HMI and embedded interfaces, my own products.">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/components/cluster-nav.css">
+<link rel="stylesheet" href="css/components/tag-filter.css">
 <link rel="stylesheet" href="css/components/filmstrip.css">
 <link rel="stylesheet" href="css/components/project.css">
 <link rel="stylesheet" href="brand-kit/brand-tokens-light.css">
@@ -22,29 +22,32 @@
 <main class="l-page">
 
   <header>
-    <h1>I simplify complex software.</h1>
-    <p>Boring and obvious beats original and clever: the visual layer only serves ease of use. Every insight below came from immersion — reading the tickets, standing next to the operator, running the flow with real users.</p>
+    <h1>Works.</h1>
+    <p>Boring and obvious beats original and clever. Every insight below came from immersion: reading the tickets, standing next to the operator, running the flow with real users.</p>
     <p><a href="index.html">← Back to the course (Italian)</a></p>
   </header>
 
-  <nav aria-label="Work by type">
-    <ul class="c-cluster-nav">
-      <li><a href="#ux-audit">UX audits</a></li>
-      <li><a href="#ecommerce">Ecommerce</a></li>
-      <li><a href="#hmi">HMI &amp; embedded</a></li>
-      <li><a href="#founder">Founder: my own products</a></li>
-      <li><a href="#misc">Other work</a></li>
+  <nav aria-label="Filter by type of work">
+    <ul class="c-tag-filter">
+      <li><a href="?" aria-pressed="true">All</a></li>
+      <li><a href="?tag=ux-audit" aria-pressed="false">UX audits</a></li>
+      <li><a href="?tag=ecommerce" aria-pressed="false">Ecommerce</a></li>
+      <li><a href="?tag=hmi" aria-pressed="false">HMI &amp; embedded</a></li>
+      <li><a href="?tag=founder" aria-pressed="false">Founder: my own products</a></li>
+      <li><a href="?tag=misc" aria-pressed="false">Other work</a></li>
     </ul>
+    <p class="c-tag-filter__empty" hidden>No projects with this tag yet.</p>
   </nav>
 
-  <section id="hmi">
-    <h2>HMI &amp; embedded</h2>
-    <p>Touchscreens on industrial machines. No keyboard, no mouse, gloves sometimes, neon lights always, and an operator who did not choose the software.</p>
+  <section id="simplify">
+    <h2>I simplify complex software</h2>
+    <p>Dozens of parameters, expert users, hardware that pushes back. The job is deciding what goes on the one screen that matters — and leaving everything else out of the way.</p>
 
-    <article class="c-project" id="next2">
+    <article class="c-project" id="next2" data-tags="hmi">
       <header class="c-project__header">
         <h3>Next2 — automatic fabric cutter</h3>
         <p class="c-project__meta">Morgan Tecnica · UX/UI + physical console · Windows touch desktop · 2020</p>
+        <p class="c-project__tags"><a href="?tag=hmi">HMI &amp; embedded</a></p>
       </header>
       <div class="c-filmstrip">
         <img src="assets/portfolio/8.jpg" width="1920" height="1080" alt="Next2 cut room: file list, marker preview, blade and lay settings on one screen" loading="lazy">
@@ -67,10 +70,11 @@
       <p class="c-project__links"><a href="https://www.morgantecnica.com/" target="_blank" rel="noopener">Morgan Tecnica ↗</a></p>
     </article>
 
-    <article class="c-project" id="fox">
+    <article class="c-project" id="fox" data-tags="hmi">
       <header class="c-project__header">
         <h3>Fox — automatic fabric spreader, two generations</h3>
         <p class="c-project__meta">Morgan Tecnica · UX/UI + physical console · Tablet touch · 2015–2020</p>
+        <p class="c-project__tags"><a href="?tag=hmi">HMI &amp; embedded</a></p>
       </header>
       <div class="c-filmstrip">
         <img src="assets/portfolio/fox-before-modal-manuals.png" width="1279" height="718" alt="Before: the spreader with its four motors and the single switch-plus-handle that controlled all of them" loading="lazy">
@@ -99,10 +103,11 @@
       <p class="c-project__links"><a href="https://www.morgantecnica.com/" target="_blank" rel="noopener">Morgan Tecnica ↗</a></p>
     </article>
 
-    <article class="c-project" id="ply1">
+    <article class="c-project" id="ply1" data-tags="hmi">
       <header class="c-project__header">
         <h3>Ply1 — single-ply cutter</h3>
         <p class="c-project__meta">Morgan Tecnica · UX/UI · Windows, 24" touchscreen · 2021</p>
+        <p class="c-project__tags"><a href="?tag=hmi">HMI &amp; embedded</a></p>
       </header>
       <div class="c-filmstrip">
         <img src="assets/portfolio/55.jpg" width="1920" height="1080" alt="Ply1: the whole machine on one screen, nested pieces in the centre, speeds on top, tools on the right" loading="lazy">
@@ -122,10 +127,11 @@
       <p class="c-project__links"><a href="https://www.morgantecnica.com/" target="_blank" rel="noopener">Morgan Tecnica ↗</a></p>
     </article>
 
-    <article class="c-project" id="twist">
+    <article class="c-project" id="twist" data-tags="hmi">
       <header class="c-project__header">
         <h3>Twist — fabric spreader</h3>
         <p class="c-project__meta">Morgan Tecnica · UX/UI · Touch panel · 2017</p>
+        <p class="c-project__tags"><a href="?tag=hmi">HMI &amp; embedded</a></p>
       </header>
       <div class="c-filmstrip">
         <img src="assets/portfolio/46.jpg" width="2154" height="1264" alt="Twist: trimmer parameters with large up and down arrows and register numbers" loading="lazy">
@@ -146,61 +152,11 @@
       <p class="c-project__links"><a href="https://www.morgantecnica.com/" target="_blank" rel="noopener">Morgan Tecnica ↗</a></p>
     </article>
 
-    <article class="c-project" id="egro-one-touch">
-      <header class="c-project__header">
-        <h3>Egro One Touch — self-service coffee machine</h3>
-        <p class="c-project__meta">Rancilio Group · UX/UI · 7" touchscreen · 2014</p>
-      </header>
-      <div class="c-filmstrip">
-        <img src="assets/portfolio/egro-machine.png" width="480" height="653" alt="The Egro One Touch machine with its 7-inch touchscreen" loading="lazy">
-        <img src="assets/portfolio/53.jpg" width="726" height="964" alt="Egro One Touch wireframes: choose, pay, customise, wait — one-step versus multi-step flows" loading="lazy">
-        <img src="assets/portfolio/egro-rationale-no-back.png" width="1800" height="534" alt="Design rationale: stateless UI, no time, no sequence, no back button — four screens from ready to please wait" loading="lazy">
-        <img src="assets/portfolio/43.jpg" width="3236" height="2057" alt="Egro One Touch: analysis of the extra option, classic versus shortcut solution" loading="lazy">
-        <img src="assets/portfolio/41.png" width="480" height="640" alt="Egro One Touch: customise your drink, size, coffee, extra, make drink button" loading="lazy">
-        <img src="assets/portfolio/42.jpg" width="4056" height="2845" alt="Egro One Touch: final dark UI next to the light alternative" loading="lazy">
-      </div>
-      <dl class="c-project__facts">
-        <dt>Product</dt>
-        <dd>Coffee machine for hotels and bars: about 20 drinks, customisation, payment. Anyone, any language, no time to learn.</dd>
-        <dt>Complexity</dt>
-        <dd>Every drink has size, strength and extras; some combinations exist, some don't. Credit changes what you can order. All on a 7" screen.</dd>
-        <dt>Immersion</dt>
-        <dd>At least ten days at the plant next to the machine, running the flows on paper before touching pixels.</dd>
-        <dt>Made obvious</dt>
-        <dd>One decision per screen, no back button: a short linear flow you cannot get lost in. The "Make drink" button repeats the cup size, so nobody puts the wrong cup under the spout.</dd>
-        <dt>Result</dt>
-        <dd>Shipped. First machines installed in June 2015 at the Hyatt McCormick Place in Chicago.</dd>
-      </dl>
-      <p class="c-project__links"><a href="https://luc4leone.github.io/coffee-proto/home4.html" target="_blank" rel="noopener">Prototype ↗</a> · <a href="https://egrocoffee.com/en/" target="_blank" rel="noopener">Egro ↗</a></p>
-    </article>
-
-    <article class="c-project" id="egro-2">
-      <header class="c-project__header">
-        <h3>Egro — second machine, larger screen</h3>
-        <p class="c-project__meta">Rancilio Group · UX/UI · Touch · 2015</p>
-      </header>
-      <div class="c-filmstrip">
-        <img src="assets/portfolio/48.jpg" width="1024" height="768" alt="Egro: drink list on the left, a cup that fills with coffee and milk as you customise, size slider, brew it" loading="lazy">
-      </div>
-      <dl class="c-project__facts">
-        <dt>Product</dt>
-        <dd>The next machine, one year later, with a bigger display and full drink customisation.</dd>
-        <dt>Complexity</dt>
-        <dd>More ingredients to adjust — foam, milk, coffee, size — and a customer who has to understand what they are changing.</dd>
-        <dt>Immersion</dt>
-        <dd>Second year with the same client and the same machines.</dd>
-        <dt>Made obvious</dt>
-        <dd>The cup is the interface: it fills with the actual ingredients as you adjust them. Not decoration — it shows what you are about to drink.</dd>
-        <dt>Result</dt>
-        <dd>In production.</dd>
-      </dl>
-      <p class="c-project__links"><a href="https://egrocoffee.com/en/" target="_blank" rel="noopener">Egro ↗</a></p>
-    </article>
-
-    <article class="c-project" id="lonati">
+    <article class="c-project" id="lonati" data-tags="hmi">
       <header class="c-project__header">
         <h3>Sock knitting machine</h3>
         <p class="c-project__meta">Lonati · UX/UI · Linux touch panel · 2014</p>
+        <p class="c-project__tags"><a href="?tag=hmi">HMI &amp; embedded</a></p>
       </header>
       <div class="c-filmstrip">
         <img src="assets/portfolio/lonati-before-physical-panel.png" width="688" height="299" alt="Before: the previous control panel, a small screen and sixty physical keys" loading="lazy">
@@ -225,6 +181,65 @@
     </article>
   </section>
 
+  <section id="conversation">
+    <h2>I simplify the human-computer conversation</h2>
+    <p>When the user is anyone — a hotel guest, a customer in a hurry — the interface has one chance to be understood. No manual, no second attempt.</p>
+
+    <article class="c-project" id="egro-one-touch" data-tags="hmi">
+      <header class="c-project__header">
+        <h3>Egro One Touch — self-service coffee machine</h3>
+        <p class="c-project__meta">Rancilio Group · UX/UI · 7" touchscreen · 2014</p>
+        <p class="c-project__tags"><a href="?tag=hmi">HMI &amp; embedded</a></p>
+      </header>
+      <div class="c-filmstrip">
+        <img src="assets/portfolio/egro-machine.png" width="480" height="653" alt="The Egro One Touch machine with its 7-inch touchscreen" loading="lazy">
+        <img src="assets/portfolio/53.jpg" width="726" height="964" alt="Egro One Touch wireframes: choose, pay, customise, wait — one-step versus multi-step flows" loading="lazy">
+        <img src="assets/portfolio/egro-rationale-no-back.png" width="1800" height="534" alt="Design rationale: stateless UI, no time, no sequence, no back button — four screens from ready to please wait" loading="lazy">
+        <img src="assets/portfolio/43.jpg" width="3236" height="2057" alt="Egro One Touch: analysis of the extra option, classic versus shortcut solution" loading="lazy">
+        <img src="assets/portfolio/41.png" width="480" height="640" alt="Egro One Touch: customise your drink, size, coffee, extra, make drink button" loading="lazy">
+        <img src="assets/portfolio/42.jpg" width="4056" height="2845" alt="Egro One Touch: final dark UI next to the light alternative" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>Coffee machine for hotels and bars: about 20 drinks, customisation, payment. Anyone, any language, no time to learn.</dd>
+        <dt>Complexity</dt>
+        <dd>Every drink has size, strength and extras; some combinations exist, some don't. Credit changes what you can order. All on a 7" screen.</dd>
+        <dt>Immersion</dt>
+        <dd>At least ten days at the plant next to the machine, running the flows on paper before touching pixels.</dd>
+        <dt>Made obvious</dt>
+        <dd>One decision per screen, no back button: a short linear flow you cannot get lost in. The "Make drink" button repeats the cup size, so nobody puts the wrong cup under the spout.</dd>
+        <dt>Result</dt>
+        <dd>Shipped. First machines installed in June 2015 at the Hyatt McCormick Place in Chicago.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://luc4leone.github.io/coffee-proto/home4.html" target="_blank" rel="noopener">Prototype ↗</a> · <a href="https://egrocoffee.com/en/" target="_blank" rel="noopener">Egro ↗</a></p>
+    </article>
+
+    <article class="c-project" id="egro-2" data-tags="hmi">
+      <header class="c-project__header">
+        <h3>Egro — second machine, larger screen</h3>
+        <p class="c-project__meta">Rancilio Group · UX/UI · Touch · 2015</p>
+        <p class="c-project__tags"><a href="?tag=hmi">HMI &amp; embedded</a></p>
+      </header>
+      <div class="c-filmstrip">
+        <img src="assets/portfolio/48.jpg" width="1024" height="768" alt="Egro: drink list on the left, a cup that fills with coffee and milk as you customise, size slider, brew it" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>The next machine, one year later, with a bigger display and full drink customisation.</dd>
+        <dt>Complexity</dt>
+        <dd>More ingredients to adjust — foam, milk, coffee, size — and a customer who has to understand what they are changing.</dd>
+        <dt>Immersion</dt>
+        <dd>Second year with the same client and the same machines.</dd>
+        <dt>Made obvious</dt>
+        <dd>The cup is the interface: it fills with the actual ingredients as you adjust them. Not decoration — it shows what you are about to drink.</dd>
+        <dt>Result</dt>
+        <dd>In production.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://egrocoffee.com/en/" target="_blank" rel="noopener">Egro ↗</a></p>
+    </article>
+
+  </section>
+
 </main>
 
 <footer class="l-footer">
@@ -233,6 +248,8 @@
     <p><a href="index.html">Master UX/UI Design (Italian)</a></p>
   </div>
 </footer>
+
+<script src="js/portfolio-filter.js"></script>
 
 </body>
 </html>

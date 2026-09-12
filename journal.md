@@ -256,3 +256,15 @@ Bug/promemoria emerso nel test: il browser ha servito una versione cache di `con
 - **Cluster linkabili** (`#ux-audit #ecommerce #hmi #founder #misc`) e progetti linkabili (`#coffee-machine`), per proposte Upwork mirate.
 - Testi dei progetti raccolti per intervista, un cluster alla volta, a partire dalla mappatura immagini → progetti (contact sheet temporanea `assets/portfolio/_sheet.html`).
 
+## 12 settembre 2026 — variante portfolio: sezioni-tesi + tag (worktree)
+
+Worktree `../mucca-website-portfolio-themes`, branch `feature/portfolio-themes`. Server locale `:8766` per il confronto con `main` su `:8765`.
+
+- Le sezioni non sono più i tipi di lavoro ma **4 tesi**: "I simplify complex software", "I make an ecommerce sell", "I simplify the human-computer conversation", "I spot where interfaces break". I titoli dicono cosa faccio, non che tipo di progetto è.
+- I vecchi cluster (UX audits, Ecommerce, HMI, Founder, Other) diventano **tag**, filtro in cima alla pagina e visibili su ogni progetto. Un progetto sta in una tesi e può avere più tag.
+- Titolo pagina: "Works."
+- I 7 HMI: 5 Morgan/Lonati in "complex software", 2 Egro in "conversation" (il pubblico è chiunque, non un operatore).
+- Con un tag attivo le sezioni vuote spariscono; tag senza progetti → "No projects with this tag yet".
+- La pagina passa da zero JS a ~40 righe (`js/portfolio-filter.js`), con progressive enhancement: senza JS i tag sono link `?tag=…` che funzionano col reload.
+- Da decidere dopo aver visto le due versioni: quale delle due va su `main`.
+
