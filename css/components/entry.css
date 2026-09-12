@@ -1,0 +1,111 @@
+/* Entry: una riga dell'indice di portfolio.html, con il dettaglio del
+   progetto che si apre sul posto.
+
+   È un <details> nativo: la riga chiusa (<summary>) è titolo, riga meta
+   e una riga di esito; aperta aggiunge filmstrip e le 5 etichette fisse.
+   Nessun JS per aprire e chiudere — js/portfolio-index.js si occupa solo
+   dei deep link e del "expand all".
+
+   Il punto della variante: 25 progetti stanno in tre schermate invece di
+   ventisette, quindi si vedono tutti prima di decidere cosa leggere.
+   Effetto collaterale utile: le immagini dentro un <details> chiuso non
+   vengono scaricate. */
+
+.c-entry {
+  border-top: var(--border-width-1) solid var(--color-border);
+  /* Un deep link apre la voce e ci salta sopra: senza margine il titolo
+     finisce incollato al bordo del viewport. */
+  scroll-margin-top: var(--space-24);
+}
+
+.c-entry:last-child {
+  border-bottom: var(--border-width-1) solid var(--color-border);
+}
+
+.c-entry__summary {
+  position: relative;
+  padding: var(--space-18) var(--space-36) var(--space-18) 0;
+  cursor: pointer;
+  /* marker nativo rimosso: lo ridisegna ::after, allineato alla prima
+     riga invece che al centro verticale del blocco */
+  list-style: none;
+}
+
+.c-entry__summary::-webkit-details-marker {
+  display: none;
+}
+
+.c-entry__summary::after {
+  content: "+";
+  position: absolute;
+  top: var(--space-18);
+  right: 0;
+  font-size: var(--font-size-20);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-muted);
+}
+
+.c-entry[open] > .c-entry__summary::after {
+  content: "–";
+}
+
+.c-entry__summary:hover .c-entry__title {
+  text-decoration: underline;
+}
+
+/* Il focus ring va sulla riga intera, non sul testo: è la riga il
+   bersaglio del click. */
+.c-entry__summary:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.c-entry__title {
+  margin: 0;
+  font-size: var(--font-size-20);
+}
+
+.c-entry__meta {
+  margin: var(--space-6) 0 0;
+  font-size: var(--font-size-14);
+  color: var(--color-text-muted);
+}
+
+/* La riga che dice com'è andata: è questa a rendere l'indice leggibile
+   senza aprire niente. */
+.c-entry__line {
+  margin: var(--space-6) 0 0;
+  font-size: var(--font-size-16);
+}
+
+.c-entry__body {
+  padding: var(--space-12) 0 var(--space-36);
+}
+
+/* Permalink al singolo progetto: serve per le proposte mirate, dove il
+   link deve aprire quel progetto e nient'altro. */
+.c-entry__permalink {
+  margin: var(--space-12) 0 0;
+  font-size: var(--font-size-14);
+}
+
+/* --- lista ------------------------------------------------------- */
+
+.c-entry-list {
+  margin: 0;
+}
+
+/* Comando "apri tutto": è un bottone (cambia lo stato della pagina, non
+   porta altrove), ma reso come link — non compete con le CTA del sito. */
+.c-entry-list__toggle {
+  appearance: none;
+  margin: 0 0 var(--space-12);
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: var(--font-size-14);
+  color: var(--color-primary);
+  text-decoration: underline;
+  cursor: pointer;
+}
