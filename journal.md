@@ -256,3 +256,37 @@ Bug/promemoria emerso nel test: il browser ha servito una versione cache di `con
 - **Cluster linkabili** (`#ux-audit #ecommerce #hmi #founder #misc`) e progetti linkabili (`#coffee-machine`), per proposte Upwork mirate.
 - Testi dei progetti raccolti per intervista, un cluster alla volta, a partire dalla mappatura immagini → progetti (contact sheet temporanea `assets/portfolio/_sheet.html`).
 
+
+## 12 settembre 2026 — audit UX della navigazione di portfolio.html, e due varianti in worktree
+
+**Stato:** audit fatto, due alternative implementate in worktree, nessuna decisione presa.
+
+Audit della navigazione intra-pagina della variante sezioni-tesi + tag (`feature/portfolio-themes`, `:8766`). Misure sulla pagina reale, non a occhio: 21.535px di altezza (27,6 schermate a 1470×779), 25 progetti, 60 immagini, barra filtro non sticky che finisce a 347px dall'inizio, nessun indice delle sezioni, nessun "torna su".
+
+**Il problema di fondo: due tassonomie che competono.** 5 sezioni-tesi (verbi) danno la struttura visiva, 6 tag (tipi di lavoro) sono l'unico controllo. Filtrando `UX audits` restavano 2 progetti in 2 sezioni diverse: due titoli-tesi con un progetto a testa. La gerarchia si sbriciolava invece di restringersi.
+
+Bug confermati in browser, non ipotesi:
+
+- **Filtrare da metà pagina sputava in fondo.** Scroll a 14.000px → click su un tag dentro un progetto → la pagina si accorciava a 3.553px ma `scrollY` restava 2.774: si atterrava sull'ultimo progetto della lista filtrata, con la barra fuori schermo.
+- **Indietro non annullava il filtro** (`history.replaceState`): portava fuori dal sito.
+- **`?tag=x#progetto-nascosto-da-x`**: il progetto restava `hidden`, la pagina non diceva niente. Rilevante perché i deep link mirati per Upwork sono uno scopo dichiarato della pagina.
+- **Nessun conteggio**: si cliccava e la pagina crollava da 27 schermate a 4 senza preavviso. E i numeri dicevano che la tassonomia non reggeva: `Other work` era il tag più grande (8 su 25), `Non-profit` ne aveva 1.
+- **`aria-pressed` su `<a>`** non è valido (vale per `role=button`) e nessuna live region annunciava l'esito del filtro.
+- **Filmstrip non raggiungibili da tastiera**: 9 su 25 scorrono, nessuna con `tabindex`, quindi azionabili solo col trackpad (WCAG 2.1.1).
+
+### Le due varianti
+
+Entrambe partono da `feature/portfolio-themes`, non da `main`.
+
+| | cartella | branch | server |
+|---|---|---|---|
+| **C** — tieni entrambe le tassonomie, rendile oneste | `../mucca-website-portfolio-filtro-sticky` | `feature/portfolio-filtro-sticky` | `:8767` |
+| **D** — indice-primo, una tassonomia sola | `../mucca-website-portfolio-indice-primo` | `feature/portfolio-indice-primo` | `:8768` |
+
+**C** aggiunge `.c-pagebar`, barra sticky con due menu `<details>` nativi — "In: *sezione corrente*" (aggiornata dallo scroll) e "Showing: *filtro*" — più `.c-section-index` in testata. Il filtro diventa una vista dichiarata: conteggi calcolati dal DOM, `aria-current`, `role=status`, `pushState`, scroll all'inizio dei risultati, e il deep link che vince sul filtro. Tassonomia ridotta da 6 tag a 5: via il bucket "Other work" e il tag da 1 progetto, nuovo "Desktop & web apps" (8).
+
+**D** trasforma ogni progetto in una voce d'indice (`.c-entry`, `<details>` nativo): titolo, riga meta, una riga che dice com'è andata; il dettaglio si apre sul posto. La pagina passa a **4.498px, 6 schermate**, e **zero immagini scaricate** al caricamento (erano 60, tutte dentro `<details>` chiusi). Il filtro per tag sparisce del tutto — è il contrario esatto di C. In più: "Expand all", permalink per voce, deep link che apre la voce.
+
+Le 25 righe di sintesi di D sono copy nuovo, prima bozza — alcune ripetono quasi alla lettera il campo "Made obvious" del dettaglio, va fatto un passaggio.
+
+**Da decidere:** quale delle quattro versioni (main, themes, C, D) va su `main`. C e D non sono mutuamente esclusive al 100%: la pagebar di C funzionerebbe anche sopra l'indice di D, se le 6 schermate risultassero ancora troppe.
