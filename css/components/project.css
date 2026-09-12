@@ -1,0 +1,61 @@
+/* Project: un progetto del portfolio — titolo, riga meta, gallery
+   (.c-filmstrip), template a etichette fisse (<dl>), link.
+   Usato in portfolio.html. */
+
+.c-project {
+  margin: 0 0 var(--space-72);
+}
+
+.c-project:last-child {
+  margin-bottom: 0;
+}
+
+.c-project__header {
+  margin-bottom: var(--space-18);
+}
+
+.c-project__header h3 {
+  margin-bottom: var(--space-6);
+}
+
+.c-project__meta {
+  margin: 0;
+  font-size: var(--font-size-16);
+  color: var(--color-text-muted);
+}
+
+/* Etichette fisse: sotto 768px etichetta sopra testo; da 768px due
+   colonne, etichetta a larghezza fissa a sinistra. */
+.c-project__facts {
+  margin: 0 0 var(--space-18);
+}
+
+.c-project__facts dt {
+  font-weight: var(--font-weight-700);
+}
+
+.c-project__facts dd {
+  margin: 0 0 var(--space-12);
+}
+
+.c-project__facts dd:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .c-project__facts {
+    display: grid;
+    grid-template-columns: var(--space-144) 1fr;
+    column-gap: var(--space-18);
+    row-gap: var(--space-12);
+  }
+
+  .c-project__facts dd {
+    margin: 0;
+  }
+}
+
+.c-project__links {
+  margin: 0;
+  font-size: var(--font-size-16);
+}

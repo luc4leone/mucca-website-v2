@@ -1,0 +1,57 @@
+/*
+  Brand tokens — Luca — variante LIGHT
+  Controparte di brand-tokens.css, stessi nomi di variabile (drop-in: sostituisci un file con l'altro,
+  il resto del CSS del progetto non cambia). Pensata soprattutto per prototipi.
+  Fonte di verità: _sandy/html/brand-kit-luca.md
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Colori — nomi grezzi (stessi hex del brand, ruoli invertiti) */
+  --color-black: #0E0E10;
+  --color-white: #FAFAFA;
+  --color-coral: #FF6B4A;
+  --color-grey: #8C8C94;
+
+  /* Aggiunte per la variante light (non nel brand kit originale):
+     - --color-grey-dark: #8C8C94 su #FAFAFA fa ~3.2:1, sotto la soglia AA (4.5:1)
+       per testo piccolo. Va bene per bordi e elementi sottili, non per testo
+       secondario leggibile. Questa tinta più scura fa ~5:1 e passa.
+     - --color-border: il brand kit non ha un colore per linee/bordi;
+       grigio chiaro derivato dal nero, stessa temperatura neutra. */
+  --color-grey-dark: #6B6B73;
+  --color-border: #E3E3E6;
+
+  /* Colori — alias semantici, usa questi nel resto del CSS */
+  --color-bg: var(--color-white);
+  --color-text: var(--color-black);
+  --color-text-secondary: var(--color-grey-dark);
+  --color-accent: var(--color-coral);
+
+  /* Font */
+  --font-display: 'Archivo Black', sans-serif;
+  --font-body: 'Archivo', sans-serif;
+}
+
+/* Baseline minima consigliata */
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+}
+
+/*
+  Regola di moderazione sull'accento (dal brand kit originale):
+  --color-accent va usato su UN elemento alla volta per vista/sezione — un bordo, un'icona,
+  un CTA, una parola evidenziata. Non su superfici larghe, non su più elementi contemporaneamente.
+
+  Nota contrasto: #FF6B4A su sfondo chiaro ha un contrasto più basso rispetto a #FF6B4A su nero
+  (che è molto leggibile). Va bene per bordi/icone/badge; se lo usi come colore di testo su sfondo
+  chiaro (link, piccole scritte), verifica la leggibilità — eventualmente scurisci leggermente
+  solo per quel caso d'uso, senza cambiare il token base.
+*/

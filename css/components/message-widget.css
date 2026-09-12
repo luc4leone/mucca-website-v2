@@ -1,0 +1,36 @@
+.c-message-widget {
+  position: relative;
+}
+
+.c-message-widget summary {
+  list-style: none;
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  cursor: pointer;
+}
+
+.c-message-widget summary::-webkit-details-marker {
+  display: none;
+}
+
+.c-message-widget__panel {
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  z-index: var(--z-modal);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  width: var(--space-360);
+  margin-bottom: var(--space-12);
+  padding: var(--space-18);
+  border-radius: var(--radius-8);
+  background: var(--color-background);
+  border: var(--border-width-1) solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+}
+
+.c-message-widget__panel textarea.c-form__input {
+  min-height: var(--space-120);
+}

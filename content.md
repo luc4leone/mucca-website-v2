@@ -1,5 +1,11 @@
 # Content
 
+## note
+
+- **sezione pricing**: se non hai questa cifra, se hai motivazione e passione, e se sei in grado di dimostrarmi che è così, contattami in privato, se mi convinci, ti faccio pagare quello che puoi o zero
+- **part-time**: va di moda mi sembra il "part-time". diventa designer studiando part-time. la parola "part-time" implica low effort. qualcuno di voi ha mia visto qualcuno bravo in qualcosa senza impegnarsi troppo? secondo me il punto non è l'effort. secondo me il punto è il tipo di esperienza. se è avvicente, motivante, l'effort non è un problema. al contrario è il motivo per cui se poi raggiungi l'obiettivo, senza un'appagamento senza eguali.
+- **approccio ad AI** sono agnostico sulla scelta dell'LLM e durante il corso cerco di insegnare - per quanto possibile - principi validi indipendentemente dall'LLM usato. principi che saranno ancora validi tra 2 anni. per esempio: "meglio KIMI o meglio ChatGPT?" è una domanda irrilevante tra 2 anni. "il contesto è importante" è rilevante oggi e sarà probabile che lo sarà anche tra 2 anni; perché? perché anche la mente umana ragiona per contesto, è un concetto che prescinde dalle ultime novità.
+
 ## Index (sezione che non viene pubblicata nel contenuto della pagina HTML)
 
 1. [Il problema del Junior Designer da quando c'è AI](#il-problema-del-junior-designer-da-quando-cè-ai)
@@ -13,7 +19,7 @@
 7. [Mini corso gratis](#mini-corso-gratis)
 8. [Ammissione alla prossima classe](#ammissione-alla-prossima-classe)
 
-- [Lascia un messaggio](#lacia-un-messaggio)
+- [Lascia un messaggio](#lancia-un-messaggio)
 - [Iscriviti alla mia newsletter](#iscriviti-alla-mia-newsletter)
 
 
@@ -37,7 +43,7 @@ Le 3 soluzioni che offre il corso non sono più un elenco di testo con un propri
 
 "Diventa Design Engineer" è il primo step, le fondamenta. A quel punto ➡️ sei pronto per migliorare la qualità e la presentazione dei tuoi lavori, e a quel punto ➡️ sei pronto per attaccare il mercato con strategie più efficaci.
 
-**A scanso di equivoci**: mi concentro su farti diventare un Design Engineer. Il resto — portfolio, strategia di ricerca — te lo do come Bonus: consigli basati sulla mia esperienza, non materiale strutturato per la crescita delle tue skill.
+Le tre cose stanno sullo stesso piano: diventare Design Engineer è la base, ma portfolio e strategia di ricerca sono parte del corso, con esercitazioni e consegne come tutto il resto. Se rispondo del risultato, rispondo anche di come ci si arriva.
 
 ### Bozza: apertura alternativa (dal mio punto di vista su cosa è cambiato con AI)
 
@@ -78,12 +84,30 @@ Progetto interfacce dal 2012. Ecommerce, gestionali, CAD, player musicali, e mol
 - **Crescita delle competenze**: Ho studiato la progressione degli esercizi per costruire competenze una alla volta in modo naturale e TRASFERIRE IL MINDSET da Designer. L'opposto di rigurgitare la propria conoscenza.
 - **Esperienza reale**: insegno solo ciò che ho sperimentato in prima persona. Ciò che so che funziona.
 
-## Mini corso gratis
+## Mini corso (gratis)
 
-Lead Magnet
+### modulo 1
+- disegneremo un semplice form di registrazione, ma lo faremo come lo farebbe un Design Engineer
+- il nostro scopo non sarà imparare a disegnare un semplice form, sarà imparare un nuovo workflow e capire la relazione tra questo workflow e il design (thinking) process
 
-<!-- style: button -->
-Iscriviti ora
+### modulo 2
+- use case: come ho messo in portfolio Leap, scuola di New York, applicando solo per 2 offerte di lavoro (la mia esperienza non è stata decisiva, ne lo è stato il mio portfolio lavori)
+
+### modulo 3
+- use case: Time to Detox, Easycall, Watson, Poinx - come ho trovato i miei primi 5 clienti (spoiler: non "vendevo" il design, vendevo la mia expertise nel migliorare le conversioni di siti ecommerce. Il design è stato solo un mezzo)
+
+#### Pagina lezioni (mini-corso/index.html)
+
+Raggiunta dopo l'iscrizione. h1 "Mini corso", tagline "Un assaggio gratuito di come lavora un Design Engineer.". Un modulo = una sezione, per ora 1 lezione a modulo (accordion, titolo + video + testo). Video: placeholder (nessuna lezione ancora girata).
+
+- Modulo 1 → lezione "Il form di registrazione, in stile Design Engineer"
+- Modulo 2 → lezione "Il caso Leap: il portfolio conta più dell'esperienza"
+- Modulo 3 → lezione "Come ho trovato i miei primi 5 clienti"
+
+
+<!-- style: form -->
+Campo email, placeholder: "La tua email"
+Bottone: Iscriviti ora
 <!-- /style -->
 
 ## Non è il corso giusto per tutti
@@ -117,7 +141,7 @@ Il corso è strutturato in moduli progressivi.
 
 **Modulo 2 – Progetto Press Office**: Progetteremo la UI di una wep app responsive per la gestione dell'Ufficio Stampa 📣.
 
-**Bonus**: Risponderemo a queste domande:
+**Modulo 3 – Portfolio e ricerca del lavoro**: Risponderemo a queste domande:
 
 - Come faccio a trovare progetti reali da mettere in portfolio?
 - La strategia "creo profilo Linkedin ➡️ applico a job post" funziona? Posso fare meglio di così?
@@ -148,7 +172,7 @@ La osservo, intervengo se necessario. Poche parole di solito bastano. Per farla 
 
 Qualche altro esempio
 - 👉🏻 **Ricevimento studenti**, minuto 15: stai già disegnando la tua prima interfaccia. Ti blocchi perché incontri un problema. Condivido subito il mio schermo per mostrarti in diretta come lo affronterei.
-- 👉🏻 **Su Discord, scrivo in privato a Marco**: "Osserva questi due elementi — sono molto vicini. Pensi che siano collegati da un concetto comune? Ricorda il principio di prossimità che abbiamo discusso. Riflettici e dimmi se vorresti modificare qualcosa nell'interfaccia."
+- 👉🏻 **Sul forum della community, scrivo a Marco**: "Osserva questi due elementi — sono molto vicini. Pensi che siano collegati da un concetto comune? Ricorda il principio di prossimità che abbiamo discusso. Riflettici e dimmi se vorresti modificare qualcosa nell'interfaccia."
 - 👉🏻 **Durante un Ricevimento Studenti**: "Quali problemi notate in questa componente che appare in tutte le pagine prodotto di Amazon? Ridisegnamola in modo da eliminare il problema".
 - 👉🏻 **Anna apre una issue su Github**: "Ciao Luca, vorrei un tuo feedback su come mostrare le funzioni delle varie componenti senza dover ricreare l'intero frame per ogni click". Paola commenta postando uno screenshot della sua soluzione, io aggiungo un breve commento e suggerisco un paio di extra esercizi.
 
@@ -168,7 +192,7 @@ Inoltre vorrei cogliere l'occasione per ringraziarti di cuore. Il percorso di UX
 
 ## Cosa rende diverso questo corso?
 
-**Ricevimento studenti ogni giorno** 😱 . Due ore dal vivo per rispondere, correggere, sbloccare.
+**Ricevimento studenti 3 volte a settimana** 😱 . Un'ora dal vivo per rispondere, correggere, sbloccare. In mezzo, il forum della community: le domande non aspettano il ricevimento.
 
 > Ciao Luca, Volevo farti i complimenti per il livello didattico al quale hai portato la classe. Ciò che mi hai trasmesso più che didattico è personale: stavo perdendo la passione per la progettazione, in questi mesi è rinata grazie alla tua concezione di designer come problem solver pratico che prende la complessità e la rende semplice.
 > Mi ero approcciato al design con questa idea ma in 3 anni di università è stata messa a dura prova, ho visto più passione in te che in tutti i professori avuti finora quindi grazie e grazie di avermela trasmessa. Anche il resto della classe è stata molto attiva durante le tue lezioni ed il merito è del tuo approccio, hai sempre favorito discussioni ed interventi e non c'erano mai momenti morti. È un approccio più stancante ma che vale la fatica perché a fine lezione hai 3 "certezze" e 20 domande su cui ragionare, è stimolante!
@@ -184,31 +208,54 @@ Progetti degli studenti, guidati da metodo e feedback.
 
 ## Ammissione alla prossima classe
 
-Partenza 11 Ottobre 2026
+Partenza 26 Ottobre 2026
 
 ### Durata del corso
 
-Il corso dura 2 mesi: partenza → 11 ottobre 2026; fine → 11 dicembre 2026
+Il corso dura 3 mesi: partenza → 26 ottobre 2026; fine → 5 febbraio 2027. Il calendario tiene già conto della pausa per le vacanze di Natale.
 
 ### Orari lezioni e ricevimento
 
 - Lezioni: tutti i lunedì, mercoledì, venerdì dalle 19:00 alle 21:00.
-- Ricevimento studenti: 2 ore tutti i giorni dal lunedì al venerdì in orari da concordare con la classe.
+- Ricevimento studenti: 1 ora, 3 volte a settimana, in orari da concordare con la classe.
+- Community: forum su Skool, sempre aperto, per domande e revisioni tra una lezione e l'altra.
 
 ### Costo del corso
-Il corso costa 1400€. È possibile pagare a rate:
+Il corso costa 987€. È possibile pagare a rate:
 
-1 bonifico → totale 1360€
-2 bonifici da 750€ → totale 1500€
-4 bonifici da 400€ → totale 1600€
+1 bonifico → totale 987€
+2 bonifici da 550€ → totale 1100€
+3 bonifici da 390€ → totale 1170€
 
 ### Come funziona il processo di ammissione?
 
 1. **Facciamo video call introduttiva**: clicca sul pulsante "Prenota il tuo posto" per fissare una video call, così ci conosciamo, mi racconti perché sei interessato/a al corso, e mi chiedi tutto quello che vuoi.
-2. **Firmi il contratto**: ogni classe ha un numero massimo di studenti ammessi, 28. Se vuoi bloccare un posto, firmi il contratto.
+2. **Firmi il contratto**: la prima classe ha un numero massimo di studenti ammessi, 12. Se vuoi bloccare un posto, firmi il contratto.
 3. **Paghi**: due settimane prima dell'inizio del corso effettui il pagamento nella modalità che hai scelto (1 unica soluzione o a rate).
 
 [Prenota il tuo posto] <!-- bottone -->
+
+
+## Footer
+
+Separato dal main content da una linea di 1px, grigia.
+
+- allineato a sinistra: "Master UX/UI Design di Luca Leone 2026"
+- allineato a destra: link "Lascia un messaggio" (stile link, sottolineatura dashed, non bottone) — al click apre il form
+
+## Lascia un messaggio
+
+Trigger nel footer (per ora implementato solo in `content.html`). Il click sul link apre un pannello con:
+
+- campo email, placeholder: "La tua email"
+- campo messaggio (textarea), placeholder: "Il tuo messaggio"
+- bottone: Invia
+
+Stesso trattamento Netlify Forms del form del mini corso (honeypot anti-spam), submission notificata via email — nessuna lista, si risponde a mano.
+
+## Iscriviti alla mia newsletter
+
+Va nel footer (non ancora costruito). Contenuto da scrivere.
 
 ---
 

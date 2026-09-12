@@ -126,7 +126,7 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 
 **Scopo**: griglia di immagini a colonne (effetto "masonry"), altezze diverse impaginate senza buchi vistosi.
 
-**Dove usato**: `portfolio.html`, galleria "Interfacce che ho progettato".
+**Dove usato**: `componenti.html` (galleria vecchia). Non più in `portfolio.html`, che dal 12 settembre 2026 usa `.c-project` + `.c-filmstrip`.
 
 **File**: `css/components/masonry.css`
 
@@ -254,3 +254,79 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 **Stile**: `background: var(--zinc-100)`, `border-radius: var(--radius-8)`, `padding: var(--space-24)`. Nessuna variabile d'interfaccia per ora — prima versione esplicitamente "per iniziare", da iterare.
 
 **Nota**: l'h3 come primo figlio del box non ha bisogno di reset aggiuntivo — la regola globale `h3:first-child { margin-top: 0 }` (`base.css`) si applica già. Non ancora riusato altrove: se un secondo caso d'uso emerge (es. altre FAQ nella pagina), valutare se generalizzare il nome o tenerlo specifico.
+
+## Schedule (`.c-schedule`)
+
+**Scopo**: elenco di appuntamenti — data a sinistra, titolo e una riga di descrizione a destra. Nessuna interazione.
+
+**Dove**: sezione "Pre-corso gratuito" di `index.html`, le 4 live.
+
+**Markup**:
+
+```html
+<ol class="c-schedule">
+  <li class="c-schedule__item">
+    <div class="c-schedule__date">14 ott <small>mercoledì, 19:00</small></div>
+    <div>
+      <p class="c-schedule__title">Titolo della live</p>
+      <p>Una riga di descrizione.</p>
+    </div>
+  </li>
+</ol>
+```
+
+**Variabili esposte**: nessuna per ora — consuma `--color-border`, `--color-text-muted` e la scala `--space-*`. La colonna data è fissa a `--space-108`.
+
+**Stati**: nessuno.
+
+**Nota tema**: `css/theme-brand.css` mette la data in `--font-display`; il componente di per sé usa solo il peso (`--font-weight-700`), così resta neutro rispetto al tema.
+
+## Filmstrip (`.c-filmstrip`)
+
+**Scopo**: immagini con proporzioni diverse (9:16, 4:3, 16:9) tutte alla stessa altezza, in fila. Se non stanno, scorrono in orizzontale dentro il contenitore, mai la pagina. Nessun ingrandimento al click.
+
+**Dove**: gallery dei progetti in `portfolio.html`.
+
+**Markup**:
+
+```html
+<div class="c-filmstrip">
+  <img src="assets/portfolio/41.png" alt="Coffee machine: customize your drink" loading="lazy">
+  <img src="assets/portfolio/10.jpg" alt="…" loading="lazy">
+</div>
+```
+
+**Variabili esposte**: `--filmstrip-height` (default `--space-240`, `--space-300` da 768px).
+
+**Stati**: nessuno. `scroll-snap-type: x mandatory` per lo scroll a scatti.
+
+## Project (`.c-project`)
+
+**Scopo**: un progetto del portfolio — titolo, riga meta, filmstrip, template a etichette fisse, link. Le etichette sono sempre le stesse cinque (`Product · Complexity · Immersion · Made obvious · Result`): il ritmo ripetuto è parte del design della pagina.
+
+**Dove**: `portfolio.html`, uno per progetto, dentro la `<section>` del cluster.
+
+**Markup**: vedi il primo `<article class="c-project">` in `portfolio.html`. `<dl>` per il template (etichetta = `<dt>`, testo = `<dd>`): da 768px griglia a due colonne (`--space-144` + 1fr), sotto etichetta sopra testo. Una riga del template può essere omessa (es. `Result` se non c'è nulla di onesto da dire), mai riempita.
+
+**Variabili esposte**: nessuna.
+
+**Stati**: nessuno.
+
+## Cluster nav (`.c-cluster-nav`)
+
+**Scopo**: indice orizzontale di anchor alle sezioni della pagina. Non sticky, nessuno stato attivo, zero JS.
+
+**Dove**: `portfolio.html`, sotto l'intestazione.
+
+**Markup**:
+
+```html
+<nav aria-label="Work by type">
+  <ul class="c-cluster-nav">
+    <li><a href="#hmi">HMI &amp; embedded</a></li>
+  </ul>
+</nav>
+```
+
+**Variabili esposte**: nessuna. **Stati**: nessuno.
+

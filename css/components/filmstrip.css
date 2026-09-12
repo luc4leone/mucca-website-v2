@@ -1,0 +1,35 @@
+/* Filmstrip: immagini con proporzioni diverse tutte alla stessa altezza,
+   in fila orizzontale. Se non stanno, scorrono dentro il contenitore —
+   mai la pagina (WCAG 1.4.10, vedi design-system.md).
+   Primo uso: gallery dei progetti in portfolio.html. */
+
+.c-filmstrip {
+  --filmstrip-height: var(--space-240);
+
+  display: flex;
+  gap: var(--space-12);
+  margin: 0 0 var(--space-24);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  /* spazio per la scrollbar, così non copre il bordo delle immagini */
+  padding-bottom: var(--space-6);
+}
+
+/* Le <img> devono avere width/height intrinseci nel markup: senza,
+   prima del caricamento sono larghe 0 e con loading="lazy" Chrome
+   non le richiede mai. Con gli attributi l'aspect-ratio è noto subito. */
+.c-filmstrip img {
+  flex: none;
+  height: var(--filmstrip-height);
+  width: auto;
+  border: var(--border-width-1) solid var(--color-border);
+  border-radius: var(--radius-4);
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .c-filmstrip {
+    --filmstrip-height: var(--space-300);
+  }
+}

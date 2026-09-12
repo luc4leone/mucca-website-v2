@@ -1,76 +1,238 @@
 <!doctype html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Interfacce che ho progettato — Master UX/UI Design</title>
+<title>Luca Leone — UX/UI portfolio</title>
+<meta name="description" content="I simplify complex software. Selected work: UX audits, ecommerce, HMI and embedded interfaces, my own products.">
+<meta property="og:title" content="Luca Leone — UX/UI portfolio">
+<meta property="og:description" content="I simplify complex software. Selected work: UX audits, ecommerce, HMI and embedded interfaces, my own products.">
+<meta property="og:type" content="website">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/components/masonry.css">
+<link rel="stylesheet" href="css/components/cluster-nav.css">
+<link rel="stylesheet" href="css/components/filmstrip.css">
+<link rel="stylesheet" href="css/components/project.css">
+<link rel="stylesheet" href="brand-kit/brand-tokens-light.css">
+<link rel="stylesheet" href="css/theme-brand.css">
 </head>
 <body>
 
-<section class="l-section" id="portfolio">
-  <div class="l-section__intro">
-    <p><a href="content.html#ciao-mi-chiamo-luca-leone">← Torna a Mucca Master UX/UI Design</a></p>
-    <h2>Interfacce che ho progettato</h2>
-  </div>
-  <div class="l-section__content">
-    <div class="c-masonry-container">
-      <div class="c-masonry"></div>
-      <div class="c-masonry-overlay" hidden>
-        <button type="button" class="c-masonry-overlay__close" aria-label="Chiudi">×</button>
-        <img class="c-masonry-overlay__img" src="" alt="">
+<main class="l-page">
+
+  <header>
+    <h1>I simplify complex software.</h1>
+    <p>Boring and obvious beats original and clever: the visual layer only serves ease of use. Every insight below came from immersion — reading the tickets, standing next to the operator, running the flow with real users.</p>
+    <p><a href="index.html">← Back to the course (Italian)</a></p>
+  </header>
+
+  <nav aria-label="Work by type">
+    <ul class="c-cluster-nav">
+      <li><a href="#ux-audit">UX audits</a></li>
+      <li><a href="#ecommerce">Ecommerce</a></li>
+      <li><a href="#hmi">HMI &amp; embedded</a></li>
+      <li><a href="#founder">Founder: my own products</a></li>
+      <li><a href="#misc">Other work</a></li>
+    </ul>
+  </nav>
+
+  <section id="hmi">
+    <h2>HMI &amp; embedded</h2>
+    <p>Touchscreens on industrial machines. No keyboard, no mouse, gloves sometimes, neon lights always, and an operator who did not choose the software.</p>
+
+    <article class="c-project" id="next2">
+      <header class="c-project__header">
+        <h3>Next2 — automatic fabric cutter</h3>
+        <p class="c-project__meta">Morgan Tecnica · UX/UI + physical console · Windows touch desktop · 2020</p>
+      </header>
+      <div class="c-filmstrip">
+        <img src="assets/portfolio/8.jpg" width="1920" height="1080" alt="Next2 cut room: file list, marker preview, blade and lay settings on one screen" loading="lazy">
+        <img src="assets/portfolio/34.jpg" width="1920" height="1080" alt="Next2: camera alignment of match points, shape overlapping warning" loading="lazy">
+        <img src="assets/portfolio/18.jpg" width="1856" height="1116" alt="Next2: alarm and event list grouped by day" loading="lazy">
+        <img src="assets/portfolio/36.jpg" width="1332" height="1172" alt="Next2 beam console: physical buttons laid out on the machine, left and right hand separated" loading="lazy">
       </div>
-    </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>Cut room software for an automatic fabric cutter, plus the physical console that drives the cutting head. Used by factory operators, most of them not at ease with a PC.</dd>
+        <dt>Complexity</dt>
+        <dd>Between 50 and 100 parameters, a long multi-step workflow, hardware constraints inherited from the previous machine. Everything had to be redesigned from scratch without breaking what the plant already did.</dd>
+        <dt>Immersion</dt>
+        <dd>Six months of factory visits, watching operators on the old machine before drawing a single screen.</dd>
+        <dt>Made obvious</dt>
+        <dd>Cockpit logic: almost no navigation, no controls hidden in menus, labels in the operators' own jargon, targets sized for a working hand. The console separates left-hand and right-hand commands so the body remembers what the mind used to.</dd>
+        <dt>Result</dt>
+        <dd>In production. No numbers from the client, but the feedback was direct: far fewer errors on the console, "much more ergonomic".</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://www.morgantecnica.com/" target="_blank" rel="noopener">Morgan Tecnica ↗</a></p>
+    </article>
+
+    <article class="c-project" id="fox">
+      <header class="c-project__header">
+        <h3>Fox — automatic fabric spreader, two generations</h3>
+        <p class="c-project__meta">Morgan Tecnica · UX/UI + physical console · Tablet touch · 2015–2020</p>
+      </header>
+      <div class="c-filmstrip">
+        <img src="assets/portfolio/fox-before-modal-manuals.png" width="1279" height="718" alt="Before: the spreader with its four motors and the single switch-plus-handle that controlled all of them" loading="lazy">
+        <img src="assets/portfolio/fox-pencil-sketch.jpg" width="600" height="390" alt="Pencil sketch of the lay screen, drawn on the factory floor" loading="lazy">
+        <img src="assets/portfolio/38.jpg" width="2494" height="1635" alt="Fox 1 wireframes: profiles, settings, order list, lay preview" loading="lazy">
+        <img src="assets/portfolio/fox-reference-car-seat.png" width="603" height="352" alt="Reference: a car seat control, where each button is shaped like the part it moves" loading="lazy">
+        <img src="assets/portfolio/52.jpg" width="1528" height="1478" alt="Fox physical console: buttons mapped on the machine body, one per motor" loading="lazy">
+        <img src="assets/portfolio/fox-finger-input-sketch.png" width="1222" height="693" alt="Sketches for entering lay dimensions by finger instead of a virtual keyboard" loading="lazy">
+        <img src="assets/portfolio/39.jpg" width="1994" height="1160" alt="Fox 1: lay screen with fabric tension panel and plies count" loading="lazy">
+        <img src="assets/portfolio/40.jpg" width="1998" height="1168" alt="Fox 1: manual commands, movement and direction toggles" loading="lazy">
+        <img src="assets/portfolio/9.jpg" width="800" height="1200" alt="Fox 2: new order, add a lay, portrait tablet" loading="lazy">
+        <img src="assets/portfolio/10.jpg" width="800" height="1200" alt="Fox 2: roll change, three numbered steps" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>Spreader that unrolls fabric rolls into lays for cutting. Fox 2 is the mechanical and software update of Fox 1, not a rewrite.</dd>
+        <dt>Complexity</dt>
+        <dd>Manual mode ran on a switch plus a handle: modal, sequence-based, memorised. Errors were frequent enough that operators avoided it altogether. Data entry went through a virtual keyboard nobody wanted to use.</dd>
+        <dt>Immersion</dt>
+        <dd>Six months on the factory floor for the first generation. The spreading UI was then redesigned three times over five years, as the machine evolved.</dd>
+        <dt>Made obvious</dt>
+        <dd>The console works like a car seat control: one button per motor, laid out as a map of the machine, so the operator recognises instead of recalling. On screen, numbers are entered by finger, not by keyboard; roll change is three numbered steps.</dd>
+        <dt>Result</dt>
+        <dd>Both generations in production. The console was the turning point: fewer errors, and operators started trusting the manual commands again.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://www.morgantecnica.com/" target="_blank" rel="noopener">Morgan Tecnica ↗</a></p>
+    </article>
+
+    <article class="c-project" id="ply1">
+      <header class="c-project__header">
+        <h3>Ply1 — single-ply cutter</h3>
+        <p class="c-project__meta">Morgan Tecnica · UX/UI · Windows, 24" touchscreen · 2021</p>
+      </header>
+      <div class="c-filmstrip">
+        <img src="assets/portfolio/55.jpg" width="1920" height="1080" alt="Ply1: the whole machine on one screen, nested pieces in the centre, speeds on top, tools on the right" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>Single-ply cutter with linear motors, a new machine for the client. The interface had to feel as new as the mechanics.</dd>
+        <dt>Complexity</dt>
+        <dd>Dozens of nested pieces, cutting parameters, three tools, camera, conveyor — all live, all on one touch surface.</dd>
+        <dt>Immersion</dt>
+        <dd>Built on the Next2 work: same plant, same operators, same six months of observation behind it.</dd>
+        <dt>Made obvious</dt>
+        <dd>The cockpit idea taken to its limit: no navigation at all. One screen, the marker in the middle, everything else at the edges. Light background to tell it apart from the multi-ply line at a glance.</dd>
+        <dt>Result</dt>
+        <dd>In production.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://www.morgantecnica.com/" target="_blank" rel="noopener">Morgan Tecnica ↗</a></p>
+    </article>
+
+    <article class="c-project" id="twist">
+      <header class="c-project__header">
+        <h3>Twist — fabric spreader</h3>
+        <p class="c-project__meta">Morgan Tecnica · UX/UI · Touch panel · 2017</p>
+      </header>
+      <div class="c-filmstrip">
+        <img src="assets/portfolio/46.jpg" width="2154" height="1264" alt="Twist: trimmer parameters with large up and down arrows and register numbers" loading="lazy">
+        <img src="assets/portfolio/47.jpg" width="2154" height="1266" alt="Twist: jobs table, fabric release controls, spreading commands" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>Another spreader model: same job as Fox, different machine.</dd>
+        <dt>Complexity</dt>
+        <dd>A hard requirement: the PLC register number (DM) of every parameter had to stay visible for technicians. Usability for operators and traceability for technicians on the same screen.</dd>
+        <dt>Immersion</dt>
+        <dd>Same client, same factory floor as Fox: the second of three spreading UIs I designed for them.</dd>
+        <dt>Made obvious</dt>
+        <dd>Oversized arrows and values: one glance, one tap. Register numbers kept, but pushed under each control where only those who look for them see them.</dd>
+        <dt>Result</dt>
+        <dd>In production, fewer input errors.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://www.morgantecnica.com/" target="_blank" rel="noopener">Morgan Tecnica ↗</a></p>
+    </article>
+
+    <article class="c-project" id="egro-one-touch">
+      <header class="c-project__header">
+        <h3>Egro One Touch — self-service coffee machine</h3>
+        <p class="c-project__meta">Rancilio Group · UX/UI · 7" touchscreen · 2014</p>
+      </header>
+      <div class="c-filmstrip">
+        <img src="assets/portfolio/egro-machine.png" width="480" height="653" alt="The Egro One Touch machine with its 7-inch touchscreen" loading="lazy">
+        <img src="assets/portfolio/53.jpg" width="726" height="964" alt="Egro One Touch wireframes: choose, pay, customise, wait — one-step versus multi-step flows" loading="lazy">
+        <img src="assets/portfolio/egro-rationale-no-back.png" width="1800" height="534" alt="Design rationale: stateless UI, no time, no sequence, no back button — four screens from ready to please wait" loading="lazy">
+        <img src="assets/portfolio/43.jpg" width="3236" height="2057" alt="Egro One Touch: analysis of the extra option, classic versus shortcut solution" loading="lazy">
+        <img src="assets/portfolio/41.png" width="480" height="640" alt="Egro One Touch: customise your drink, size, coffee, extra, make drink button" loading="lazy">
+        <img src="assets/portfolio/42.jpg" width="4056" height="2845" alt="Egro One Touch: final dark UI next to the light alternative" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>Coffee machine for hotels and bars: about 20 drinks, customisation, payment. Anyone, any language, no time to learn.</dd>
+        <dt>Complexity</dt>
+        <dd>Every drink has size, strength and extras; some combinations exist, some don't. Credit changes what you can order. All on a 7" screen.</dd>
+        <dt>Immersion</dt>
+        <dd>At least ten days at the plant next to the machine, running the flows on paper before touching pixels.</dd>
+        <dt>Made obvious</dt>
+        <dd>One decision per screen, no back button: a short linear flow you cannot get lost in. The "Make drink" button repeats the cup size, so nobody puts the wrong cup under the spout.</dd>
+        <dt>Result</dt>
+        <dd>Shipped. First machines installed in June 2015 at the Hyatt McCormick Place in Chicago.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://luc4leone.github.io/coffee-proto/home4.html" target="_blank" rel="noopener">Prototype ↗</a> · <a href="https://egrocoffee.com/en/" target="_blank" rel="noopener">Egro ↗</a></p>
+    </article>
+
+    <article class="c-project" id="egro-2">
+      <header class="c-project__header">
+        <h3>Egro — second machine, larger screen</h3>
+        <p class="c-project__meta">Rancilio Group · UX/UI · Touch · 2015</p>
+      </header>
+      <div class="c-filmstrip">
+        <img src="assets/portfolio/48.jpg" width="1024" height="768" alt="Egro: drink list on the left, a cup that fills with coffee and milk as you customise, size slider, brew it" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>The next machine, one year later, with a bigger display and full drink customisation.</dd>
+        <dt>Complexity</dt>
+        <dd>More ingredients to adjust — foam, milk, coffee, size — and a customer who has to understand what they are changing.</dd>
+        <dt>Immersion</dt>
+        <dd>Second year with the same client and the same machines.</dd>
+        <dt>Made obvious</dt>
+        <dd>The cup is the interface: it fills with the actual ingredients as you adjust them. Not decoration — it shows what you are about to drink.</dd>
+        <dt>Result</dt>
+        <dd>In production.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://egrocoffee.com/en/" target="_blank" rel="noopener">Egro ↗</a></p>
+    </article>
+
+    <article class="c-project" id="lonati">
+      <header class="c-project__header">
+        <h3>Sock knitting machine</h3>
+        <p class="c-project__meta">Lonati · UX/UI · Linux touch panel · 2014</p>
+      </header>
+      <div class="c-filmstrip">
+        <img src="assets/portfolio/lonati-before-physical-panel.png" width="688" height="299" alt="Before: the previous control panel, a small screen and sixty physical keys" loading="lazy">
+        <img src="assets/portfolio/lonati-reference-rams.png" width="697" height="412" alt="Reference: Dieter Rams' Braun layouts, controls aligned on a grid so the hand learns where things are" loading="lazy">
+        <img src="assets/portfolio/16.jpg" width="1828" height="1104" alt="Lonati: knitting program as a timeline, needle temperature, RPM gauge, controls aligned on a grid" loading="lazy">
+        <img src="assets/portfolio/17.jpg" width="1100" height="676" alt="Lonati: the same screen used with two hands, sections leg, heel, sole" loading="lazy">
+        <img src="assets/portfolio/lonati-two-hands.png" width="1181" height="711" alt="Dangerous operations need both hands: the two FN buttons and the arrows are placed for one hand each" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>Control panel of an industrial sock knitting machine.</dd>
+        <dt>Complexity</dt>
+        <dd>The previous UI was windows and menus from the '80s. The whole interaction paradigm had to change, for operators who had used the old one for years, under neon lights that wash out any screen. Some operations are dangerous and must need both hands.</dd>
+        <dt>Immersion</dt>
+        <dd>Time on the machine and on the old software, mapping which of its screens were actually used. Dieter Rams' Braun layouts as the reference for aligning controls.</dd>
+        <dt>Made obvious</dt>
+        <dd>Far fewer screens. Production data live on the main view instead of buried in status bars. The sock's progress — leg, heel, sole — as a timeline you can read from across the room. Two-hand safety on the touchscreen itself, not on a button somewhere else. Every state of every control designed for glare.</dd>
+        <dt>Result</dt>
+        <dd>Presented at the trade fair, went into production.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://luc4leone.github.io/lonati-proto/" target="_blank" rel="noopener">Prototype ↗</a> · <a href="https://www.lonatigroup.com/" target="_blank" rel="noopener">Lonati ↗</a></p>
+    </article>
+  </section>
+
+</main>
+
+<footer class="l-footer">
+  <div class="l-footer__inner">
+    <p>Luca Leone 2026</p>
+    <p><a href="index.html">Master UX/UI Design (Italian)</a></p>
   </div>
-</section>
-
-<script>
-  const container = document.querySelector('.c-masonry-container');
-  const grid = container.querySelector('.c-masonry');
-  const overlay = container.querySelector('.c-masonry-overlay');
-  const overlayImg = overlay.querySelector('.c-masonry-overlay__img');
-
-  fetch('assets/portfolio/manifest.json')
-    .then((res) => res.json())
-    .then((data) => {
-      grid.innerHTML = data.images
-        .map((name, i) => `<img src="assets/portfolio/${name}" alt="Screenshot ${i + 1} di un'interfaccia progettata da Luca Leone" loading="lazy">`)
-        .join('');
-    });
-
-  function updateOverlayBounds() {
-    const rect = container.getBoundingClientRect();
-    overlay.style.left = rect.left + 'px';
-    overlay.style.width = rect.width + 'px';
-  }
-
-  function closeOverlay() {
-    overlay.hidden = true;
-    overlayImg.src = '';
-  }
-
-  grid.addEventListener('click', (e) => {
-    if (e.target.tagName === 'IMG') {
-      updateOverlayBounds();
-      overlayImg.src = e.target.src;
-      overlayImg.alt = e.target.alt;
-      overlay.hidden = false;
-    }
-  });
-
-  overlay.addEventListener('click', closeOverlay);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !overlay.hidden) closeOverlay();
-  });
-
-  window.addEventListener('resize', () => {
-    if (!overlay.hidden) updateOverlayBounds();
-  });
-</script>
+</footer>
 
 </body>
 </html>

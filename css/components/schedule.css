@@ -1,0 +1,40 @@
+/* Schedule: elenco di appuntamenti (data + titolo + una riga).
+   Primo uso: le 4 live del pre-corso in index.html. */
+
+.c-schedule {
+  list-style: none;
+  margin: 0 0 var(--space-24);
+  padding: 0;
+  border-bottom: var(--border-width-1) solid var(--color-border);
+}
+
+.c-schedule__item {
+  display: grid;
+  grid-template-columns: var(--space-108) 1fr;
+  gap: var(--space-18);
+  margin: 0;
+  padding: var(--space-18) 0;
+  border-top: var(--border-width-1) solid var(--color-border);
+}
+
+.c-schedule__date {
+  font-weight: var(--font-weight-700);
+  line-height: var(--line-height-tight);
+}
+
+.c-schedule__date small {
+  display: block;
+  margin-top: var(--space-6);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-400);
+  color: var(--color-text-muted);
+}
+
+.c-schedule__title {
+  margin: 0 0 var(--space-6);
+  font-weight: var(--font-weight-700);
+}
+
+.c-schedule__item p {
+  margin: 0;
+}

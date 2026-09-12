@@ -212,3 +212,13 @@ Il grid split 30/70 di `container.md` **non** è un token: è layout, va scritto
 ## Dark mode
 
 Fuori scope. Scelta esplicita, non un'assenza da rivalutare.
+
+## Tema brand kit (`css/theme-brand.css`)
+
+Il brand kit portabile vive in `brand-kit/` (`brand-style.md` per i principi, `brand-tokens-light.css` / `brand-tokens.css` per i token, stessi nomi di variabile). Non ridefinisce le semantiche di `tokens.css`: ha i suoi alias (`--color-bg`, `--color-accent`, `--font-display`...).
+
+`css/theme-brand.css` fa da ponte: rimappa le semantiche di `tokens.css` sugli alias del brand e applica i principi del brand (niente ombre, link nel colore del testo, un solo accento per sezione, Archivo Black a peso 400). Va caricato **per ultimo**, dopo `brand-kit/brand-tokens-light.css`.
+
+Lo carica solo chi adotta il brand — oggi `index.html`. `content.html` non lo carica e resta il riferimento con il tema precedente: stessi componenti, stesso markup, due identità visive, come previsto dal principio "il punto di intervento resta il livello dei token".
+
+Aggiunte al brand kit fatte per questo progetto (documentate nei file stessi): `--color-grey-dark` (testo secondario che passa AA su sfondo chiaro, il grigio originale fa ~3.2:1) e `--color-border`.

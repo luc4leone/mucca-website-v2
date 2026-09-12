@@ -26,6 +26,13 @@
   object-fit: cover;
 }
 
+/* Immagine statica dentro il box (placeholder senza facade/iframe cliccabile). */
+.c-video__box > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .c-video__play {
   position: absolute;
   top: 50%;

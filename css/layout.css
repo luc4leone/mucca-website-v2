@@ -11,6 +11,70 @@
   font-weight: var(--font-weight-600);
 }
 
+/* Hero con CTA (index.html): testo a sinistra, video a destra da 768px. */
+.l-hero__lead {
+  margin: 0 0 var(--space-18);
+  font-size: var(--font-size-20);
+  line-height: var(--line-height-relaxed);
+}
+
+.l-hero__tagline + .l-hero__lead {
+  margin-top: var(--space-24);
+}
+
+ol.l-hero__lead {
+  padding-left: var(--space-24);
+}
+
+.l-hero__lead li {
+  margin-bottom: 0;
+}
+
+.l-hero__media {
+  margin-top: var(--space-36);
+}
+
+/* Placeholder finché il video introduttivo non esiste: box 16/9 del
+   componente video, senza facade, con un'etichetta centrata. */
+.l-hero__video-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-16);
+}
+
+@media (min-width: 768px) {
+  .l-hero {
+    display: grid;
+    grid-template-columns: 55fr 45fr;
+    gap: var(--space-48);
+    align-items: center;
+  }
+
+  .l-hero__body,
+  .l-hero__media {
+    min-width: 0;
+  }
+
+  .l-hero__media {
+    margin-top: 0;
+  }
+}
+
+.l-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-18);
+}
+
+.l-hero__meta {
+  margin: var(--space-12) 0 0;
+  font-size: var(--font-size-16);
+  color: var(--color-text-muted);
+}
+
 .l-section {
   max-width: var(--container-max-width);
   margin: 0 auto;
@@ -52,4 +116,35 @@
   .l-section__content {
     min-width: 0;
   }
+}
+
+/* Pagina a colonna singola, larghezza di lettura (portfolio.html).
+   Alternativa al grid 30/70 di .l-section: nessuna sidebar. */
+.l-page {
+  max-width: var(--space-780);
+  margin: 0 auto;
+  padding: var(--space-48) var(--space-24);
+}
+
+.l-page > section {
+  padding-top: var(--space-48);
+}
+
+.l-page > section h2 {
+  margin-bottom: var(--space-18);
+}
+
+.l-footer {
+  border-top: var(--border-width-1) solid var(--color-border);
+}
+
+.l-footer__inner {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--space-24);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
 }

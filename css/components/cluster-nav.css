@@ -1,0 +1,26 @@
+/* Cluster nav: indice orizzontale di anchor alle sezioni della pagina.
+   Non sticky, nessuno stato attivo, nessun JS. Usato in portfolio.html. */
+
+.c-cluster-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12) var(--space-24);
+  list-style: none;
+  margin: 0;
+  padding: var(--space-18) 0;
+  border-top: var(--border-width-1) solid var(--color-border);
+  border-bottom: var(--border-width-1) solid var(--color-border);
+}
+
+.c-cluster-nav li {
+  margin: 0;
+}
+
+.c-cluster-nav a {
+  font-weight: var(--font-weight-700);
+  text-decoration: none;
+}
+
+.c-cluster-nav a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,33 @@
+.c-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+}
+
+.c-form__input {
+  flex: 1 1 var(--space-240);
+  min-width: 0;
+  appearance: none;
+  border: var(--border-width-1) solid var(--color-border);
+  border-radius: var(--radius-8);
+  padding: var(--space-12) var(--space-18);
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--font-size-16);
+}
+
+.c-form__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+textarea.c-form__input {
+  min-height: var(--space-96);
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* Campo honeypot Netlify: invisibile agli utenti, i bot lo compilano lo stesso. */
+.c-form__honeypot {
+  display: none;
+}

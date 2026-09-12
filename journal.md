@@ -245,3 +245,14 @@ Cartella `assets/temp/` (i 3 SVG originali passati durante l'esplorazione, ora r
 **Aggiornamento stesso giorno**: aggiunti anche gli audio di step 2 e 3 (`assets/audio/step-card-audio-2.m4a`/`-3.m4a`, stessa convenzione di naming di step 1). Tutti e 3 gli step hanno ora un audio — `.c-step-card__audio` resta comunque un elemento opzionale del pattern (non richiesto per ogni card futura), non è diventato un requisito della variante `sketch`. Aggiornata la galleria in `componenti.html#step-card`: l'esempio "attuale in produzione" mostra ora la combinazione SVG+audio, quello senza audio resta come riferimento per il caso senza.
 
 Bug/promemoria emerso nel test: il browser ha servito una versione cache di `content.html` (mostrava ancora `ghost`) nonostante il file su disco e la risposta del server (verificata via `curl`) fossero già `sketch` — stesso tipo di problema di cache discusso in precedenza per il CSS, stavolta sull'HTML. Risolto con hard refresh.
+
+## 12 settembre 2026 — portfolio.html ridisegnato
+
+- **In inglese, solo inglese.** Il pubblico è Upwork e clienti internazionali; è coerente col messaggio del corso (guarda fuori dall'Italia). Il copy vive in `portfolio.html`, non in `content.md` (che resta la fonte della landing).
+- **Una colonna, non il grid 30/70.** La pagina deve dimostrare la tesi ("semplifico software complesso") invece di dichiararla: niente sidebar, niente da decidere su dove guardare. Nuova classe `.l-page` in `layout.css`.
+- **Template a 5 etichette fisse** (`Product · Complexity · Immersion · Made obvious · Result`) ripetute uguali su ogni progetto: il ritmo è il messaggio. "Immersion" c'è apposta per dire che gli insight vengono da studio e ricerca.
+- **Filmstrip ad altezza fissa** al posto della masonry: proporzioni miste (mobile, HMI, desktop) convivono. Nessun click-to-enlarge, per scelta.
+- **HTML statico**, non più manifest JSON + JS: con testi, link e anchor per progetto, il JSON sarebbe un mini-CMS. Pagina a zero JavaScript.
+- **Cluster linkabili** (`#ux-audit #ecommerce #hmi #founder #misc`) e progetti linkabili (`#coffee-machine`), per proposte Upwork mirate.
+- Testi dei progetti raccolti per intervista, un cluster alla volta, a partire dalla mappatura immagini → progetti (contact sheet temporanea `assets/portfolio/_sheet.html`).
+

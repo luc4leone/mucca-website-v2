@@ -7,7 +7,7 @@ Un mini corso (video + testo) come lead magnet gratuito, senza backend e senza p
 ## Il mini corso: come funziona senza backend
 
 - Pagine HTML statiche, una per lezione.
-- Video ospitati su YouTube/Vimeo in modalità **unlisted**, embeddati via iframe — nessun hosting video da gestire.
+- Video ospitati su YouTube/Vimeo in modalità unlisted, embeddati via iframe — nessun hosting video da gestire.
 - Testo direttamente nell'HTML.
 
 Flusso completo:

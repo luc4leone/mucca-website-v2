@@ -31,7 +31,8 @@
 
 .c-accordion > ul,
 .c-accordion > ol,
-.c-accordion > p {
+.c-accordion > p,
+.c-accordion > div {
   margin-top: 0;
   padding-bottom: var(--space-18);
 }
