@@ -1,0 +1,53 @@
+/* Section index: indice delle sezioni in testa a una pagina lunga.
+   Le voci sono i titoli-tesi per esteso — sono loro il messaggio, non
+   un'etichetta di navigazione da accorciare. Il conteggio dice quanto
+   c'è dietro ogni voce prima di cliccare.
+
+   Usato in portfolio.html, in coppia con .c-pagebar (che ripropone le
+   stesse voci una volta che l'indice è uscito dallo schermo). */
+
+.c-section-index {
+  margin: 0 0 var(--space-24);
+  padding: 0;
+  list-style: none;
+}
+
+.c-section-index li {
+  margin-bottom: var(--space-6);
+}
+
+.c-section-index a {
+  font-weight: var(--font-weight-700);
+}
+
+/* Sottolineatura sempre presente (è quella di default del tema, grigia);
+   all'hover passa all'accento. Un link che si sottolinea solo al
+   passaggio del mouse non si distingue dal testo finché non lo si
+   cerca. */
+.c-section-index a:hover {
+  text-decoration-color: var(--color-primary);
+}
+
+.c-section-index__count {
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-400);
+}
+
+/* L'indice è introdotto da un vero <h2> (entra nell'outline, gli screen
+   reader ci saltano sopra), ma non deve competere visivamente con i
+   titoli-tesi delle sezioni: peso e dimensione da etichetta. */
+.c-section-index__heading {
+  margin: 0 0 var(--space-12);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-700);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* Nota sotto l'indice: spiega in una riga come si legge la pagina. */
+.c-section-index__note {
+  margin: 0 0 var(--space-12);
+  font-size: var(--font-size-14);
+  color: var(--color-text-muted);
+}

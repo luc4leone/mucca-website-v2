@@ -119,3 +119,8 @@ svg {
       filter var(--duration-150) var(--ease-out);
   }
 }
+
+/* hidden deve vincere su display impostati dai componenti (es. .c-project). */
+[hidden] {
+  display: none !important;
+}

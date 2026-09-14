@@ -256,6 +256,17 @@ Bug/promemoria emerso nel test: il browser ha servito una versione cache di `con
 - **Cluster linkabili** (`#ux-audit #ecommerce #hmi #founder #misc`) e progetti linkabili (`#coffee-machine`), per proposte Upwork mirate.
 - Testi dei progetti raccolti per intervista, un cluster alla volta, a partire dalla mappatura immagini → progetti (contact sheet temporanea `assets/portfolio/_sheet.html`).
 
+## 12 settembre 2026 — variante portfolio: sezioni-tesi + tag (worktree)
+
+Worktree `../mucca-website-portfolio-themes`, branch `feature/portfolio-themes`. Server locale `:8766` per il confronto con `main` su `:8765`.
+
+- Le sezioni non sono più i tipi di lavoro ma **4 tesi**: "I simplify complex software", "I make an ecommerce sell", "I simplify the human-computer conversation", "I spot where interfaces break". I titoli dicono cosa faccio, non che tipo di progetto è.
+- I vecchi cluster (UX audits, Ecommerce, HMI, Founder, Other) diventano **tag**, filtro in cima alla pagina e visibili su ogni progetto. Un progetto sta in una tesi e può avere più tag.
+- Titolo pagina: "Works."
+- I 7 HMI: 5 Morgan/Lonati in "complex software", 2 Egro in "conversation" (il pubblico è chiunque, non un operatore).
+- Con un tag attivo le sezioni vuote spariscono; tag senza progetti → "No projects with this tag yet".
+- La pagina passa da zero JS a ~40 righe (`js/portfolio-filter.js`), con progressive enhancement: senza JS i tag sono link `?tag=…` che funzionano col reload.
+- Da decidere dopo aver visto le due versioni: quale delle due va su `main`.
 
 ## 12 settembre 2026 — audit UX della navigazione di portfolio.html, e due varianti in worktree
 
@@ -290,3 +301,17 @@ Entrambe partono da `feature/portfolio-themes`, non da `main`.
 Le 25 righe di sintesi di D sono copy nuovo, prima bozza — alcune ripetono quasi alla lettera il campo "Made obvious" del dettaglio, va fatto un passaggio.
 
 **Da decidere:** quale delle quattro versioni (main, themes, C, D) va su `main`. C e D non sono mutuamente esclusive al 100%: la pagebar di C funzionerebbe anche sopra l'indice di D, se le 6 schermate risultassero ancora troppe.
+
+## 14 settembre 2026 — la variante D va in produzione
+
+**Stato:** deciso e applicato (merge di `feature/portfolio-indice-primo` in `main`).
+
+`portfolio.html` è ora l'indice: ogni progetto è una riga apribile sul posto (`.c-entry`, `<details>` nativo). 4.498px invece di 21.535, zero immagini scaricate al caricamento, una sola tassonomia — restano le 5 sezioni-tesi, il filtro per tag non c'è più (`js/portfolio-filter.js` rimosso).
+
+Iterazione sulla testata prima del merge: via la seconda frase dell'intro ("Every insight below came from immersion…") e il link "← Back to the course (Italian)". Sottolineatura sempre presente su `.c-section-index a` e `.c-entry__title`, accento all'hover — bastava togliere il `text-decoration: none` che il componente metteva sopra la regola del tema; su `.c-entry__title` (un `<h3>`, non un `<a>`) la regola è replicata a mano.
+
+**Nessuna variante viene cancellata**, stesso principio già usato per le step card: `feature/portfolio-themes` (sezioni-tesi + filtro) e `feature/portfolio-filtro-sticky` (variante C: pagebar sticky, filtro con conteggi, tassonomia a 5 tag) restano come branch. Istruzioni per rivederle in `README.md`.
+
+Worktree `../mucca-website-portfolio-indice-primo` rimossa dopo il merge. Le altre due restano su disco finché servono per il confronto.
+
+**Restano aperte** due cose ereditate da D: le 25 righe di sintesi sono copy di prima bozza (alcune ripetono quasi alla lettera il campo "Made obvious" del dettaglio), e la pagina a voci chiuse è di 6 schermate, non delle ~3 stimate — a pesare sono gli intro di sezione, non le righe.

@@ -3,15 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Luca Leone — UX/UI portfolio</title>
+<title>Works — Luca Leone</title>
 <meta name="description" content="I simplify complex software. Selected work: UX audits, ecommerce, HMI and embedded interfaces, my own products.">
-<meta property="og:title" content="Luca Leone — UX/UI portfolio">
+<meta property="og:title" content="Works — Luca Leone">
 <meta property="og:description" content="I simplify complex software. Selected work: UX audits, ecommerce, HMI and embedded interfaces, my own products.">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/components/cluster-nav.css">
+<link rel="stylesheet" href="css/components/section-index.css">
+<link rel="stylesheet" href="css/components/entry.css">
 <link rel="stylesheet" href="css/components/filmstrip.css">
 <link rel="stylesheet" href="css/components/project.css">
 <link rel="stylesheet" href="brand-kit/brand-tokens-light.css">
@@ -22,36 +23,40 @@
 <main class="l-page">
 
   <header>
-    <h1>I simplify complex software.</h1>
-    <p>Boring and obvious beats original and clever: the visual layer only serves ease of use. Every insight below came from immersion — reading the tickets, standing next to the operator, running the flow with real users.</p>
-    <p><a href="index.html">← Back to the course (Italian)</a></p>
+    <h1>Works.</h1>
+    <p>Boring and obvious beats original and clever.</p>
   </header>
 
-  <nav aria-label="Work by type">
-    <ul class="c-cluster-nav">
-      <li><a href="#ux-audit">UX audits</a></li>
-      <li><a href="#ecommerce">Ecommerce</a></li>
-      <li><a href="#hmi">HMI &amp; embedded</a></li>
-      <li><a href="#founder">Founder: my own products</a></li>
-      <li><a href="#misc">Other work</a></li>
+  <nav aria-labelledby="index-heading">
+    <h2 id="index-heading" class="c-section-index__heading">25 projects, five things I do</h2>
+    <ul class="c-section-index">
+        <li><a href="#simplify">I simplify complex software <span class="c-section-index__count">(10)</span></a></li>
+        <li><a href="#sell">I make an ecommerce sell <span class="c-section-index__count">(4)</span></a></li>
+        <li><a href="#conversation">I simplify the human-computer conversation <span class="c-section-index__count">(6)</span></a></li>
+        <li><a href="#find">I find what's wrong with interfaces <span class="c-section-index__count">(1)</span></a></li>
+        <li><a href="#tools">I build my own tools <span class="c-section-index__count">(4)</span></a></li>
     </ul>
+    <p class="c-section-index__note">Every project is one line: what it was, and how it turned out. Open the ones you want to see.</p>
   </nav>
 
-  <section id="hmi">
-    <h2>HMI &amp; embedded</h2>
-    <p>Touchscreens on industrial machines. No keyboard, no mouse, gloves sometimes, neon lights always, and an operator who did not choose the software.</p>
-
-    <article class="c-project" id="next2">
-      <header class="c-project__header">
-        <h3>Next2 — automatic fabric cutter</h3>
-        <p class="c-project__meta">Morgan Tecnica · UX/UI + physical console · Windows touch desktop · 2020</p>
-      </header>
-      <div class="c-filmstrip">
+  <section id="simplify">
+    <h2>I simplify complex software</h2>
+    <p>Dozens of parameters, expert users, hardware that pushes back. The job is deciding what goes on the one screen that matters — and leaving everything else out of the way.</p>
+    <div class="c-entry-list">
+    <details class="c-entry" id="next2">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Next2 — automatic fabric cutter</h3>
+        <p class="c-entry__meta">Morgan Tecnica · UX/UI + physical console · Windows touch desktop · 2020</p>
+        <p class="c-entry__line">Cockpit logic: almost no navigation, and far fewer errors on the console.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="4 project images, scrollable">
         <img src="assets/portfolio/8.jpg" width="1920" height="1080" alt="Next2 cut room: file list, marker preview, blade and lay settings on one screen" loading="lazy">
         <img src="assets/portfolio/34.jpg" width="1920" height="1080" alt="Next2: camera alignment of match points, shape overlapping warning" loading="lazy">
         <img src="assets/portfolio/18.jpg" width="1856" height="1116" alt="Next2: alarm and event list grouped by day" loading="lazy">
         <img src="assets/portfolio/36.jpg" width="1332" height="1172" alt="Next2 beam console: physical buttons laid out on the machine, left and right hand separated" loading="lazy">
       </div>
+        <p class="c-filmstrip__hint">4 images — scroll or use ← →</p>
       <dl class="c-project__facts">
         <dt>Product</dt>
         <dd>Cut room software for an automatic fabric cutter, plus the physical console that drives the cutting head. Used by factory operators, most of them not at ease with a PC.</dd>
@@ -65,14 +70,18 @@
         <dd>In production. No numbers from the client, but the feedback was direct: far fewer errors on the console, "much more ergonomic".</dd>
       </dl>
       <p class="c-project__links"><a href="https://www.morgantecnica.com/" target="_blank" rel="noopener">Morgan Tecnica ↗</a></p>
-    </article>
+        <p class="c-entry__permalink"><a href="#next2">Link to this project</a></p>
+      </div>
+    </details>
 
-    <article class="c-project" id="fox">
-      <header class="c-project__header">
-        <h3>Fox — automatic fabric spreader, two generations</h3>
-        <p class="c-project__meta">Morgan Tecnica · UX/UI + physical console · Tablet touch · 2015–2020</p>
-      </header>
-      <div class="c-filmstrip">
+<details class="c-entry" id="fox">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Fox — automatic fabric spreader, two generations</h3>
+        <p class="c-entry__meta">Morgan Tecnica · UX/UI + physical console · Tablet touch · 2015–2020</p>
+        <p class="c-entry__line">A console mapped on the machine body, the way a car seat control is.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="10 project images, scrollable">
         <img src="assets/portfolio/fox-before-modal-manuals.png" width="1279" height="718" alt="Before: the spreader with its four motors and the single switch-plus-handle that controlled all of them" loading="lazy">
         <img src="assets/portfolio/fox-pencil-sketch.jpg" width="600" height="390" alt="Pencil sketch of the lay screen, drawn on the factory floor" loading="lazy">
         <img src="assets/portfolio/38.jpg" width="2494" height="1635" alt="Fox 1 wireframes: profiles, settings, order list, lay preview" loading="lazy">
@@ -84,6 +93,7 @@
         <img src="assets/portfolio/9.jpg" width="800" height="1200" alt="Fox 2: new order, add a lay, portrait tablet" loading="lazy">
         <img src="assets/portfolio/10.jpg" width="800" height="1200" alt="Fox 2: roll change, three numbered steps" loading="lazy">
       </div>
+        <p class="c-filmstrip__hint">10 images — scroll or use ← →</p>
       <dl class="c-project__facts">
         <dt>Product</dt>
         <dd>Spreader that unrolls fabric rolls into lays for cutting. Fox 2 is the mechanical and software update of Fox 1, not a rewrite.</dd>
@@ -97,14 +107,18 @@
         <dd>Both generations in production. The console was the turning point: fewer errors, and operators started trusting the manual commands again.</dd>
       </dl>
       <p class="c-project__links"><a href="https://www.morgantecnica.com/" target="_blank" rel="noopener">Morgan Tecnica ↗</a></p>
-    </article>
+        <p class="c-entry__permalink"><a href="#fox">Link to this project</a></p>
+      </div>
+    </details>
 
-    <article class="c-project" id="ply1">
-      <header class="c-project__header">
-        <h3>Ply1 — single-ply cutter</h3>
-        <p class="c-project__meta">Morgan Tecnica · UX/UI · Windows, 24" touchscreen · 2021</p>
-      </header>
-      <div class="c-filmstrip">
+<details class="c-entry" id="ply1">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Ply1 — single-ply cutter</h3>
+        <p class="c-entry__meta">Morgan Tecnica · UX/UI · Windows, 24" touchscreen · 2021</p>
+        <p class="c-entry__line">The whole machine on one screen, with no navigation at all.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="1 project images, scrollable">
         <img src="assets/portfolio/55.jpg" width="1920" height="1080" alt="Ply1: the whole machine on one screen, nested pieces in the centre, speeds on top, tools on the right" loading="lazy">
       </div>
       <dl class="c-project__facts">
@@ -120,17 +134,22 @@
         <dd>In production.</dd>
       </dl>
       <p class="c-project__links"><a href="https://www.morgantecnica.com/" target="_blank" rel="noopener">Morgan Tecnica ↗</a></p>
-    </article>
+        <p class="c-entry__permalink"><a href="#ply1">Link to this project</a></p>
+      </div>
+    </details>
 
-    <article class="c-project" id="twist">
-      <header class="c-project__header">
-        <h3>Twist — fabric spreader</h3>
-        <p class="c-project__meta">Morgan Tecnica · UX/UI · Touch panel · 2017</p>
-      </header>
-      <div class="c-filmstrip">
+<details class="c-entry" id="twist">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Twist — fabric spreader</h3>
+        <p class="c-entry__meta">Morgan Tecnica · UX/UI · Touch panel · 2017</p>
+        <p class="c-entry__line">Oversized arrows and values: one glance, one tap.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="2 project images, scrollable">
         <img src="assets/portfolio/46.jpg" width="2154" height="1264" alt="Twist: trimmer parameters with large up and down arrows and register numbers" loading="lazy">
         <img src="assets/portfolio/47.jpg" width="2154" height="1266" alt="Twist: jobs table, fabric release controls, spreading commands" loading="lazy">
       </div>
+        <p class="c-filmstrip__hint">2 images — scroll or use ← →</p>
       <dl class="c-project__facts">
         <dt>Product</dt>
         <dd>Another spreader model: same job as Fox, different machine.</dd>
@@ -144,14 +163,289 @@
         <dd>In production, fewer input errors.</dd>
       </dl>
       <p class="c-project__links"><a href="https://www.morgantecnica.com/" target="_blank" rel="noopener">Morgan Tecnica ↗</a></p>
-    </article>
+        <p class="c-entry__permalink"><a href="#twist">Link to this project</a></p>
+      </div>
+    </details>
 
-    <article class="c-project" id="egro-one-touch">
-      <header class="c-project__header">
-        <h3>Egro One Touch — self-service coffee machine</h3>
-        <p class="c-project__meta">Rancilio Group · UX/UI · 7" touchscreen · 2014</p>
-      </header>
-      <div class="c-filmstrip">
+<details class="c-entry" id="lonati">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Sock knitting machine</h3>
+        <p class="c-entry__meta">Lonati · UX/UI · Linux touch panel · 2014</p>
+        <p class="c-entry__line">Far fewer screens, and the sock's progress readable across the room.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="5 project images, scrollable">
+        <img src="assets/portfolio/lonati-before-physical-panel.png" width="688" height="299" alt="Before: the previous control panel, a small screen and sixty physical keys" loading="lazy">
+        <img src="assets/portfolio/lonati-reference-rams.png" width="697" height="412" alt="Reference: Dieter Rams' Braun layouts, controls aligned on a grid so the hand learns where things are" loading="lazy">
+        <img src="assets/portfolio/16.jpg" width="1828" height="1104" alt="Lonati: knitting program as a timeline, needle temperature, RPM gauge, controls aligned on a grid" loading="lazy">
+        <img src="assets/portfolio/17.jpg" width="1100" height="676" alt="Lonati: the same screen used with two hands, sections leg, heel, sole" loading="lazy">
+        <img src="assets/portfolio/lonati-two-hands.png" width="1181" height="711" alt="Dangerous operations need both hands: the two FN buttons and the arrows are placed for one hand each" loading="lazy">
+      </div>
+        <p class="c-filmstrip__hint">5 images — scroll or use ← →</p>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>Control panel of an industrial sock knitting machine.</dd>
+        <dt>Complexity</dt>
+        <dd>The previous UI was windows and menus from the '80s. The whole interaction paradigm had to change, for operators who had used the old one for years, under neon lights that wash out any screen. Some operations are dangerous and must need both hands.</dd>
+        <dt>Immersion</dt>
+        <dd>Time on the machine and on the old software, mapping which of its screens were actually used. Dieter Rams' Braun layouts as the reference for aligning controls.</dd>
+        <dt>Made obvious</dt>
+        <dd>Far fewer screens. Production data live on the main view instead of buried in status bars. The sock's progress — leg, heel, sole — as a timeline you can read from across the room. Two-hand safety on the touchscreen itself, not on a button somewhere else. Every state of every control designed for glare.</dd>
+        <dt>Result</dt>
+        <dd>Presented at the trade fair, went into production.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://luc4leone.github.io/lonati-proto/" target="_blank" rel="noopener">Prototype ↗</a> · <a href="https://www.lonatigroup.com/" target="_blank" rel="noopener">Lonati ↗</a></p>
+        <p class="c-entry__permalink"><a href="#lonati">Link to this project</a></p>
+      </div>
+    </details>
+
+    <details class="c-entry" id="mediaddress">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Mediaddress — media relations platform</h3>
+        <p class="c-entry__meta">Mediaddress · UX/UI · Web app · 2015–2016, redesigned 2025–2026</p>
+        <p class="c-entry__line">Nine tasks out of nine completed, against five give-ups on the old design.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="4 project images, scrollable">
+        <img src="assets/portfolio/49.jpg" width="1610" height="1464" alt="Before: search criteria as nested checkbox trees, results as a spreadsheet" loading="lazy">
+        <img src="assets/portfolio/4.jpg" width="2468" height="1430" alt="After: filters on the left, journalists as readable cards, list actions on top" loading="lazy">
+        <img src="assets/portfolio/60.png" width="2922" height="1542" alt="The new dashboard: projects, mailings, press releases, subscription limits" loading="lazy">
+        <img src="assets/portfolio/23.jpg" width="2022" height="1398" alt="Product page: search, filter, build a list, send" loading="lazy">
+      </div>
+        <p class="c-filmstrip__hint">4 images — scroll or use ← →</p>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>The largest Italian media relations platform. Press offices search for journalists, build lists, and send releases to them.</dd>
+        <dt>Complexity</dt>
+        <dd>Not the number of filters. The hard part is that what people describe in interviews often cannot be asked of the database at all, because the metadata is not there. And sending to a list is its own long flow of options.</dd>
+        <dt>Immersion</dt>
+        <dd>Countless interviews and usability tests. I designed this software twice, ten years apart.</dd>
+        <dt>Made obvious</dt>
+        <dd>Filters shaped around what people are trying to achieve, not around the database schema. Results as journalist cards you can read, instead of rows in a table.</dd>
+        <dt>Result</dt>
+        <dd>A randomised test, two groups of three first-time users, three tasks each. On the new design all nine tasks were completed (averages 27", 2'58", 2'34"). On the old one, five of the nine ended with the user giving up.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://luc4leone.github.io/m_front-proto/protos/dashboard/index5-tabs-overflow.html" target="_blank" rel="noopener">Prototype: dashboard ↗</a> · <a href="https://luc4leone.github.io/m_front-proto/protos/servizio-ai/index.html" target="_blank" rel="noopener">Prototype: AI service ↗</a> · <a href="https://www.mediaddress.com/en/" target="_blank" rel="noopener">Mediaddress ↗</a></p>
+        <p class="c-entry__permalink"><a href="#mediaddress">Link to this project</a></p>
+      </div>
+    </details>
+
+    <details class="c-entry" id="mastermind">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Mastermind — cutting room optimiser</h3>
+        <p class="c-entry__meta">Morgan Tecnica · UX/UI · Desktop</p>
+        <p class="c-entry__line">The order as a timeline across the top, solutions side by side.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="2 project images, scrollable">
+        <img src="assets/portfolio/37.jpg" width="1920" height="1080" alt="Copnet, the earlier name: cutting room orders, constraints, solutions compared side by side" loading="lazy">
+        <img src="assets/portfolio/26.jpg" width="2083" height="1191" alt="Mastermind: order timeline, algorithm configuration, solutions comparison" loading="lazy">
+      </div>
+        <p class="c-filmstrip__hint">2 images — scroll or use ← →</p>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>Sales orders for a clothing line go in. The cutting and spreading plan comes out, optimised for fabric and time. Used by the production team of a garment manufacturer.</dd>
+        <dt>Complexity</dt>
+        <dd>An optimisation algorithm with dozens of parameters. People have to set it, read what it produced, and compare one solution against another before committing real fabric.</dd>
+        <dt>Made obvious</dt>
+        <dd>The order as a timeline across the top, so you always know which step you are in. Solutions side by side, with only the numbers that decide between them.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://www.morgantecnica.com/" target="_blank" rel="noopener">Morgan Tecnica ↗</a></p>
+        <p class="c-entry__permalink"><a href="#mastermind">Link to this project</a></p>
+      </div>
+    </details>
+
+    <details class="c-entry" id="cad-2d-desktop">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">2D pattern CAD — desktop restyling</h3>
+        <p class="c-entry__meta">UX/UI · Windows desktop app · Restyling</p>
+        <p class="c-entry__line">A restyling, not a redesign: icons and panels stop competing for attention.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="1 project images, scrollable">
+        <img src="assets/portfolio/33.jpg" width="1920" height="1080" alt="2D CAD: menu bar, toolbars and side panels for drawing, grading, measuring and checking patterns" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>2D CAD for garment patterns: draw, grade, measure, check.</dd>
+        <dt>Complexity</dt>
+        <dd>A native Windows application with decades of accumulated features, and users who know exactly where each one lives. The structure could not move.</dd>
+        <dt>Made obvious</dt>
+        <dd>A restyling, not a redesign: same structure, clearer surface, icons and panels that stop competing for attention.</dd>
+      </dl>
+        <p class="c-entry__permalink"><a href="#cad-2d-desktop">Link to this project</a></p>
+      </div>
+    </details>
+
+    <details class="c-entry" id="cad-2d-web">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">2D pattern CAD — web app, from scratch</h3>
+        <p class="c-entry__meta">UX/UI · Web app · Redesigned from scratch</p>
+        <p class="c-entry__line">Direct manipulation on the canvas; buttons and menus almost disappear.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="1 project images, scrollable">
+        <img src="assets/portfolio/58.jpg" width="2880" height="1577" alt="The web CAD: patterns manipulated directly on the canvas, single-letter shortcuts, almost no chrome" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>The same job as the desktop CAD — drawing and editing garment patterns — rebuilt as a web app. Not an evolution of it: a different program.</dd>
+        <dt>Complexity</dt>
+        <dd>Performance in the browser, and a change of paradigm. The desktop way is select an element, then find a function in a menu.</dd>
+        <dt>Made obvious</dt>
+        <dd>Direct manipulation on the canvas instead. Buttons and menus almost disappear. A study of the UI states makes available only what you can actually use in the state you are in.</dd>
+      </dl>
+        <p class="c-entry__permalink"><a href="#cad-2d-web">Link to this project</a></p>
+      </div>
+    </details>
+
+    <details class="c-entry" id="speedstep">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Speed Step PLM — UX audit</h3>
+        <p class="c-entry__meta">Morgan Tecnica · UX audit and partial restyling · 2021</p>
+        <p class="c-entry__line">A UX audit of a PLM used from first idea to shipment, then a partial restyling.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="2 project images, scrollable">
+        <img src="assets/portfolio/31.jpg" width="514" height="353" alt="Speed Step PLM: the product areas and how they connect" loading="lazy">
+        <img src="assets/portfolio/35.jpg" width="1782" height="968" alt="PLM article list: navigation, columns, grouping, search" loading="lazy">
+      </div>
+        <p class="c-filmstrip__hint">2 images — scroll or use ← →</p>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>The system that follows a garment from the first idea to the shipment: styles, materials, suppliers, quality control, orders.</dd>
+        <dt>Complexity</dt>
+        <dd>Understanding what it did. A small team, no documentation, customers scattered around the world, the office in Germany — and software you cannot use unless you already hold a mental model I did not have.</dd>
+        <dt>Immersion</dt>
+        <dd>Rebuilding that model from the software itself and from the few people who carried it in their heads.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://www.morgantecnica.com/" target="_blank" rel="noopener">Morgan Tecnica ↗</a></p>
+        <p class="c-entry__permalink"><a href="#speedstep">Link to this project</a></p>
+      </div>
+    </details>
+    </div>
+  </section>
+
+  <section id="sell">
+    <h2>I make an ecommerce sell</h2>
+    <p>A shop is a funnel with a product at the end of it. Most of the money is lost in the steps nobody looks at.</p>
+    <div class="c-entry-list">
+    <details class="c-entry" id="glowal">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Glowal — made-to-measure skincare</h3>
+        <p class="c-entry__meta">Glowal, now Beautytune · UX/UI and conversion · Mobile-first ecommerce</p>
+        <p class="c-entry__line">Conversion from 0.30% to 2%. From €2,000 to €200,000 in a year.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="5 project images, scrollable">
+        <img src="assets/portfolio/1.jpg" width="774" height="1510" alt="Home: made-to-measure products for your face, with the quiz as the way in" loading="lazy">
+        <img src="assets/portfolio/3.jpg" width="650" height="1556" alt="Quiz result: skin health, skin age, sebum and hydration read zone by zone" loading="lazy">
+        <img src="assets/portfolio/2.jpg" width="2834" height="930" alt="Checkout wireframes: order summary, gift voucher, total" loading="lazy">
+        <img src="assets/portfolio/57.jpg" width="1626" height="1310" alt="The live site: how it works, then the products" loading="lazy">
+        <img src="assets/portfolio/59.png" width="632" height="1120" alt="The live site on mobile: products and the fragrances to choose from" loading="lazy">
+      </div>
+        <p class="c-filmstrip__hint">5 images — scroll or use ← →</p>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>A skincare startup that formulates a cream for your face. A quiz and a skin reading decide the formula; the products are made in three days.</dd>
+        <dt>Complexity</dt>
+        <dd>The funnel. In the original version you took the quiz, waited for a swab to arrive by post, sent back a photo of it, and only then could you buy. It did not work.</dd>
+        <dt>Immersion</dt>
+        <dd>I studied the product and how it is customised, the whole flow, and the numbers from the first six months — the site was already live when I arrived.</dd>
+        <dt>Made obvious</dt>
+        <dd>The quiz and the skin reading moved inside the site: nothing has to arrive in the post before you can buy. The result screen shows what was found, zone by zone, so the formula is explained rather than asserted.</dd>
+        <dt>Result</dt>
+        <dd>€2,000 in the first six months on the original site. €200,000 in the twelve months after the redesign. Ecommerce conversion rate from 0.30% to 2%.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://luc4leone.github.io/glowal/mobile-html/home/#" target="_blank" rel="noopener">Prototype ↗</a> · <a href="https://glowalmilano.it/en" target="_blank" rel="noopener">Glowal ↗</a> · <a href="https://beautytune.it/it" target="_blank" rel="noopener">Beautytune (rebrand) ↗</a></p>
+        <p class="c-entry__permalink"><a href="#glowal">Link to this project</a></p>
+      </div>
+    </details>
+
+    <details class="c-entry" id="pronto800">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Pronto800 — toll-free numbers online</h3>
+        <p class="c-entry__meta">Pronto800 · Marketing lead, ecommerce and landing pages · 2010–2011</p>
+        <p class="c-entry__line">New customers from 30 to 60 a month, monthly value from €11,400 to €31,200.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="1 project images, scrollable">
+        <img src="assets/portfolio/56.jpg" width="2106" height="1528" alt="Home: three tiers, a list of available numbers, activate in minutes" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>Toll-free numbers for small businesses: pick your number from a list, activate it online, start taking calls.</dd>
+        <dt>Complexity</dt>
+        <dd>Selling a phone number like a product on a shelf — three price tiers, a list to choose from, activation in minutes. The first ecommerce site I designed.</dd>
+        <dt>Immersion</dt>
+        <dd>I was the marketing lead, so I designed a page and then watched what it did to the numbers, month after month, for two years.</dd>
+        <dt>Result</dt>
+        <dd>New customers went from 30 to 60 a month. Average customer value from €380 to €520. Monthly value generated from €11,400 to €31,200.</dd>
+      </dl>
+        <p class="c-entry__permalink"><a href="#pronto800">Link to this project</a></p>
+      </div>
+    </details>
+
+    <details class="c-entry" id="time-to-detox">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Time to Detox — detox diet delivered</h3>
+        <p class="c-entry__meta">Time to Detox · UX/UI · 2012</p>
+        <p class="c-entry__line">A whole diet delivered, sold as one thing instead of a catalogue.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="2 project images, scrollable">
+        <img src="assets/portfolio/12.jpg" width="1200" height="2098" alt="Home: what it is, how it works, why — with press and scientific backing" loading="lazy">
+        <img src="assets/portfolio/13.jpg" width="1942" height="1246" alt="Product page: the 10 and 5 day treatments, €48 a day, what arrives each day" loading="lazy">
+      </div>
+        <p class="c-filmstrip__hint">2 images — scroll or use ← →</p>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>A detox diet delivered to your door: breakfast, lunch, snack and dinner for ten or five days, €48 a day.</dd>
+        <dt>Complexity</dt>
+        <dd>Understanding the product. A detox diet is not self-explanatory — what it is, what it does for you, why it costs that. Saying it well <em>is</em> the conversion problem. The second ecommerce site I ever designed.</dd>
+      </dl>
+        <p class="c-entry__permalink"><a href="#time-to-detox">Link to this project</a></p>
+      </div>
+    </details>
+
+    <details class="c-entry" id="ciao-gusto">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Ciao Gusto — Italian food for the UK</h3>
+        <p class="c-entry__meta">Italia del Gusto consortium · Product &amp; UX/UI · 2014</p>
+        <p class="c-entry__line">The recipe is the centre of the site, not the catalogue.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="2 project images, scrollable">
+        <img src="assets/portfolio/21.jpg" width="1280" height="2515" alt="Home: the daily recipe, then courses, occasions, regions and the food families" loading="lazy">
+        <img src="assets/portfolio/51.jpg" width="1704" height="1341" alt="From wireframe to visual design" loading="lazy">
+      </div>
+        <p class="c-filmstrip__hint">2 images — scroll or use ← →</p>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>Italian food for the UK market. The site sells nothing itself: it makes you want an ingredient and sends you to the partner shops that stock it.</dd>
+        <dt>Complexity</dt>
+        <dd>A content site judged on someone else's sales. It has to build the desire and then hand the customer over at the right moment.</dd>
+        <dt>Made obvious</dt>
+        <dd>The recipe is the centre of the site, not the catalogue. Brands are reached through "Italian food families" — the histories behind them — instead of a category tree. That is also what set it apart from the competition.</dd>
+      </dl>
+        <p class="c-entry__permalink"><a href="#ciao-gusto">Link to this project</a></p>
+      </div>
+    </details>
+    </div>
+  </section>
+
+  <section id="conversation">
+    <h2>I simplify the human-computer conversation</h2>
+    <p>When the user is anyone — a hotel guest, a customer in a hurry, a developer mid-debug — the interface has one chance to be understood. No manual, no second attempt.</p>
+    <div class="c-entry-list">
+    <details class="c-entry" id="egro-one-touch">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Egro One Touch — self-service coffee machine</h3>
+        <p class="c-entry__meta">Rancilio Group · UX/UI · 7" touchscreen · 2014</p>
+        <p class="c-entry__line">One decision per screen, no back button. First installed in Chicago, 2015.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="6 project images, scrollable">
         <img src="assets/portfolio/egro-machine.png" width="480" height="653" alt="The Egro One Touch machine with its 7-inch touchscreen" loading="lazy">
         <img src="assets/portfolio/53.jpg" width="726" height="964" alt="Egro One Touch wireframes: choose, pay, customise, wait — one-step versus multi-step flows" loading="lazy">
         <img src="assets/portfolio/egro-rationale-no-back.png" width="1800" height="534" alt="Design rationale: stateless UI, no time, no sequence, no back button — four screens from ready to please wait" loading="lazy">
@@ -159,6 +453,7 @@
         <img src="assets/portfolio/41.png" width="480" height="640" alt="Egro One Touch: customise your drink, size, coffee, extra, make drink button" loading="lazy">
         <img src="assets/portfolio/42.jpg" width="4056" height="2845" alt="Egro One Touch: final dark UI next to the light alternative" loading="lazy">
       </div>
+        <p class="c-filmstrip__hint">6 images — scroll or use ← →</p>
       <dl class="c-project__facts">
         <dt>Product</dt>
         <dd>Coffee machine for hotels and bars: about 20 drinks, customisation, payment. Anyone, any language, no time to learn.</dd>
@@ -172,14 +467,18 @@
         <dd>Shipped. First machines installed in June 2015 at the Hyatt McCormick Place in Chicago.</dd>
       </dl>
       <p class="c-project__links"><a href="https://luc4leone.github.io/coffee-proto/home4.html" target="_blank" rel="noopener">Prototype ↗</a> · <a href="https://egrocoffee.com/en/" target="_blank" rel="noopener">Egro ↗</a></p>
-    </article>
+        <p class="c-entry__permalink"><a href="#egro-one-touch">Link to this project</a></p>
+      </div>
+    </details>
 
-    <article class="c-project" id="egro-2">
-      <header class="c-project__header">
-        <h3>Egro — second machine, larger screen</h3>
-        <p class="c-project__meta">Rancilio Group · UX/UI · Touch · 2015</p>
-      </header>
-      <div class="c-filmstrip">
+<details class="c-entry" id="egro-2">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Egro — second machine, larger screen</h3>
+        <p class="c-entry__meta">Rancilio Group · UX/UI · Touch · 2015</p>
+        <p class="c-entry__line">The cup is the interface: it fills with what you are about to drink.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="1 project images, scrollable">
         <img src="assets/portfolio/48.jpg" width="1024" height="768" alt="Egro: drink list on the left, a cup that fills with coffee and milk as you customise, size slider, brew it" loading="lazy">
       </div>
       <dl class="c-project__facts">
@@ -195,34 +494,238 @@
         <dd>In production.</dd>
       </dl>
       <p class="c-project__links"><a href="https://egrocoffee.com/en/" target="_blank" rel="noopener">Egro ↗</a></p>
-    </article>
+        <p class="c-entry__permalink"><a href="#egro-2">Link to this project</a></p>
+      </div>
+    </details>
 
-    <article class="c-project" id="lonati">
-      <header class="c-project__header">
-        <h3>Sock knitting machine</h3>
-        <p class="c-project__meta">Lonati · UX/UI · Linux touch panel · 2014</p>
-      </header>
-      <div class="c-filmstrip">
-        <img src="assets/portfolio/lonati-before-physical-panel.png" width="688" height="299" alt="Before: the previous control panel, a small screen and sixty physical keys" loading="lazy">
-        <img src="assets/portfolio/lonati-reference-rams.png" width="697" height="412" alt="Reference: Dieter Rams' Braun layouts, controls aligned on a grid so the hand learns where things are" loading="lazy">
-        <img src="assets/portfolio/16.jpg" width="1828" height="1104" alt="Lonati: knitting program as a timeline, needle temperature, RPM gauge, controls aligned on a grid" loading="lazy">
-        <img src="assets/portfolio/17.jpg" width="1100" height="676" alt="Lonati: the same screen used with two hands, sections leg, heel, sole" loading="lazy">
-        <img src="assets/portfolio/lonati-two-hands.png" width="1181" height="711" alt="Dangerous operations need both hands: the two FN buttons and the arrows are placed for one hand each" loading="lazy">
+    <details class="c-entry" id="morgan-analytics">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Morgan analytics — production dashboard</h3>
+        <p class="c-entry__meta">Morgan Tecnica · UX/UI · Web dashboard · 2016, redesigned 2025–2026</p>
+        <p class="c-entry__line">Production and Efficiency always read together, then drill down.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="2 project images, scrollable">
+        <img src="assets/portfolio/22.jpg" width="1240" height="1300" alt="First version, 2016: productivity at a glance, production orders, machines" loading="lazy">
+        <img src="assets/portfolio/7.jpg" width="1280" height="899" alt="Second version: efficiency and production read together, indicators you can switch on and off" loading="lazy">
+      </div>
+        <p class="c-filmstrip__hint">2 images — scroll or use ← →</p>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>The production dashboard of a cutting room: efficiency, output, orders, one machine against another.</dd>
+        <dt>Complexity</dt>
+        <dd>A dashboard answers a question the reader has not finished asking. One number alone means nothing; all of them at once and nobody reads any.</dd>
+        <dt>Made obvious</dt>
+        <dd>Between the first version and the second the concept changed. Production and Efficiency are now always read together — either one alone misleads. And drill-down became the dominant pattern: you start from the overview and open the number that surprised you.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://luc4leone.github.io/analytics2-new-dashboard/" target="_blank" rel="noopener">Prototype ↗</a> · <a href="https://www.morgantecnica.com/" target="_blank" rel="noopener">Morgan Tecnica ↗</a></p>
+        <p class="c-entry__permalink"><a href="#morgan-analytics">Link to this project</a></p>
+      </div>
+    </details>
+
+    <details class="c-entry" id="mozilla">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Firefox DevTools — adding a CSS property</h3>
+        <p class="c-entry__meta">Mozilla · Open source UX contribution · 2020</p>
+        <p class="c-entry__line">An “Add property” line where the action happens. The issue is still open.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="1 project images, scrollable">
+        <img src="assets/portfolio/28.jpg" width="1570" height="920" alt="The Rules panel: an "Add property" line at the end of the rule" loading="lazy">
       </div>
       <dl class="c-project__facts">
         <dt>Product</dt>
-        <dd>Control panel of an industrial sock knitting machine.</dd>
+        <dd>The Rules panel of the Firefox inspector, where developers read and edit CSS.</dd>
         <dt>Complexity</dt>
-        <dd>The previous UI was windows and menus from the '80s. The whole interaction paradigm had to change, for operators who had used the old one for years, under neon lights that wash out any screen. Some operations are dangerous and must need both hands.</dd>
-        <dt>Immersion</dt>
-        <dd>Time on the machine and on the old software, mapping which of its screens were actually used. Dieter Rams' Braun layouts as the reference for aligning controls.</dd>
+        <dd>You could already add a property by clicking an empty spot inside the rule. Nothing in the interface said so. A feature you have to be told about does not exist.</dd>
         <dt>Made obvious</dt>
-        <dd>Far fewer screens. Production data live on the main view instead of buried in status bars. The sock's progress — leg, heel, sole — as a timeline you can read from across the room. Two-hand safety on the touchscreen itself, not on a button somewhere else. Every state of every control designed for glare.</dd>
+        <dd>An "Add property" line at the end of the rule, appearing on hover: the affordance sits where the action happens, without adding permanent clutter.</dd>
         <dt>Result</dt>
-        <dd>Presented at the trade fair, went into production.</dd>
+        <dd>The issue is still open. The repository was archived in 2025.</dd>
       </dl>
-      <p class="c-project__links"><a href="https://luc4leone.github.io/lonati-proto/" target="_blank" rel="noopener">Prototype ↗</a> · <a href="https://www.lonatigroup.com/" target="_blank" rel="noopener">Lonati ↗</a></p>
-    </article>
+      <p class="c-project__links"><a href="https://github.com/firefox-devtools/ux/issues/106" target="_blank" rel="noopener">The issue ↗</a></p>
+        <p class="c-entry__permalink"><a href="#mozilla">Link to this project</a></p>
+      </div>
+    </details>
+
+    <details class="c-entry" id="bticino">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Multi-room music on a wall panel</h3>
+        <p class="c-entry__meta">Bticino · UX/UI · Home automation touch panel · 2017</p>
+        <p class="c-entry__line">Took away what was rarely used, so pick a room, pick a track stayed easy.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="1 project images, scrollable">
+        <img src="assets/portfolio/20.jpg" width="968" height="984" alt="Room by room: what is playing, volume, play and pause, inside the wall plate" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>Multi-room audio on a home automation panel: pick a room, pick a track, play.</dd>
+        <dt>Complexity</dt>
+        <dd>A small screen, inside an existing home automation interface that already did many other things, with all the technical constraints that came with it.</dd>
+        <dt>Made obvious</dt>
+        <dd>I took away what was rarely used, so that the essential thing — choose a room, choose a track, listen — became easy.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://www.bticino.it/" target="_blank" rel="noopener">Bticino ↗</a></p>
+        <p class="c-entry__permalink"><a href="#bticino">Link to this project</a></p>
+      </div>
+    </details>
+
+    <details class="c-entry" id="piano-link">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Piano Link — learning piano together</h3>
+        <p class="c-entry__meta">Client project · Wireframes · iPhone app · 2015</p>
+        <p class="c-entry__line">Wireframes delivered; I never found out what happened to it.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="1 project images, scrollable">
+        <img src="assets/portfolio/14.jpg" width="2098" height="432" alt="Wireframes: lessons and tutorials, questions answered by other players, feedback scores" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>An app for piano students: lessons, tutorials, and questions answered by other players, each carrying a public feedback score.</dd>
+        <dt>Complexity</dt>
+        <dd>Non-trivial flows and a lot of features, a tight deadline, and no field work — wireframes drawn directly with the founder.</dd>
+        <dt>Result</dt>
+        <dd>I delivered the wireframes and never found out what happened to it.</dd>
+      </dl>
+        <p class="c-entry__permalink"><a href="#piano-link">Link to this project</a></p>
+      </div>
+    </details>
+    </div>
+  </section>
+
+  <section id="find">
+    <h2>I find what's wrong with interfaces</h2>
+    <p>Before redesigning anything, find out what is actually broken — and prove it, rather than assert it.</p>
+    <div class="c-entry-list">
+    <details class="c-entry" id="poinx">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Poinx — couponing ecommerce</h3>
+        <p class="c-entry__meta">Poinx · Product &amp; UX/UI · 2014</p>
+        <p class="c-entry__line">Labels from card sorting, a cart, and guest checkout — new in Italy then.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="2 project images, scrollable">
+        <img src="assets/portfolio/44.jpg" width="1400" height="1100" alt="Category page: deals, zones, filters and the L-shaped navigation" loading="lazy">
+        <img src="assets/portfolio/45.jpg" width="1400" height="1750" alt="Checkout: gift options, hidden price, guest checkout" loading="lazy">
+      </div>
+        <p class="c-filmstrip__hint">2 images — scroll or use ← →</p>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>Couponing ecommerce: deals on restaurants, treatments, courses, trips.</dd>
+        <dt>Complexity</dt>
+        <dd>Information architecture. People could not find the deal they wanted, because deals were not grouped the way people expect. On top of that: filters, an L-shaped navigation, and no cart at all — you could not buy two coupons together.</dd>
+        <dt>Immersion</dt>
+        <dd>A lot of card sorting, to find out which semantic group people expected a given deal to live in. Then the Baymard Institute checkout guidelines for the purchase flow.</dd>
+        <dt>Made obvious</dt>
+        <dd>Groups and labels taken from the card sorting, not from the company's internal categories — the labels got a disproportionate share of my attention. A cart. And guest checkout, new for the Italian market at the time.</dd>
+        <dt>Result</dt>
+        <dd>The team considered guest checkout a success, though I have no number for it. The site no longer exists.</dd>
+      </dl>
+        <p class="c-entry__permalink"><a href="#poinx">Link to this project</a></p>
+      </div>
+    </details>
+    </div>
+  </section>
+
+  <section id="tools">
+    <h2>I build my own tools</h2>
+    <p>Things I built because I wanted them to exist. Some worked, some did not; the honest version of both is below.</p>
+    <div class="c-entry-list">
+    <details class="c-entry" id="review-my-code">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Review my code</h3>
+        <p class="c-entry__meta">My own project, with my mentor · Design + Ruby on Rails prototype · 2017–2018</p>
+        <p class="c-entry__line">Juniors post their code, seniors review it for real. Designed and prototyped.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="1 project images, scrollable">
+        <img src="assets/portfolio/24.jpg" width="1752" height="1352" alt="A review request: the code, the exercise it came from, and the reviewer's version side by side" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>A place where someone learning to code posts their code and gets a real review from someone senior.</dd>
+        <dt>Complexity</dt>
+        <dd>A review is only useful if it is specific. The interface has to hold three things at once: the code, the context the learner was given, and what the reviewer would have written.</dd>
+        <dt>Immersion</dt>
+        <dd>Built while I was studying at Bloc, a school in San Francisco. We made it for ourselves, then gave it to Bloc.</dd>
+      </dl>
+        <p class="c-entry__permalink"><a href="#review-my-code">Link to this project</a></p>
+      </div>
+    </details>
+
+    <details class="c-entry" id="annotando">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Annotando — a notepad with zero features</h3>
+        <p class="c-entry__meta">My own tool · Progressive web app, works offline · 2023</p>
+        <p class="c-entry__line">Nothing to learn: no document model, no formatting, no settings.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="1 project images, scrollable">
+        <img src="assets/portfolio/11.jpg" width="317" height="591" alt="Log in: the whole interface, error state included" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>A Windows Notepad for the web. You open it and you write. It works offline.</dd>
+        <dt>Complexity</dt>
+        <dd>Nobody would sell an app with literally zero features, so nobody builds one. That is the gap: every writing app I tried puts something between me and the sentence.</dd>
+        <dt>Made obvious</dt>
+        <dd>Nothing to learn. No document model, no formatting, no settings to visit first.</dd>
+        <dt>Result</dt>
+        <dd>I stopped using it and I miss it. I will probably bring it back.</dd>
+      </dl>
+      <p class="c-project__links"><a href="https://luc4leone.github.io/annotando-spec/" target="_blank" rel="noopener">Prototype ↗</a></p>
+        <p class="c-entry__permalink"><a href="#annotando">Link to this project</a></p>
+      </div>
+    </details>
+
+    <details class="c-entry" id="to-read">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">To-read list</h3>
+        <p class="c-entry__meta">My own tool · Web app · 2015</p>
+        <p class="c-entry__line">One flat list you work through, not a library you curate.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="1 project images, scrollable">
+        <img src="assets/portfolio/25.jpg" width="1062" height="1118" alt="The list: 72 saved addresses, tags down the left, including a "to-tag" tag" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>A place to save web addresses to read later — and actually find them again.</dd>
+        <dt>Complexity</dt>
+        <dd>Saving something to read later is not the same as saving something you love. Bookmarking apps are built for the second thing.</dd>
+        <dt>Made obvious</dt>
+        <dd>Tags, including a "to-tag" tag for whatever you have not sorted yet, and one flat list you work through — not a library you curate.</dd>
+        <dt>Result</dt>
+        <dd>I used it for a while, then stopped. The prototype is gone.</dd>
+      </dl>
+        <p class="c-entry__permalink"><a href="#to-read">Link to this project</a></p>
+      </div>
+    </details>
+
+    <details class="c-entry" id="calcioclip">
+      <summary class="c-entry__summary">
+        <h3 class="c-entry__title">Calcioclip — video analysis for football</h3>
+        <p class="c-entry__meta">With two friends, one a former player · 2024</p>
+        <p class="c-entry__line">We shipped v1 and could not sell it. After a year we stopped.</p>
+      </summary>
+      <div class="c-entry__body">
+        <div class="c-filmstrip" tabindex="0" role="group" aria-label="1 project images, scrollable">
+        <img src="assets/portfolio/54.jpg" width="2878" height="1502" alt="A clip being tagged: game situations, players involved, shareable links" loading="lazy">
+      </div>
+      <dl class="c-project__facts">
+        <dt>Product</dt>
+        <dd>Video analysis for coaches: tag what happens in a clip — long ball, defensive line, key pass — link it to the players involved, send it back as a lesson. Also useful for scouting.</dd>
+        <dt>Complexity</dt>
+        <dd>A coach is not going to learn an editing tool. Tagging a moment, attaching the right players and sharing it has to take seconds, between one session and the next.</dd>
+        <dt>Result</dt>
+        <dd>We shipped v1 and could not sell it. After a year we stopped.</dd>
+      </dl>
+        <p class="c-entry__permalink"><a href="#calcioclip">Link to this project</a></p>
+      </div>
+    </details>
+    </div>
   </section>
 
 </main>
@@ -233,6 +736,8 @@
     <p><a href="index.html">Master UX/UI Design (Italian)</a></p>
   </div>
 </footer>
+
+<script src="js/portfolio-index.js"></script>
 
 </body>
 </html>

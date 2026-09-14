@@ -59,3 +59,14 @@
   margin: 0;
   font-size: var(--font-size-16);
 }
+
+/* Tag del progetto: stessi link ?tag=… del filtro, sotto la riga meta. */
+.c-project__tags {
+  margin: var(--space-6) 0 0;
+  font-size: var(--font-size-14);
+  color: var(--color-text-muted);
+}
+
+.c-project__tags a {
+  text-decoration-style: dotted;
+}
