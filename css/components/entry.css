@@ -49,9 +49,7 @@
   content: "–";
 }
 
-.c-entry__summary:hover .c-entry__title {
-  text-decoration: underline;
-}
+
 
 /* Il focus ring va sulla riga intera, non sul testo: è la riga il
    bersaglio del click. */
@@ -63,6 +61,16 @@
 .c-entry__title {
   margin: 0;
   font-size: var(--font-size-20);
+  /* Non è un <a>, quindi la regola sui link del tema non lo raggiunge:
+     stessa resa, replicata qui. Sottolineato sempre, accento all'hover
+     — la riga è cliccabile e deve dirlo da ferma. */
+  text-decoration: underline;
+  text-decoration-color: var(--color-text-muted);
+  text-underline-offset: 0.15em;
+}
+
+.c-entry__summary:hover .c-entry__title {
+  text-decoration-color: var(--color-primary);
 }
 
 .c-entry__meta {

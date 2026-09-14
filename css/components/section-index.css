@@ -18,11 +18,14 @@
 
 .c-section-index a {
   font-weight: var(--font-weight-700);
-  text-decoration: none;
 }
 
+/* Sottolineatura sempre presente (è quella di default del tema, grigia);
+   all'hover passa all'accento. Un link che si sottolinea solo al
+   passaggio del mouse non si distingue dal testo finché non lo si
+   cerca. */
 .c-section-index a:hover {
-  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
 }
 
 .c-section-index__count {
