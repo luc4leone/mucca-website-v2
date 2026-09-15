@@ -208,11 +208,11 @@ Progetti degli studenti, guidati da metodo e feedback.
 
 ## Ammissione alla prossima classe
 
-Partenza 26 Ottobre 2026
+Partenza 9 Novembre 2026
 
 ### Durata del corso
 
-Il corso dura 3 mesi: partenza → 26 ottobre 2026; fine → 5 febbraio 2027. Il calendario tiene già conto della pausa per le vacanze di Natale.
+Il corso dura 3 mesi: partenza → 9 novembre 2026; fine → fine febbraio 2027. Il calendario tiene già conto della pausa per le vacanze di Natale.
 
 ### Orari lezioni e ricevimento
 

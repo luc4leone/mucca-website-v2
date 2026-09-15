@@ -1,0 +1,10 @@
+# Sito statico puro: nessun build step, si pubblica la root del repo.
+[build]
+  publish = "."
+  command = ""
+
+# L'offerta a Mediaddress è raggiungibile solo da chi ha il link.
+[[headers]]
+  for = "/offerta-mediaddress/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
