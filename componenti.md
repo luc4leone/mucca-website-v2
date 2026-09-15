@@ -352,3 +352,28 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 
 **Stati**: `[aria-pressed="true"]` → sottolineatura in `--color-accent`, unico accento della pagina.
 
+
+## Result (`.c-result-list` / `.c-result`)
+
+**Scopo**: una riga di risultato — un cliente e il numero che è cambiato. Fratello di `.c-entry` (portfolio), ma senza `<details>`: la riga è già tutto il contenuto, quindi niente marker "+", niente cursore, niente titolo sottolineato.
+
+**Dove usato**: `marketing.html`, lista unica sotto l'header "Results.".
+
+**File**: `css/components/result.css`
+
+**Markup**:
+
+```html
+<div class="c-result-list">
+  <article class="c-result" id="beautytune">
+    <p class="c-result__client"><a href="https://beautytune.it/" target="_blank" rel="noopener">beautytune.it ↗</a></p>
+    <p class="c-result__line">… generating <strong>€180,000 over the following 12 months</strong>.</p>
+  </article>
+</div>
+```
+
+**Variabili (interfaccia)**: nessuna per ora — usa direttamente i token di bordo, spazio e tipografia.
+
+**Convenzioni di contenuto**: i numeri vanno in `<strong>` dentro il testo, non isolati in una stat tile: si devono poter trovare senza leggere la riga, ma restano dentro la frase che dice cosa li ha mossi.
+
+**Stati previsti**: nessuno. L'unico stato interattivo è l'hover sul link del cliente, gestito dal tema.

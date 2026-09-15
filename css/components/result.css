@@ -1,0 +1,35 @@
+/* Result: una riga di marketing.html — un cliente e il numero che è
+   cambiato.
+
+   Fratello di `.c-entry` (portfolio.html), ma senza <details>: qui non
+   c'è un dentro da aprire. La riga È il contenuto, quindi niente
+   marker, niente cursore, niente titolo sottolineato che promette un
+   click che non esiste.
+
+   Stessa lista a righe separate da bordo: le due pagine devono
+   sembrare la stessa pagina con dentro cose diverse. */
+
+.c-result {
+  border-top: var(--border-width-1) solid var(--color-border);
+  padding: var(--space-18) 0;
+}
+
+.c-result:last-child {
+  border-bottom: var(--border-width-1) solid var(--color-border);
+}
+
+.c-result__client {
+  margin: 0 0 var(--space-6);
+  font-size: var(--font-size-20);
+}
+
+/* L'esito. I numeri stanno in <strong> dentro il testo: sono loro il
+   motivo per cui la riga esiste, e vanno trovati senza leggere. */
+.c-result__line {
+  margin: 0;
+  font-size: var(--font-size-16);
+}
+
+.c-result-list {
+  margin: 0;
+}

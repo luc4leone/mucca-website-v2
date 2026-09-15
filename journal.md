@@ -315,3 +315,15 @@ Iterazione sulla testata prima del merge: via la seconda frase dell'intro ("Ever
 Worktree `../mucca-website-portfolio-indice-primo` rimossa dopo il merge. Le altre due restano su disco finché servono per il confronto.
 
 **Restano aperte** due cose ereditate da D: le 25 righe di sintesi sono copy di prima bozza (alcune ripetono quasi alla lettera il campo "Made obvious" del dettaglio), e la pagina a voci chiuse è di 6 schermate, non delle ~3 stimate — a pesare sono gli intro di sezione, non le righe.
+
+## 15 settembre 2026 — `marketing.html`
+
+Nuova pagina `marketing.html` ("Results."), equivalente di `portfolio.html` per il lavoro di marketing: stesso guscio (`l-page`, header, lista a righe, footer), contenuto diverso.
+
+Scelte:
+
+- **Niente `<details>`.** In portfolio la riga chiusa è un indice di 25 progetti e l'apertura serve a non scaricare 100 immagini. Qui le voci sono due e il contenuto è una frase: un accordion prometterebbe un dentro che non c'è. Da qui il componente separato `.c-result` invece del riuso di `.c-entry`.
+- **I numeri in `<strong>` dentro la frase**, non in stat tile. La cifra da sola non vende: "€180.000" conta perché segue "€2.000 nei primi 6 mesi".
+- **Footer con link incrociato** a `portfolio.html`: le due pagine sono due facce della stessa offerta, e chi arriva da LinkedIn atterra su una sola delle due.
+
+Da decidere: se `marketing.html` e `portfolio.html` restino due pagine o diventino due sezioni di una pagina sola quando le voci di marketing cresceranno; e se serva un ingresso a entrambe da `index.html`, che oggi è solo un biglietto da visita senza navigazione.

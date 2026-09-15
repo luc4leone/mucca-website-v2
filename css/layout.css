@@ -151,10 +151,18 @@ ol.l-hero__lead {
 
 /* Home: biglietto da visita. Il footer resta in fondo alla viewport
    anche quando il contenuto è poco (sticky footer). */
-.p-home {
+.p-home,
+.p-results {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
+}
+
+/* marketing.html: poche righe di contenuto, quindi senza questo il
+   footer si ferma a metà viewport. Stesso meccanismo sticky di .l-card,
+   applicato al contenitore di pagina invece che al biglietto. */
+.p-results > .l-page {
+  flex: 1;
 }
 
 .l-card {
