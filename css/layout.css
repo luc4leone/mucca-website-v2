@@ -149,12 +149,20 @@ ol.l-hero__lead {
   gap: var(--space-12);
 }
 
-/* Home: biglietto da visita, una schermata sola */
+/* Home: biglietto da visita. Il footer resta in fondo alla viewport
+   anche quando il contenuto è poco (sticky footer). */
+.p-home {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
 .l-card {
+  flex: 1;
+  width: 100%;
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding: var(--space-72) var(--space-24);
-  min-height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -167,4 +175,20 @@ ol.l-hero__lead {
 
 .l-card__contact {
   margin-top: var(--space-12);
+}
+
+/* Stesso trattamento del footer di offerta-mediaddress:
+   filetto sopra, testo piccolo e secondario. */
+.l-card__footer {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--space-24);
+  border-top: var(--border-width-1) solid var(--color-border);
+  font-size: var(--font-size-14);
+  color: var(--color-text-secondary);
+}
+
+.l-card__footer p {
+  margin: 0;
 }
