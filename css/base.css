@@ -65,6 +65,28 @@ a {
   color: var(--color-primary);
 }
 
+/* Nome di file, percorso, proprietà CSS: un frammento di codice dentro
+   una frase. Due misure in em invece che a token, di proposito: il
+   monospace del browser rende più piccolo del testo attorno (0.9em lo
+   riporta in riga), e il respiro laterale deve scalare col carattere —
+   a 6px fissi la pastiglia stacca dalla virgola che la segue. */
+code {
+  padding: 0 0.25em;
+  border-radius: var(--radius-2);
+  background: var(--zinc-200);
+  font-size: 0.9em;
+}
+
+/* Dentro un blocco, la pastiglia è il <pre>, non ogni riga: il <code>
+   torna nudo. Nessuna pagina ha ancora un blocco di codice, ma la
+   regola sopra senza questa si rompe il giorno che ne arriva uno. */
+pre code {
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  font-size: inherit;
+}
+
 /* Utility: testo che apre un paragrafo con lo stesso peso visivo di un
    h3, senza essere un vero heading (niente voce separata nell'outline). */
 .u-lead {
