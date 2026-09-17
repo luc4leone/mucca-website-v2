@@ -8,3 +8,20 @@
   for = "/offerta-mediaddress/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
+
+# Indice di servizio: nome non indovinabile + fuori dai motori di ricerca.
+[[headers]]
+  for = "/index-abf92932.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Journal privato degli annunci analizzati: note di lavoro, non contenuto pubblico.
+[[headers]]
+  for = "/upwork.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/upwork/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
