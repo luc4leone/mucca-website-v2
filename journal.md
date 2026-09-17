@@ -327,3 +327,95 @@ Scelte:
 - **Footer con link incrociato** a `portfolio.html`: le due pagine sono due facce della stessa offerta, e chi arriva da LinkedIn atterra su una sola delle due.
 
 Da decidere: se `marketing.html` e `portfolio.html` restino due pagine o diventino due sezioni di una pagina sola quando le voci di marketing cresceranno; e se serva un ingresso a entrambe da `index.html`, che oggi è solo un biglietto da visita senza navigazione.
+
+## 16 settembre 2026 — indice privato
+
+Indice privato di tutte le pagine HTML del sito, comprese quelle fuori dai motori di ricerca. Serve a ritrovare le pagine che non sono linkate da nessuna parte (l'offerta Mediaddress, la galleria componenti, il design system esportato).
+
+Come resta fuori dai motori:
+
+- `<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">` nella pagina;
+- header `X-Robots-Tag` sul file in `netlify.toml`, per coprire anche chi ignora il meta tag.
+
+Il file si chiama `index-abf92932.html`: suffisso casuale, così l'URL non è indovinabile. È sicurezza per oscurità — non protegge niente, toglie solo la pagina dalla portata di chi tira a indovinare.
+
+**Non è stata aggiunta a `robots.txt`, di proposito.** Due motivi: `robots.txt` è un file pubblico, quindi scriverci dentro il percorso lo annuncia invece di nasconderlo; e un `Disallow` impedisce al crawler di scaricare la pagina, quindi di leggere il `noindex` — le due regole si annullano a vicenda. `Disallow` blocca la scansione, `noindex` blocca l'indicizzazione: per stare fuori dai risultati serve la seconda.
+
+Per lo stesso motivo è stata **tolta la riga `Disallow: /offerta-mediaddress/`** da `robots.txt`: scriveva in chiaro, in un file pubblico, il percorso dell'offerta riservata. L'header `X-Robots-Tag` su quella cartella fa già il lavoro da solo. `robots.txt` ora è solo `Allow: /`.
+
+Il rischio vero non è il motore di ricerca ma il fatto che il contenuto non è protetto: chi ha l'URL vede l'elenco completo delle pagine riservate. Non è un problema finché lì dietro c'è materiale solo "non pubblicizzato" e non riservato; il giorno che ci finisce qualcosa di sensibile serve una password, non un `noindex`.
+
+La pagina usa il guscio del sito (`l-page`, header, footer) e un componente suo, `.c-sitemap` in `css/components/sitemap.css`: stessa lista a righe di `.c-entry` e `.c-result`, ma la riga è un link puro — niente `<details>`, niente numero, solo nome del file e cosa c'è dentro. Una pagina di servizio con uno stile tutto suo sarebbe stata una seconda cosa da mantenere senza guadagnarci nulla.
+
+`code` è diventato un elemento di sistema: la regola sta in `base.css`, non dentro il componente. Serviva qui (i nomi di file sono metà del contenuto) ma non è roba di questa pagina — `componenti.html` lo usa già, e ogni pagina futura che nomina un file lo userà. Due misure in `em` invece che a token, di proposito: `0.9em` perché il monospace del browser rende più piccolo del testo attorno, e `0.25em` di padding laterale perché a 6px fissi la pastiglia staccava dalla virgola che la segue. C'è anche il reset `pre code` — nessuna pagina ha ancora un blocco di codice, ma la regola senza quel guard si rompe il giorno che ne arriva uno.
+
+Il link alla home punta a `/index.html`, non a `/`: con l'editor locale (`_tools/html-editor`) la radice è l'indice dei file dell'editor, non la home del sito. Le altre cartelle (`/mini-corso/`, `/offerta-mediaddress/`) si risolvono correttamente e restano con l'URL canonico.
+
+Da mantenere a mano: l'elenco non si genera da solo, va aggiornato quando si aggiunge o si toglie una pagina.
+
+## 16 settembre 2026 — journal degli annunci Upwork
+
+`upwork.html` è l'elenco degli annunci di lavoro analizzati prima di candidarsi; ogni voce linka alla sua pagina di analisi in `upwork/`. La prima è `upwork/ai-automation-specialist.html`.
+
+**Perché due livelli e non una pagina sola.** L'analisi di un annuncio è lunga — glossario, traduzione frase per frase, i passi di costruzione, i buchi da coprire, le domande da fare al cliente. Impilarne dieci in una pagina la rende inservibile: l'elenco deve restare scorribile in dieci secondi per decidere quale riaprire. L'elenco porta solo il verdetto in una riga; il resto sta dentro.
+
+**Struttura a cartella** (`upwork/<slug>.html`) invece di `upwork-<slug>.html` in radice: gli annunci si accumulano, e in radice diventerebbero rumore accanto alle pagine del sito. Stessa logica di `offerta-mediaddress/`.
+
+**Fuori dai motori**, come le altre pagine di lavoro: `noindex` nel markup e `X-Robots-Tag` in `netlify.toml` su `/upwork.html` e `/upwork/*`. Sono note su clienti potenziali, non contenuto pubblico. Aggiunte anche all'indice privato.
+
+**Componente `css/components/job.css`**, non stile inline nella pagina: le analisi saranno molte e devono somigliarsi. Contiene il filetto/occhiello di testata (`.c-rule`, `.c-eyebrow`, ripresi dal trattamento dell'offerta Mediaddress), l'elenco `.c-job` e i pezzi ricorrenti di un'analisi — `.c-posting` per l'annuncio originale riportato letteralmente, `.c-verdict` per la risposta secca, `.c-defs` per il glossario, `.c-steps` per i passi numerati, `.c-table` per la traduzione.
+
+**Un solo accento per sezione**, come da brand kit: il filetto corallo in testata, il pallino nella pastiglia del verdetto, il bordo sinistro del riquadro `.c-verdict`. Il testo della pastiglia resta nero — se fosse corallo anche quello, l'accento perderebbe forza proprio dove serve.
+
+**La tabella di traduzione è impilata sotto i 768px**, non scrollabile. Due colonne di testo lungo su schermo stretto non si leggono, e lo scroll orizzontale dentro un articolo si perde: sotto il breakpoint ogni riga diventa un blocco (frase inglese in grassetto, traduzione sotto) e il `<thead>` sparisce alla vista ma resta allo screen reader. Scritta mobile-first, come il resto del CSS: il default è impilato, da 768px i `display` tornano a `table-*`.
+
+**`min-width: 0` su `.p-upwork > .l-page`.** Il `body` è un flex container (footer in fondo alla viewport) e un figlio flex ha `min-width: auto`: senza questo la tabella allargava la pagina oltre la viewport invece di restare dentro il suo contenitore. Aggiunto anche a `.p-results`, che ha lo stesso guscio e lo stesso problema latente.
+
+Da mantenere a mano: ogni nuova analisi va aggiunta all'elenco in `upwork.html`. L'indice privato elenca solo `upwork.html`, non le singole analisi — altrimenti va riscritto a ogni annuncio.
+
+## 16 settembre 2026 — i link sono sempre sottolineati
+
+Regola adottata per tutto il sito: **un link è sottolineato sempre**, qualunque elemento lo contenga — un titolo, una voce di indice, una barra di navigazione. Non è decorazione: è la sottolineatura a renderlo riconoscibile come link. Nel tema del brand i link sono nel colore del testo (gerarchia per peso, non per colore), quindi senza riga non resta nessun segnale — e affidarsi al solo colore violerebbe comunque WCAG 1.4.1.
+
+Tolta quindi la `text-decoration: none` da:
+
+- `.c-job__title a` (`job.css`) — il titolo dell'annuncio nell'elenco Upwork. Riga a spessore doppio: sotto Archivo Black a 24px quella di default spariva.
+- `.l-section__toc a` (`layout.css`) — l'indice delle sezioni, visibile in `master-ux-ui.html`.
+- `.c-cluster-nav a` (`cluster-nav.css`).
+- `.c-tag-filter a` (`tag-filter.css`).
+
+Sparite anche le regole `:hover { text-decoration: underline }` che le accompagnavano: ora sono ridondanti, e il colore della riga (grigio, corallo all'hover) lo dà già `a` in `theme-brand.css`.
+
+**Il tag attivo del filtro cambia segnale.** Prima si distingueva perché era l'unico sottolineato. Ora che lo sono tutti, si stacca per colore (`--color-accent`) e spessore doppio della riga. Aggiornata la voce in `componenti.md`.
+
+**`.c-button` resta senza sottolineatura, di proposito.** Dal punto di vista UX è un bottone, non un link in mezzo al testo: il riquadro pieno fa già da affordance, e sottolinearlo lo farebbe leggere come testo cliccabile invece che come azione.
+
+## 16 settembre 2026 — l'analisi diventa anche materiale da usare
+
+L'analisi dell'annuncio AI Automation Specialist cresce di due sezioni: «Come mi candido senza case study» e la bozza di cover letter in inglese. La pagina smette di essere solo uno studio dell'annuncio e diventa il posto da cui si prende la roba per candidarsi davvero.
+
+**Le domande al cliente ora hanno un interruttore di lingua** (`.c-lang-toggle`, `js/lang-toggle.js`). L'idea è di Luca: le sei domande sono il pezzo migliore da mostrare nel video allegato alla cover letter, e nel video vanno in inglese. Italiano = nota di lavoro, inglese = testo rivolto al cliente, stessa fonte.
+
+**Ma la sezione è stata spaccata in due.** Com'era scritta non era condivisibile: conteneva la deliberazione su se il lavoro convenga («se rispondono ERP custom, lasciar perdere»). Mostrarla al cliente comunica «ti sto valutando come rischio». Le domande sono passate nel blocco col toggle, le regole di decisione in un `.c-private` marcato «non va nel video». Il titolo è cambiato da «Cosa chiedere prima di candidarmi» a «Le domande da fare al cliente»: stessa sostanza, cornice diversa — competenza invece che diffidenza.
+
+**`.c-private` e `.c-letter` si distinguono per il bordo**, tratteggiato contro continuo, non per il colore: il corallo in quella pagina è già preso dal filetto di testata e dal riquadro del verdetto, e un terzo accento romperebbe la regola del brand. `.c-slot` segna i buchi da riempire prima di inviare (il costo mensile dei tool, il link al video) — non `<mark>`, che è giallo fuori palette e significa «evidenziato», non «mancante».
+
+**Il toggle è progressive enhancement**: il bottone lo crea lo script, quindi senza JS non compare un controllo morto, resta l'italiano. Le varianti portano sia `lang` sia `data-lang`, e la selezione avviene su `data-lang`: così un `lang` annidato per altri motivi non finisce nello scambio.
+
+Componenti documentati in `componenti.md`.
+
+**Incidente da ricordare.** Nel modificare la pagina via script ho usato `s.index('<p class="c-back"')` per trovare la fine della sezione da sostituire, ma quel markup compare due volte — in testa e in fondo alla pagina. `index` ha restituito la prima occorrenza, che sta *prima* del punto di partenza, e il file si è ritrovato con l'intero documento duplicato (metà nuovo, metà vecchio). Individuato rileggendo l'outline dei titoli, non dal browser: la pagina duplicata si apre senza errori e da sopra sembra giusta. Quando si taglia un file per indici, cercare il delimitatore **a partire dal punto d'inizio**, non dall'inizio del file.
+
+## 17 settembre 2026 — `automations.html`
+
+Terza pagina-vetrina accanto a `portfolio.html` (Works) e `marketing.html` (Results). Contenuto della prima voce da `trello-twilio-automation.md`, che resta la fonte: la pagina ne è la versione per il cliente, non un doppione.
+
+**Nessun componente nuovo, tranne uno minimo.** Riusa `.c-entry` (la riga che si apre, `<details>` nativo) e `.c-project__facts` (le etichette fisse) di portfolio.html. Le etichette però cambiano: qui non sono Product/Complexity/Immersion/Made obvious/Result ma Problem, The trigger, What it does, Safe unattended, When it fails, Cost to run, Not handled yet, Same shape different edges. Sono le domande che un cliente fa di un'automazione, e due di esse — cosa succede quando si rompe, e cosa non fa ancora — sono il motivo per cui la pagina è credibile.
+
+`css/components/automation.css` esiste solo per la figure: con **uno** screenshot il `.c-filmstrip` prometterebbe un seguito che non c'è. Il canvas di n8n è largo 2556px, quindi alla larghezza della colonna il testo dentro i nodi non si legge: l'immagine è un link alla versione intera e la didascalia lo dice a parole, per chi non immagina che il riquadro sia cliccabile. Quando gli screenshot di un'automazione diventano due, si passa al filmstrip e quel file sparisce.
+
+**`js/portfolio-index.js` riusato così com'è.** Non sa nulla di progetti: lavora su `.c-entry`. Su una pagina senza `.c-section-index` si ferma dopo i deep link e non inserisce il bottone "expand all" — che con una voce sola direbbe "expand all 1 projects". Il nome del file resta quello del primo uso; se le pagine che lo usano diventano tre conviene rinominarlo.
+
+Titoli delle voci in `<h2>`, non `<h3>` come in portfolio: lì gli `<h3>` stanno dentro sezioni con un `<h2>`, qui le sezioni non ci sono e un `h3` salterebbe un livello.
+
+Aggiunte all'indice privato `automations.html` (pubblica) e `upwork/ai-automation-specialist.html` (non destinata a diventare pubblica). A quest'ultima manca il `X-Robots-Tag`: il `noindex` c'era già nel markup, ma la cartella ora ha anche l'header in `netlify.toml`, come `offerta-mediaddress`.

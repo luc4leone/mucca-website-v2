@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automations — Luca Leone</title>
+<meta name="description" content="Automations that run unattended: what triggers them, what happens when they fail, and what they cost to run.">
+<meta property="og:title" content="Automations — Luca Leone">
+<meta property="og:description" content="Automations that run unattended: what triggers them, what happens when they fail, and what they cost to run.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components/entry.css">
+<link rel="stylesheet" href="css/components/project.css">
+<link rel="stylesheet" href="css/components/automation.css">
+<link rel="stylesheet" href="brand-kit/brand-tokens-light.css">
+<link rel="stylesheet" href="css/theme-brand.css">
+</head>
+<body>
+
+<main class="l-page">
+
+  <header>
+    <h1>Automations.</h1>
+    <p>The ones that survive are the ones nobody has to remember.</p>
+  </header>
+
+  <p>An automation that needs a new human habit gets abandoned in three weeks. Each of these hangs off work the team was already doing, writes its failures where the team is already looking, and is safe to leave running unattended. Open one to see what it does, what it costs, and what it doesn't handle.</p>
+
+  <div class="c-entry-list">
+
+    <details class="c-entry" id="trello-twilio">
+      <summary class="c-entry__summary">
+        <h2 class="c-entry__title">Trello &rarr; SMS appointment confirmation</h2>
+        <p class="c-entry__meta">Trello &middot; n8n &middot; Twilio &middot; September 2026</p>
+        <p class="c-entry__line">A no-show costs the full value of the slot. A reminder costs seven cents.</p>
+      </summary>
+      <div class="c-entry__body">
+
+        <figure class="c-automation__figure">
+          <a href="assets/automations/trello-twilio-automation-1.png" target="_blank" rel="noopener">
+            <img src="assets/automations/trello-twilio-automation-1.png" width="2556" height="1008" alt="The n8n canvas: a Trello trigger feeds a filter that checks the card moved to Confirmed, then a card fetch, a phone-number parser, and a send-or-not branch. The success path adds a label to the card; both failure paths write a comment back onto it." loading="lazy">
+          </a>
+          <figcaption>Nine nodes. Every path ends on the card &mdash; a label when the text goes, a comment when it doesn't. <a href="assets/automations/trello-twilio-automation-1.png" target="_blank" rel="noopener">Open full size &#8599;</a></figcaption>
+        </figure>
+
+        <dl class="c-project__facts">
+
+          <dt>Problem</dt>
+          <dd>A team confirms appointments by hand. Somebody checks the board, sees a booking is confirmed, opens WhatsApp and types a message. It works until somebody is off sick, or forgets, or confirms at 6pm and sends the text the next morning. The customer turns up on the wrong day, or not at all.</dd>
+
+          <dt>The trigger</dt>
+          <dd>This is the part that matters, not the SMS. The team already drags the card to <em>Confirmed</em> as part of their existing job. That drag is the only signal the automation needs &mdash; nobody learns a new tool, ticks a new box, or remembers a new step. There is no habit to abandon: if they stop moving cards, they have stopped running their business.</dd>
+
+          <dt>What it does</dt>
+          <dd>Trello calls n8n the moment a card moves, so the text arrives in about two seconds and nothing polls an API all day to be told nothing happened. The flow then reads the card &mdash; the webhook names it but doesn't carry its description or labels &mdash; pulls the phone number out, normalises it, and sends. The message carries the card title, so the customer gets the date and time the team actually wrote down, not a generic template.</dd>
+
+          <dt>Safe unattended</dt>
+          <dd>Two texts are worse than none: it reads as sloppy, and at volume it's a bill. So "already sent" lives as a label on the card itself, not in n8n's memory where a restart would lose it &mdash; the team can see it, and a second run finds it. The other trap is that dragging a card emits two events, one for position and one for the list change; only the second carries the list names. Skip that filter and every customer gets two texts, and you find out in production.</dd>
+
+          <dt>When it fails</dt>
+          <dd>Nothing fails silently, and nothing fails into a log file nobody opens. A card with no number, a malformed number, a card confirmed twice, a message Twilio rejects &mdash; each one writes a comment back onto the card, naming the reason. The person who moved the card is the person who needs to know, and the card is where they already are.</dd>
+
+          <dt>Cost to run</dt>
+          <dd>An n8n subscription, plus roughly &euro;0.07 per SMS to Italy. No phone number to rent &mdash; it sends from an alphanumeric sender ID.</dd>
+
+          <dt>Not handled yet</dt>
+          <dd>Named on purpose, because each is a decision rather than an oversight. No retry: a failure is recorded, not re-attempted, and whether a stale reminder should go out an hour late is a business call. No delivery confirmation &mdash; Twilio accepting a message isn't the handset receiving it. No quiet hours: a card confirmed at 2am sends at 2am. No opt-out handling, which becomes a hard requirement once volume is real.</dd>
+
+          <dt>Same shape, different edges</dt>
+          <dd>The architecture is: an event in a system of record triggers a message, and the outcome is written back to the record. Swap the trigger for a Calendar event, an Airtable status, a CRM stage change, a form submission or a Stripe payment. Swap the channel for WhatsApp, email, or a Slack message to staff. Or change the timing &mdash; a reminder 24 hours before instead of on confirmation. The two clients ask for next are two-way replies, where the customer texts back YES and the card moves itself, and escalation, where no reply in two hours tells a human to call.</dd>
+
+        </dl>
+
+        <p class="c-entry__permalink"><a href="#trello-twilio">Link to this automation</a></p>
+      </div>
+    </details>
+
+  </div>
+
+</main>
+
+<footer class="l-footer">
+  <div class="l-footer__inner">
+    <p>Luca Leone 2026</p>
+    <p><a href="portfolio.html">Works</a> &middot; <a href="marketing.html">Results</a></p>
+  </div>
+</footer>
+
+<script src="js/portfolio-index.js"></script>
+
+</body>
+</html>

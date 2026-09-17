@@ -9,7 +9,11 @@
       c'è: un bottone che non fa niente è peggio di un bottone assente,
       quindi lo inserisce lo script invece di stare nel markup.
 
-   Usato in portfolio.html. */
+   Usato da portfolio.html e automations.html. Il nome resta quello del
+   primo uso; il codice non sa nulla di progetti, lavora su `.c-entry`.
+   Su una pagina senza `.c-section-index` (automations.html, che ha una
+   voce sola) si ferma dopo i deep link e non inserisce il bottone: un
+   "expand all 1 projects" non serve a nessuno. */
 (function () {
   var entries = Array.prototype.slice.call(document.querySelectorAll('.c-entry'));
   if (!entries.length) return;
