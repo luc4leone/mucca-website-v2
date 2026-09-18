@@ -1,0 +1,114 @@
+/* Componenti di garanzia.html.
+
+   Due soli, e stanno in un file unico perché nascono insieme e servono
+   la stessa cosa: rendere leggibile una clausola. Precedente nel repo:
+   `automation.css`, nato per un elemento di una pagina sola.
+
+   - `.c-pledge` — il riquadro con la promessa, in cima alla pagina.
+   - `.c-requirement` — un requisito: numero, titolo, una frase, e la
+     riga che dice come si verifica.
+
+   Perché non si riusa `.c-schedule` per i requisiti, che ha la stessa
+   griglia (colonna stretta + corpo): lì la colonna stretta è una data e
+   il corpo è una frase. Qui serve una quarta parte che `.c-schedule` non
+   ha — la misura verificabile — ed è l'unico motivo per cui questa
+   pagina è credibile. Metterla in un `<p>` normale la farebbe leggere
+   come commento invece che come criterio. */
+
+/* ---------------------------------------------------------------
+   Pledge
+--------------------------------------------------------------- */
+
+/* Il bordo a sinistra è l'unico elemento con l'accento in pagina
+   (regola di moderazione del brand kit): la promessa è la cosa che
+   si legge per prima e la sola che vale un accento. */
+.c-pledge {
+  --pledge-accent: var(--color-accent);
+  margin: 0 0 var(--space-36);
+  padding: var(--space-24);
+  border: var(--border-width-1) solid var(--color-border);
+  border-left: var(--space-6) solid var(--pledge-accent);
+  border-radius: var(--radius-4);
+}
+
+.c-pledge > :first-child {
+  margin-top: 0;
+}
+
+.c-pledge > :last-child {
+  margin-bottom: 0;
+}
+
+.c-pledge__promise {
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-700);
+  line-height: var(--line-height-tight);
+}
+
+/* ---------------------------------------------------------------
+   Requirement
+--------------------------------------------------------------- */
+
+.c-requirement-list {
+  list-style: none;
+  margin: 0 0 var(--space-24);
+  padding: 0;
+  border-bottom: var(--border-width-1) solid var(--color-border);
+}
+
+.c-requirement {
+  display: grid;
+  grid-template-columns: var(--space-36) 1fr;
+  gap: var(--space-18);
+  margin: 0;
+  padding: var(--space-24) 0;
+  border-top: var(--border-width-1) solid var(--color-border);
+}
+
+/* Numero scritto a mano nel markup, non un contatore CSS: la numerazione
+   è citabile nel contratto ("requisito 4"), quindi deve stare nell'albero
+   di accessibilità e non solo nel rendering. Stessa scelta, stesso motivo,
+   di `.c-manifesto__num`. */
+.c-requirement__num {
+  font-family: var(--font-display);
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-400);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-secondary);
+}
+
+.c-requirement__title {
+  margin: 0 0 var(--space-6);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-700);
+  line-height: var(--line-height-tight);
+}
+
+.c-requirement__body > p {
+  margin: 0 0 var(--space-12);
+}
+
+.c-requirement__body > :last-child {
+  margin-bottom: 0;
+}
+
+/* La misura. Sta dentro il requisito, staccata da un filetto e non da un
+   fondino: i fondini in questa pagina sono già presi dal pledge e dalla
+   FAQ, e un terzo livello di superficie renderebbe la pagina a strisce. */
+.c-requirement__check {
+  margin: 0;
+  padding-top: var(--space-12);
+  border-top: var(--border-width-1) solid var(--color-border);
+  font-size: var(--font-size-16);
+  color: var(--color-text-secondary);
+}
+
+.c-requirement__check strong {
+  color: var(--color-text);
+}
+
+@media (min-width: 768px) {
+  .c-requirement {
+    grid-template-columns: var(--space-48) 1fr;
+  }
+}
