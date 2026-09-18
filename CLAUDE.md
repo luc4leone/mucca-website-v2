@@ -40,6 +40,52 @@ Sezioni previste:
 - I testi (in bozza) vivono in `content.md`: è la fonte di verità per il copy.
 - Se il copy cambia, aggiornare `content.md` — non lasciarlo disallineato dall'HTML.
 
+## Convenzioni tipografiche
+
+I file sono UTF-8: nel copy si scrive **il carattere vero**, mai l'entità HTML e mai
+l'approssimazione da tastiera. `&rarr;` e `→` si vedono uguali nel browser, ma mescolarli
+rende il sorgente impossibile da cercare e da correggere in blocco.
+
+| Si scrive | Non si scrive |
+| --- | --- |
+| `→ ← ↑ ↓ ↗` | `->`, `&rarr;`, `&larr;`, `&#8599;` |
+| `— –` | `&mdash;`, `&ndash;` |
+| `…` | `&hellip;` |
+| `• · › «  »` | `&bull;`, `&middot;`, `&rsaquo;`, `&laquo;` |
+| `à è é ì ò ù È` | `&agrave;`, `&egrave;`, `&igrave;`… |
+| `€ £ ° × ≠ ≤ ≥ © ®` | `&euro;`, `&deg;`, `&times;`, `&copy;`… |
+
+Restano entità solo le quattro che l'HTML richiede per non confondere il markup —
+`&amp;` `&lt;` `&gt;` `&quot;` — e `&nbsp;`, che da carattere vero sarebbe invisibile
+nell'editor e indistinguibile da uno spazio normale.
+
+**Apostrofi e virgolette restano fuori dalla regola, per ora.** L'apostrofo dritto (`'`)
+va bene: nel repo ce ne sono decine nelle pagine già scritte, ed è quello che si digita.
+Non c'è quindi da convertirlo in `’`, né viceversa — le due forme convivono. Il motivo per
+cui non è una regola come le altre è che non è automatizzabile in sicurezza: dentro
+attributi, stringhe JS e codice l'apice singolo è sintassi, e distinguerlo dall'apostrofo
+non è una sostituzione meccanica. `tools/tipografia.py` non lo tocca di proposito.
+
+Le **entità** di apostrofo e virgolette invece si risolvono come tutte le altre:
+`&rsquo;` `&ldquo;` `&rdquo;` diventano `’` `“` `”`.
+
+**Eccezione: dentro `<pre>`, `<code>`, `<script>`, `<style>`, i commenti HTML e i
+blocchi/backtick del Markdown non si tocca niente.** Lì `->` è notazione e un'entità è
+l'esempio che si sta mostrando. Stessa cosa per i file di terze parti (`assets/`,
+`export-md/`) e per gli export di altri strumenti: il JSON di n8n in
+`your-third-workflow/` non si tocca.
+
+La regola è applicata da `tools/tipografia.py`, che salta da sé tutte le zone protette:
+
+```bash
+python3 tools/tipografia.py --check .   # elenca i file fuori regola, non scrive
+python3 tools/tipografia.py file.html   # corregge sul posto
+```
+
+Lo stesso script gira da solo dopo ogni scrittura di `.html` o `.md`, tramite l'hook
+`PostToolUse` in `.claude/settings.json`. L'hook è la rete di sicurezza, non la regola:
+il copy va scritto già giusto.
+
 ## Design e identità visiva
 
 - Nessun brand kit completo esistente.
@@ -66,6 +112,20 @@ Guide di riferimento nel repo:
 
 - `spiega/spiega-worktree.md` — spiegazione tecnica completa (sintassi, esempi, pubblicazione varianti).
 - `spiega/spiega-worktree-conversazione.md` — stesso contenuto in formato domanda/risposta.
+
+## Footer
+
+Il footer di chiusura è **identico in ogni pagina**, e si copia da `index.html` senza reinventarlo:
+
+```html
+<footer class="l-card__footer">
+  <p>2026 • Mucca Design di Luca Leone • VAT IT08200720962</p>
+</footer>
+```
+
+Non contiene link, quindi funziona uguale dalla root e dalle sottocartelle (`upwork/`, `mini-corso/`). Sta sempre fuori da `<main>`, subito prima degli `<script>`.
+
+Se una pagina ha bisogno di contenuto proprio in fondo (il form di contatto in `master-ux-ui.html`, la nota sulle fonti in `offerta-mediaddress/`, link incrociati ad altre pagine), quello è contenuto di pagina: va **sopra** il footer, non al posto suo.
 
 ## Journal
 
