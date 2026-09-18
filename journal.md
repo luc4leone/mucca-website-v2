@@ -419,3 +419,346 @@ Terza pagina-vetrina accanto a `portfolio.html` (Works) e `marketing.html` (Resu
 Titoli delle voci in `<h2>`, non `<h3>` come in portfolio: lì gli `<h3>` stanno dentro sezioni con un `<h2>`, qui le sezioni non ci sono e un `h3` salterebbe un livello.
 
 Aggiunte all'indice privato `automations.html` (pubblica) e `upwork/ai-automation-specialist.html` (non destinata a diventare pubblica). A quest'ultima manca il `X-Robots-Tag`: il `noindex` c'era già nel markup, ma la cartella ora ha anche l'header in `netlify.toml`, come `offerta-mediaddress`.
+
+## 17 settembre 2026 — `manifesto.html`, il manifesto diventa una lista
+
+`manifesto.md` conteneva la tesi giusta nella forma sbagliata: cinque paragrafi dettati, senza gerarchia, con dentro le autocorrezioni del parlato. Il contenuto è che UX, UI design, marketing e automazione sembrano mestieri diversi e non lo sono, e che l'iperspecializzazione che li separa costa.
+
+**La forma viene da [37signals.com](https://37signals.com/)**, su indicazione di Luca: non lo stile — il brand è il nostro — ma l'elenco e l'interazione con l'elenco. Lì sono 38 voci numerate, ognuna una frase dichiarativa su una riga, e dietro **un solo paragrafo stretto**. La lista si scorre in venti secondi; il ragionamento lo apre chi lo vuole. È il contrario della pagina di prosa: rende scansionabile un insieme di convinzioni.
+
+Il testo è stato spezzato in **tredici affermazioni** (`00`–`12`), tutte già presenti nel dettato, nessuna aggiunta. Il vincolo che regge la forma è doppio: titolo su una riga, paragrafo sotto le 60 parole. Quando un paragrafo non ci stava, voleva dire che l'affermazione ne conteneva due, e si è spezzata.
+
+**Nessun componente nuovo, di nuovo `.c-entry`.** Terza pagina che lo riusa dopo portfolio e automations, e stavolta il riuso è quasi totale: `<details>` nativo, bordo fra le voci, marcatore `+`/`–`, focus ring sulla riga, `scroll-margin-top` per i deep link. Delle tre parti del summary serve solo il titolo — niente meta, niente riga di esito. `css/components/manifesto.css` aggiunge due cose sole: il numero e la misura di lettura del paragrafo.
+
+**Il numero è testo vero nel markup, non un contatore CSS.** Ci ho pensato: il contatore renderebbe gratis il riordino. Ma l'`id` di ogni voce (`#m-05`) è comunque scritto a mano, quindi riordinare tocca già ogni riga e il contatore non farebbe risparmiare niente — toglierebbe solo il numero dall'albero di accessibilità. Precedente nel repo: `.c-step-card__number`.
+
+**Il `display: flex` sul summary è la decisione tecnica non ovvia.** La strada ovvia era `position: absolute` come il marcatore a destra, ma avrebbe richiesto di allineare a mano un numero da 14px a una prima riga da 20px, e si sarebbe scollato al primo ritocco del corpo del titolo. Con `align-items: baseline` le due dimensioni si allineano da sole.
+
+**Niente JS nuovo.** `js/portfolio-index.js` lavora su `.c-entry` e dà i deep link gratis. Non dà il bottone "apri tutto", che pretende una `.c-section-index` e direbbe comunque "Expand all 13 projects": se lo vorremo, la mossa è generalizzare quel file prendendo l'etichetta da un `data-` sulla lista, non scriverne un secondo che duplica la stessa logica. Il nome del file ora è sbagliato per tre pagine su tre: vale la pena rinominarlo.
+
+**Una scelta lasciata aperta nel codice**: l'attributo `name="manifesto"` sui `<details>` renderebbe l'accordion esclusivo in modo nativo. Non c'è, perché due affermazioni aperte in parallelo si possono confrontare. Si aggiunge con un attributo su tredici righe.
+
+Pagina privata per ora: `noindex` nel markup, `X-Robots-Tag` in `netlify.toml`, riga nell'indice privato sotto «Riservate». `manifesto.md` resta la fonte del copy e va riallineato alla versione a lista.
+
+**L'apostrofo resta misto, per scelta.** Nel repo ci sono 66 apostrofi dritti (`'`) nelle pagine già scritte contro 43 curvi (`’`), questi ultimi comparsi convertendo i `&rsquo;`. La regola tipografica chiedeva il curvo e `manifesto.html` lo usa, ma **la riga è stata tolta da `CLAUDE.md`**: le due forme convivono e non c'è niente da normalizzare. Il motivo non è pigrizia — è che non è automatizzabile in sicurezza. Dentro attributi HTML, stringhe JS e codice l'apice singolo è sintassi, e distinguerlo dall'apostrofo non è una sostituzione meccanica: `tools/tipografia.py` non lo tocca di proposito, e una regola che lo strumento non può applicare è una regola che si viola da sola. Le entità (`&rsquo;`, `&ldquo;`) continuano a risolversi come tutte le altre.
+
+## 17 settembre 2026 — `automations.html`, secondo caso d'uso e la sezione che il primo non ha
+
+Il generatore di proposte (modulo n8n → OpenAI → Google Slides → bozza Gmail) entra in `automations.html` come seconda voce, con la stessa struttura `<dl>` della prima. La bozza è stata scritta e provata in `your-third-workflow/your-third-workflow.html`, costruendo il flusso davvero, nodo per nodo: la pagina è il resoconto di quella costruzione, non una parafrasi del `.md` del corso.
+
+**Il passo passo era stato incluso, poi è stato tolto.** La bozza portava una sezione «Come si costruisce passo passo» — sette passi, il template delle slide, il prompt intero, le espressioni n8n — che nella prima voce non esiste. Inserita, rendeva la seconda voce dieci volte più lunga della prima e cambiava il genere della pagina: da indice di automazioni a manuale. `automations.html` risponde a «cosa fa, dove si rompe, cosa non fa»; il come si costruisce è un'altra pagina, con un altro pubblico. Il materiale resta in `your-third-workflow/your-third-workflow.html`, pronto da pubblicare quando avrà un posto suo.
+
+Conseguenza: `.c-automation__code` e `.c-automation__step` in `css/components/automation.css` non sono più usati da nessuna pagina pubblica — li usa solo la bozza. Si tengono finché il passo passo non trova casa, ma vanno ricordati se quel file va ripulito.
+
+**Il flusso consegnato devia dal tutorial su un punto solo, e per un motivo.** La versione originale manda l'email da sola. Qui l'ultimo nodo è `Create a draft`: l'email è l'unico passo irreversibile del flusso e sta subito dopo l'unico passo non deterministico. Il tempo che il sistema fa risparmiare è tutto nella scrittura, non nel clic su «invia» — tre secondi di gesto umano comprano l'unica revisione che il flusso non ha.
+
+**Un nodo in più rispetto ai sei del tutorial: `Proposal`, un Code node.** Il percorso dei campi generati dipende da come il provider impacchetta la risposta — `message.content` con una chiave OpenAI diretta, `output[0].content[0].text` passando dai crediti inclusi di n8n — e sbagliarlo non dà errore, dà `undefined` ventiquattro volte. Il Code node appiattisce la risposta in un punto solo: cambiare credenziale tocca un nodo invece di ventiquattro espressioni. Fa anche una seconda cosa, che è la lezione generale della pagina: **ciò che è già un dato certo non attraversa il modello**. Il nome dell'azienda viene dal modulo, il prezzo viene dal modulo, la data di oggi viene da `$now`. Chiedere a un LLM di ricopiare una stringa è come chiedergli di sommare due numeri che hai in tasca.
+
+**Gli inciampi documentati sono quelli in cui siamo inciampati davvero**, ed è il motivo per cui la sezione vale: la casing dei nomi dei campi (`Company name` ≠ `Company Name`, guasto silenzioso che si manifesta tre nodi dopo), il pin data che resta congelato dopo aver corretto il modulo, `$()` che vuole il nome vero del nodo sul canvas, il campo `Text` del nodo Slides che deve restare in Fixed, `To Email` che sta sotto le opzioni perché una bozza non pretende un destinatario. Nessuno di questi sta nel materiale di partenza.
+
+**Le credenziali Google sono divise fra n8n Cloud e self-hosted.** Su Cloud l'app OAuth la mette n8n e basta un clic (e uno *Switch account* se si è collegato l'account sbagliato); self-hosted vuole progetto Google Cloud, tre API e consenso su Internal. Scritto in un blocco solo, avrebbe mandato metà dei lettori a perdere una mattinata su Google Cloud per niente.
+
+Immagine: `assets/automations/form-to-offer-1.png`, stesso trattamento `.c-automation__figure` della prima voce.
+
+## 18 settembre 2026 — `garanzia.html`, la pagina che il link prometteva
+
+`master-ux-ui.html` linkava `garanzia.html` da giugno e la pagina non esisteva: 404 sull'unica cosa che giustifica 987€. Ora c'è. Il contenuto non è stato inventato — è `strategia-marketing.md` §9, che era già una spec completa: definizione larga di «lavoro», milestone verificabili invece di giudizi a posteriori, journal in repo git come prova, inglese come prerequisito d'ingresso e non come compito.
+
+**Mancavano solo i numeri** (§D8: «senza questi numeri `garanzia.html` non si può scrivere»). Scelta la calibrazione **esigente**: una consegna saltabile, 85% di presenza, 4 progetti in portfolio di cui 3 rifatti col metodo, 10 azioni a settimana per 24 settimane su 26 (di cui 4 contatti diretti), commit in 5 giorni su 7, check-in mensile, C1 di inglese verificato con una call.
+
+**La riserva che resta agli atti**, perché il §9 stesso la solleva: una barra alta rende la garanzia decorativa, e un prospect attento se ne accorge. 24 settimane su 26 lascia due settimane di margine in sei mesi; il C1 esclude dalla garanzia la maggior parte dei junior designer italiani. È autoselezione legittima, ma è una scelta diversa dal «vende anche a chi non la prenderà» del §9. La contromisura in pagina è la prima FAQ, che affronta l'obiezione di petto invece di aggirarla: i numeri non servono a rendere il rimborso difficile, descrivono cosa serve fare perché trovare lavoro diventi probabile. I numeri stanno in un posto solo e si ritoccano senza toccare la struttura.
+
+**Due numeri non erano nel §9 e li ho messi io**: la finestra per chiedere il rimborso (30 giorni dalla scadenza dei sei mesi) e i tempi della risposta (15 giorni) e del bonifico (30 giorni dall'accettazione). Da confermare col legale insieme al resto.
+
+**L'importo rimborsato è il totale versato, non il prezzo di listino.** Chi paga a rate versa 1100€ o 1170€: trattenere la differenza sarebbe legittimo e sarebbe percepito come una fregatura. Vale lo stesso per i materiali, che restano allo studente — se il patto non ha funzionato, il problema non è che ha visto le lezioni.
+
+**Pagina pubblica, indicizzabile**, a differenza di `manifesto.html` e delle pagine `upwork/`: la sua funzione è dimostrare che la promessa è vera, e una pagina di condizioni che aumenta la credibilità deve essere raggiungibile. Nessuna riga in `netlify.toml`.
+
+**Struttura `.l-page`**, colonna singola a larghezza di lettura come `portfolio.html`, non il grid 30/70 di `.l-section`: non c'è niente da mettere in una sidebar, e una clausola si legge in colonna. Componenti nuovi due, `.c-pledge` e `.c-requirement`, documentati in `componenti.md` insieme alla ragione per cui non si è riusato `.c-schedule` (stessa griglia, ma senza lo slot della misura verificabile, che è il punto della pagina).
+
+**Le risposte della FAQ con più di un paragrafo vanno in un `<div>`.** `.c-accordion > p` aggiunge `padding-bottom` a ogni figlio diretto: due paragrafi sciolti si staccano il doppio. Col `<div>` il padding lo prende il contenitore e i paragrafi dentro tengono i margini normali. È la prima FAQ del repo con risposte lunghe, quindi il caso non era ancora emerso.
+
+**Cosa resta aperto**: la clausola va fatta scrivere nel contratto da chi se ne intende (§9 lo dice, e questa pagina non lo sostituisce); `og:image` manca qui come in `master-ux-ui.html`; e resta da decidere quale quota degli 11.844€ di esposizione massima accantonare fino ad agosto 2027.
+
+## 18 settembre 2026 — la gallery dei progetti degli studenti
+
+`master-ux-ui.html` vendeva «diventa Design Engineer» senza far vedere una sola interfaccia prodotta da uno studente, mentre in `assets/images/gallery-progetti-studenti/` c'erano dieci immagini che **non erano referenziate da nessun file del repo**. Stessa sorte per le dieci foto degli studenti in `assets/images/` — quelle restano da usare, sono il prossimo punto della roadmap.
+
+**La provenienza è dichiarata in apertura, ed è la decisione che conta.** Sono lavori del corso di Boolean, classe 2, non del Master: il Master parte il 9 novembre e la prima classe non ha ancora disegnato niente. Scriverlo in grassetto nella prima riga costa una frase e toglie l'unica obiezione che questa sezione potrebbe attirare. È anche la regola che Luca si è dato in `content.md`, «fai capire cosa è esperienza diretta».
+
+**Tre gruppi invece di dieci immagini in fila**, perché il raggruppamento è l'argomento:
+
+- *I due progetti del corso* — macchina del caffè e ufficio stampa sono gli stessi progetti del Modulo 1 e del Modulo 2. Il wireflow di Roberto accanto alla schermata finita di Andrea mostra lo stesso progetto in due momenti: prima cosa succede al tocco, poi cosa si vede.
+- *Lo stesso brief, tre studenti* — CozyShoes attraversato da Marco, Antonella e Ilaria. Che il metodo non produca tre copie della stessa interfaccia è più persuasivo di qualunque singola schermata.
+- *Poi ognuno va per la sua strada* — i progetti scelti da soli, quando il brief non lo dà più nessuno.
+
+**Riusata `.c-filmstrip`, non la masonry.** La masonry ha l'overlay di ingrandimento, che qui servirebbe, ma vive come JS inline in `componenti.html` e andrebbe estratta; la filmstrip è in produzione in `portfolio.html`, gestisce proporzioni diverse alla stessa altezza ed è già accessibile da tastiera. L'ingrandimento si risolve come in `automations.html`: ogni immagine è un link al file a dimensione intera, e la riga sopra le strip lo dice a parole, perché non si indovina che un'immagine sia cliccabile.
+
+L'aggiunta a `filmstrip.css` è di quattro righe: `.c-filmstrip a { flex: none; display: block; scroll-snap-align: start }`. Il link prende il posto dell'`<img>` come figlio flex, l'immagine dentro continua a prendere altezza e bordo dalla regola che c'era già — quindi le filmstrip senza link di `portfolio.html` non cambiano di una virgola.
+
+**Tre immagini non avevano il gemello `.webp`** (`antonella-wf`, `roberto-coffee-machine-wireflow`, `adn-coffee-machine-proto`). Generati con Pillow a 1360px come gli altri sette: `sips` su questo Mac non scrive webp, `cwebp` non è installato. Le dieci immagini servite pesano ~670KB in tutto, tutte `loading="lazy"`; i `.jpg`/`.png` originali da 2800px restano come bersaglio del link.
+
+**Le attribuzioni vengono dai nomi dei file e vanno confermate.** Solo nomi di battesimo, nessun cognome: le foto in `assets/images/` suggeriscono che ci siano due Davide, e `esercizio-stefano.jpg` mostra la pagina di presentazione di un Roberto Martino — che sia un esercizio di Stefano su un CV altrui o un file battezzato male non è deducibile dal repo. La didascalia dice quello che si vede («tre varianti della stessa pagina di presentazione») e non attribuisce il contenuto a nessuno.
+
+### Correzione lo stesso giorno: la provenienza dei lavori era sbagliata
+
+Avevo attribuito tutta la gallery al corso di Boolean, deducendolo dal fatto che le recensioni in pagina vengono da lì. Sbagliato, e sbagliato nella direzione che costava di più: **macchina del caffè, ufficio stampa e Pound 4 Pound vengono dalla prima edizione di questo Master**, non da Boolean. CozyShoes è l'unico progetto di Boolean; l'esercizio sulla pagina di presentazione viene dal corso di visual design tenuto all'inizio del 2025.
+
+La sezione è stata riscritta **raggruppando per provenienza invece che per tema**, e ci guadagna: il primo gruppo non è più «lavori di un altro corso che dimostrano che so insegnare», è «ecco cosa è uscito da questo stesso corso, dagli stessi due progetti da cui partirai tu». È l'argomento più forte della pagina e stava per finire sotto l'etichetta sbagliata. Sparita la riga «Non sono lavori del Master», che diceva il falso.
+
+Pound 4 Pound si è spostato dal terzo gruppo al primo, dove sta per provenienza, e il suo essere fuori programma è diventato il finale del gruppo: il brief non glielo dava più nessuno e ha continuato a lavorare così.
+
+**Da chiarire con Luca, conseguenza di questa correzione**: la sezione «Ammissione» dice «La prima classe ha 12 posti», ma se una prima edizione c'è già stata, quella del 9 novembre non è la prima classe. Una delle due righe va corretta.
+
+**La lezione**: le didascalie sono affermazioni di fatto su persone reali e su cosa ha prodotto un corso a pagamento. Dedurle dai nomi dei file e dal contesto della pagina non basta — vanno chieste, come i nomi degli studenti che restano da confermare.
+
+### I metadati erano già scritti, in un altro repo
+
+La vecchia gallery in `mucca-website/public/index.html` porta un `data-caption` per immagine — autore, progetto, corso — e la prima versione di questa sezione li aveva persi tutti, sostituendoli con nomi di battesimo dedotti dai nomi dei file. Sette caption su dieci erano già lì, e tre delle mie deduzioni erano sbagliate: Davide è **Vignozzi** (non Cester né Galli, le due foto in `assets/images/` che mi avevano sviato), Stefano è **Soave** (non Falvella, che è l'autore di una delle recensioni in pagina), e **Marco Guidi è della classe 1**, non della 2 — quindi Cozy Shoes è stato attraversato da due classi diverse, non da una. Il copy ora lo dice.
+
+**La riga sotto la strip ora è la didascalia, non il conteggio.** Scelta di Luca fra tre opzioni: una didascalia per immagine sempre visibile (più robusta, niente JS, ma alza la strip e ripete il nome del corso quattro volte), una riga sola che cambia testo seguendo lo scroll, o una forma mista. Vince la seconda: `js/filmstrip-caption.js` tiene una riga sotto ogni strip e ci scrive la didascalia dell'immagine più a sinistra fra quelle visibili, col conteggio in coda.
+
+**Il punto debole del pattern, e come è chiuso.** La riga descrive una sola immagine alla volta: chi non vede la pagina dovrebbe scorrere per sapere di chi è ogni lavoro. Per questo autore e corso stanno **anche in testa all'`alt` di ogni immagine** — il credito c'è comunque, la riga resta una comodità visiva. Non è una rifinitura: sono attribuzioni del lavoro di persone reali, e un credito che dipende da un'interazione è un credito a metà.
+
+**Progressive enhancement, come per il toggle di lingua e la facade video.** La riga è già scritta nell'HTML con la didascalia della prima immagine: senza JS resta quella, non sparisce e non compare un contenitore vuoto. Il conteggio invece nasce `hidden` e lo scopre lo script, perché senza JS direbbe «1 di 4» mentre guardi la terza. `.c-filmstrip__hint` resta in `filmstrip.css` per `portfolio.html`, che non ha metadati per immagine e continua a usarlo.
+
+Tre immagini (il wireflow e il prototipo della macchina del caffè, il wireframe del checkout di Antonella) non erano nella vecchia gallery e quindi non hanno una caption di riferimento: le loro attribuzioni sono dedotte e marcate come tali in `content.md`.
+
+### Bug: l'ultima didascalia non compariva mai
+
+La regola «l'immagine corrente è la prima non ancora uscita dal bordo sinistro» funziona per tutte tranne l'ultima, e non per caso: perché l'ultima diventi la più a sinistra bisognerebbe poter scorrere fino a portarla lì, ma lo scroll finisce prima. Nella prima strip le quattro immagini a 300px di altezza occupano ~1820px in un contenitore da ~700: lo scroll massimo è ~1120px mentre Pound 4 Pound comincia a ~1280. Arrivati in fondo la penultima ha ancora il bordo destro dentro la vista, quindi si teneva la didascalia. Stessa cosa nella strip di Cozy Shoes.
+
+**Correzione**: al fine corsa (`scrollLeft >= scrollWidth - clientWidth`) si mostra l'ultima, che è l'unica interamente visibile. Il controllo che lo scroll esista davvero serve per le strip che non scorrono affatto — una sola immagine, o schermo largo — dove il fondo coincide con l'inizio e la regola normale è già quella giusta.
+
+È il tipo di bug che si vede solo scorrendo fino in fondo davvero: a metà strada tutto funzionava, ed è quello che avevo verificato.
+
+## 18 settembre 2026 — i bottoni ← → della gallery
+
+Sotto ogni filmstrip c'era scritto «scorri o usa ← →», e col mouse quell'istruzione non si poteva seguire: le frecce funzionano solo se la strip ha il focus, ma per dargliela serviva il tasto Tab — cliccare sopra apre il link dell'immagine. Un controllo annunciato e non raggiungibile, che è peggio di nessun controllo.
+
+Ora ci sono due bottoni veri nella riga della didascalia. Risolvono insieme il mouse (si cliccano) e la tastiera (Tab più Invio), e rendono visibile che la strip scorre — cosa che prima si deduceva solo dall'immagine tagliata sul bordo destro. L'istruzione è sparita: sotto resta la didascalia e il conteggio.
+
+**Nella riga, non sui bordi della strip.** La posizione da carosello — pastiglie sovrapposte a sinistra e a destra delle immagini — era la prima idea di Luca, e l'ha scartata lui stesso notando che la strip occupa già tutta la colonna: lì coprirebbero una fetta di immagine, e sopra contenuti di colore imprevedibile servirebbe un fondino opaco. Nella riga della didascalia non rubano spazio a niente.
+
+**La riga è passata da flex a grid.** Con flex, didascalia e conteggio incolonnati a sinistra e i bottoni a destra volevano un contenitore in più attorno ai due testi, se no il conteggio finiva staccato sotto i bottoni. Con `grid-template-columns: 1fr auto` i due testi stanno in due righe della prima colonna e i bottoni occupano la seconda, centrati su entrambe.
+
+**I bottoni sono 36px, non 48.** Attraversano le due righe di testo: se sono più alti della loro somma (~42px) la griglia allarga le righe per contenerli, e fra didascalia e conteggio si apre un buco. 36px sta sotto quella soglia e resta sopra il minimo di 24px del criterio WCAG 2.5.8.
+
+**Due trappole tecniche, tutte e due misurate in console e non indovinate.**
+
+La prima: `behavior: 'smooth'` e `scroll-snap-type: x mandatory` si annullano a vicenda. Lo `scrollTo` partiva e veniva riportato indietro — la strip si muoveva di 13px e tornava a zero, con i bottoni che sembravano morti. La correzione è togliere lo snap per la durata dell'animazione e rimetterlo su `scrollend`: rimettendolo, il browser aggancia da sé il punto di snap più vicino, che è l'inizio dell'immagine dove si voleva arrivare. Il timer di 800ms è la rete per i browser senza `scrollend`, se no lo snap resterebbe spento.
+
+La seconda, scoperta perché la prima correzione non funzionava lo stesso: togliere lo snap e chiamare `scrollTo` nello stesso task non basta. Il browser non ha ancora applicato la regola nuova e ricade nel comportamento di prima. Serve una lettura che forzi il ricalcolo dello stile (`void strip.offsetWidth`) in mezzo — una riga che sembra inutile e non lo è, quindi ha un commento che lo dice.
+
+**`js/filmstrip-caption.js` è diventato `js/filmstrip.js`**: il file ora fa didascalia e navigazione, e il nome vecchio ne descriveva metà. Rinominato subito perché la pagina che lo usa è una sola — il debito che si è accumulato su `portfolio-index.js`, sbagliato per tre pagine su tre, nasce dall'aver rimandato esattamente questo.
+
+Verificato in console su entrambe le strip: si attraversano tutte le immagini avanti e indietro, `disabled` scatta ai due estremi, il gruppo con una sola immagine non riceve bottoni, a 330px di colonna niente straborda e non compare scroll orizzontale di pagina. Invio sul bottone a fuoco avanza come il click.
+
+## 18 settembre 2026 — l'editor visuale salva il DOM, non il sorgente
+
+Luca ha modificato `master-ux-ui.html` con l'editor visuale e ha chiesto di togliere i `<p>` vuoti rimasti dove aveva cancellato il testo. I `<p>` vuoti erano il sintomo più innocuo: il confronto con `.editor-backup/master-ux-ui-20260918-090114.html` ha mostrato che il salvataggio aveva serializzato **il DOM vivo**, non il sorgente.
+
+**Cosa si era rotto.** I bottoni ← → della gallery li crea `js/filmstrip.js` a runtime, e il salvataggio li ha scritti dentro il markup — dentro un `<p>`, per giunta, dove un `<div>` non può stare: il parser chiude il paragrafo e la nidificazione salta. Le didascalie si erano congelate sullo stato del momento («Davide Vignozzi … 3 di 4»), l'attributo `hidden` del conteggio era sparito e `data-caption-text` era diventato `data-caption-text=""`. Ricaricando, lo script trovava il contenitore ma non i due `<span>` — finiti in un `<p>` separato — e appendeva una **seconda** coppia di bottoni: quattro bottoni per strip, didascalia ferma.
+
+**Cosa aveva fatto davvero Luca**, una volta separato dal rumore: accorciato i testi introduttivi dei tre gruppi e cancellato i due paragrafi di chiusura lunghi. Le sue frasi nuove erano finite dentro l'elemento `.c-filmstrip__caption`, che è il posto dove lo script scrive — quindi nel gruppo di Stefano Soave il credito era stato sovrascritto dalla prosa e non compariva più da nessuna parte. Ricucito: la prosa nuova è tornata sopra la strip, dov'era l'introduzione, e la riga della didascalia è tornata a essere solo i due `<span>`.
+
+**La regola che ne esce**: un elemento che il JS riempie a runtime non va usato come contenitore di testo modificabile a mano. Se la gallery tornerà sotto l'editor, il punto fragile è sempre quello — `data-filmstrip-caption` e `.c-filmstrip__nav` non vanno toccati, e i testi si scrivono nei paragrafi normali intorno.
+
+**Bonus, un difetto che c'era da prima.** Cercando gli ultimi `<p>` vuoti ne restavano due nel DOM che nel sorgente non esistevano: li generava il parser per via della `<figure class="c-video">` annidata dentro un `<p>` in «Come insegno» — un `<p>` non può contenere una `figure`, quindi il browser lo chiudeva prima e ne lasciava due vuoti in giro. La figure è stata portata fuori, il testo che la affianca è un `<p>` suo; il float e l'incolonnamento restano identici, verificati a schermo.
+
+**Due cancellazioni di contenuto restano da confermare**, non essendo mie da ripristinare: la frase che apriva la sezione «La garanzia» (*«Se applichi il metodo e in 6 mesi dalla fine del corso non trovi lavoro, ti restituisco tutto.»*) è sparita, e la sezione ora comincia con «Vale per chi conosce l'inglese…», che è la sua qualifica senza la promessa davanti. E nell'apertura della gallery la riga «Le immagini sono grandi: cliccale per aprirle a dimensione intera» è stata sostituita da «Lavori dei miei studenti.», che ripete l'inizio del paragrafo sopra e lascia senza istruzioni su come ingrandire.
+
+## 18 settembre 2026 — le recensioni prendono una faccia
+
+Un nome senza volto è indistinguibile da un nome inventato. Le foto degli autori sono nel repo da mesi, e `componenti.md` le segnalava da tempo come "probabile riuso" in attesa di una collocazione: ora Davide Cester e Stefano Falvella hanno la loro, dentro la citazione che hanno firmato.
+
+**Le citazioni restano dove sono, sparse.** Erano candidate a diventare una vetrina di recensioni tutta insieme; la scelta di Luca è l'opposto, e vale anche per le prossime: ogni recensione entra nella sezione a cui fa da prova, una alla volta, quando si decide quale affermazione deve sostenere. Una citazione vale perché sta accanto alla cosa che dimostra — in fila con altre nove, dimostra solo che esistono altre nove.
+
+**È nato `.c-byline`** (`css/components/byline.css`), non due `style` inline: due usi bastano per la soglia di `design-system.md`. Sta **dentro** il `<footer>` del `blockquote`, non al posto suo — il semantico non cambia e `base.css` continua a dare al footer dimensione e colore del testo secondario. Il componente aggiunge solo la struttura: foto, poi nome in grassetto e provenienza in muted su due righe.
+
+**La prima interfaccia di `.c-avatar`.** Il file portava scritto da sempre "nessuna variabile per ora — dimensione fissa, da esporre se serve una dimensione diversa altrove". È servita adesso: `--avatar-size`, default `var(--space-120)`, consumata da `width`/`height`. La firma imposta `var(--space-48)`. Verificato che la foto grande di Luca in `content.html` misuri ancora 120×120 — è la prova che il default non si è mosso.
+
+**La recensione anonima resta senza foto**, com'è giusto: è una valutazione di fine modulo, un volto lì andrebbe inventato. Il `<footer>` nudo senza classe continua a funzionare, e in `componenti.html` le due forme stanno una sotto l'altra, etichettate entrambe "in produzione" — così il caso senza foto non sembra una dimenticanza.
+
+**Il copy si è accorciato da sé.** L'attribuzione era `— Davide Cester - classe 2 Corso UX/UI Design Boolean` e `— Recensione di Stefano Falvella - …`. La lineetta serviva a dire "questo è l'autore", e ora lo dice la faccia; "Recensione di" dice quello che il `blockquote` già mostra. Restano nome e provenienza, il trattino separatore sostituito dall'andare a capo. Allineato in `content.md`, che resta la fonte del copy.
+
+Nessuna conversione di immagini: i due `.webp` sono 184×184, a 48px in pagina coprono i display a 2× con margine. Verificato a schermo sul tema brand (bordo e corsivo del `blockquote` cambiano lì, il componente eredita senza regole dedicate), e a colonna stretta: la firma non straborda, l'avatar ha `flex-shrink: 0` così ad accorciarsi è il testo e non la faccia.
+
+**Restano fuori**, in attesa di una sezione a cui servano: Bryan Zanella, Andrea Schiavon e Nicolò Giglietti (testo e foto nel vecchio sito, `mucca-website/public/pages/chi-sono.html` — le loro foto sono a 512px, andranno ridotte), Andrea De Nuccio (testo in `content.md`, foto già pronta) e Ilaria Bottinelli, la cui voce in pagina oggi è il `figcaption` del video e non una citazione firmata. Tre foto in `assets/images/` — `antonello_padolecchia`, `riccardo_porrega`, `davide-galli` — non hanno un testo corrispondente da nessuna parte nei due repo: da chiarire prima di usarle.
+
+## 18 settembre 2026 — la recensione prende la superficie scura
+
+Il difetto della prima versione, detto da Luca: la citazione non si distingue dal resto del contenuto. Vero — un `blockquote` con il filetto a sinistra, a colpo d'occhio, è un paragrafo come gli altri, solo un po' rientrato. La foto dell'autore aveva risolto la credibilità, non la gerarchia.
+
+Tre varianti esplorate in `grafica-recensione.html`, ognuna dentro la sezione vera con il testo che la circonda — lo stacco si giudica solo in mezzo al contenuto, non su fondo bianco:
+
+- **A, superficie invertita**: il blocco diventa nero, testo chiaro sopra.
+- **B, virgoletta corallo**: piatta, stacco per scala (24px contro 16) più la virgoletta in Archivo Black corallo.
+- **C, fuori colonna**: firma in testa, due filetti neri, e da 768px il blocco che sborda a sinistra nella gronda della sidebar.
+
+**Scelta: A.** L'argomento che la regge è che non è una decorazione aggiunta al brand, è il brand: `brand-style.md` dice "sfondo scuro di default, testo chiaro sopra — non un tema alternabile, è la scelta di brand". Il sito ne adotta la variante light; la recensione si riprende la superficie nativa per un blocco solo. In più non spende colore: il corallo resta al CTA, come vuole il principio 2 ("un solo elemento in accento per vista"). B lo spendeva, e sulla recensione lunga di Falvella i 24px diventavano un muro; C era il gesto più forte ma rompeva l'incolonnamento di tutta la pagina per un elemento che ricorre tre volte.
+
+**`.c-quote`** (`css/components/quote.css`), classe sul `blockquote`, niente altro nel markup. La cosa da ricordare è come ricolora i figli: ridefinisce `--color-text` e `--color-text-muted` **su di sé**, così nome e provenienza della firma si adeguano da soli. `.c-byline` continua a non sapere niente della superficie su cui sta — è la ragione per cui i due componenti non si sono intrecciati.
+
+Struttura e default nel componente (`--quote-bg`/`--quote-fg` ricadono su `--color-secondary`/`--color-on-secondary`), valori nel tema: `theme-brand.css` li porta a nero, bianco sporco e grigio neutro (#8C8C94 su #0E0E10 ≈ 5.4:1, passa AA). Il default di `--quote-fg-muted` è `--quote-fg`, non un grigio: senza tema, meglio un testo secondario poco differenziato che uno illeggibile.
+
+**Una cosa da tenere d'occhio**: i blocchi scuri in pagina ora sono tre. Erano un'eccezione quando erano uno; a tre, il rischio è che diventino un motivo ricorrente e perdano l'effetto — da rivalutare quando entreranno le altre recensioni, che erano previste proprio per le altre sezioni.
+
+**Nota di metodo, costata dieci minuti**: il CSS sembrava non applicarsi e la causa era la cache del browser, non la cascata. Un ricaricamento normale non basta — i `<link>` vanno riletti con un parametro nuovo (o hard reload) prima di concludere che una regola non funziona.
+
+## 18 settembre 2026 — le FAQ, riscritte dal vecchio sito
+
+Punto di partenza: le 12 domande frequenti di `mucca-website/public/index.html`. Buon materiale, ma scritto per un corso diverso — 4 mesi invece di 3, ricevimento tutti i giorni, Discord, Windsurf, Figma, le "milestone". Riportarle così com'erano avrebbe messo in pagina informazioni false su cose verificabili.
+
+**Dove sono finite: ultima sezione, dopo "Ammissione alla prossima classe".** Le obiezioni residue si sciolgono dopo aver letto prezzo e processo, non prima: chi legge "987€" e "12 posti" arriva alle FAQ con le domande già formate. Prima dell'ammissione avrebbero risposto a domande che il lettore non si era ancora fatto.
+
+**Cosa è cambiato rispetto alle vecchie.**
+
+- **Tre le ho eliminate.** "In cosa è diverso dai corsi tradizionali" (c'è già una sezione intera che risponde), "Che cosa sono le milestone" e "Chi valuta le milestone" (accorpate: le milestone non si chiamano più così, sono le consegne dei moduli).
+- **Una diceva l'opposto di questa pagina.** La vecchia "Mi aiuti con lavoro, CV o colloqui?" rispondeva "non faccio supporto carriera, il focus è la crescita delle skill". Ora il Modulo 3 è un modulo con consegne e c'è una garanzia sul risultato: la risposta è ribaltata. Stessa contraddizione dorme ancora in fondo a `content.md`, nel blocco "A scanso di equivoci" che chiama la ricerca del lavoro "un Bonus" — è materiale archiviato, ma prima o poi va tolto o marcato come superato, se no qualcuno lo ripesca.
+- **Quattro risposte le ha decise Luca**, perché non erano deducibili dal repo: le lezioni **sono** registrate (rete di sicurezza, non alternativa al live); **non** si parte da zero (serve un corso base fatto o un lavoro già cominciato); gli strumenti sono Excalidraw, Claude Code, Git/GitHub, Skool, Drive — **niente Figma**; il ritiro resta rimborsato al 100% entro due settimane dall'inizio.
+- **Due sono nuove.** "Le lezioni sono registrate?" non trovava risposta da nessuna parte in pagina, ed è la prima domanda che si fa chiunque valuti un corso live. E "Devo sapere l'inglese?": la garanzia vale per chi cerca sui mercati internazionali, quindi l'inglese è un requisito della promessa più importante della pagina e non era detto in nessun punto.
+
+**Sul "posso partire da zero": attenzione a una frizione.** La risposta ora è no, ma la sezione "Per chi è perfetto questo corso" apre con "Chi vuole iniziare una carriera come UX/UI Designer". Le due cose convivono se si legge "iniziare una carriera" come "non lavoro ancora, ma una base ce l'ho" — ed è così che l'ho scritta ("iniziare una carriera sì, iniziare da zero no"). Se però il messaggio deve essere davvero "serve una base", quel primo punto va reso esplicito: oggi si regge su una lettura, non su una frase.
+
+**Niente `.c-faq` attorno alla sezione.** Il fondino di quel componente serve a ritagliare un blocco FAQ dentro un'altra sezione; una sezione che è già solo FAQ ha la sua identità nell'h2 della sidebar, e un fondino alto quanto undici accordion avrebbe aggiunto una terza superficie alla pagina dopo le citazioni scure. `.c-accordion` funziona da solo — era il punto di quel componente.
+
+## 18 settembre 2026 — `motivation.html`, e il set di icone entra in pagina per la prima volta
+
+Pagina nuova: una lista di risorse per chi ha un obiettivo — due voci per ora, Arnold e *The Go-Getter*. Struttura a colonna singola (`.l-page`, come `garanzia.html`), footer standard, link di ritorno alla home e non al Master: la pagina non appartiene al funnel del corso, sta per conto suo.
+
+**Il layout è una bibliografia, non una griglia di card.** Icona del tipo, titolo che è il link, una riga di metadati, il motivo per cui vale la pena. Le voci si separano con un filetto: niente fondini, niente box, niente ombre. Con due risorse una griglia di card sarebbe stata un vestito più grande del corpo, e la lista cresce bene fino a venti voci senza cambiare forma.
+
+**Le icone del repo erano mai state usate.** `assets/Icons_v1.0.2/` sta lì da mesi e `design-system.md` ne descriveva la convenzione — SVG inline, `.primary`/`.secondary` agganciate ai token — ma nessuna pagina l'aveva mai messa in pratica. Ora esiste `.c-icon` (`css/components/icon.css`) e la convenzione è codice, non solo prosa.
+
+**Sono allineate al brand?** Sì, con un'osservazione. Il set è a due tinte, e il brand dice "piatto, niente decorazioni". Ma le due tinte qui sono `--color-icon-primary` e `--color-icon-secondary`, che il tema brand porta a nero e grigio neutro: due valori dello stesso grigio-nero, non una seconda tinta cromatica. Il corallo non entra in nessuna icona — resta l'unico accento, da spendere dove conta.
+
+**Nessun accento in pagina, ed è voluto.** Il corallo comparirebbe come unico elemento consentito, ma qui non c'è un CTA né un elemento che meriti di attirare tutto lo sguardo: una lista di risorse vuole che li guardi tutti. L'accento resta sull'hover dei link, che il tema già dà ed è transitorio.
+
+**Una nota manca, e non l'ho inventata.** Il motivo per cui vale la pena ascoltare l'episodio di Arnold lo deve scrivere Luca: non l'ho ascoltato. Nel markup c'è un commento `TODO` nel punto esatto, e il componente prevede `__why` come opzionale — la voce regge anche senza.
+
+**Passati dall'indice privato**, come chiede la sua stessa riga d'istruzioni: aggiunte `motivation.html`, `grafica-recensione.html` e `garanzia.html`, che era rimasta fuori quando è stata creata.
+
+## 18 settembre 2026 — il video introduttivo nell'hero
+
+Il TODO nell'hero chiedeva esattamente questo: «sostituire il placeholder con la figure `.c-video` (facade Vimeo), stessa markup del video in "Come insegno"». Fatto, con il video 1228030700. Il placeholder e la sua regola in `layout.css` sono spariti: erano codice vivo solo finché il video non esisteva.
+
+**Il link di partenza non era Vimeo.** Luca aveva mandato un link CleanShot (`link.mucca.design/V7dw67rG`): un MP4 da 24 MB su un servizio di screenshot, con la URL finale firmata, a scadenza, e servita come `attachment` — quindi il browser la scarica invece di riprodurla. Tre strade sul tavolo (Vimeo, file nel repo, iframe CleanShot); ha scelto Vimeo, che è anche l'unica che non aggiunge un terzo host alla pagina e riusa il componente che c'era già.
+
+**Due cose del componente erano scritte per un video solo, e si sono viste subito.**
+
+La prima: `aspect-ratio: 16 / 9` era scolpito nel CSS, e questo video è 2004×1080 (1,855:1). Un 16/9 imposto gli avrebbe messo due bande nere dentro un box che ha già i suoi angoli arrotondati. Ora è `--video-aspect-ratio`, e l'overlay se lo copia dal box sorgente all'apertura invece di avere il suo fisso.
+
+La seconda, invisibile finché non l'ho guardata a schermo: **il play bianco su una thumbnail bianca non c'è**. Il glifo è un disco pieno con il triangolo ritagliato, pensato per la thumbnail scura del video di Ilaria; la thumbnail di questo è una slide chiara, e il bottone semplicemente spariva. Ora c'è `--video-play-color`, e l'istanza dell'hero lo porta a nero. È l'unico pezzo del componente legato all'immagine e non al layout: se il video cambia, quel valore va ricontrollato — annotato in `componenti.md`.
+
+**Una terza l'ho vista prima che mordesse.** `video-facade.js` cercava `.closest('.l-section__content')` per decidere su cosa allargare l'overlay, e l'hero quella colonna non ce l'ha: ricadeva su `document.body`, e l'overlay si apriva 1470×827 su un viewport alto 746 — più alto dello schermo, con il video tagliato sopra e sotto. Aggiunto `.l-hero` come secondo anello della catena: ora si apre a 1080×582 e ci sta. Verificato che l'altro video sia rimasto identico, 16/9 e allargamento sulla colonna di contenuto.
+
+**Sulla didascalia**: avevo scritto «Come lavora un Design Engineer: 5 minuti», e l'ho corretta prima di lasciarla. Non avevo visto il video: stavo descrivendo un contenuto che non conoscevo. Ora dice «Video introduttivo — 4:49», che sono due fatti verificabili (l'inquadratura del TODO e la durata dall'API di Vimeo). Se il video merita una didascalia che dica cosa mostra, quella la scrive chi l'ha girato.
+
+**Nota di metodo, la seconda volta oggi**: anche qui il CSS e il JS sembravano non applicarsi, ed era di nuovo la cache. Un `location.reload()` non basta: serve un hard reload vero (cmd+shift+R), se no si continua a testare il file vecchio credendo di testare il nuovo.
+
+## 18 settembre 2026 — il video dell'hero esce da Vimeo e torna in casa
+
+Su Vimeo era sfocato, in locale no. Ho sbagliato la prima diagnosi: avevo dato la colpa al bitrate del master (534 kbps a 1080p60), ma per una registrazione di schermo quasi immobile quel numero è normale — i bit vanno solo alle zone che cambiano, ed è per questo che il file originale è nitido. Le cause vere restano due, e nessuna delle due è il file: il player Vimeo sceglie la resa in base alla dimensione del riquadro (443 px nell'hero: gli basta un 360p), e comunque un sorgente largo 2004 viene ricampionato a 1920, che sul testo si vede.
+
+Invece di rincorrere il player, **il video è entrato negli asset**: `assets/video/video-hero.mp4`, 23 MB, con il suo poster estratto con ffmpeg a un secondo. Nessuna ricompressione: il file è quello che Luca vede nitido sul suo Mac, bit per bit.
+
+**E niente facade.** La facade esiste per non far partire una richiesta a un terzo finché l'utente non clicca; con un file nostro quel problema non c'è, e `preload="none"` fa già tutto — il browser non scarica un byte del video finché non si preme play. Quindi `<video controls>` e basta: controlli nativi, fullscreen del browser incluso, zero JavaScript. Verificato a schermo che il poster compaia e che `networkState` resti inattivo a pagina caricata.
+
+**Il componente ora ha due modi**, documentati in `componenti.md`: facade per i video di terzi, `<video>` nativo per i nostri. Il box è lo stesso, cambia cosa ci sta dentro.
+
+**Tre cose introdotte poco fa e subito rimosse**, perché servivano solo alla facade nell'hero che non esiste più: `--video-play-color` (il play bianco invisibile sulla thumbnail chiara), `.l-hero` nella catena del contenitore dell'overlay in `video-facade.js`, e la copia del rapporto d'aspetto sull'overlay. Tenerle sarebbe stato codice morto con un commento che spiega un caso scomparso. Resta `--video-aspect-ratio`, che serve ancora: il box dell'hero è 2004×1080, non 16/9.
+
+**Da sapere**: 23 MB di binario entrano nella storia di git e ci restano. Per un file che non cambierà più va bene, ma se il video verrà rigirato più volte conviene decidere prima se tenerlo fuori (Git LFS, o un asset non versionato caricato a mano su Netlify) — altrimenti il repo si porta dietro ogni versione.
+
+## 18 settembre 2026 — quattro ipotesi per l'hero
+
+«Così com'è non va bene», senza dire perché. Prima di proporre, quattro difetti messi in fila, in ordine di gravità: **l'h1 è il nome del prodotto** («Master UX/UI Design») e la promessa («Diventa Design Engineer») sta sotto, piccola e in peso normale; **sette blocchi impilati** senza una dominante; **la lista numerata compete col titolo** e anticipa cose che la pagina ripete venti righe dopo; **il video sta al 45% e centrato**, cinque minuti che spiegano tutto trattati come illustrazione di contorno.
+
+Le quattro varianti in `hero-iterazioni.html` sono **quattro ipotesi, non quattro restyling** — ognuna scommette su una cosa diversa, e sotto ognuna è scritto anche cosa costa:
+
+- **A, la promessa in testa**: scambio fra h1 e occhiello, i tre punti contratti in una frase. Cinque blocchi invece di sette. Il cambio più piccolo che risolve il difetto principale.
+- **B, il video è l'hero**: colonna unica centrata, video grande, una riga. Scommette che cinque minuti vendano più di qualsiasi paragrafo — e infatti dipende tutta da quante persone premono play.
+- **C, manifesto**: solo testo, titolo a 72px, il video scende sotto dove può essere grande davvero. È l'unica che su mobile tiene titolo, frase e bottone sopra la piega.
+- **D, scheda del corso**: promessa a sinistra, a destra un riquadro con partenza, durata, posti e prezzo. È l'unica che discute **a chi** stiamo parlando invece di come dirlo: presuppone un pubblico che ti conosce già e vuole i dati.
+
+Sotto ogni hero c'è una riga finta di contenuto seguente: senza, non si vede dove l'hero finisce né quanto pesa rispetto a ciò che lo segue.
+
+Il copy è quello vero ovunque possibile. Dove cambia (la frase unica di A, «Guarda come lavoro. Poi decidi.» di B) cambia perché l'ipotesi lo richiede, e i numeri citati — 12 posti, 987€, 9 novembre, garanzia a sei mesi — vengono tutti da `content.md`.
+
+## 18 settembre 2026 — l'hero diventa un manifesto col video al centro
+
+Scelta la variante B fra le quattro di `hero-iterazioni.html`, con due correzioni di copy di Luca: la riga sotto il titolo è «Obiettivo: trovare lavori (interessanti).» e la riga in fondo chiude con la data della prima live invece che con i posti disponibili.
+
+**Cosa cambia nella sostanza**: l'h1 non è più il nome del corso ma la promessa («Diventa Design Engineer»); il nome scende a occhiello insieme alla data di partenza; i tre punti in lista se ne vanno — li ridice la pagina venti righe dopo; il video passa da colonna laterale al 45% a protagonista centrale. Da sette blocchi impilati a cinque, con una dominante chiara.
+
+**La scommessa è dichiarata**: questa variante vale se le persone premono play. Chi non lo fa riceve un titolo, una riga e un bottone — pochissimo. Se i dati diranno che il video lo guarda una minoranza, la variante A (promessa in testa, ma con la frase che riassume le tre cose) è il ripiego già pronto.
+
+**`.l-hero` è stato riscritto, non affiancato da una variante.** La griglia 55/45 non la usava più nessuno: `content.html` e `mini-corso/index.html` hanno nell'hero solo h1 e tagline, e quella griglia glieli metteva in due colonne affiancate — non credo fosse voluto. Ora l'hero è una colonna sola centrata, larghezza di lettura (780) e non quella del container: un titolo display a tutta pagina si spezza male e la riga sotto diventa troppo lunga. Verificate tutte e tre le pagine a schermo: le altre due ne escono più ordinate di prima.
+
+Nuovo elemento di layout: `.l-hero__eyebrow`, l'occhiello in maiuscoletto spaziato che tiene il nome del prodotto fuori dall'h1.
+
+**Una ridondanza lasciata di proposito**: la riga finale dice «4 live gratuite a ottobre · Prima live 7 ottobre 2026» — «ottobre» compare due volte. È il testo chiesto, e la data esatta vale la ripetizione; se dà fastidio, «4 live gratuite, la prima il 7 ottobre» dice le stesse due cose una volta sola.
+
+## 18 settembre 2026 — l'email si lascia già dall'hero
+
+Il bottone «Iscriviti al pre-corso gratuito», che portava alla sezione più in basso, è diventato il form vero: campo email e bottone sulla stessa riga, sotto il video. Un passo in meno fra chi ha appena guardato il video e l'iscrizione. Sotto, la riga di servizio dice cosa succede lasciando l'email: «4 live gratuite a ottobre · Prima live 7 ottobre 2026 • Lascia l'email: ricevi il link per le live e i replay. Nient'altro.»
+
+`.l-hero__actions` è sparito: non lo usava nessun'altra pagina, e ora il contenitore è `.l-hero__form` — largo al massimo 480, centrato, con `text-align: left` perché il centrato dell'hero si eredita **dentro** il campo, e una email che si scrive dal centro è sgradevole da compilare. Su schermo stretto è `.c-form` che manda il bottone sotto da sé, senza regole nuove.
+
+**Due form con lo stesso `form-name`, e va bene così.** Netlify li registra per nome: quello dell'hero e quello della sezione finiscono nella stessa lista, che è quello che si vuole — una lista sola di iscritti al pre-corso. Per non perdere l'informazione di dove è avvenuta l'iscrizione, ognuno porta un campo nascosto `origine`, `hero` e `sezione`. Senza, le due erano indistinguibili nel pannello, e la domanda «il video converte?» non avrebbe avuto risposta — che è esattamente la scommessa su cui poggia questa versione dell'hero.
+
+## 18 settembre 2026 — ordine nel repo, e la pagina che mancava dopo il form
+
+Tre cose in fila prima del push: mettere ordine, rileggere il contenuto cercando le sviste che costano una conversione, e riallineare il materiale di marketing. Il sito era già online su `www.mucca.design` da giorni, ma `main` locale era **tre commit avanti** sul remote e con mezzo repo non committato: in produzione girava ancora l'hero vecchio e `garanzia.html` rispondeva **404**, pur essendo linkata due volte dalla landing.
+
+### La svista più cara non era nel codice
+
+Il form del pre-corso funziona: Netlify li ha registrati entrambi (la risposta live mostra il markup già post-processato). Il problema stava **dopo**. Chi lasciava l'email atterrava su `/mini-corso/`, una pagina intitolata «Mini corso» con **tre** moduli — contro quattro live — tre immagini placeholder e la didascalia «Video in arrivo». Da nessuna parte c'era scritto che l'iscrizione era andata a buon fine, né quando fosse la prima live, né che il link sarebbe arrivato via email.
+
+Era già la decisione **D6** di `marketing-actions.md`, presa l'11 settembre e mai eseguita. Ora la pagina è una conferma vera: «Ci sei», cosa succede adesso, le quattro date con i titoli (riusando `.c-schedule`, che esisteva già), i replay, e il link di ritorno.
+
+**Una riga è scritta così perché l'invio è manuale** e vale la pena ricordarselo: «ti scrivo io qualche giorno prima della prima live». Netlify Forms salva la submission e avvisa il proprietario — al sottoscrittore non manda niente. Finché non c'è uno strumento di invio, la pagina deve dire la verità su chi scrive e quando, altrimenti la persona resta in attesa di un'automazione che non esiste. Da qui anche l'invito ad aggiungere l'indirizzo ai contatti: l'unica email che riceverà è una scritta a mano da una casella con cui non ha mai parlato.
+
+### Il link condiviso su LinkedIn era nudo
+
+`og:image` era ancora un `TODO` in testa a `master-ux-ui.html`. Il difetto non si vede visitando il sito: si vede quando il link viene incollato in un DM, che è **l'unico canale di acquisizione previsto per ottobre**. Ora l'immagine è il poster del video dell'hero (1280×690, già nel repo, nessun asset nuovo da produrre), con `og:url` assoluto e `twitter:card`. Stessa cosa su `garanzia.html`, che aveva il TODO gemello.
+
+### L'hero non diceva cosa si riceve
+
+Il journal di stamattina descriveva la riga di servizio come «4 live gratuite a ottobre · Prima live 7 ottobre 2026 • Lascia l'email: ricevi il link per le live e i replay. Nient'altro.» In pagina c'era solo la prima metà. Chi si ferma all'hero — cioè quasi chiunque arrivi da un DM — vedeva un campo email senza sapere cosa ne esce. Ripristinata intera, con la data esatta al posto del generico «a ottobre».
+
+### `marketing-actions.md` portava il calendario di una settimana prima
+
+Diceva live il 14/21/28 ottobre e il 4 novembre, partenza il **16 novembre**, mentre `strategia-marketing.md` §8, il sito e `garanzia.html` dicono **7/14/21/28 ottobre** e partenza **9 novembre**. È il file da cui si prendono le date per scrivere i DM: una settimana di errore dentro un messaggio di outreach non si recupera. Riallineato tutto — tabella, piano settimanale, finestra di chiusura.
+
+**E le soglie della garanzia in fondo a quel file sono state buttate**, non aggiornate. Erano una bozza dell'11 settembre; `garanzia.html`, scritta dopo, ha preso decisioni diverse e più severe: inglese **C1** invece di B2, **quattro** progetti in portfolio invece di tre, **24 settimane su 26** invece di 20, **sei** check-in mensili invece di tre. E soprattutto scadenze **relative** all'ultima lezione invece che date assolute ancorate al 16 novembre — che è la ragione per cui la pagina non si è rotta quando il calendario si è spostato e il file di marketing sì. Al loro posto c'è una tabella che mostra le due versioni a confronto e dice quale vale.
+
+### Cosa è uscito dal repo
+
+- **`content.html`**, la vecchia landing. Aveva esaurito la funzione, ma restava pubblicata: Netlify ne registrava i due form (`mini-corso`, e un secondo `lascia-messaggio`) sporcando il pannello con liste fantasma. Rimossa con tutti i suoi riferimenti — cinque in `componenti.md`, uno in `design-system.md`, uno nel README, uno nell'indice privato. I «dove usato» dei componenti ora puntano a `master-ux-ui.html`, che è dove quei componenti vivono davvero.
+- **`export-md/design-system.html`**: un export generato il 27 luglio e mai più toccato, mentre il `.md` sorgente è di settembre. Descriveva un design system che non esiste più.
+- **`spiega/`** resta nel repo e su GitHub — è lì che serve — ma esce dal sito con un redirect 404 in `netlify.toml`. Un `X-Robots-Tag` non sarebbe bastato: toglie dai motori, non dalla rete.
+- `contenuto.md` (0 byte) e tre righe morte nell'indice privato, che puntavano a file rimossi o gitignorati.
+
+**`brand-kit/` invece resta pubblicato**, e vale la pena scriverlo perché a occhio sembra documentazione: `brand-tokens-light.css` è caricato da **quindici** pagine, `master-ux-ui.html` inclusa. Toglierlo dal deploy spegnerebbe il tema ovunque.
+
+Committato anche **`.claude/settings.json`**, che finora era fuori dal repo pur contenendo l'hook della tipografia: è una regola di progetto, non una preferenza di questa macchina. `settings.local.json`, che invece lo è, è finito in `.gitignore`.
+
+### Due cose viste solo guardando a schermo stretto
+
+**`.c-schedule` non aveva un comportamento mobile.** La colonna della data era fissa a 108px a qualsiasi larghezza: a 390px lasciava al testo meno di 250 pixel, e ogni titolo si spezzava in tre righe. Ora sotto i 768px la data sta su una riga sua, in orizzontale («14 ott mercoledì, 19:00»), e il testo prende tutta la colonna. Sopra, le due colonne affiancate come prima — verificato che il desktop sia rimasto identico. Il difetto era già in pagina da stamattina: nessuno aveva guardato quel componente a larghezza di telefono, che è esattamente da dove arriveranno i lettori del DM.
+
+**Nota di metodo, la terza volta in due giorni**: il CSS sembrava non applicarsi, ed era di nuovo la cache. Stavolta il test girava dentro un iframe largo 390px — un modo onesto di provare le media query senza rimpicciolire la finestra — e ricaricare l'iframe non basta: vanno riscritti gli `href` dei `<link>` con un parametro nuovo, se no si continua a misurare il foglio di stile vecchio.
+
+### Due aggiunte piccole con una ragione precisa
+
+**`404.html`**: serviva comunque al redirect di `spiega/`, e il sito non ne aveva una. Dice dove andare invece di lasciare la pagina bianca di Netlify.
+
+**La home ora linka il corso.** `index.html` era un biglietto da visita con la sola email: chi cercava «mucca design» dopo aver letto il DM trovava un vicolo cieco. Una riga sopra i contatti. Se la scelta di tenere la radice muta era voluta, è un `git revert` di una riga — ma vale la pena riconfermarla adesso che la landing è viva.
+
+### E la cosa che non è un file
+
+Prima live: **7 ottobre**, fra diciannove giorni. `strategia-marketing.md` §8 chiede 400-600 contatti per arrivare a 60-80 iscritti al pre-corso, cioè ai 12 studenti; LinkedIn permette ~100-200 inviti a settimana, quindi il tetto fisico è ~270-540 contatti — **partendo oggi e senza saltare un giorno**. L'outreach non è ancora partito: in repo non c'era nessuna lista né journal, benché il piano lo prevedesse dal 14 settembre.
+
+Aperto `outreach.md`, che è anche lo strumento che il Modulo 3 chiede agli studenti. Ma il numero da guardare non è lì: **la coorte da 12 non è più lo scenario centrale**, ed è una decisione da prendere adesso e non a metà ottobre. §8 lo contemplava già («un pre-corso con 20 iscritti si tiene lo stesso e produce le registrazioni per la coorte 2»).
