@@ -23,7 +23,7 @@
 
 ## pipeline di acquisizione (ipotesi iniziale)
 
-linkedin -> messaggio con link alla landing page -> email -> email di follow up con link al lead magnet (mini lezioni gratis in skool.com)
+linkedin → messaggio con link alla landing page → email → email di follow up con link al lead magnet (mini lezioni gratis in skool.com)
 
 
 ---
@@ -165,12 +165,12 @@ Tier 3  richiesta di referral → presentazione → pre-corso o conversazione di
 - [ ] Quanti alumni Boolean UX/UI Design raggiungibili ci sono realisticamente in Tier 1?
 - [x] Definito "trovi lavoro": qualsiasi lavoro retribuito, stage e freelance inclusi, anche non da designer (§9)
 - [x] Garanzia riservata a chi conosce l'inglese e applica le strategie sui mercati internazionali, freelance in particolare (§9)
-- [ ] Scegliere le soglie numeriche dei requisiti della garanzia (§9)
+- [x] Scegliere le soglie numeriche dei requisiti della garanzia (§9) — calibrazione esigente, 18 set 2026
 - [ ] Template del journal da dare agli studenti (campi, cadenza, repo git)
-- [ ] Fissare la soglia di inglese richiesta all'ingresso del percorso con garanzia
+- [x] Fissare la soglia di inglese richiesta all'ingresso del percorso con garanzia — C1, verificato con una call di 15 min
 - [ ] Testare nel pre-corso quanti sono disposti a puntare al mercato internazionale
 - [ ] Aggiornare tutte le date in `content.md` e `content.html` → **9 novembre 2026 → ~19 febbraio 2027**
-- [ ] Creare `garanzia.html` con le condizioni per esteso
+- [x] Creare `garanzia.html` con le condizioni per esteso — fatto il 18 set 2026
 - [ ] Far controllare la clausola di garanzia nel contratto
 - [ ] Scaletta delle 4 live del pre-corso
 - [ ] Sequenza email del pre-corso (promemoria live, replay, offerta)
@@ -268,6 +268,26 @@ Il punto debole della formulazione attuale è "se il portfolio fa schifo non rim
 5. **Registro delle azioni di ricerca**, con data, destinatario, canale, link ed esito. Attenzione: il metodo che insegni dice che rispondere agli annunci non funziona — quindi il requisito non può essere "N candidature a settimana". Dev'essere *N azioni secondo il metodo*: contatti diretti, proposte a potenziali clienti, progetti no-profit avviati, cambi di mercato. Se il requisito misura la strategia sbagliata, stai garantendo un metodo che tu stesso sconsigli.
 6. Portfolio mantenuto online e aggiornato con i progetti nuovi.
 7. Un check-in con me ogni 2 mesi (3 in tutto). Serve a te: i requisiti che saltano si vedono a febbraio, non ad agosto.
+
+#### I numeri (scelti — 18 settembre 2026)
+
+Calibrazione **esigente**, scelta da Luca fra tre proposte. Sono questi i numeri che stanno in `garanzia.html`; se cambiano lì, cambiano anche qui.
+
+| | |
+| --- | --- |
+| Inglese (all'iscrizione) | C1 + call di 15 minuti in inglese |
+| Consegne saltabili | 1 in tutto il corso |
+| Presenza alle live | 85% |
+| Portfolio | 4 progetti, ≥3 rifatti col metodo |
+| Correzioni post-revisione | chiuse entro 2 settimane dalla fine |
+| Azioni di ricerca | 10 a settimana, di cui ≥4 contatti diretti |
+| Settimane coperte | 24 su 26 |
+| Journal | commit in ≥5 giorni su 7 |
+| Check-in | 6, uno al mese |
+
+Due numeri non erano in questo §9 e sono stati decisi scrivendo la pagina: la richiesta di rimborso si presenta **entro 30 giorni** dalla scadenza dei sei mesi, la risposta arriva **entro 15 giorni** e il bonifico **entro 30 giorni** dall'accettazione. Da confermare col legale.
+
+**La riserva resta agli atti**: la sezione qui sotto avverte che una barra troppo alta rende la garanzia decorativa e che un prospect attento se ne accorge. 24 settimane su 26 lascia due settimane di margine in sei mesi, e il C1 esclude dalla garanzia la maggior parte dei junior designer italiani — autoselezione legittima, ma diversa dal «vende anche a chi non la prenderà» di più sotto. In pagina la contromisura è la prima FAQ, che affronta l'obiezione di petto.
 
 #### I numeri li devi mettere tu
 

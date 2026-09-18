@@ -8,22 +8,29 @@
 
 ## Index (sezione che non viene pubblicata nel contenuto della pagina HTML)
 
-1. [Il problema del Junior Designer da quando c'è AI](#il-problema-del-junior-designer-da-quando-cè-ai)
+Le sezioni come stanno oggi in `master-ux-ui.html`, nell'ordine della pagina:
+
+1. Hero — «Diventa Design Engineer», video, form del pre-corso
+2. [Il problema del Junior Designer da quando c'è AI](#il-problema-del-junior-designer-da-quando-cè-ai)
    - [3 sfide per il Junior Designer di oggi](#3-sfide-per-il-junior-designer-di-oggi)
-2. [Ciao, mi chiamo Luca Leone](#ciao-mi-chiamo-luca-leone)
-3. [Mini corso gratis](#mini-corso-gratis)
-4. [Non è il corso giusto per tutti](#non-è-il-corso-giusto-per-tutti)
-5. [Programma del corso](#programma-del-corso)
-   - [screenshots UI disegnate all'ultimo master](#screenshots-ui-disegnate-all-ultimo-master)
-6. [FAQ](#faq)
-7. [Mini corso gratis](#mini-corso-gratis)
-8. [Ammissione alla prossima classe](#ammissione-alla-prossima-classe)
+   - FAQ della sezione
+3. [Ciao, mi chiamo Luca Leone](#ciao-mi-chiamo-luca-leone)
+   - Come insegno?
+4. Pre-corso gratuito — le 4 live, iscrizione
+5. [Non è il corso giusto per tutti](#non-è-il-corso-giusto-per-tutti)
+6. [Programma del corso](#programma-del-corso)
+   - Retroscena
+7. [Cosa rende diverso questo corso?](#cosa-rende-diverso-questo-corso)
+8. [Risultati, non promesse](#risultati-non-promesse) — i lavori degli studenti
+9. La garanzia (una riga + link a `garanzia.html`)
+10. [Ammissione alla prossima classe](#ammissione-alla-prossima-classe)
+11. [Domande frequenti](#domande-frequenti)
+    - [Lascia un messaggio](#lascia-un-messaggio) (widget in fondo)
 
-- [Lascia un messaggio](#lancia-un-messaggio)
-- [Iscriviti alla mia newsletter](#iscriviti-alla-mia-newsletter)
+**Attenzione a due disallineamenti noti di questo file**, da sistemare quando si rimette mano al copy:
 
-
-
+- la sezione «Mini corso (gratis)» qui sotto ha il nome vecchio: in pagina è **«Pre-corso gratuito»**, con 4 live datate;
+- la sezione «Iscriviti alla mia newsletter» non esiste in pagina, ed è voluto (D1: una sola CTA).
 
 ## Il problema del Junior Designer da quando c'è AI
 
@@ -121,7 +128,9 @@ Bottone: Iscriviti ora
 
 > A mio parere come Teacher sei uno dei migliori che abbia avuto, contando anche i professori universitari eh che poi nella realtà non sono dei grandi insegnanti ma solo grandi ricercatori 😬
 <!-- style: caption -->
-Davide Cester - classe 2 Corso UX/UI Design Boolean
+![Foto di Davide Cester](assets/images/davide_cester.webp)
+**Davide Cester**
+classe 2 Corso UX/UI Design Boolean
 <!-- /style -->
 
 ### Per chi NON è il corso giusto
@@ -197,14 +206,51 @@ Inoltre vorrei cogliere l'occasione per ringraziarti di cuore. Il percorso di UX
 > Ciao Luca, Volevo farti i complimenti per il livello didattico al quale hai portato la classe. Ciò che mi hai trasmesso più che didattico è personale: stavo perdendo la passione per la progettazione, in questi mesi è rinata grazie alla tua concezione di designer come problem solver pratico che prende la complessità e la rende semplice.
 > Mi ero approcciato al design con questa idea ma in 3 anni di università è stata messa a dura prova, ho visto più passione in te che in tutti i professori avuti finora quindi grazie e grazie di avermela trasmessa. Anche il resto della classe è stata molto attiva durante le tue lezioni ed il merito è del tuo approccio, hai sempre favorito discussioni ed interventi e non c'erano mai momenti morti. È un approccio più stancante ma che vale la fatica perché a fine lezione hai 3 "certezze" e 20 domande su cui ragionare, è stimolante!
 
-– Recensione di Stefano Falvella - classe 2 Corso UX/UI Design Boolean
+<!-- style: caption -->
+![Foto di Stefano Falvella](assets/images/stefano_falvella.webp)
+**Stefano Falvella**
+classe 2 Corso UX/UI Design Boolean
+<!-- /style -->
 
 
-## Risultati, non promesse.
-Progetti degli studenti, guidati da metodo e feedback.
+## Risultati, non promesse
 
-> carousel di progetti degli studenti
+Lavori dei miei studenti.
 
+Tre gruppi, dieci immagini (`assets/images/gallery-progetti-studenti/`), ognuno una filmstrip che scorre in orizzontale. **Il raggruppamento è per provenienza, non per tema**: dire da dove viene ogni lavoro è la ragione per cui la sezione è credibile.
+
+I metadati per immagine vengono da `mucca-website/public/index.html` (attributo `data-caption` della vecchia gallery), e sono la fonte di verità per nomi, progetti e corsi.
+
+### Dalla prima edizione del Master
+
+La macchina del caffè e la gestione dell'ufficio stampa sono gli stessi due progetti del Modulo 1 e del Modulo 2. Questi studenti sono partiti dalle stesse specifiche da cui partirai tu, con lo stesso metodo e lo stesso ricevimento tre volte a settimana.
+
+- Roberto Migani · Wireflow della macchina del caffè · Master Mucca Design UX/UI ⚠️ dedotto
+- Andrea De Nuccio · Prototipo della macchina del caffè · Master Mucca Design UX/UI ⚠️ dedotto
+- Davide Vignozzi · Prototipo del progetto Media Contacts · Master Mucca Design UX/UI
+- Roberto Migani · Grafica del progetto Pound 4 Pound · Master Mucca Design UX/UI
+
+Chiusura: il wireflow di Roberto e la schermata di Andrea sono lo stesso progetto in due momenti diversi — prima si decide cosa succede quando l'utente tocca, poi si disegna cosa vede. Pound 4 Pound non era nel programma, se l'è scelto Roberto: è il primo segnale che il metodo ha attecchito.
+
+### Lo stesso brief, tre studenti
+
+Cozy Shoes, un ecommerce di scarpe su misura: progetto del corso di UX/UI Design insegnato in Boolean. Stesso brief, **due classi diverse** (Marco è della classe 1, le altre due della classe 2), tre modi di attraversarlo — il metodo non produce tre copie della stessa interfaccia.
+
+- Marco Guidi · UX research del progetto Cozy Shoes · corso UX/UI Design classe 1 Boolean
+- Antonella Sara Montella · UX research del progetto Cozy Shoes · corso UX/UI Design classe 2 Boolean
+- Antonella Sara Montella · Wireframe del checkout, progetto Cozy Shoes · corso UX/UI Design classe 2 Boolean ⚠️ dedotto
+- Ilaria Bottinelli · Overview dei wireframe, progetto Cozy Shoes · corso UX/UI Design classe 2 Boolean
+- Ilaria Bottinelli · Dettaglio dei wireframe, progetto Cozy Shoes · corso UX/UI Design classe 2 Boolean
+
+Chiusura: guarda cosa c'è intorno alle schermate — le note, le frecce, gli stati disegnati a parte, il perché scritto accanto alla scelta. Quella roba lì non è decorazione, è il lavoro. È anche l'unica cosa che ti permette di difendere un'interfaccia quando qualcuno ti chiede «perché così?».
+
+### Dal corso di visual design
+
+Un altro corso mio, all'inizio del 2025.
+
+- Stefano Soave · Esercizio di iterazione grafica · corso Mucca Design, 2025
+
+⚠️ **Le tre voci marcate «dedotto»** non avevano `data-caption` nella vecchia gallery: nome e corso sono ricavati dal nome del file e dal gruppo. Da confermare.
 
 ## Ammissione alla prossima classe
 
@@ -236,6 +282,56 @@ Il corso costa 987€. È possibile pagare a rate:
 [Prenota il tuo posto] <!-- bottone -->
 
 
+## Domande frequenti
+
+Ultima sezione prima del footer: le obiezioni che restano si sciolgono dopo aver letto prezzo e processo di ammissione, non prima. Punto di partenza: la FAQ del vecchio sito (`mucca-website/public/index.html`), riscritta per questo corso — alcune domande non reggevano più (Discord, Figma, Windsurf, quattro mesi, ricevimento tutti i giorni), altre dicevano l'opposto di quello che dice questa pagina.
+
+**Cos'è il Master UX/UI Design, in pratica?**
+Un corso live di 3 mesi, in video call, con 12 persone in classe. Tre lezioni a settimana (lunedì, mercoledì, venerdì, 19:00-21:00), un'ora di ricevimento studenti tre volte a settimana, e il forum della community su Skool sempre aperto in mezzo. Si lavora su due progetti veri — la macchina del caffè e la gestione dell'ufficio stampa — più un modulo dedicato a portfolio e ricerca del lavoro.
+
+**Posso partire da zero?**
+No. Iniziare una carriera sì, iniziare da zero no: il corso presuppone una base già costruita — un corso base già fatto, o un lavoro da designer già cominciato. Si parte dal primo giorno progettando, e senza quella base le prime settimane diventano una rincorsa invece che un allenamento.
+
+**Le lezioni sono registrate? E se ne perdo una?**
+Sì, le registrazioni restano disponibili e una lezione persa si recupera. Ma sono una rete di sicurezza, non il corso: quello che non si recupera guardando è il ricevimento, dove porti il tuo schermo e il tuo problema. Se l'idea è seguire tutto in differita, questo non è il corso giusto.
+
+**Come funziona il feedback? Ci sono tutor?**
+Niente tutor: correggo io, così lo standard e il metodo restano gli stessi per tutti. Il feedback arriva su due canali — il ricevimento studenti, un'ora tre volte a settimana, dove si guarda il lavoro dal vivo; e il forum della community, per quando ti blocchi fra una lezione e l'altra.
+
+Non è un giudizio "bello/brutto": si lavora su ragionamento, chiarezza, usabilità e metodo. Il punto non è che quella schermata diventi giusta, è che la prossima te la sappia impostare da solo.
+
+**Le consegne vengono valutate?**
+Sì. Ogni modulo ha le sue consegne, e il portfolio finale ha una revisione con un esito — non un voto, un giudizio sul fatto che regga o no davanti a chi assume. Se non ci siamo, si rimette a posto: è il motivo per cui la revisione esiste.
+
+**Quanto tempo serve a settimana?**
+Le tre lezioni sono 6 ore, ed è il minimo: sono il tempo in cui guardi, non quello in cui impari. Un'ora al giorno fra una lezione e l'altra, per rifare e completare gli esercizi, è il punto di riferimento.
+
+Dipende da dove parti, ma una cosa l'ho vista in tutte le classi in cui ho insegnato, senza una sola eccezione: gli studenti migliori sono quelli che hanno messo dentro più ore. E meglio un'ora al giorno per cinque giorni che cinque ore in un pomeriggio.
+
+**Serve saper programmare?**
+No. I prototipi si costruiscono con l'AI, e quello che serve sapere del frontend lo si impara facendo. Il Design Engineer non scrive codice di produzione: consegna prototipi che funzionano nel browser e parla la lingua del team di sviluppo.
+
+**Che strumenti servono?**
+Excalidraw per gli sketch, Claude Code come editor per costruire i prototipi con l'AI, Git e GitHub per il journal e per pubblicare il portfolio, Skool per il forum, Google Drive per i file. Tutto gratuito o con un piano gratuito sufficiente, a parte l'abbonamento all'AI.
+
+Niente Figma: non è un dispetto, è che il lavoro finisce nel browser e passare da un mockup intermedio costa tempo senza aggiungere niente. Quello che insegno sull'AI non dipende comunque dall'editor — se preferisci Cursor o Windsurf, il metodo è lo stesso.
+
+**Devo sapere l'inglese?**
+Per seguire il corso no: lezioni, ricevimento e forum sono in italiano.
+
+Per la garanzia sì, e vale la pena dirlo qui: vale per chi cerca sui mercati internazionali, ed è lì che serve l'inglese. Senza, il corso lo segui lo stesso e impari lo stesso, ma la parte di ricerca del lavoro ti resta dentro il mercato italiano — che è una frazione di quello disponibile.
+
+**Mi aiuti a trovare lavoro?**
+Non con il ripasso del CV e la simulazione del colloquio. Il Modulo 3 è un modulo come gli altri, con consegne: un portfolio pubblicato come pagina HTML, con dentro i progetti del corso che funzionano davvero nel browser, e un journal delle azioni di ricerca che tieni durante il corso e nei mesi dopo.
+
+È anche la parte su cui rispondo: se applichi il metodo e in 6 mesi dalla fine non trovi lavoro, ti restituisco tutto. Le condizioni sono scritte per esteso in `garanzia.html`.
+
+**Se mi ritiro, c'è un rimborso?**
+Se ti ritiri entro due settimane dall'inizio del corso ti restituisco tutto. Dopo non sono previsti rimborsi — ma se hai un impedimento imprevisto, valuto di spostarti alla classe successiva.
+
+C'è una domanda che qui non trovi? Usa "Lascia un messaggio" qui sotto, o vieni al pre-corso e chiedimela dal vivo.
+
+
 ## Footer
 
 Separato dal main content da una linea di 1px, grigia.
@@ -245,7 +341,7 @@ Separato dal main content da una linea di 1px, grigia.
 
 ## Lascia un messaggio
 
-Trigger nel footer (per ora implementato solo in `content.html`). Il click sul link apre un pannello con:
+Trigger in fondo alla sezione «Domande frequenti» di `master-ux-ui.html`. Il click sul link apre un pannello con:
 
 - campo email, placeholder: "La tua email"
 - campo messaggio (textarea), placeholder: "Il tuo messaggio"
@@ -303,7 +399,9 @@ Sono rimasto in contatto con parecchi ex studenti del corso base di ux/ui design
 
 ---
 
-### A scanso di equivoci
+### A scanso di equivoci — ⚠️ SUPERATO, non riusare
+
+> **Questo blocco dice l'opposto di quello che la pagina pubblica oggi.** Dall'11 settembre 2026 la ricerca del lavoro non è più un bonus: è il **Modulo 3**, con consegne come gli altri due (portfolio HTML pubblicato, journal delle azioni, mercato internazionale), e c'è una **garanzia sul risultato** che ne risponde. Resta qui solo perché il file conserva la storia del copy: se finisce in pagina, la pagina si contraddice da sola. Vedi `strategia-marketing.md` §10 e `garanzia.html`.
 
 **A scanso di equivoci**: in questo corso mi concentro su farti diventare un Design Engineer. Non mi concentro su spiegarti "come trovare lavoro con strategie efficaci".
 
