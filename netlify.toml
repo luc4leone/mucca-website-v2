@@ -3,6 +3,15 @@
   publish = "."
   command = ""
 
+# Le guide sulle worktree servono a chi legge il repo su GitHub, non a chi
+# visita il sito: restano versionate, ma non sono raggiungibili dal web.
+# Un X-Robots-Tag non basterebbe — toglie dai motori, non dalla rete.
+[[redirects]]
+  from = "/spiega/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
 # L'offerta a Mediaddress è raggiungibile solo da chi ha il link.
 [[headers]]
   for = "/offerta-mediaddress/*"
@@ -23,5 +32,17 @@
 
 [[headers]]
   for = "/upwork/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Bozza del caso d'uso in lavorazione + export n8n: materiale di lavoro.
+[[headers]]
+  for = "/your-third-workflow/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Manifesto: prototipo in lavorazione, fuori dai motori finché non è deciso.
+[[headers]]
+  for = "/manifesto.html"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
