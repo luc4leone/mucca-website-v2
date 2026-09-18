@@ -1,5 +1,6 @@
 /* Schedule: elenco di appuntamenti (data + titolo + una riga).
-   Primo uso: le 4 live del pre-corso in index.html. */
+   Usato per le 4 live del pre-corso in master-ux-ui.html e nella pagina
+   di conferma mini-corso/index.html. */
 
 .c-schedule {
   list-style: none;
@@ -10,8 +11,7 @@
 
 .c-schedule__item {
   display: grid;
-  grid-template-columns: var(--space-108) 1fr;
-  gap: var(--space-18);
+  gap: var(--space-6);
   margin: 0;
   padding: var(--space-18) 0;
   border-top: var(--border-width-1) solid var(--color-border);
@@ -23,11 +23,24 @@
 }
 
 .c-schedule__date small {
-  display: block;
-  margin-top: var(--space-6);
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-400);
   color: var(--color-text-muted);
+}
+
+/* Sotto i 768px la data sta su una riga sua, in orizzontale: la colonna
+   fissa da 108px lasciava al testo meno di 250px, e ogni titolo si
+   spezzava in tre righe. Sopra, le due colonne affiancate. */
+@media (min-width: 768px) {
+  .c-schedule__item {
+    grid-template-columns: var(--space-108) 1fr;
+    gap: var(--space-18);
+  }
+
+  .c-schedule__date small {
+    display: block;
+    margin-top: var(--space-6);
+  }
 }
 
 .c-schedule__title {
