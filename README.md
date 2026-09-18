@@ -7,9 +7,9 @@ python3 -m http.server 8765
 # → http://localhost:8765/index.html
 ```
 
-Pagine: `index.html` (landing del corso, italiano), `portfolio.html`
-(Works, inglese), `componenti.html` (galleria dei componenti),
-`content.html` (riferimento col tema precedente).
+Pagine: `index.html` (biglietto da visita alla radice), `master-ux-ui.html`
+(landing del corso, italiano), `garanzia.html`, `portfolio.html`
+(Works, inglese), `componenti.html` (galleria dei componenti).
 
 Documentazione: `CLAUDE.md` (istruzioni operative), `design-system.md`
 (token, breakpoint, convenzioni CSS), `componenti.md` (componenti),
@@ -33,10 +33,11 @@ Elenco sempre aggiornato: `git branch`. Il contesto di ogni variante
 
 ### Rivedere una variante
 
-**Attenzione: questo repo non ha un remote.** `git remote -v` non
-restituisce niente: i branch esistono solo su questo disco. Non sono su
-GitHub e non tornano da un clone. Finché la cartella è in Sync sono
-coperti dal backup della cartella, niente di più.
+**Attenzione: solo `main` è su GitHub.** Il remote
+(`git@github.com:luc4leone/mucca-website-v2.git`) riceve il push di
+`main`; i branch `feature/*` restano su questo disco e non tornano da un
+clone. Finché la cartella è in Sync sono coperti dal backup della
+cartella, niente di più — se una variante conta, va pushata anche lei.
 
 Il modo consigliato è una worktree, non un checkout: apre la variante in
 una **cartella sorella**, lasciando `main` intatto nella cartella

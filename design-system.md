@@ -175,7 +175,7 @@ Un caso a parte, diverso da "DOM diverso": stessa markup, ma una variazione pura
 
 Le variabili restano il modo per personalizzare i *colori* di ogni variante (es. `--step-card-number-bg`), il `data-variant` seleziona quale *insieme di regole* applicare.
 
-**Workflow di esplorazione — non si cancella nulla**: le varianti estetiche esplorate vivono in `componenti.html`, una galleria visiva permanente (parallela a `componenti.md`, stesso schema di naming di `content.md`/`content.html`). Ogni variante provata resta visibile lì, etichettata (es. "attuale in produzione" vs scartata) — stesso principio già adottato per i branch git scartati: non si eliminano, restano disponibili come riferimento. Quando si sceglie una variante, `componenti.md` documenta quale sia il default in produzione; le altre restano comunque nella galleria.
+**Workflow di esplorazione — non si cancella nulla**: le varianti estetiche esplorate vivono in `componenti.html`, una galleria visiva permanente (parallela a `componenti.md`). Ogni variante provata resta visibile lì, etichettata (es. "attuale in produzione" vs scartata) — stesso principio già adottato per i branch git scartati: non si eliminano, restano disponibili come riferimento. Quando si sceglie una variante, `componenti.md` documenta quale sia il default in produzione; le altre restano comunque nella galleria.
 
 ## Icone: Refactoring UI Icons (`assets/Icons_v1.0.2/`)
 
@@ -219,6 +219,6 @@ Il brand kit portabile vive in `brand-kit/` (`brand-style.md` per i principi, `b
 
 `css/theme-brand.css` fa da ponte: rimappa le semantiche di `tokens.css` sugli alias del brand e applica i principi del brand (niente ombre, link nel colore del testo, un solo accento per sezione, Archivo Black a peso 400). Va caricato **per ultimo**, dopo `brand-kit/brand-tokens-light.css`.
 
-Lo carica solo chi adotta il brand — oggi `index.html`. `content.html` non lo carica e resta il riferimento con il tema precedente: stessi componenti, stesso markup, due identità visive, come previsto dal principio "il punto di intervento resta il livello dei token".
+Lo caricano le pagine che adottano il brand — oggi tutte quelle pubblicate. Il tema precedente non ha più una pagina viva che lo mostri: `content.html`, che faceva da riferimento, è stata rimossa il 18 settembre 2026 quando la landing è diventata `master-ux-ui.html`. Resta nella storia di git, e il principio che dimostrava — stessi componenti, stesso markup, due identità visive, con il punto di intervento al livello dei token — vale ancora.
 
 Aggiunte al brand kit fatte per questo progetto (documentate nei file stessi): `--color-grey-dark` (testo secondario che passa AA su sfondo chiaro, il grigio originale fa ~3.2:1) e `--color-border`.
