@@ -8,7 +8,13 @@
 <meta property="og:title" content="Master UX/UI Design — Diventa Design Engineer">
 <meta property="og:description" content="4 live gratuite a ottobre per vedere come lavora un Design Engineer. Poi un corso di 3 mesi, dal 9 novembre.">
 <meta property="og:type" content="website">
-<!-- TODO og:image: serve un URL assoluto, da aggiungere dopo il deploy (es. https://<dominio>/assets/images/cow-logo.png) -->
+<meta property="og:url" content="https://www.mucca.design/master-ux-ui.html">
+<meta property="og:image" content="https://www.mucca.design/assets/video/video-hero-poster.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="690">
+<meta property="og:image:alt" content="Il primo fotogramma del video introduttivo del Master UX/UI Design.">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://player.vimeo.com">
 <link rel="preconnect" href="https://i.vimeocdn.com">
 <link rel="preconnect" href="https://f.vimeocdn.com">
@@ -24,34 +30,37 @@
 <link rel="stylesheet" href="css/components/form.css">
 <link rel="stylesheet" href="css/components/message-widget.css">
 <link rel="stylesheet" href="css/components/schedule.css">
+<link rel="stylesheet" href="css/components/filmstrip.css">
+<link rel="stylesheet" href="css/components/byline.css">
+<link rel="stylesheet" href="css/components/quote.css">
 <link rel="stylesheet" href="brand-kit/brand-tokens-light.css">
 <link rel="stylesheet" href="css/theme-brand.css">
 </head>
 <body>
 
 <section class="l-hero" id="hero">
-  <div class="l-hero__body">
-    <h1>Master UX/UI Design</h1>
-    <p class="l-hero__tagline">Diventa Design Engineer</p>
-    <p class="l-hero__lead">Un corso di 3 mesi per junior designer che vogliono:</p>
-    <ol class="l-hero__lead">
-      <li>usare l'AI per progettare interfacce (no Figma)</li>
-      <li>costruire un portfolio che convince</li>
-      <li>cercare lavoro, anche fuori dall'Italia, con una strategia che funziona</li>
-    </ol>
-    <p class="l-hero__lead">Prima del corso, 4 live gratuite a ottobre.</p>
-    <div class="l-hero__actions">
-      <a href="#pre-corso" class="c-button">Iscriviti al pre-corso gratuito</a>
-    </div>
-    <p class="l-hero__meta">Prossima classe: lunedì 9 novembre 2026</p>
-  </div>
+  <p class="l-hero__eyebrow">Master UX/UI Design · dal 9 novembre 2026</p>
+  <h1>Diventa Design Engineer</h1>
+  <p class="l-hero__lead">Obiettivo: trovare lavori (interessanti).</p>
   <div class="l-hero__media">
-    <!-- TODO video introduttivo (N1): sostituire il placeholder con la figure .c-video
-         (facade Vimeo), stessa markup del video in "Come insegno". -->
-    <div class="c-video__box l-hero__video-placeholder" aria-hidden="true">
-      <span>Video introduttivo — in arrivo</span>
-    </div>
+    <figure class="c-video">
+      <div class="c-video__box" style="--video-aspect-ratio: 2004 / 1080">
+        <video controls preload="none" playsinline poster="assets/video/video-hero-poster.jpg" width="2004" height="1080">
+          <source src="assets/video/video-hero.mp4" type="video/mp4">
+        </video>
+      </div>
+    </figure>
   </div>
+  <form name="pre-corso" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="c-form l-hero__form" action="/mini-corso/">
+    <input type="hidden" name="form-name" value="pre-corso">
+    <input type="hidden" name="origine" value="hero">
+    <p class="c-form__honeypot">
+      <label>Non compilare se sei umano: <input name="bot-field"></label>
+    </p>
+    <input type="email" name="email" class="c-form__input" placeholder="La tua email" aria-label="La tua email" required>
+    <button type="submit" class="c-button">Iscriviti al pre-corso gratuito</button>
+  </form>
+  <p class="l-hero__meta">4 live gratuite, la prima mercoledì 7 ottobre 2026. Lascia l'email: ricevi il link per le live e i replay. Nient'altro.</p>
 </section>
 
 <section class="l-section" id="problema-junior-designer">
@@ -115,25 +124,23 @@
   <div class="l-section__content">
     <p><img src="assets/images/luca-selfie.webp" alt="Foto di Luca Leone" class="c-avatar" style="float: left; margin-right: var(--space-18); margin-bottom: var(--space-12)">Progetto interfacce dal 2012. Ecommerce, gestionali, CAD, player musicali, e <a href="portfolio.html">molto altro</a>. L'obiettivo è renderti indipendente nel disegnare interfacce chiare, usabili e difendibili.</p>
 
-    <blockquote>
+    <blockquote class="c-quote">
       <p>"Non mi ha insegnato un lavoro, mi ha completamente rivoluzionato il modo di vedere le cose"</p>
       <footer>— Recensione anonima per valutare i docenti, corso Boolean 2024</footer>
     </blockquote>
 
     <h3 id="come-insegno">Come insegno?</h3>
 
-      <p>
-        <figure class="c-video" style="float: left; width: var(--space-300); margin-right: var(--space-18); margin-bottom: var(--space-12)">
-          <div class="c-video__box">
+      <figure class="c-video" style="float: left; width: var(--space-300); margin-right: var(--space-18); margin-bottom: var(--space-12)">
+        <div class="c-video__box">
             <div class="c-video__facade" data-src="https://player.vimeo.com/video/1154594012?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1">
               <img class="c-video__thumbnail" src="https://i.vimeocdn.com/video/2106964239-9f785d59a1caa54ec35ec54f7e95332402416d00daa08c1c34ea5c4b5681cb3d-d_1280x720" alt="" loading="lazy">
               <svg class="c-video__play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"></path></svg>
             </div>
           </div>
           <figcaption>Ilaria Bottinelli, studentessa corso UX/UI Design classe 2 Boolean.</figcaption>
-        </figure>
-        <strong class="u-lead">Ti mostro come faccio, non te lo racconto</strong>: si parte dalla schermata, non dalla teoria. Ti metto davanti a un problema vero e lo risolviamo.
-      </p>
+      </figure>
+      <p><strong class="u-lead">Ti mostro come faccio, non te lo racconto</strong>: si parte dalla schermata, non dalla teoria. Ti metto davanti a un problema vero e lo risolviamo.</p>
       <p><strong class="u-lead">Info solo quando servono</strong>: quando sei bloccato, ti do solo le info che ti servono per sbloccare quel passaggio. Così studi con un obiettivo, non "per accumulare" info NEL CASO servano (come a scuola).</p>
       <p><strong class="u-lead">Esperienza reale</strong>: insegno solo ciò che ho sperimentato in prima persona. Ciò che so che funziona.</p>
       <p><strong class="u-lead">Strumenti che non scadono col corso</strong>: un journal delle cose che fai e un tracking del tempo che ci metti. Li uso io, ogni giorno. Li usi dal primo giorno, e restano tuoi dopo.</p>
@@ -189,11 +196,12 @@
     <p>Lascia l'email: ricevi il link per le live e i replay. Nient'altro.</p>
     <form name="pre-corso" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="c-form" action="/mini-corso/">
       <input type="hidden" name="form-name" value="pre-corso">
+      <input type="hidden" name="origine" value="sezione">
       <p class="c-form__honeypot">
         <label>Non compilare se sei umano: <input name="bot-field"></label>
       </p>
       <input type="email" name="email" class="c-form__input" placeholder="La tua email" aria-label="La tua email" required>
-      <button type="submit" class="c-button">Iscriviti al pre-corso</button>
+      <button type="submit" class="c-button">Iscriviti al pre-corso gratuito</button>
     </form>
   </div>
 </section>
@@ -209,15 +217,21 @@
   <div class="l-section__content">
     <h3 id="per-chi-e-perfetto-questo-corso">Per chi è perfetto questo corso</h3>
     <ul>
-      <li>Chi vuole iniziare una carriera come UX/UI Designer. Cerchi un corso rigoroso e fai sul serio.</li>
+      <li>Chi vuole iniziare una carriera come UX/UI Designer, con una base già costruita — un corso base finito, o un lavoro da designer già cominciato. Cerchi un corso rigoroso e fai sul serio.</li>
       <li>Visual designers che vogliono rafforzare UX e interaction design. Per passare da una bella UI a una UI semplice da usare.</li>
       <li>Frontend developer che vogliono progettare interfacce solide. Chi ha detto che bisogna separare le competenze?</li>
       <li>Founder e imprenditori che stanno costruendo un'app o un sito web. Per progettare app intuitive, o essere in grado di valutare il design dei collaboratori.</li>
     </ul>
 
-    <blockquote>
+    <blockquote class="c-quote">
       <p>A mio parere come Teacher sei uno dei migliori che abbia avuto, contando anche i professori universitari eh che poi nella realtà non sono dei grandi insegnanti ma solo grandi ricercatori 😬</p>
-      <footer>— Davide Cester - classe 2 Corso UX/UI Design Boolean</footer>
+      <footer class="c-byline">
+        <img class="c-avatar c-byline__avatar" src="assets/images/davide_cester.webp" alt="Foto di Davide Cester">
+        <span>
+          <strong class="c-byline__name">Davide Cester</strong>
+          <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>
+        </span>
+      </footer>
     </blockquote>
 
     <h3 id="per-chi-non-e-il-corso-giusto">Per chi NON è il corso giusto</h3>
@@ -277,11 +291,85 @@
     <p>Se pistola alla tempia, ne posso dire una sola di differenza, è questa ⬇️</p>
     <p style="margin-bottom: var(--space-60)"><strong class="u-lead">Ricevimento studenti 3 volte a settimana</strong> 😱: un'ora dal vivo per rispondere, correggere, sbloccare. In mezzo, il forum della community: le domande non aspettano il ricevimento.</p>
 
-    <blockquote>
+    <blockquote class="c-quote">
       <p>Ciao Luca, Volevo farti i complimenti per il livello didattico al quale hai portato la classe. Ciò che mi hai trasmesso più che didattico è personale: stavo perdendo la passione per la progettazione, in questi mesi è rinata grazie alla tua concezione di designer come problem solver pratico che prende la complessità e la rende semplice.</p>
       <p>Mi ero approcciato al design con questa idea ma in 3 anni di università è stata messa a dura prova, ho visto più passione in te che in tutti i professori avuti finora quindi grazie e grazie di avermela trasmessa. Anche il resto della classe è stata molto attiva durante le tue lezioni ed il merito è del tuo approccio, hai sempre favorito discussioni ed interventi e non c'erano mai momenti morti. È un approccio più stancante ma che vale la fatica perché a fine lezione hai 3 "certezze" e 20 domande su cui ragionare, è stimolante!</p>
-      <footer>— Recensione di Stefano Falvella - classe 2 Corso UX/UI Design Boolean</footer>
+      <footer class="c-byline">
+        <img class="c-avatar c-byline__avatar" src="assets/images/stefano_falvella.webp" alt="Foto di Stefano Falvella">
+        <span>
+          <strong class="c-byline__name">Stefano Falvella</strong>
+          <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>
+        </span>
+      </footer>
     </blockquote>
+  </div>
+</section>
+
+<section class="l-section" id="risultati">
+  <div class="l-section__intro">
+    <h2>Risultati, non promesse</h2>
+    <ul class="l-section__toc">
+      <li><a href="#dalla-prima-edizione">👉 Dalla prima edizione del Master</a></li>
+      <li><a href="#lo-stesso-brief-tre-studenti">👉 Lo stesso brief, tre studenti</a></li>
+      <li><a href="#dal-corso-di-visual-design">👉 Dal corso di visual design</a></li>
+    </ul>
+  </div>
+  <div class="l-section__content">
+    <p>Lavori dei miei studenti.</p>
+
+    <h3 id="dalla-prima-edizione">Dalla prima edizione del Master</h3>
+    <p>Interfaccia "macchina del caffè", software per la "gestione dell'ufficio stampa" e "gestionale palestra per sport da combattimento" sono i progetti che disegneremo anche in questo master.</p>
+    <div class="c-filmstrip" data-filmstrip="master" tabindex="0" role="group" aria-label="4 immagini di progetti, scorrevoli">
+      <a href="assets/images/gallery-progetti-studenti/roberto-coffee-machine-wireflow.png" target="_blank" rel="noopener" data-caption="Roberto Migani · Wireflow della macchina del caffè · Master Mucca Design UX/UI">
+        <img src="assets/images/gallery-progetti-studenti/roberto-coffee-machine-wireflow.webp" width="1360" height="799" alt="Roberto Migani, wireflow della macchina del caffè (Master Mucca Design UX/UI): tre percorsi affiancati — preparazione senza personalizzazione, con credito sufficiente, con personalizzazione — ogni schermata collegata alla successiva da una freccia con sopra il gesto che la attiva." loading="lazy">
+      </a>
+      <a href="assets/images/gallery-progetti-studenti/adn-coffee-machine-proto.png" target="_blank" rel="noopener" data-caption="Andrea De Nuccio · Prototipo della macchina del caffè · Master Mucca Design UX/UI">
+        <img src="assets/images/gallery-progetti-studenti/adn-coffee-machine-proto.webp" width="956" height="1566" alt="Andrea De Nuccio, prototipo della macchina del caffè (Master Mucca Design UX/UI): espresso a 1,00€, intensità e taglia come gruppi di tre bottoni, zucchero come barra a sei tacche, e in fondo Home, Reset e Conferma." loading="lazy">
+      </a>
+      <a href="assets/images/gallery-progetti-studenti/mediacontacts-davide.jpg" target="_blank" rel="noopener" data-caption="Davide Vignozzi · Prototipo del progetto Media Contacts · Master Mucca Design UX/UI">
+        <img src="assets/images/gallery-progetti-studenti/mediacontacts-davide.webp" width="1360" height="738" alt="Davide Vignozzi, prototipo di Media Contacts (Master Mucca Design UX/UI): tre colonne — progetti a sinistra, liste di giornalisti al centro, e a destra la tabella della lista selezionata con ruolo, testata ed email." loading="lazy">
+      </a>
+      <a href="assets/images/gallery-progetti-studenti/pound4pound-roberto2.jpg" target="_blank" rel="noopener" data-caption="Roberto Migani · Grafica del progetto Pound 4 Pound · Master Mucca Design UX/UI">
+        <img src="assets/images/gallery-progetti-studenti/pound4pound-roberto2.webp" width="1360" height="757" alt="Roberto Migani, grafica di Pound 4 Pound (Master Mucca Design UX/UI): cinque schermate mobile — creazione e modifica di una lezione, elenco atleti con disciplina e stato del certificato, e la scheda atleta con dati sportivi e statistiche." loading="lazy">
+      </a>
+    </div>
+    <p class="c-filmstrip__caption" data-filmstrip-caption="master">
+      <span data-caption-text>Roberto Migani · Wireflow della macchina del caffè · Master Mucca Design UX/UI</span>
+      <span class="c-filmstrip__count" data-caption-count hidden>1 di 4</span>
+    </p>
+
+    <h3 id="lo-stesso-brief-tre-studenti">Lo stesso brief, tre studenti</h3>
+    <p>Cozy Shoes, un ecommerce di scarpe su misura: un progetto del corso di UX/UI Design che ho insegnato in Boolean.</p>
+    <div class="c-filmstrip" data-filmstrip="cozyshoes" tabindex="0" role="group" aria-label="5 immagini di progetti, scorrevoli">
+      <a href="assets/images/gallery-progetti-studenti/cozyshoes-marco-guidi-ux.jpg" target="_blank" rel="noopener" data-caption="Marco Guidi · UX research del progetto Cozy Shoes · corso UX/UI Design classe 1 Boolean">
+        <img src="assets/images/gallery-progetti-studenti/cozyshoes-marco-guidi-ux.webp" width="1360" height="757" alt="Marco Guidi, UX research di Cozy Shoes (corso UX/UI Design classe 1 Boolean): due cerchi sovrapposti, a sinistra le note sull'utente, a destra quelle sul cliente, e nell'intersezione le decisioni di progetto che soddisfano entrambi." loading="lazy">
+      </a>
+      <a href="assets/images/gallery-progetti-studenti/antonella-ux.jpg" target="_blank" rel="noopener" data-caption="Antonella Sara Montella · UX research del progetto Cozy Shoes · corso UX/UI Design classe 2 Boolean">
+        <img src="assets/images/gallery-progetti-studenti/antonella-ux.webp" width="1360" height="756" alt="Antonella Sara Montella, UX research di Cozy Shoes (corso UX/UI Design classe 2 Boolean): tre interviste trascritte per intero, ogni passaggio evidenziato e tradotto in un post-it a lato, e sulla destra i post-it raggruppati per tema." loading="lazy">
+      </a>
+      <a href="assets/images/gallery-progetti-studenti/antonella-wf.jpg" target="_blank" rel="noopener" data-caption="Antonella Sara Montella · Wireframe del checkout, progetto Cozy Shoes · corso UX/UI Design classe 2 Boolean">
+        <img src="assets/images/gallery-progetti-studenti/antonella-wf.webp" width="1360" height="771" alt="Antonella Sara Montella, wireframe del checkout di Cozy Shoes (corso UX/UI Design classe 2 Boolean): carrello, spedizione e pagamento in più versioni collegate da frecce, con le note di revisione scritte accanto a ogni schermata." loading="lazy">
+      </a>
+      <a href="assets/images/gallery-progetti-studenti/cozyshoes-ilaria-overview.jpg" target="_blank" rel="noopener" data-caption="Ilaria Bottinelli · Overview dei wireframe, progetto Cozy Shoes · corso UX/UI Design classe 2 Boolean">
+        <img src="assets/images/gallery-progetti-studenti/cozyshoes-ilaria-overview.webp" width="1360" height="775" alt="Ilaria Bottinelli, overview dei wireframe di Cozy Shoes (corso UX/UI Design classe 2 Boolean): decine di schermate collegate da frecce su un'unica tela, con in alto il punto di partenza segnato «Start» e sulla destra il ramo del quiz per la soletta." loading="lazy">
+      </a>
+      <a href="assets/images/gallery-progetti-studenti/cozyshoes-ilaria-dettaglio.jpg" target="_blank" rel="noopener" data-caption="Ilaria Bottinelli · Dettaglio dei wireframe, progetto Cozy Shoes · corso UX/UI Design classe 2 Boolean">
+        <img src="assets/images/gallery-progetti-studenti/cozyshoes-ilaria-dettaglio.webp" width="1360" height="780" alt="Ilaria Bottinelli, dettaglio dei wireframe di Cozy Shoes (corso UX/UI Design classe 2 Boolean): la domanda «Quando cammini senza scarpe, come senti il tuo piede?» con quattro risposte illustrate per piede, gli stati del bottone disegnati a parte e le note sul perché di ogni scelta." loading="lazy">
+      </a>
+    </div>
+    <p class="c-filmstrip__caption" data-filmstrip-caption="cozyshoes">
+      <span data-caption-text>Marco Guidi · UX research del progetto Cozy Shoes · corso UX/UI Design classe 1 Boolean</span>
+      <span class="c-filmstrip__count" data-caption-count hidden>1 di 5</span>
+    </p>
+
+    <h3 id="dal-corso-di-visual-design">Dal corso di visual design</h3>
+    <p>Un altro corso mio, all'inizio del 2025. L'esercizio è la pagina di presentazione di un designer, rifatta tre volte. Il principio dell'iterazione in azione.</p>
+    <div class="c-filmstrip" tabindex="0" role="group" aria-label="1 immagine di progetto">
+      <a href="assets/images/gallery-progetti-studenti/esercizio-stefano.jpg" target="_blank" rel="noopener" data-caption="Stefano Soave · Esercizio di iterazione grafica · corso Mucca Design, 2025">
+        <img src="assets/images/gallery-progetti-studenti/esercizio-stefano.webp" width="1360" height="623" alt="Stefano Soave, esercizio di iterazione grafica (corso Mucca Design, 2025): tre varianti della stessa pagina di presentazione di un designer, dalla più sobria a quella con il titolo barrato e le emoji." loading="lazy">
+      </a>
+    </div>
+    <p class="c-filmstrip__caption">Stefano Soave · Esercizio di iterazione grafica · corso Mucca Design, 2025</p>
   </div>
 </section>
 
@@ -338,9 +426,72 @@
   </div>
 </section>
 
-<footer class="l-footer">
-  <div class="l-footer__inner">
-    <p>Master UX/UI Design di Luca Leone 2026</p>
+<section class="l-section" id="domande-frequenti">
+  <div class="l-section__intro">
+    <h2>Domande frequenti</h2>
+  </div>
+  <div class="l-section__content">
+    <details class="c-accordion">
+      <summary>Cos'è il Master UX/UI Design, in pratica?</summary>
+      <p>Un corso live di 3 mesi, in video call, con 12 persone in classe. Tre lezioni a settimana (lunedì, mercoledì, venerdì, 19:00-21:00), un'ora di ricevimento studenti tre volte a settimana, e il forum della community su Skool sempre aperto in mezzo. Si lavora su due progetti veri — la macchina del caffè e la gestione dell'ufficio stampa — più un modulo dedicato a portfolio e ricerca del lavoro.</p>
+    </details>
+
+    <details class="c-accordion">
+      <summary>Posso partire da zero?</summary>
+      <p>No. Iniziare una carriera sì, iniziare da zero no: il corso presuppone una base già costruita — un corso base già fatto, o un lavoro da designer già cominciato. Si parte dal primo giorno progettando, e senza quella base le prime settimane diventano una rincorsa invece che un allenamento.</p>
+    </details>
+
+    <details class="c-accordion">
+      <summary>Le lezioni sono registrate? E se ne perdo una?</summary>
+      <p>Sì, le registrazioni restano disponibili e una lezione persa si recupera. Ma sono una rete di sicurezza, non il corso: quello che non si recupera guardando è il ricevimento, dove porti il tuo schermo e il tuo problema. Se l'idea è seguire tutto in differita, questo non è il corso giusto.</p>
+    </details>
+
+    <details class="c-accordion">
+      <summary>Come funziona il feedback? Ci sono tutor?</summary>
+      <p>Niente tutor: correggo io, così lo standard e il metodo restano gli stessi per tutti. Il feedback arriva su due canali — il ricevimento studenti, un'ora tre volte a settimana, dove si guarda il lavoro dal vivo; e il forum della community, per quando ti blocchi fra una lezione e l'altra.</p>
+      <p>Non è un giudizio "bello/brutto": si lavora su ragionamento, chiarezza, usabilità e metodo. Il punto non è che quella schermata diventi giusta, è che la prossima te la sappia impostare da solo.</p>
+    </details>
+
+    <details class="c-accordion">
+      <summary>Le consegne vengono valutate?</summary>
+      <p>Sì. Ogni modulo ha le sue consegne, e il portfolio finale ha una revisione con un esito — non un voto, un giudizio sul fatto che regga o no davanti a chi assume. Se non ci siamo, si rimette a posto: è il motivo per cui la revisione esiste.</p>
+    </details>
+
+    <details class="c-accordion">
+      <summary>Quanto tempo serve a settimana?</summary>
+      <p>Le tre lezioni sono 6 ore, ed è il minimo: sono il tempo in cui guardi, non quello in cui impari. Un'ora al giorno fra una lezione e l'altra, per rifare e completare gli esercizi, è il punto di riferimento.</p>
+      <p>Dipende da dove parti, ma una cosa l'ho vista in tutte le classi in cui ho insegnato, senza una sola eccezione: gli studenti migliori sono quelli che hanno messo dentro più ore. E meglio un'ora al giorno per cinque giorni che cinque ore in un pomeriggio.</p>
+    </details>
+
+    <details class="c-accordion">
+      <summary>Serve saper programmare?</summary>
+      <p>No. I prototipi si costruiscono con l'AI, e quello che serve sapere del frontend lo si impara facendo. Il Design Engineer non scrive codice di produzione: consegna prototipi che funzionano nel browser e parla la lingua del team di sviluppo.</p>
+    </details>
+
+    <details class="c-accordion">
+      <summary>Che strumenti servono?</summary>
+      <p>Excalidraw per gli sketch, Claude Code come editor per costruire i prototipi con l'AI, Git e GitHub per il journal e per pubblicare il portfolio, Skool per il forum, Google Drive per i file. Tutto gratuito o con un piano gratuito sufficiente, a parte l'abbonamento all'AI.</p>
+      <p>Niente Figma: non è un dispetto, è che il lavoro finisce nel browser e passare da un mockup intermedio costa tempo senza aggiungere niente. Quello che insegno sull'AI non dipende comunque dall'editor — se preferisci Cursor o Windsurf, il metodo è lo stesso.</p>
+    </details>
+
+    <details class="c-accordion">
+      <summary>Devo sapere l'inglese?</summary>
+      <p>Per seguire il corso no: lezioni, ricevimento e forum sono in italiano.</p>
+      <p>Per la <a href="#garanzia">garanzia</a> sì, e vale la pena dirlo qui: vale per chi cerca sui mercati internazionali, ed è lì che serve l'inglese. Senza, il corso lo segui lo stesso e impari lo stesso, ma la parte di ricerca del lavoro ti resta dentro il mercato italiano — che è una frazione di quello disponibile.</p>
+    </details>
+
+    <details class="c-accordion">
+      <summary>Mi aiuti a trovare lavoro?</summary>
+      <p>Non con il ripasso del CV e la simulazione del colloquio. Il Modulo 3 è un modulo come gli altri, con consegne: un portfolio pubblicato come pagina HTML, con dentro i progetti del corso che funzionano davvero nel browser, e un journal delle azioni di ricerca che tieni durante il corso e nei mesi dopo.</p>
+      <p>È anche la parte su cui rispondo: se applichi il metodo e in 6 mesi dalla fine non trovi lavoro, ti restituisco tutto. Le condizioni sono scritte per esteso in <a href="garanzia.html">questa pagina</a>.</p>
+    </details>
+
+    <details class="c-accordion">
+      <summary>Se mi ritiro, c'è un rimborso?</summary>
+      <p>Se ti ritiri entro due settimane dall'inizio del corso ti restituisco tutto. Dopo non sono previsti rimborsi — ma se hai un impedimento imprevisto, valuto di spostarti alla classe successiva.</p>
+    </details>
+
+    <p style="margin-top: var(--space-24)">C'è una domanda che qui non trovi? Usa "Lascia un messaggio" qui sotto, o vieni al <a href="#pre-corso">pre-corso</a> e chiedimela dal vivo.</p>
     <details class="c-message-widget">
       <summary>Lascia un messaggio</summary>
       <form name="lascia-messaggio" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="c-message-widget__panel">
@@ -354,9 +505,15 @@
       </form>
     </details>
   </div>
+</section>
+
+<footer class="l-card__footer">
+  <p>2026 • Mucca Design di Luca Leone • VAT IT08200720962</p>
 </footer>
 
 <script src="js/video-facade.js"></script>
+<script src="js/filmstrip.js"></script>
+<script src="js/message-widget.js"></script>
 
 </body>
 </html>
