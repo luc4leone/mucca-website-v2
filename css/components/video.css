@@ -6,9 +6,12 @@
    normale della figure, non deve finire dentro il box con
    aspect-ratio/overflow:hidden (altrimenti resta nascosta dietro
    al video, che la sovrasta essendo position:absolute). */
+/* --video-aspect-ratio: il rapporto lo detta il file, non lo stile — un
+   16/9 imposto a un video 2004x1080 lo incornicerebbe con due bande nere
+   dentro un box che ha già il suo bordo arrotondato. */
 .c-video__box {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: var(--video-aspect-ratio, 16 / 9);
   border-radius: var(--radius-8);
   overflow: hidden;
   background: var(--zinc-900);
@@ -31,6 +34,16 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Video servito da noi, con i controlli nativi del browser: nessuna
+   facade e nessun JS, perché non c'è una richiesta a terzi da evitare.
+   `contain` e non `cover`: il box ha già il rapporto del file, e se un
+   domani non l'avesse è meglio una banda che un taglio. */
+.c-video__box > video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .c-video__play {
@@ -119,10 +132,12 @@
   display: none;
 }
 
+/* Il rapporto lo copia il JS dal box sorgente all'apertura: l'overlay
+   deve avere la forma del video che sta aprendo, non una forma fissa. */
 .c-video-overlay__box {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: var(--video-aspect-ratio, 16 / 9);
   cursor: default;
 }
 

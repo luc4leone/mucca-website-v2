@@ -1,0 +1,43 @@
+/*
+  Citazione di una recensione.
+
+  Il blocco prende la superficie scura, che è quella nativa del brand
+  (brand-kit/brand-style.md, principio 1): il sito ne adotta la variante
+  light, la recensione se la riprende per un blocco solo. È così che
+  stacca dal contenuto attorno senza spendere il colore d'accento, che
+  resta libero per il CTA — e senza ombre o gradienti, che il brand non
+  ammette.
+
+  Struttura e default qui, valori nel tema (css/theme-brand.css).
+*/
+.c-quote {
+  --quote-bg: var(--color-secondary);
+  --quote-fg: var(--color-on-secondary);
+  /* Default prudente: senza un tema che dia un grigio leggibile sul
+     fondo scuro, il testo secondario resta nel colore del testo. */
+  --quote-fg-muted: var(--quote-fg);
+
+  /* Le semantiche ridefinite qui dentro fanno il lavoro sui figli:
+     .c-byline__name e il testo secondario si ricolorano da soli. */
+  --color-text: var(--quote-fg);
+  --color-text-muted: var(--quote-fg-muted);
+
+  /* Sotto ai float, mai di fianco: il blocco ha una superficie propria e
+     un'immagine in float che sborda dal paragrafo sopra (il selfie della
+     bio) gli finirebbe sopra al fondo scuro. Scorrere il testo attorno a
+     un'immagine ha senso, far passare l'immagine sopra a una card no. */
+  clear: both;
+
+  margin: var(--space-30) 0;
+  padding: var(--space-30);
+  border-left: 0;
+  border-radius: var(--radius-4);
+  background: var(--quote-bg);
+  color: var(--quote-fg);
+  font-size: var(--font-size-18);
+}
+
+/* Stacco fra l'ultima riga della citazione e la firma. */
+.c-quote p:last-of-type {
+  margin-bottom: var(--space-24);
+}

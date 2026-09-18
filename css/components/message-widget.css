@@ -1,12 +1,21 @@
+/* Widget "Lascia un messaggio": un <details>, così la riga è sempre
+   visibile e il form compare solo a chi ha davvero una domanda.
+   Si apre nel flusso, non come popover sovrapposto: viveva nell'angolo
+   del footer, ora è contenuto di pagina sopra al footer, e un pannello
+   in posizione assoluta coprirebbe le FAQ che stanno sopra. In più il
+   brand non usa ombre (--shadow-lg: none), quindi un pannello flottante
+   non avrebbe niente che lo stacchi dallo sfondo. */
 .c-message-widget {
-  position: relative;
+  max-width: var(--space-480);
 }
 
+/* Sottolineatura piena come ogni altro link della pagina: il tratteggio
+   lo faceva sembrare un'altra cosa, ma apre un form come un link apre
+   una pagina. Colore della riga e accento all'hover li dà il tema. */
 .c-message-widget summary {
   list-style: none;
   color: var(--color-primary);
   text-decoration: underline;
-  text-decoration-style: dashed;
   cursor: pointer;
 }
 
@@ -14,23 +23,34 @@
   display: none;
 }
 
+/* scroll-margin-bottom: js/message-widget.js allinea il fondo del
+   pannello al fondo della viewport — senza questo resterebbe appiccicato
+   al bordo dello schermo. */
 .c-message-widget__panel {
-  position: absolute;
-  right: 0;
-  bottom: 100%;
-  z-index: var(--z-modal);
+  scroll-margin-bottom: var(--space-24);
   display: flex;
   flex-direction: column;
   gap: var(--space-12);
-  width: var(--space-360);
-  margin-bottom: var(--space-12);
+  margin-top: var(--space-12);
   padding: var(--space-18);
   border-radius: var(--radius-8);
   background: var(--color-background);
   border: var(--border-width-1) solid var(--color-border);
-  box-shadow: var(--shadow-lg);
+}
+
+/* .c-form__input porta flex: 1 1 var(--space-240), dimensionato per il
+   form in riga dell'hero. In colonna quel basis diventa un'altezza e la
+   casella email viene alta 240px: qui ogni campo sta alto quanto serve. */
+.c-message-widget__panel .c-form__input {
+  flex: 0 0 auto;
 }
 
 .c-message-widget__panel textarea.c-form__input {
   min-height: var(--space-120);
+}
+
+/* Il bottone non si allarga a tutta la colonna: è un invio, non la CTA
+   principale della pagina. */
+.c-message-widget__panel .c-button {
+  align-self: start;
 }

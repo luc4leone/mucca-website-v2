@@ -49,3 +49,96 @@
   font-size: var(--font-size-14);
   color: var(--color-text-muted);
 }
+
+/* Immagini che rimandano alla versione a dimensione intera. Il link
+   prende il posto dell'<img> come figlio flex, quindi eredita `flex` e
+   lo snap; l'immagine dentro continua a prendere altezza e bordo dalla
+   regola sopra. Serve dove le immagini sono canvas larghi 2800px, che
+   a 300px di altezza si vedono ma non si leggono — stessa soluzione di
+   `.c-automation__figure` in automations.html.
+   Primo uso: la gallery dei progetti degli studenti in master-ux-ui.html. */
+.c-filmstrip a {
+  flex: none;
+  display: block;
+  scroll-snap-align: start;
+}
+
+/* Didascalia e navigazione (`js/filmstrip.js`): una riga sola sotto la
+   strip, che descrive l'immagine più a sinistra fra quelle visibili e
+   tiene a destra i bottoni ← →. Prende il posto di `.c-filmstrip__hint`
+   dove i metadati per immagine esistono — autore, progetto, corso — e ne
+   eredita il margine negativo, che la incolla alla strip invece di
+   lasciarla a mezz'aria. Il conteggio torna dentro questa riga.
+
+   I bottoni stanno qui e non sovrapposti ai bordi della strip, che è la
+   posizione da carosello: la strip occupa già tutta la colonna, quindi
+   lì coprirebbero una fetta di immagine, e sopra contenuti di colore
+   imprevedibile servirebbe un fondino opaco per restare leggibili. In
+   questa riga non rubano spazio a niente e sostituiscono un'istruzione
+   («scorri o usa ← →») con i controlli veri. */
+/* Grid e non flex: didascalia e conteggio vanno incolonnati uno sotto
+   l'altro a sinistra, i bottoni a destra accanto a entrambi. Con flex
+   servirebbe un contenitore in più attorno ai due testi, o il conteggio
+   finirebbe staccato sotto i bottoni, alto quanto loro. */
+.c-filmstrip__caption {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: var(--space-12);
+  margin: calc(var(--space-24) * -1) 0 var(--space-24);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-normal);
+}
+
+.c-filmstrip__caption > [data-caption-text] {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.c-filmstrip__count {
+  grid-column: 1;
+  grid-row: 2;
+  color: var(--color-text-muted);
+}
+
+/* I bottoni occupano tutta la colonna di destra, centrati sulle due
+   righe di testo: con una riga sola o con due restano allineati. */
+.c-filmstrip__nav {
+  display: flex;
+  gap: var(--space-6);
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+}
+
+/* Stesso disegno di `.c-lang-toggle` (job.css): bordo sottile e niente
+   riempimento, che resta riservato a `.c-button`, il CTA.
+
+   36px e non 48: i bottoni attraversano le due righe di testo della
+   didascalia, e se sono più alti della loro somma (~42px) la griglia
+   allarga le righe per contenerli — il conteggio si stacca dalla
+   didascalia con un buco in mezzo. 36px sta sotto quella soglia e resta
+   sopra il minimo di 24px del criterio WCAG 2.5.8. */
+.c-filmstrip__button {
+  width: var(--space-36);
+  height: var(--space-36);
+  padding: 0;
+  border: var(--border-width-1) solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--font-size-16);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.c-filmstrip__button:hover:not(:disabled) {
+  border-color: var(--color-text);
+}
+
+/* Disabilitato agli estremi: dice anche dove sei, non solo cosa non
+   puoi fare. Niente `.is-`: lo stato è nativo (design-system.md). */
+.c-filmstrip__button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}

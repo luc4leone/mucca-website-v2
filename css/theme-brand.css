@@ -136,8 +136,16 @@ blockquote {
   background: var(--color-black);
 }
 
+/* Stesso trattamento di `a` qui sopra: colore del testo, riga grigia,
+   accento solo all'hover. */
 .c-message-widget summary {
   color: inherit;
+  text-decoration-color: var(--color-grey);
+  text-underline-offset: 0.15em;
+}
+
+.c-message-widget summary:hover {
+  text-decoration-color: var(--color-accent);
 }
 
 .c-message-widget__panel {
@@ -151,4 +159,12 @@ blockquote {
 
 .c-schedule__date small {
   font-family: var(--font-body);
+}
+
+/* Il nero pieno del brand come superficie della citazione, e il grigio
+   neutro per la provenienza: #8C8C94 su #0E0E10 fa ~5.4:1, passa AA. */
+.c-quote {
+  --quote-bg: var(--color-black);
+  --quote-fg: var(--color-white);
+  --quote-fg-muted: var(--color-grey);
 }

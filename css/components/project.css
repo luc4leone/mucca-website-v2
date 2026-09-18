@@ -42,6 +42,14 @@
   margin-bottom: 0;
 }
 
+/* Un <dd> che contiene una lista o più paragrafi: l'ultimo figlio porta
+   il proprio margine e si somma a quello della riga, quindi va azzerato.
+   Serve da quando le voci di automations.html sono elenchi invece che
+   blocchi di prosa. */
+.c-project__facts dd > :last-child {
+  margin-bottom: 0;
+}
+
 @media (min-width: 768px) {
   .c-project__facts {
     display: grid;

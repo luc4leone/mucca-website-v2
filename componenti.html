@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="css/components/button.css">
 <link rel="stylesheet" href="css/components/accordion.css">
 <link rel="stylesheet" href="css/components/step-cards.css">
+<link rel="stylesheet" href="css/components/avatar.css">
+<link rel="stylesheet" href="css/components/byline.css">
+<link rel="stylesheet" href="css/components/quote.css">
 <style>
   /* Solo chrome della galleria, non è stile di componenti reali. */
   body {
@@ -40,6 +43,20 @@
 
   .gallery-variant__demo {
     max-width: 260px;
+  }
+
+  /* Una citazione ha bisogno di più larghezza di una step card per
+     leggersi come si legge in pagina. */
+  #byline .gallery-variant__demo,
+  #quote .gallery-variant__demo {
+    max-width: 520px;
+  }
+
+  .x-gallery-note {
+    max-width: 520px;
+    margin: 0 0 var(--space-24);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-14);
   }
 </style>
 </head>
@@ -117,6 +134,84 @@
       <div class="c-step-card" data-variant="sketch">
         <img class="c-step-card__sketch" src="assets/images/step-card-sketch-2.svg" alt="Step 2: Migliora la qualità e la presentazione dei tuoi lavori">
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-component" id="quote">
+  <h2>Citazione di una recensione</h2>
+  <p class="x-gallery-note">Qui la galleria non carica il tema brand: <code>.c-quote</code> mostra i suoi default, cioè <code>--color-secondary</code> di <code>tokens.css</code>. In <code>master-ux-ui.html</code>, dove il tema è caricato, la stessa superficie è il nero del brand. È il componente che consuma i token, il tema che ne decide il valore. Le tre varianti esplorate stanno in <code>grafica-recensione.html</code>.</p>
+
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">Superficie invertita — attuale in produzione</span>
+    <div class="gallery-variant__demo">
+      <blockquote class="c-quote">
+        <p>A mio parere come Teacher sei uno dei migliori che abbia avuto, contando anche i professori universitari eh che poi nella realtà non sono dei grandi insegnanti ma solo grandi ricercatori 😬</p>
+        <footer class="c-byline">
+          <img class="c-avatar c-byline__avatar" src="assets/images/davide_cester.webp" alt="Foto di Davide Cester">
+          <span>
+            <strong class="c-byline__name">Davide Cester</strong>
+            <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>
+          </span>
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">Senza foto — la recensione anonima prende la stessa superficie</span>
+    <div class="gallery-variant__demo">
+      <blockquote class="c-quote">
+        <p>"Non mi ha insegnato un lavoro, mi ha completamente rivoluzionato il modo di vedere le cose"</p>
+        <footer>— Recensione anonima per valutare i docenti, corso Boolean 2024</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-component" id="byline">
+  <h2>Firma di una citazione</h2>
+  <p class="x-gallery-note">Fuori dalla superficie scura, per vedere il componente da solo.</p>
+
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">Con foto (.c-byline nel footer del blockquote) — attuale in produzione</span>
+    <div class="gallery-variant__demo">
+      <blockquote>
+        <p>A mio parere come Teacher sei uno dei migliori che abbia avuto, contando anche i professori universitari eh che poi nella realtà non sono dei grandi insegnanti ma solo grandi ricercatori 😬</p>
+        <footer class="c-byline">
+          <img class="c-avatar c-byline__avatar" src="assets/images/davide_cester.webp" alt="Foto di Davide Cester">
+          <span>
+            <strong class="c-byline__name">Davide Cester</strong>
+            <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>
+          </span>
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">Senza foto (footer nudo, nessuna classe) — anche questa in produzione: la recensione anonima non ha un volto da mostrare</span>
+    <div class="gallery-variant__demo">
+      <blockquote>
+        <p>"Non mi ha insegnato un lavoro, mi ha completamente rivoluzionato il modo di vedere le cose"</p>
+        <footer>— Recensione anonima per valutare i docenti, corso Boolean 2024</footer>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="gallery-variant">
+    <span class="gallery-variant__label">Citazione lunga — la firma resta in fondo e non cresce con il testo</span>
+    <div class="gallery-variant__demo">
+      <blockquote>
+        <p>Ciao Luca, Volevo farti i complimenti per il livello didattico al quale hai portato la classe. Ciò che mi hai trasmesso più che didattico è personale: stavo perdendo la passione per la progettazione, in questi mesi è rinata grazie alla tua concezione di designer come problem solver pratico che prende la complessità e la rende semplice.</p>
+        <footer class="c-byline">
+          <img class="c-avatar c-byline__avatar" src="assets/images/stefano_falvella.webp" alt="Foto di Stefano Falvella">
+          <span>
+            <strong class="c-byline__name">Stefano Falvella</strong>
+            <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>
+          </span>
+        </footer>
+      </blockquote>
     </div>
   </div>
 </section>

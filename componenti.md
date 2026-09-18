@@ -6,7 +6,7 @@ Documentazione dei componenti riusabili (`.c-<nome>`). Convenzioni generali in `
 
 **Scopo**: azione primaria cliccabile (CTA, submit).
 
-**Dove usato**: sezione "Mini corso gratis" (`content.html`).
+**Dove usato**: form del pre-corso, nell'hero e nella sezione "Pre-corso gratuito" (`master-ux-ui.html`).
 
 **File**: `css/components/button.css`
 
@@ -46,7 +46,7 @@ Override per istanza, es. bottone secondario:
 
 **Scopo**: contenuto collassabile, mostra/nasconde la risposta a una domanda (FAQ).
 
-**Dove usato**: sotto-sezione "FAQ" dentro "Il problema del Junior Designer da quando c'è AI" (`content.html`).
+**Dove usato**: blocco "FAQ" dentro "Il problema del Junior Designer da quando c'è AI", e la sezione "Domande frequenti" in fondo (`master-ux-ui.html`).
 
 **File**: `css/components/accordion.css`
 
@@ -80,7 +80,7 @@ Override per istanza, es. bottone secondario:
 
 **Scopo**: sequenza di 2+ step numerati, con freccia di collegamento tra un box e il successivo. Basato su uno sketch fornito dall'utente.
 
-**Dove usato**: sotto-sezione "Le soluzioni che offre questo corso" dentro "Il problema del Junior Designer da quando c'è AI" (`content.html`), al posto del paragrafo prosa "Diventa Design Engineer sono le fondamenta...".
+**Dove usato**: sotto-sezione "Le soluzioni che offre questo corso" dentro "Il problema del Junior Designer da quando c'è AI" (`master-ux-ui.html`), al posto del paragrafo prosa "Diventa Design Engineer sono le fondamenta...".
 
 **File**: `css/components/step-cards.css`
 
@@ -190,17 +190,91 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 <img src="assets/images/luca-selfie.webp" alt="Foto di Luca Leone" class="c-avatar" style="float: left; margin-right: var(--space-18); margin-bottom: var(--space-12)">
 ```
 
-**Variabili (interfaccia)**: nessuna per ora — dimensione fissa (`--space-120`), da esporre come variabile se serve una dimensione diversa altrove.
+**Variabili (interfaccia)**: `--avatar-size` (default `var(--space-120)`) — consumata da `width` e `height`. Esposta quando è servita la prima dimensione diversa: la foto piccola nella firma di una recensione (`.c-byline`).
 
 **Stile**: `object-fit: cover` (ritaglio pulito indipendentemente dal rapporto d'aspetto originale), `border-radius: var(--radius-full)` (cerchio).
 
-**Nota**: in `assets/images/` esistono già altre foto persona (autori delle testimonianze — Andrea De Nuccio, Davide Cester, Stefano Falvella, ecc.), probabile riuso di questo componente quando quelle sezioni verranno completate con foto invece che solo testo.
+**Nota**: le foto degli autori delle testimonianze in `assets/images/` sono il secondo uso del componente, dentro `.c-byline` (sotto). Davide Cester e Stefano Falvella sono in pagina; De Nuccio, Zanella, Schiavon, Giglietti e Bottinelli hanno la foto ma non ancora una collocazione.
+
+## Citazione di una recensione (`.c-quote`)
+
+**Scopo**: far staccare una recensione dal contenuto attorno. Il difetto della versione precedente era esattamente questo: un `blockquote` con il filetto a sinistra, a colpo d'occhio, è un paragrafo come gli altri.
+
+**Dove usato**: i tre `blockquote` di `master-ux-ui.html` — la recensione anonima in "Ciao, mi chiamo Luca Leone", Davide Cester in "Non è il corso giusto per tutti", Stefano Falvella in "Cosa rende diverso questo corso?".
+
+**File**: `css/components/quote.css` (struttura e default) + valori in `css/theme-brand.css`.
+
+**Markup**: una classe sul `blockquote`, niente di più. Dentro, la firma è `.c-byline`.
+
+```html
+<blockquote class="c-quote">
+  <p>A mio parere come Teacher sei uno dei migliori che abbia avuto…</p>
+  <footer class="c-byline">…</footer>
+</blockquote>
+```
+
+**Variabili (interfaccia)**: `--quote-bg`, `--quote-fg`, `--quote-fg-muted`. Le prime due hanno come default `--color-secondary`/`--color-on-secondary`; la terza ricade su `--quote-fg`, così senza un tema che dia un grigio leggibile sul fondo scuro il testo secondario resta comunque visibile. Il tema brand le porta a nero, bianco sporco e grigio neutro.
+
+**Stile**: superficie piena con `--radius-4`, niente filetto a sinistra, testo a 18px. La superficie scura è quella nativa del brand (`brand-kit/brand-style.md`, principio 1: "sfondo scuro di default") — il sito ne adotta la variante light, la recensione se la riprende per un blocco solo. Nessun colore d'accento speso: il corallo resta al CTA, come vuole il principio 2.
+
+**Come ricolora i figli**: il componente ridefinisce `--color-text` e `--color-text-muted` su di sé. Nome e provenienza della firma si adeguano da soli, senza una regola per ogni figlio — è il motivo per cui `.c-byline` non sa niente della superficie su cui sta.
+
+**Stati**: nessuno. Non è interattivo.
+
+**Varianti esplorate**: tre, in `grafica-recensione.html` — superficie invertita (questa), virgoletta corallo, fuori colonna. Le altre due restano lì come riferimento.
+
+## Firma di una citazione (`.c-byline`)
+
+**Scopo**: attribuire una recensione a una persona con la sua faccia — foto, nome, provenienza. Un nome senza volto è indistinguibile da un nome inventato.
+
+**Dove usato**: nel `<footer>` dei `blockquote` di `master-ux-ui.html`, dentro `.c-quote` — Davide Cester in "Non è il corso giusto per tutti", Stefano Falvella in "Cosa rende diverso questo corso?".
+
+**File**: `css/components/byline.css`
+
+**Markup**: sta dentro il `<footer>` del `blockquote`, non lo sostituisce. È `base.css` a dare al footer dimensione e colore del testo secondario; il componente aggiunge solo la struttura a due righe accanto alla foto.
+
+```html
+<blockquote>
+  <p>A mio parere come Teacher sei uno dei migliori che abbia avuto…</p>
+  <footer class="c-byline">
+    <img class="c-avatar c-byline__avatar" src="assets/images/davide_cester.webp" alt="Foto di Davide Cester">
+    <span>
+      <strong class="c-byline__name">Davide Cester</strong>
+      <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>
+    </span>
+  </footer>
+</blockquote>
+```
+
+**Variabili (interfaccia)**: nessuna propria. `.c-byline__avatar` imposta `--avatar-size: var(--space-48)`, che è l'interfaccia di `.c-avatar`, non una variabile di questo componente.
+
+**Stile**: `flex` con `align-items: center` e `gap: var(--space-12)`. Il nome prende `--font-weight-700` e `--color-text` (risale dal muted del footer), la provenienza resta muted. L'avatar ha `flex-shrink: 0`: a larghezze strette si accorcia il testo, non la faccia.
+
+**Senza foto**: il componente è additivo. La recensione anonima nella sezione "Ciao, mi chiamo Luca Leone" resta un `<footer>` di solo testo, senza classe — non si inventa un volto per una valutazione anonima.
+
+**Stati**: nessuno. Non è interattivo.
 
 ## Video facade (`.c-video`)
 
 **Scopo**: embed video (Vimeo) con caricamento lazy — mostra solo una thumbnail + icona play finché l'utente non clicca. Al click, il video si ingrandisce in overlay fino a coprire l'intera colonna contenuto (non tutto il viewport, non la sidebar).
 
-**Dove usato**: inline nel primo `<li>` di "Come insegno?" dentro "Ciao, mi chiamo Luca Leone" (`content.html`), come thumbnail piccola con float.
+**Due modi, stesso box.**
+
+1. **Facade** (`.c-video__facade` + `data-src`): per i video di terzi. Mostra solo la thumbnail finché non clicchi, così il provider non riceve nessuna richiesta da chi il video non lo guarda, e al click si apre in overlay sulla colonna di contenuto. Usato in "Come insegno?" (Vimeo).
+2. **`<video>` nativo**: per i file che serviamo noi. Nessuna facade e nessun JS — non c'è una richiesta a terzi da evitare, e `preload="none"` fa già il lavoro: il file non parte finché non si preme play. Controlli nativi del browser, fullscreen compreso. Usato nell'hero di `master-ux-ui.html`.
+
+```html
+<figure class="c-video">
+  <div class="c-video__box" style="--video-aspect-ratio: 2004 / 1080">
+    <video controls preload="none" playsinline poster="assets/video/video-hero-poster.jpg" width="2004" height="1080">
+      <source src="assets/video/video-hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <figcaption>Video introduttivo — 4:49</figcaption>
+</figure>
+```
+
+**Dove usato**: hero di `master-ux-ui.html` (file nostro, `<video>` nativo) e inline in "Come insegno?" (Vimeo, facade con float).
 
 **File**: `css/components/video.css` + `js/video-facade.js` (nessuna libreria).
 
@@ -228,17 +302,74 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 
 **Comportamento**: click su `.c-video__facade` → JS crea (una volta sola, per facade) un overlay `position: fixed`, con `left`/`width` calcolati via `getBoundingClientRect()` del `.l-section__content` più vicino, e ci inietta un `<iframe>` con `src` da `data-src`. Nessuna richiesta di rete al provider finché l'utente non clicca. Chiusura: click sul backdrop, bottone "×", o Esc — la thumbnail torna al suo stato piccolo iniziale (l'iframe viene distrutto, non solo nascosto). Stesso pattern scoped-al-contenitore già usato per `.c-masonry-overlay` in `portfolio.html`.
 
-**Variabili (interfaccia)**: nessuna per ora — `aspect-ratio: 16 / 9` fisso sia per la thumbnail che per l'overlay ingrandito.
+**Variabili (interfaccia)**:
+
+- `--video-aspect-ratio` (default `16 / 9`) — il rapporto del box. Lo detta il file, non lo stile: il video dell'hero è 2004×1080, e un 16/9 imposto gli metterebbe due bande nere dentro un box che ha già i suoi angoli arrotondati.
 
 **Accessibilità**: `alt=""` sulla thumbnail (decorativa, la `figcaption` già descrive il contenuto — evita doppio annuncio agli screen reader). La `figcaption` non è duplicata nell'overlay ingrandito (scompare insieme alla thumbnail piccola, per scelta esplicita).
 
-**Stato di caricamento nell'overlay**: al click, prima di creare l'iframe, JS clona la thumbnail del facade e aggiunge uno spinner (`.c-video-overlay__thumbnail` + `.c-video-overlay__spinner`) dentro `.c-video-overlay__box`. L'iframe parte a `opacity: 0`; al suo evento `load` riceve la classe `.is-loaded` (fade a `opacity: 1`, `--duration-250`) e lo spinner viene rimosso. Evita il "buco vuoto" percepito tra apertura overlay e comparsa effettiva del video — vedi `journal.md` (2026-07-30). Completato con `<link rel="preconnect">` verso i domini Vimeo in `content.html` (connessione di rete anticipata, indipendente dal componente in sé).
+**Stato di caricamento nell'overlay**: al click, prima di creare l'iframe, JS clona la thumbnail del facade e aggiunge uno spinner (`.c-video-overlay__thumbnail` + `.c-video-overlay__spinner`) dentro `.c-video-overlay__box`. L'iframe parte a `opacity: 0`; al suo evento `load` riceve la classe `.is-loaded` (fade a `opacity: 1`, `--duration-250`) e lo spinner viene rimosso. Evita il "buco vuoto" percepito tra apertura overlay e comparsa effettiva del video — vedi `journal.md` (2026-07-30). Completato con `<link rel="preconnect">` verso i domini Vimeo in `master-ux-ui.html` (connessione di rete anticipata, indipendente dal componente in sé).
+
+## Icona (`.c-icon`)
+
+**Scopo**: dare colore e dimensione a un SVG del set Refactoring UI (`assets/Icons_v1.0.2/`). Primo uso reale del set: fino a `motivation.html` le icone erano nel repo ma non in pagina, e la convenzione esisteva solo scritta in `design-system.md`.
+
+**Dove usato**: `motivation.html`, per segnalare il tipo di ogni risorsa (audio, testo, video).
+
+**File**: `css/components/icon.css`
+
+**Markup**: SVG inline copiato nel markup, non sprite — non c'è build step. Il `class="c-icon"` va sull'`<svg>`; i due `<path>` interni arrivano dal file con le loro classi `primary`/`secondary` e non si toccano.
+
+```html
+<svg class="c-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+  <path class="primary" d="…"/>
+  <path class="secondary" d="…"/>
+</svg>
+```
+
+`aria-hidden="true"` perché il tipo della risorsa è già scritto in chiaro nella riga dei metadati: l'icona lo ripete a colpo d'occhio, non lo aggiunge.
+
+**Variabili (interfaccia)**: `--icon-size`, default `var(--space-24)`.
+
+**Le tre usate finora**: `icon-headphones` (audio), `icon-book-open` (testo o libro), `icon-film` (video, pronta ma non ancora usata — nessuna risorsa video in lista).
+
+**Allineamento al brand**: le due tinte `.primary`/`.secondary` prendono `--color-icon-primary` e `--color-icon-secondary`, che nel tema brand sono nero e grigio neutro. Non è una seconda tinta cromatica, sono due valori dello stesso grigio-nero: il "piatto, niente decorazioni" del brand regge. Il corallo non entra mai in un'icona — è l'unico accento della pagina e va speso dove conta.
+
+## Risorsa (`.c-resource`)
+
+**Scopo**: una voce di lista di risorse — icona del tipo, titolo che è il link, una riga di metadati, e il motivo per cui vale la pena.
+
+**Dove usato**: `motivation.html`.
+
+**File**: `css/components/resource.css`
+
+**Markup**: `<li>` dentro `<ul class="c-resources">`. Il titolo è un `<p>`, non un heading: una lista di link non ha bisogno di una gerarchia di titoli, e un `h2` prenderebbe Archivo Black a 30px dal tema.
+
+```html
+<li class="c-resource">
+  <span class="c-resource__icon"><svg class="c-icon">…</svg></span>
+  <div>
+    <p class="c-resource__title"><a href="…" target="_blank" rel="noopener">The Go-Getter ↗</a></p>
+    <p class="c-resource__meta">Racconto lungo · Peter B. Kyne, 1921 · in inglese</p>
+    <p class="c-resource__why">Perché vale la pena…</p>
+    <p class="c-resource__alt">Un'altra edizione, o come averlo in italiano…</p>
+  </div>
+</li>
+```
+
+**`__why` e `__alt` sono opzionali**: la voce regge anche solo con titolo e metadati (è il caso della prima risorsa in pagina, in attesa della nota).
+
+**Variabili (interfaccia)**: nessuna per ora.
+
+**Stile**: griglia a due colonne (icona 24px, contenuto), voci separate da un filetto come le righe di una bibliografia — niente fondini, niente box. È il trattamento più piatto possibile, che è quello che il brand chiede. Titolo a 20px in peso 700: gerarchia per peso, non per colore.
+
+**Stati**: nessuno proprio. I link prendono gli stati globali del tema (sottolineatura nel colore del testo, corallo all'hover).
 
 ## FAQ container (`.c-faq`)
 
 **Scopo**: dare identità visiva/contenimento a un blocco titolo+accordion (sfondo leggero, angoli arrotondati, padding) — prima h3 e `.c-accordion` non erano wrappati in nulla, vivevano nudi nel flusso della colonna.
 
-**Dove usato**: blocco FAQ dentro "Il problema del Junior Designer da quando c'è AI" (`content.html`), wrappa `<h3 id="faq-problema">` + `<details class="c-accordion">`.
+**Dove usato**: blocco FAQ dentro "Il problema del Junior Designer da quando c'è AI" (`master-ux-ui.html`), wrappa `<h3 id="faq-problema">` + `<details class="c-accordion">`.
 
 **File**: `css/components/faq.css`.
 
@@ -253,7 +384,9 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 
 **Stile**: `background: var(--zinc-100)`, `border-radius: var(--radius-8)`, `padding: var(--space-24)`. Nessuna variabile d'interfaccia per ora — prima versione esplicitamente "per iniziare", da iterare.
 
-**Nota**: l'h3 come primo figlio del box non ha bisogno di reset aggiuntivo — la regola globale `h3:first-child { margin-top: 0 }` (`base.css`) si applica già. Non ancora riusato altrove: se un secondo caso d'uso emerge (es. altre FAQ nella pagina), valutare se generalizzare il nome o tenerlo specifico.
+**Nota**: l'h3 come primo figlio del box non ha bisogno di reset aggiuntivo — la regola globale `h3:first-child { margin-top: 0 }` (`base.css`) si applica già.
+
+**Il secondo caso d'uso è arrivato, e non usa questo contenitore**: la sezione "Domande frequenti" di `master-ux-ui.html` è una `.l-section` intera, con undici `.c-accordion` direttamente dentro `.l-section__content`. Il fondino di `.c-faq` serve a ritagliare un blocco FAQ *dentro* un'altra sezione, dove se no vivrebbe nudo nel flusso; una sezione che è già solo FAQ ha la sua identità nell'h2 della sidebar, e un fondino su tutta l'altezza aggiungerebbe una terza superficie alla pagina. Quindi `.c-faq` resta com'è, specifico per il blocco in linea, e `.c-accordion` si conferma indipendente dal contenitore.
 
 ## Schedule (`.c-schedule`)
 
@@ -299,6 +432,50 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 **Variabili esposte**: `--filmstrip-height` (default `--space-240`, `--space-300` da 768px).
 
 **Stati**: nessuno. `scroll-snap-type: x mandatory` per lo scroll a scatti.
+
+**Immagini cliccabili (dal 18 settembre 2026)**: ogni `<img>` può stare dentro un `<a>` che punta al file a dimensione intera. Il link diventa il figlio flex al posto dell'immagine e ne prende `flex` e lo `scroll-snap-align`; l'immagine dentro continua a prendere altezza, bordo e raggio dalla regola esistente, quindi il markup senza link resta valido com'era.
+
+```html
+<div class="c-filmstrip" tabindex="0" role="group" aria-label="3 immagini di progetti, scorrevoli">
+  <a href="assets/images/gallery-progetti-studenti/wireflow.png" target="_blank" rel="noopener">
+    <img src="assets/images/gallery-progetti-studenti/wireflow.webp" width="1360" height="799" alt="…" loading="lazy">
+  </a>
+</div>
+```
+
+Serve dove le immagini sono canvas larghi 2800px, che a 300px di altezza si vedono ma non si leggono — stessa soluzione di `.c-automation__figure` in `automations.html`. Usato nella gallery dei progetti degli studenti in `master-ux-ui.html`; le filmstrip di `portfolio.html` non hanno link e non cambiano.
+
+**Didascalia e navigazione (`.c-filmstrip__caption`, `js/filmstrip.js`)**: una riga sola sotto la strip, sempre nello stesso punto, che descrive l'immagine più a sinistra fra quelle visibili e tiene a destra i bottoni ← →. Prende il posto di `.c-filmstrip__hint` dove esistono metadati per immagine — autore, progetto, corso — e ne eredita il margine negativo; il conteggio sta sotto la didascalia, i bottoni a fianco di entrambi.
+
+```html
+<div class="c-filmstrip" data-filmstrip="master" tabindex="0" role="group" aria-label="4 immagini di progetti, scorrevoli">
+  <a href="…" target="_blank" rel="noopener" data-caption="Roberto Migani · Wireflow della macchina del caffè · Master Mucca Design UX/UI">
+    <img src="…" width="1360" height="799" alt="Roberto Migani, wireflow della macchina del caffè (Master…): …" loading="lazy">
+  </a>
+  …
+</div>
+<p class="c-filmstrip__caption" data-filmstrip-caption="master">
+  <span data-caption-text>Roberto Migani · Wireflow della macchina del caffè · Master Mucca Design UX/UI</span>
+  <span class="c-filmstrip__count" data-caption-count hidden>1 di 4</span>
+</p>
+```
+
+I bottoni non stanno nel markup: li crea lo script e li appende alla riga, dentro un `.c-filmstrip__nav`. Nascono solo se le immagini sono più di una **e** la strip scorre davvero (`scrollWidth > clientWidth`), e si nascondono da sé se la finestra si allarga al punto che ci stanno tutte. `disabled` agli estremi — stato nativo, non `.is-`.
+
+L'attributo `data-filmstrip` accoppia la strip alla sua riga: servono perché in una pagina ce n'è più di una.
+
+**Progressive enhancement**: la riga è già scritta nell'HTML con la didascalia della prima immagine, quindi senza JS resta quella — non sparisce e non compare un contenitore vuoto. Il conteggio invece è `hidden` nel markup e lo scopre lo script: senza JS direbbe «1 di 4» mentre guardi la terza. Una strip con una sola immagine usa la stessa classe senza `data-` né conteggio: è una didascalia normale.
+
+**Il credito sta anche nell'`alt` di ogni immagine**, non solo nella riga. È il punto debole di questo pattern: la didascalia visibile ne descrive una sola, quindi chi non vede la pagina dovrebbe scorrere per sapere di chi è il lavoro. Con autore e corso in testa all'`alt` il credito c'è comunque, e la riga resta una comodità visiva.
+
+**Perché non una didascalia per immagine**: valutata e scartata da Luca. Sarebbe stata più robusta (niente JS, tutti i crediti sempre presenti) ma alza la strip di ~40px e ripete il nome del corso sotto ogni immagine dello stesso gruppo.
+
+**Perché i bottoni stanno nella riga e non sui bordi della strip**: la posizione da carosello (pastiglie sovrapposte ai bordi) coprirebbe una fetta di immagine — la strip occupa già tutta la colonna — e sopra contenuti di colore imprevedibile servirebbe un fondino opaco per restare leggibili. Nella riga non rubano spazio a niente e sostituiscono un'istruzione con i controlli veri.
+
+**Due trappole tecniche, entrambe misurate** (dettagli nei commenti di `js/filmstrip.js`):
+
+- `behavior: 'smooth'` e `scroll-snap-type: x mandatory` si annullano a vicenda: lo scroll parte e torna al punto di partenza. Si toglie lo snap per la durata dell'animazione e lo si rimette su `scrollend` — rimettendolo, il browser aggancia da sé il punto giusto.
+- Togliere lo snap e chiamare `scrollTo` nello stesso task non basta: serve una lettura che forzi il ricalcolo dello stile (`void strip.offsetWidth`) in mezzo, se no il browser non ha ancora applicato la regola nuova e si ricade nel caso di sopra.
 
 ## Project (`.c-project`)
 
@@ -350,8 +527,56 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 
 **Comportamento** (`js/portfolio-filter.js`): progressive enhancement. Senza JS i link ricaricano la pagina con `?tag=…`; lo script legge il parametro al caricamento e applica il filtro, e intercetta i click solo per evitare il reload (`history.replaceState`). Funziona anche dai link `.c-project__tags` dentro i progetti. URL linkabile: `portfolio.html?tag=hmi#simplify`.
 
-**Stati**: `[aria-pressed="true"]` → sottolineatura in `--color-accent`, unico accento della pagina.
+**Stati**: tutti i tag sono sottolineati, perché sono link. `[aria-pressed="true"]` → la sottolineatura passa a `--color-accent` e a spessore doppio: l'attivo si stacca per colore e spessore della riga, non per la sua presenza. Unico accento della pagina.
 
+
+## Lang toggle (`.c-lang-toggle`)
+
+**Scopo**: mostrare lo stesso blocco di contenuto in due lingue, con un interruttore. Nasce per le domande al cliente in `upwork/ai-automation-specialist.html`: la versione italiana è la nota di lavoro, quella inglese è il testo da mostrare al cliente.
+
+**Dove**: `upwork/ai-automation-specialist.html`, sezione 6.
+
+**Markup**:
+
+```html
+<div data-lang-toggle="it">
+  <ol>
+    <li>
+      <span lang="it" data-lang="it">Quante automazioni stimate?</span>
+      <span lang="en" data-lang="en" hidden>How many automations do you expect?</span>
+    </li>
+  </ol>
+</div>
+```
+
+`data-lang-toggle` porta la lingua di partenza. Ogni variante ha **sia** `lang` (per screen reader e sillabazione) **sia** `data-lang`: la selezione avviene su `data-lang` perché un `lang` annidato per altri motivi — una citazione in inglese dentro il testo — non deve finire nello scambio. Le varianti non predefinite partono `hidden` nel markup, così non lampeggiano prima che parta lo script.
+
+**Comportamento** (`js/lang-toggle.js`): progressive enhancement. Il bottone lo crea lo script, quindi senza JS non compare un controllo che non funziona: resta visibile la lingua di partenza. Il bottone prende `aria-controls` sul primo blocco utile e un `aria-label` descrittivo; l'etichetta visibile è la lingua **verso cui si va**, non quella corrente.
+
+**Variabili esposte**: nessuna. **Stati**: nessuno — il bottone non è premuto/non premuto, cambia etichetta.
+
+## Private note (`.c-private`) e Letter (`.c-letter`)
+
+**Scopo**: due riquadri della pagina di analisi annunci. `.c-private` marca quello che resta note interne e non va mostrato al cliente; `.c-letter` marca un testo da copiare così com'è (la bozza di cover letter).
+
+**Dove**: `upwork/ai-automation-specialist.html`, sezioni 6, 7 e 8.
+
+**Markup**:
+
+```html
+<div class="c-private">
+  <p class="c-private__label">Nota privata — non va nel video</p>
+  <p>…</p>
+</div>
+
+<div class="c-letter" lang="en">
+  <p>Hi — …roughly <span class="c-slot">$X</span>/month…</p>
+</div>
+```
+
+La differenza visiva è il bordo: tratteggiato per il privato, continuo per la lettera. Non un colore — il corallo in quella pagina è già impegnato dal filetto di testata e dal riquadro del verdetto. `.c-slot` segna un buco da riempire prima di inviare; non usa `<mark>` perché il giallo di default non è in palette e il senso non è «evidenziato» ma «mancante».
+
+**Variabili esposte**: nessuna. **Stati**: nessuno.
 
 ## Result (`.c-result-list` / `.c-result`)
 
@@ -377,3 +602,79 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 **Convenzioni di contenuto**: i numeri vanno in `<strong>` dentro il testo, non isolati in una stat tile: si devono poter trovare senza leggere la riga, ma restano dentro la frase che dice cosa li ha mossi.
 
 **Stati previsti**: nessuno. L'unico stato interattivo è l'hover sul link del cliente, gestito dal tema.
+
+## Manifesto (`.c-manifesto`)
+
+**Scopo**: una lista di affermazioni numerate, ognuna con dietro un paragrafo che si apre sul posto. La forma viene da [37signals.com](https://37signals.com/): titoli brevi e dichiarativi da scorrere in venti secondi, e il ragionamento dietro solo per chi lo vuole.
+
+**Non è un componente autonomo**: è un modificatore di `.c-entry` (`css/components/entry.css`), che porta già `<details>` nativo, bordo fra le voci, marcatore `+`/`–`, focus ring sulla riga e `scroll-margin-top` per i deep link. `.c-manifesto` aggiunge solo il numero e la misura di lettura del paragrafo. Delle tre parti del `<summary>` di `.c-entry` usa solo `__title`: niente `__meta`, niente `__line`.
+
+**Dove usato**: `manifesto.html`, lista unica sotto l'header "Manifesto.".
+
+**File**: `css/components/manifesto.css` (+ `css/components/entry.css`, obbligatorio, e va caricato prima)
+
+**Markup**:
+
+```html
+<div class="c-entry-list c-manifesto">
+  <details class="c-entry" id="m-05">
+    <summary class="c-entry__summary">
+      <span class="c-manifesto__num" aria-hidden="true">05</span>
+      <h2 class="c-entry__title">Disegnare un'automazione è disegnare un flusso</h2>
+    </summary>
+    <div class="c-entry__body">
+      <p class="c-manifesto__text">…</p>
+      <p class="c-entry__permalink"><a href="#m-05">Link a questa voce</a></p>
+    </div>
+  </details>
+</div>
+```
+
+**Variabili (interfaccia)**: nessuna — usa i token semantici di spazio, corpo e colore. Gli eventuali ritocchi di brand vanno nella sezione "Componenti" di `css/theme-brand.css`.
+
+**Convenzioni di contenuto**:
+
+- Affermazione su **una riga**, dichiarativa. Se serve una subordinata, probabilmente sono due affermazioni.
+- Paragrafo **sotto le 60 parole**. Se non ci sta, la voce ne conteneva due: si spezza.
+- Il numero è **testo vero nel markup**, non un contatore CSS: è il nome della voce (`#m-05`), e l'`id` è comunque scritto a mano. Riordinare la lista vuol dire rinumerare a mano — con tredici voci è il prezzo giusto per avere link stabili.
+- `<h2>` e non `<p>`: è quello che fanno `portfolio.html` e `automations.html`, e solo `h1, h2, h3` ricevono il font display dal tema.
+
+**Stati previsti**: solo quelli nativi di `<details>` — chiuso e `[open]`. Nessuna classe `.is-open`: lo stato lo tiene il browser. Apertura, chiusura e tastiera (Tab, Invio, Spazio) funzionano senza JS; `js/portfolio-index.js` aggiunge solo il deep link.
+
+**Scelta lasciata aperta**: l'attributo `name="manifesto"` sui `<details>` renderebbe l'accordion esclusivo (una voce aperta alla volta) in modo nativo. Per ora non c'è: due affermazioni aperte in parallelo si possono confrontare.
+
+## Pledge (`.c-pledge`) e Requirement (`.c-requirement`)
+
+**Scopo**: i due pezzi di `garanzia.html`. `.c-pledge` è il riquadro che apre la pagina con la promessa in una frase; `.c-requirement` è una condizione della garanzia — numero, titolo, una o due frasi, e la riga che dice come si verifica.
+
+**Dove usati**: `garanzia.html`. Il pledge una volta sola, in cima; i requirement in tre liste (ammissione, durante il corso, nei sei mesi dopo), otto voci in tutto numerate `0`–`7`.
+
+**File**: `css/components/garanzia.css` — uno solo per due componenti, perché nascono insieme e servono la stessa cosa. Precedente: `automation.css`.
+
+**Perché non si riusa `.c-schedule`**, che ha la stessa griglia (colonna stretta + corpo): lì la colonna stretta è una data e il corpo è una frase. Qui serve una quarta parte che `.c-schedule` non ha — `__check`, la misura verificabile — ed è l'unico motivo per cui quella pagina è credibile. In un `<p>` normale si leggerebbe come commento invece che come criterio.
+
+**Markup**:
+
+```html
+<div class="c-pledge">
+  <p class="c-pledge__promise">Se applichi il metodo e in sei mesi… ti restituisco tutto.</p>
+  <p>…</p>
+</div>
+
+<ul class="c-requirement-list">
+  <li class="c-requirement">
+    <span class="c-requirement__num" aria-hidden="true">1</span>
+    <div class="c-requirement__body">
+      <h3 class="c-requirement__title">Tutte le esercitazioni consegnate</h3>
+      <p>…</p>
+      <p class="c-requirement__check"><strong>Come si verifica:</strong> …</p>
+    </div>
+  </li>
+</ul>
+```
+
+**Variabili (interfaccia)**: `--pledge-accent` (default `--color-accent`) — il bordo sinistro del pledge. `.c-requirement` non espone variabili: usa i token semantici.
+
+**Il numero è testo vero nel markup, non un contatore CSS**: la numerazione è citabile nel contratto ("requisito 4"), quindi deve stare nell'albero di accessibilità e non solo nel rendering. Stessa scelta, stesso motivo, di `.c-manifesto__num`.
+
+**L'accento**: il bordo del pledge è l'unico elemento con il corallo in pagina, come chiede la regola di moderazione del brand kit. `__check` si stacca con un filetto e non con un fondino: i fondini sono già presi dal pledge e da `.c-faq`, e un terzo livello di superficie renderebbe la pagina a strisce.

@@ -1,0 +1,24 @@
+/*
+  Icone Refactoring UI (assets/Icons_v1.0.2/).
+
+  Uso: SVG inline copiato nel markup, non sprite — coerente con l'assenza
+  di build step (design-system.md, sezione Icone). Ogni icona ha due path,
+  .primary e .secondary: qui ricevono i token semantici, mai un hex.
+
+  Le due tinte non violano il "piatto" del brand: sono due valori dello
+  stesso grigio-nero, non una seconda tinta cromatica. Il colore d'accento
+  non entra mai in un'icona di questa pagina.
+*/
+.c-icon {
+  display: block;
+  width: var(--icon-size, var(--space-24));
+  height: var(--icon-size, var(--space-24));
+}
+
+.c-icon .primary {
+  fill: var(--color-icon-primary);
+}
+
+.c-icon .secondary {
+  fill: var(--color-icon-secondary);
+}

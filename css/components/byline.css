@@ -1,0 +1,23 @@
+/* Firma di una citazione: foto dell'autore + nome + provenienza.
+   Sta nel <footer> del blockquote, che da base.css porta già dimensione
+   e colore del testo secondario: qui si aggiunge solo la struttura. */
+.c-byline {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.c-byline__avatar {
+  --avatar-size: var(--space-48);
+  flex-shrink: 0;
+}
+
+.c-byline__name {
+  display: block;
+  font-weight: var(--font-weight-700);
+  color: var(--color-text);
+}
+
+.c-byline__meta {
+  display: block;
+}

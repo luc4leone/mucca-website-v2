@@ -17,17 +17,15 @@
   margin: 0;
 }
 
+/* Sottolineati sempre: sono link (`?tag=…`), non bottoni. Colore della
+   riga e accento all'hover li dà `a` nel tema. */
 .c-tag-filter a {
   font-weight: var(--font-weight-700);
-  text-decoration: none;
 }
 
-.c-tag-filter a:hover {
-  text-decoration: underline;
-}
-
+/* Ora che tutti i tag sono sottolineati, l'attivo si stacca per colore
+   e spessore della riga, non per la sua presenza. */
 .c-tag-filter a[aria-pressed="true"] {
-  text-decoration: underline;
   text-decoration-color: var(--color-accent);
   text-decoration-thickness: var(--border-width-2);
 }

@@ -1,9 +1,30 @@
 /* Breakpoint: 768px, costante documentata (vedi design-system.md) — non un var(). */
 
+/* Hero a colonna singola, centrato: titolo, una riga, il video, il
+   bottone. Il video è il pezzo che vende — cinque minuti in cui si vede
+   lavorare — quindi sta al centro e grande, non in una colonna laterale
+   al 45%. Larghezza di lettura (780) e non quella del container: un
+   titolo display a tutta pagina si spezza male e la riga sotto diventa
+   troppo lunga da leggere. */
 .l-hero {
-  max-width: var(--container-max-width);
+  max-width: var(--space-780);
   margin: 0 auto;
   padding: var(--space-72) var(--space-24);
+  text-align: center;
+}
+
+/* Il nome del prodotto sta qui, non nell'h1: l'h1 è per la promessa. */
+.l-hero__eyebrow {
+  margin: 0 0 var(--space-12);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.l-hero h1 {
+  margin-bottom: var(--space-12);
 }
 
 .l-hero__tagline {
@@ -11,68 +32,35 @@
   font-weight: var(--font-weight-600);
 }
 
-/* Hero con CTA (index.html): testo a sinistra, video a destra da 768px. */
 .l-hero__lead {
   margin: 0 0 var(--space-18);
   font-size: var(--font-size-20);
   line-height: var(--line-height-relaxed);
 }
 
-.l-hero__tagline + .l-hero__lead {
-  margin-top: var(--space-24);
-}
-
-ol.l-hero__lead {
-  padding-left: var(--space-24);
-}
-
-.l-hero__lead li {
-  margin-bottom: 0;
-}
-
 .l-hero__media {
-  margin-top: var(--space-36);
+  margin: var(--space-36) 0 var(--space-24);
 }
 
-/* Placeholder finché il video introduttivo non esiste: box 16/9 del
-   componente video, senza facade, con un'etichetta centrata. */
-.l-hero__video-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-16);
+/* Il form del pre-corso in linea, campo e bottone sulla stessa riga
+   (a schermo stretto .c-form manda il bottone sotto da sé). L'azione
+   dell'hero è lasciare l'email, non saltare a un'altra sezione.
+   Largo quanto il video che sta sopra — nessun max-width proprio — così
+   il blocco media + form legge come una colonna sola.
+   text-align: left perché il centrato dell'hero si eredita dentro il
+   campo, e una email che si scrive dal centro è sgradevole. */
+.l-hero__form {
+  margin: 0;
+  text-align: left;
 }
 
-@media (min-width: 768px) {
-  .l-hero {
-    display: grid;
-    grid-template-columns: 55fr 45fr;
-    gap: var(--space-48);
-    align-items: center;
-  }
-
-  .l-hero__body,
-  .l-hero__media {
-    min-width: 0;
-  }
-
-  .l-hero__media {
-    margin-top: 0;
-  }
-}
-
-.l-hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-18);
-}
-
+/* Larga quanto il form, allineata a destra: si appoggia al bordo del
+   bottone che sta sopra, invece di galleggiare al centro dell'hero. */
 .l-hero__meta {
   margin: var(--space-12) 0 0;
   font-size: var(--font-size-16);
   color: var(--color-text-muted);
+  text-align: right;
 }
 
 .l-section {
@@ -95,14 +83,12 @@ ol.l-hero__lead {
   line-height: var(--line-height-tight);
 }
 
+/* Sottolineati sempre, come ogni link: è la sottolineatura a renderli
+   riconoscibili come link, e qui il colore è quello del testo (WCAG 1.4.1).
+   Colore della riga e accento all'hover li dà `a` nel tema. */
 .l-section__toc a {
-  text-decoration: none;
   font-size: var(--font-size-16);
   font-weight: var(--font-weight-500);
-}
-
-.l-section__toc a:hover {
-  text-decoration: underline;
 }
 
 @media (min-width: 768px) {
@@ -152,7 +138,9 @@ ol.l-hero__lead {
 /* Home: biglietto da visita. Il footer resta in fondo alla viewport
    anche quando il contenuto è poco (sticky footer). */
 .p-home,
-.p-results {
+.p-results,
+.p-upwork,
+.p-manifesto {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -161,8 +149,14 @@ ol.l-hero__lead {
 /* marketing.html: poche righe di contenuto, quindi senza questo il
    footer si ferma a metà viewport. Stesso meccanismo sticky di .l-card,
    applicato al contenitore di pagina invece che al biglietto. */
-.p-results > .l-page {
+.p-results > .l-page,
+.p-upwork > .l-page,
+.p-manifesto > .l-page {
   flex: 1;
+  /* Figlio di un flex container: senza questo il min-width:auto di default
+     lascia che il contenuto largo (una tabella) sfondi la viewport invece
+     di scorrere dentro il suo contenitore. */
+  min-width: 0;
 }
 
 .l-card {

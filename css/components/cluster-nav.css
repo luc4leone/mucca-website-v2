@@ -16,11 +16,8 @@
   margin: 0;
 }
 
+/* Sottolineati sempre: sono link, anche se disposti come una barra di
+   navigazione. Colore della riga e accento all'hover li dà `a` nel tema. */
 .c-cluster-nav a {
   font-weight: var(--font-weight-700);
-  text-decoration: none;
-}
-
-.c-cluster-nav a:hover {
-  text-decoration: underline;
 }
