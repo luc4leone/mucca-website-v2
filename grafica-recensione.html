@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grafica recensione — 3 varianti</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components/avatar.css">
+<link rel="stylesheet" href="css/components/byline.css">
+<link rel="stylesheet" href="brand-kit/brand-tokens-light.css">
+<link rel="stylesheet" href="css/theme-brand.css">
+<style>
+  /* ---------------------------------------------------------------
+     Chrome della pagina di esplorazione — non è stile di componenti.
+  --------------------------------------------------------------- */
+  .x-label {
+    max-width: var(--container-max-width);
+    margin: var(--space-72) auto 0;
+    padding: 0 var(--space-24);
+  }
+
+  .x-label__tag {
+    display: inline-block;
+    padding: var(--space-6) var(--space-12);
+    border: var(--border-width-1) solid var(--color-border);
+    border-radius: var(--radius-4);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-600);
+  }
+
+  .x-label__note {
+    max-width: var(--space-720);
+    margin: var(--space-12) 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-14);
+  }
+
+  .x-divider {
+    max-width: var(--container-max-width);
+    margin: var(--space-48) auto 0;
+    border: 0;
+    border-top: var(--border-width-1) solid var(--color-border);
+  }
+
+  /* ---------------------------------------------------------------
+     A — Superficie invertita
+     Il fondo scuro è la superficie nativa del brand (brand-style.md:
+     "sfondo scuro di default"): il sito ne adotta la variante light,
+     la citazione se la riprende per un blocco solo. Stacco senza
+     aggiungere colore — niente ombre, niente gradienti.
+  --------------------------------------------------------------- */
+  blockquote[data-variant="invertito"] {
+    /* Le semantiche ridefinite qui dentro fanno il lavoro: nome, testo
+       secondario e bordi si ricolorano da soli, senza regole per figlio. */
+    --color-text: var(--color-white);
+    --color-text-muted: var(--color-grey);
+
+    margin: var(--space-30) 0;
+    padding: var(--space-30);
+    border-left: 0;
+    border-radius: var(--radius-4);
+    background: var(--color-secondary);
+    color: var(--color-on-secondary);
+    font-size: var(--font-size-18);
+  }
+
+  blockquote[data-variant="invertito"] p:last-of-type {
+    margin-bottom: var(--space-24);
+  }
+
+  /* ---------------------------------------------------------------
+     B — Virgoletta corallo
+     Stacco per scala tipografica, più l'unico accento consentito per
+     sezione (brand-style.md, principio 2) speso sulla virgoletta.
+     Nessuna superficie, nessun bordo: il blocco resta piatto.
+  --------------------------------------------------------------- */
+  blockquote[data-variant="virgoletta"] {
+    margin: var(--space-36) 0;
+    padding: 0;
+    border-left: 0;
+    font-size: var(--font-size-24);
+    line-height: var(--line-height-normal);
+  }
+
+  blockquote[data-variant="virgoletta"]::before {
+    content: "“";
+    display: block;
+    margin-bottom: calc(var(--space-30) * -1);
+    font-family: var(--font-display);
+    font-size: var(--font-size-72);
+    line-height: 1;
+    color: var(--color-accent);
+  }
+
+  blockquote[data-variant="virgoletta"] footer {
+    margin-top: var(--space-24);
+  }
+
+  /* ---------------------------------------------------------------
+     C — Fuori colonna
+     Stacco strutturale: la firma va in testa, due filetti segnano
+     l'interruzione, e da 768px il blocco sborda a sinistra dentro la
+     gronda della sidebar. Markup identico agli altri due — cambia
+     solo l'ordine visivo (column-reverse), non il DOM.
+  --------------------------------------------------------------- */
+  blockquote[data-variant="fuori-colonna"] {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: var(--space-36) 0;
+    padding: var(--space-24) 0;
+    border-left: 0;
+    border-top: var(--border-width-2) solid var(--color-text);
+    border-bottom: var(--border-width-2) solid var(--color-text);
+    font-size: var(--font-size-20);
+    line-height: var(--line-height-relaxed);
+  }
+
+  blockquote[data-variant="fuori-colonna"] p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  blockquote[data-variant="fuori-colonna"] footer {
+    margin: 0 0 var(--space-18);
+  }
+
+  blockquote[data-variant="fuori-colonna"] .c-byline__avatar {
+    --avatar-size: var(--space-72);
+  }
+
+  blockquote[data-variant="fuori-colonna"] .c-byline__name {
+    font-family: var(--font-display);
+    font-size: var(--font-size-18);
+    font-weight: var(--font-weight-400);
+  }
+
+  @media (min-width: 768px) {
+    blockquote[data-variant="fuori-colonna"] {
+      margin-left: calc(var(--space-48) * -1);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="x-label">
+  <h1>Grafica della recensione — 3 varianti</h1>
+  <p class="x-label__note">Ogni variante è dentro la sezione vera di <code>master-ux-ui.html</code>, con il testo che la circonda: il problema da risolvere è che la citazione non si distingue dal contenuto attorno, e lo si giudica solo in mezzo a quel contenuto. Stesso markup in tutte e tre — cambia solo <code>data-variant</code> sul <code>blockquote</code>. In fondo a ogni variante, la recensione anonima senza foto.</p>
+</div>
+
+<hr class="x-divider">
+
+<!-- ============================ ATTUALE ============================ -->
+<div class="x-label">
+  <span class="x-label__tag">Attuale — in produzione</span>
+  <p class="x-label__note">Filetto di 2px a sinistra, testo nella stessa misura del corpo. È il difetto da correggere: a colpo d'occhio è un paragrafo come gli altri, un po' rientrato.</p>
+</div>
+
+<section class="l-section">
+  <div class="l-section__intro">
+    <h2>Non è il corso giusto per tutti</h2>
+  </div>
+  <div class="l-section__content">
+    <h3>Per chi è perfetto questo corso</h3>
+    <ul>
+      <li>Chi vuole iniziare una carriera come UX/UI Designer. Cerchi un corso rigoroso e fai sul serio.</li>
+      <li>Visual designers che vogliono rafforzare UX e interaction design. Per passare da una bella UI a una UI semplice da usare.</li>
+      <li>Frontend developer che vogliono progettare interfacce solide. Chi ha detto che bisogna separare le competenze?</li>
+    </ul>
+
+    <blockquote>
+      <p>A mio parere come Teacher sei uno dei migliori che abbia avuto, contando anche i professori universitari eh che poi nella realtà non sono dei grandi insegnanti ma solo grandi ricercatori 😬</p>
+      <footer class="c-byline">
+        <img class="c-avatar c-byline__avatar" src="assets/images/davide_cester.webp" alt="Foto di Davide Cester">
+        <span>
+          <strong class="c-byline__name">Davide Cester</strong>
+          <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>
+        </span>
+      </footer>
+    </blockquote>
+
+    <h3>Per chi NON è il corso giusto</h3>
+    <ul>
+      <li>Se vuoi scorciatoie o risultati senza pratica costante. Le skill si costruiscono disegno dopo disegno.</li>
+      <li>Se cerchi un corso "solo video" da guardare. Qui non si impara guardando, ma facendo: esercizi, iterazione e revisione.</li>
+    </ul>
+  </div>
+</section>
+
+<hr class="x-divider">
+
+<!-- ============================ VARIANTE A ============================ -->
+<div class="x-label">
+  <span class="x-label__tag">A — Superficie invertita</span>
+  <p class="x-label__note">Il blocco diventa nero, testo chiaro sopra. Non è una decorazione aggiunta: è la superficie nativa del brand (<code>brand-style.md</code>, principio 1 — "sfondo scuro di default"), che qui torna per un blocco solo. Zero colore d'accento speso, quindi il corallo resta libero per il CTA. Il rovescio: è il massimo dello stacco, e usata in tre sezioni diverse della stessa pagina rischia di diventare un motivo ricorrente invece di un'eccezione.</p>
+</div>
+
+<section class="l-section">
+  <div class="l-section__intro">
+    <h2>Non è il corso giusto per tutti</h2>
+  </div>
+  <div class="l-section__content">
+    <h3>Per chi è perfetto questo corso</h3>
+    <ul>
+      <li>Chi vuole iniziare una carriera come UX/UI Designer. Cerchi un corso rigoroso e fai sul serio.</li>
+      <li>Visual designers che vogliono rafforzare UX e interaction design. Per passare da una bella UI a una UI semplice da usare.</li>
+      <li>Frontend developer che vogliono progettare interfacce solide. Chi ha detto che bisogna separare le competenze?</li>
+    </ul>
+
+    <blockquote data-variant="invertito">
+      <p>A mio parere come Teacher sei uno dei migliori che abbia avuto, contando anche i professori universitari eh che poi nella realtà non sono dei grandi insegnanti ma solo grandi ricercatori 😬</p>
+      <footer class="c-byline">
+        <img class="c-avatar c-byline__avatar" src="assets/images/davide_cester.webp" alt="Foto di Davide Cester">
+        <span>
+          <strong class="c-byline__name">Davide Cester</strong>
+          <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>
+        </span>
+      </footer>
+    </blockquote>
+
+    <h3>Per chi NON è il corso giusto</h3>
+    <ul>
+      <li>Se vuoi scorciatoie o risultati senza pratica costante. Le skill si costruiscono disegno dopo disegno.</li>
+      <li>Se cerchi un corso "solo video" da guardare. Qui non si impara guardando, ma facendo: esercizi, iterazione e revisione.</li>
+    </ul>
+
+    <p class="x-label__note">Citazione lunga e caso anonimo, stessa variante:</p>
+
+    <blockquote data-variant="invertito">
+      <p>Ciao Luca, Volevo farti i complimenti per il livello didattico al quale hai portato la classe. Ciò che mi hai trasmesso più che didattico è personale: stavo perdendo la passione per la progettazione, in questi mesi è rinata grazie alla tua concezione di designer come problem solver pratico che prende la complessità e la rende semplice.</p>
+      <p>Mi ero approcciato al design con questa idea ma in 3 anni di università è stata messa a dura prova, ho visto più passione in te che in tutti i professori avuti finora quindi grazie e grazie di avermela trasmessa.</p>
+      <footer class="c-byline">
+        <img class="c-avatar c-byline__avatar" src="assets/images/stefano_falvella.webp" alt="Foto di Stefano Falvella">
+        <span>
+          <strong class="c-byline__name">Stefano Falvella</strong>
+          <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>
+        </span>
+      </footer>
+    </blockquote>
+
+    <blockquote data-variant="invertito">
+      <p>"Non mi ha insegnato un lavoro, mi ha completamente rivoluzionato il modo di vedere le cose"</p>
+      <footer>— Recensione anonima per valutare i docenti, corso Boolean 2024</footer>
+    </blockquote>
+  </div>
+</section>
+
+<hr class="x-divider">
+
+<!-- ============================ VARIANTE B ============================ -->
+<div class="x-label">
+  <span class="x-label__tag">B — Virgoletta corallo</span>
+  <p class="x-label__note">Nessuna superficie e nessun bordo: il blocco resta piatto e stacca per scala — testo a 24px contro i 16 del corpo — più la virgoletta in Archivo Black corallo che apre la citazione. È l'unico accento della sezione, come vuole il principio 2 del brand kit: da verificare sezione per sezione che lì non ci sia già un CTA corallo (in "Non è il corso giusto per tutti" e in "Cosa rende diverso questo corso?" non c'è). Il rovescio è sotto: la recensione di Falvella è lunga, e a 24px due paragrafi diventano un muro — questa variante premia le citazioni corte e punisce le lunghe.</p>
+</div>
+
+<section class="l-section">
+  <div class="l-section__intro">
+    <h2>Non è il corso giusto per tutti</h2>
+  </div>
+  <div class="l-section__content">
+    <h3>Per chi è perfetto questo corso</h3>
+    <ul>
+      <li>Chi vuole iniziare una carriera come UX/UI Designer. Cerchi un corso rigoroso e fai sul serio.</li>
+      <li>Visual designers che vogliono rafforzare UX e interaction design. Per passare da una bella UI a una UI semplice da usare.</li>
+      <li>Frontend developer che vogliono progettare interfacce solide. Chi ha detto che bisogna separare le competenze?</li>
+    </ul>
+
+    <blockquote data-variant="virgoletta">
+      <p>A mio parere come Teacher sei uno dei migliori che abbia avuto, contando anche i professori universitari eh che poi nella realtà non sono dei grandi insegnanti ma solo grandi ricercatori 😬</p>
+      <footer class="c-byline">
+        <img class="c-avatar c-byline__avatar" src="assets/images/davide_cester.webp" alt="Foto di Davide Cester">
+        <span>
+          <strong class="c-byline__name">Davide Cester</strong>
+          <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>
+        </span>
+      </footer>
+    </blockquote>
+
+    <h3>Per chi NON è il corso giusto</h3>
+    <ul>
+      <li>Se vuoi scorciatoie o risultati senza pratica costante. Le skill si costruiscono disegno dopo disegno.</li>
+      <li>Se cerchi un corso "solo video" da guardare. Qui non si impara guardando, ma facendo: esercizi, iterazione e revisione.</li>
+    </ul>
+
+    <p class="x-label__note">Citazione lunga e caso anonimo, stessa variante:</p>
+
+    <blockquote data-variant="virgoletta">
+      <p>Ciao Luca, Volevo farti i complimenti per il livello didattico al quale hai portato la classe. Ciò che mi hai trasmesso più che didattico è personale: stavo perdendo la passione per la progettazione, in questi mesi è rinata grazie alla tua concezione di designer come problem solver pratico che prende la complessità e la rende semplice.</p>
+      <p>Mi ero approcciato al design con questa idea ma in 3 anni di università è stata messa a dura prova, ho visto più passione in te che in tutti i professori avuti finora quindi grazie e grazie di avermela trasmessa.</p>
+      <footer class="c-byline">
+        <img class="c-avatar c-byline__avatar" src="assets/images/stefano_falvella.webp" alt="Foto di Stefano Falvella">
+        <span>
+          <strong class="c-byline__name">Stefano Falvella</strong>
+          <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>
+        </span>
+      </footer>
+    </blockquote>
+
+    <blockquote data-variant="virgoletta">
+      <p>Non mi ha insegnato un lavoro, mi ha completamente rivoluzionato il modo di vedere le cose</p>
+      <footer>— Recensione anonima per valutare i docenti, corso Boolean 2024</footer>
+    </blockquote>
+  </div>
+</section>
+
+<hr class="x-divider">
+
+<!-- ============================ VARIANTE C ============================ -->
+<div class="x-label">
+  <span class="x-label__tag">C — Fuori colonna</span>
+  <p class="x-label__note">Stacco strutturale invece che cromatico: la firma passa in testa (prima chi parla, poi cosa dice), due filetti neri segnano l'interruzione del flusso, e da 768px il blocco sborda a sinistra nella gronda della sidebar — è l'unico elemento della pagina che non rispetta l'incolonnamento, e si vede. Il markup non cambia: è <code>column-reverse</code>, non un DOM diverso.</p>
+</div>
+
+<section class="l-section">
+  <div class="l-section__intro">
+    <h2>Non è il corso giusto per tutti</h2>
+  </div>
+  <div class="l-section__content">
+    <h3>Per chi è perfetto questo corso</h3>
+    <ul>
+      <li>Chi vuole iniziare una carriera come UX/UI Designer. Cerchi un corso rigoroso e fai sul serio.</li>
+      <li>Visual designers che vogliono rafforzare UX e interaction design. Per passare da una bella UI a una UI semplice da usare.</li>
+      <li>Frontend developer che vogliono progettare interfacce solide. Chi ha detto che bisogna separare le competenze?</li>
+    </ul>
+
+    <blockquote data-variant="fuori-colonna">
+      <p>A mio parere come Teacher sei uno dei migliori che abbia avuto, contando anche i professori universitari eh che poi nella realtà non sono dei grandi insegnanti ma solo grandi ricercatori 😬</p>
+      <footer class="c-byline">
+        <img class="c-avatar c-byline__avatar" src="assets/images/davide_cester.webp" alt="Foto di Davide Cester">
+        <span>
+          <strong class="c-byline__name">Davide Cester</strong>
+          <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>
+        </span>
+      </footer>
+    </blockquote>
+
+    <h3>Per chi NON è il corso giusto</h3>
+    <ul>
+      <li>Se vuoi scorciatoie o risultati senza pratica costante. Le skill si costruiscono disegno dopo disegno.</li>
+      <li>Se cerchi un corso "solo video" da guardare. Qui non si impara guardando, ma facendo: esercizi, iterazione e revisione.</li>
+    </ul>
+
+    <p class="x-label__note">Citazione lunga e caso anonimo, stessa variante:</p>
+
+    <blockquote data-variant="fuori-colonna">
+      <p>Ciao Luca, Volevo farti i complimenti per il livello didattico al quale hai portato la classe. Ciò che mi hai trasmesso più che didattico è personale: stavo perdendo la passione per la progettazione, in questi mesi è rinata grazie alla tua concezione di designer come problem solver pratico che prende la complessità e la rende semplice.</p>
+      <p>Mi ero approcciato al design con questa idea ma in 3 anni di università è stata messa a dura prova, ho visto più passione in te che in tutti i professori avuti finora quindi grazie e grazie di avermela trasmessa.</p>
+      <footer class="c-byline">
+        <img class="c-avatar c-byline__avatar" src="assets/images/stefano_falvella.webp" alt="Foto di Stefano Falvella">
+        <span>
+          <strong class="c-byline__name">Stefano Falvella</strong>
+          <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>
+        </span>
+      </footer>
+    </blockquote>
+
+    <blockquote data-variant="fuori-colonna">
+      <p>Non mi ha insegnato un lavoro, mi ha completamente rivoluzionato il modo di vedere le cose</p>
+      <footer>— Recensione anonima per valutare i docenti, corso Boolean 2024</footer>
+    </blockquote>
+  </div>
+</section>
+
+</body>
+</html>

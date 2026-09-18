@@ -1,0 +1,42 @@
+/* Manifesto: la lista di affermazioni di manifesto.html.
+
+   Non è un componente nuovo, è un modificatore di .c-entry. La meccanica
+   — <details> nativo, bordo fra le voci, marcatore +/–, focus ring sulla
+   riga intera, deep link — è già quella dell'indice progetti, e va bene
+   così com'è: cambia il contenuto, non il comportamento.
+
+   Quello che l'indice progetti non ha e al manifesto serve è il numero
+   davanti all'affermazione. Il numero non è decorazione: è il nome della
+   voce, quello che citi quando ne parli con qualcuno.
+
+   La decisione non ovvia è il display:flex sul summary. Con la sola
+   position:absolute (la strada del marcatore a destra) il numero andrebbe
+   allineato a mano a una prima riga di 20px, e si scollerebbe al primo
+   ritocco del corpo del titolo. Con flex e align-items:baseline le due
+   dimensioni si allineano da sole, per sempre. */
+
+.c-manifesto .c-entry__summary {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-12);
+}
+
+/* Il numero sta dentro il <summary>, quindi è zona cliccabile: non c'è
+   un buco morto a sinistra dell'affermazione. `aria-hidden` nel markup
+   perché letto ad alta voce anteporrebbe "zero cinque" a ogni frase. */
+.c-manifesto__num {
+  flex: none;
+  font-size: var(--font-size-14);
+  color: var(--color-text-muted);
+  /* Le cifre a larghezza fissa incolonnano 00 e 12 sullo stesso asse:
+     senza, la lista sembra avere il margine sinistro storto. */
+  font-variant-numeric: tabular-nums;
+}
+
+/* Titolo e paragrafo hanno due mestieri diversi e due misure diverse:
+   l'affermazione si scandisce a colpo d'occhio e può prendere tutta la
+   colonna, il paragrafo si legge e oltre una certa riga l'occhio perde
+   il capo successivo. */
+.c-manifesto__text {
+  max-width: 62ch;
+}

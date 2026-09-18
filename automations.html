@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="it">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Automations — Luca Leone</title>
-<meta name="description" content="Automations that run unattended: what triggers them, what happens when they fail, and what they cost to run.">
-<meta property="og:title" content="Automations — Luca Leone">
-<meta property="og:description" content="Automations that run unattended: what triggers them, what happens when they fail, and what they cost to run.">
+<title>Automazioni — Luca Leone</title>
+<meta name="description" content="Automazioni che girano da sole: cosa le innesca, come funzionano passo per passo, cosa fanno quando si rompono.">
+<meta property="og:title" content="Automazioni — Luca Leone">
+<meta property="og:description" content="Automazioni che girano da sole: cosa le innesca, come funzionano passo per passo, cosa fanno quando si rompono.">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
@@ -22,58 +22,209 @@
 <main class="l-page">
 
   <header>
-    <h1>Automations.</h1>
-    <p>The ones that survive are the ones nobody has to remember.</p>
+    <h1>Automazioni.</h1>
+    <p>Sopravvivono solo quelle che nessuno deve ricordarsi di usare.</p>
   </header>
 
-  <p>An automation that needs a new human habit gets abandoned in three weeks. Each of these hangs off work the team was already doing, writes its failures where the team is already looking, and is safe to leave running unattended. Open one to see what it does, what it costs, and what it doesn't handle.</p>
+  <p>Le automazioni migliori:</p>
+
+  <ol>
+    <li>si attaccano a un gesto che il team fa già</li>
+    <li>scrivono i propri errori dove il team sta già guardando</li>
+    <li>si possono lasciare accese senza sorvegliarle</li>
+  </ol>
 
   <div class="c-entry-list">
 
     <details class="c-entry" id="trello-twilio">
       <summary class="c-entry__summary">
-        <h2 class="c-entry__title">Trello &rarr; SMS appointment confirmation</h2>
-        <p class="c-entry__meta">Trello &middot; n8n &middot; Twilio &middot; September 2026</p>
-        <p class="c-entry__line">A no-show costs the full value of the slot. A reminder costs seven cents.</p>
+        <h2 class="c-entry__title">Conferma appuntamento • Trello → SMS</h2>
+        <p class="c-entry__meta">Trello · n8n · Twilio · settembre 2026</p>
+        <p class="c-entry__line">Prevenire i no-show • Rende automatiche azioni manuali ripetitive</p>
       </summary>
       <div class="c-entry__body">
 
         <figure class="c-automation__figure">
           <a href="assets/automations/trello-twilio-automation-1.png" target="_blank" rel="noopener">
-            <img src="assets/automations/trello-twilio-automation-1.png" width="2556" height="1008" alt="The n8n canvas: a Trello trigger feeds a filter that checks the card moved to Confirmed, then a card fetch, a phone-number parser, and a send-or-not branch. The success path adds a label to the card; both failure paths write a comment back onto it." loading="lazy">
+            <img src="assets/automations/trello-twilio-automation-1.png" width="2556" height="1008" alt="Il canvas di n8n: un trigger Trello alimenta un filtro che verifica lo spostamento della card in Confermato, poi la lettura della card, l'estrazione del numero di telefono e il bivio manda-o-non-manda. Il ramo di successo aggiunge un'etichetta alla card; entrambi i rami di errore le scrivono sopra un commento." loading="lazy">
           </a>
-          <figcaption>Nine nodes. Every path ends on the card &mdash; a label when the text goes, a comment when it doesn't. <a href="assets/automations/trello-twilio-automation-1.png" target="_blank" rel="noopener">Open full size &#8599;</a></figcaption>
+          <figcaption>Nove nodi. Ogni strada finisce sulla card: un'etichetta quando l'SMS parte, un commento quando non parte. <a href="assets/automations/trello-twilio-automation-1.png" target="_blank" rel="noopener">Apri a dimensione intera ↗</a></figcaption>
         </figure>
 
-        <dl class="c-project__facts">
+        <dl class="c-project__facts c-automation__facts">
 
-          <dt>Problem</dt>
-          <dd>A team confirms appointments by hand. Somebody checks the board, sees a booking is confirmed, opens WhatsApp and types a message. It works until somebody is off sick, or forgets, or confirms at 6pm and sends the text the next morning. The customer turns up on the wrong day, or not at all.</dd>
+          <dt>Il problema di business</dt>
+          <dd>Un cliente che fa no-show costa soldi al business.</dd>
 
-          <dt>The trigger</dt>
-          <dd>This is the part that matters, not the SMS. The team already drags the card to <em>Confirmed</em> as part of their existing job. That drag is the only signal the automation needs &mdash; nobody learns a new tool, ticks a new box, or remembers a new step. There is no habit to abandon: if they stop moving cards, they have stopped running their business.</dd>
+          <dt>Esempi</dt>
+          <dd>
+            <ul>
+              <li><strong>Agenzia immobiliare</strong> invia SMS al cliente 2 ore prima dell'appuntamento per vedere un nuovo appartamento</li>
+              <li><strong>Dentista</strong> invia SMS al cliente il giorno prima dell'appuntamento</li>
+              <li><strong>Palestra</strong> invia SMS al cliente 4 ore prima della prima lezione di Pilates</li>
+            </ul>
+          </dd>
 
-          <dt>What it does</dt>
-          <dd>Trello calls n8n the moment a card moves, so the text arrives in about two seconds and nothing polls an API all day to be told nothing happened. The flow then reads the card &mdash; the webhook names it but doesn't carry its description or labels &mdash; pulls the phone number out, normalises it, and sends. The message carries the card title, so the customer gets the date and time the team actually wrote down, not a generic template.</dd>
+          <dt>Descrizione del flusso Trello → SMS</dt>
+          <dd>
+            <ul>
+              <li>Qualcuno del team sposta la card dell'appuntamento nella lista Confermato, come fa già ogni giorno.</li>
+              <li>Trello avvisa n8n nell'istante in cui la card si muove.</li>
+              <li>n8n verifica che si tratti davvero di uno spostamento in Confermato, e non di un altro cambiamento sulla board.</li>
+              <li>Apre la card e ne legge il contenuto: la descrizione e le etichette.</li>
+              <li>Dalla descrizione ricava il numero di telefono e lo riscrive in forma standard, con il prefisso internazionale.</li>
+              <li>Controlla se la card porta già l'etichetta che dice che l'SMS è partito.</li>
+              <li>Se il numero è valido e l'SMS non è mai partito, manda il messaggio, con data e ora prese dal titolo della card.</li>
+              <li>Se il messaggio parte, mette sulla card l'etichetta che lo registra.</li>
+              <li>Se non parte — numero mancante, numero irriconoscibile, SMS già inviato, invio rifiutato — scrive un commento sulla card con il motivo.</li>
+            </ul>
+          </dd>
 
-          <dt>Safe unattended</dt>
-          <dd>Two texts are worse than none: it reads as sloppy, and at volume it's a bill. So "already sent" lives as a label on the card itself, not in n8n's memory where a restart would lose it &mdash; the team can see it, and a second run finds it. The other trap is that dragging a card emits two events, one for position and one for the list change; only the second carries the list names. Skip that filter and every customer gets two texts, and you find out in production.</dd>
+          <dt>Un'automazione solida</dt>
+          <dd>
+            <p><strong>Niente fallisce in silenzio, e niente fallisce dentro un file di log che nessuno apre.</strong></p>
+            <ul>
+              <li>Card senza numero di telefono</li>
+              <li>Numero di telefono malformato</li>
+              <li>Card confermata (spostata) due volte</li>
+              <li>Messaggio rifiutato da Twilio</li>
+            </ul>
+            <p>Ognuno di questi casi scrive un commento sulla card, con il motivo. Chi ha spostato la card è la persona che deve saperlo, e la card è dove sta già guardando.</p>
+          </dd>
 
-          <dt>When it fails</dt>
-          <dd>Nothing fails silently, and nothing fails into a log file nobody opens. A card with no number, a malformed number, a card confirmed twice, a message Twilio rejects &mdash; each one writes a comment back onto the card, naming the reason. The person who moved the card is the person who needs to know, and the card is where they already are.</dd>
+          <dt>Cosa non fa ancora</dt>
+          <dd>
+            <p>Sono decisioni, non dimenticanze.</p>
+            <ul>
+              <li><strong>Nessun tentativo ripetuto</strong>: un errore viene registrato, non riprovato, e se un promemoria in ritardo di un'ora vada mandato o no è una scelta di business.</li>
+              <li><strong>Nessuna conferma di consegna</strong>: che Twilio accetti un messaggio non vuol dire che il telefono lo riceva.</li>
+              <li><strong>Nessun orario di silenzio</strong>: una card confermata alle due di notte manda SMS alle due di notte.</li>
+            </ul>
+          </dd>
 
-          <dt>Cost to run</dt>
-          <dd>An n8n subscription, plus roughly &euro;0.07 per SMS to Italy. No phone number to rent &mdash; it sends from an alphanumeric sender ID.</dd>
+          <dt>Automazioni concettualmente identiche, nella forma diverse</dt>
+          <dd>
+            <p>L'architettura è: un evento su un sistema che tiene i dati fa partire un messaggio, e l'esito torna scritto sul sistema stesso.</p>
+            <p>Implementazioni molto simili a Trello → SMS:</p>
+            <ul>
+              <li>un nuovo evento su un Calendar → SMS / WhatsApp / email / Slack</li>
+              <li>un cambio di stato su Airtable → SMS / WhatsApp / email / Slack</li>
+              <li>un cambio di fase sul CRM → SMS / WhatsApp / email / Slack</li>
+              <li>l'invio di un modulo → SMS / WhatsApp / email / Slack</li>
+              <li>un pagamento Stripe → SMS / WhatsApp / email / Slack</li>
+            </ul>
+            <p>Oppure <strong>cambia il momento</strong>: promemoria 24 ore prima invece che alla conferma.</p>
+          </dd>
 
-          <dt>Not handled yet</dt>
-          <dd>Named on purpose, because each is a decision rather than an oversight. No retry: a failure is recorded, not re-attempted, and whether a stale reminder should go out an hour late is a business call. No delivery confirmation &mdash; Twilio accepting a message isn't the handset receiving it. No quiet hours: a card confirmed at 2am sends at 2am. No opt-out handling, which becomes a hard requirement once volume is real.</dd>
-
-          <dt>Same shape, different edges</dt>
-          <dd>The architecture is: an event in a system of record triggers a message, and the outcome is written back to the record. Swap the trigger for a Calendar event, an Airtable status, a CRM stage change, a form submission or a Stripe payment. Swap the channel for WhatsApp, email, or a Slack message to staff. Or change the timing &mdash; a reminder 24 hours before instead of on confirmation. The two clients ask for next are two-way replies, where the customer texts back YES and the card moves itself, and escalation, where no reply in two hours tells a human to call.</dd>
+          <dt>Subito dopo</dt>
+          <dd>
+            <p>Le due cose che i clienti chiedono subito dopo sono:</p>
+            <ol>
+              <li><strong>la risposta bidirezionale</strong>: il cliente scrive SÌ e la card si sposta da sola</li>
+              <li><strong>l'escalation</strong>: nessuna risposta entro due ore, e un umano viene avvisato di telefonare.</li>
+            </ol>
+          </dd>
 
         </dl>
 
-        <p class="c-entry__permalink"><a href="#trello-twilio">Link to this automation</a></p>
+        <p class="c-entry__permalink"><a href="#trello-twilio">Link a questa automazione</a></p>
+      </div>
+    </details>
+
+    <details class="c-entry" id="proposal-generator">
+      <summary class="c-entry__summary">
+        <h2 class="c-entry__title">Generatore di proposte • Modulo → Google Slides</h2>
+        <p class="c-entry__meta">Modulo n8n · OpenAI · Google Slides · Gmail · settembre 2026</p>
+        <p class="c-entry__line">Proposta pronta mentre la call è ancora calda • Toglie di mezzo la scrittura ripetitiva</p>
+      </summary>
+      <div class="c-entry__body">
+
+        <figure class="c-automation__figure">
+          <a href="assets/automations/form-to-offer-1.png" target="_blank" rel="noopener">
+            <img src="assets/automations/form-to-offer-1.png" width="2732" height="664" alt="Il canvas di n8n: sei nodi in fila senza bivi. Il modulo di fine call alimenta il nodo OpenAI che scrive la proposta, un nodo Code appiattisce la risposta, Google Drive copia il template, Google Slides sostituisce i segnaposto e Gmail prepara la bozza." loading="lazy">
+          </a>
+          <figcaption>Sei nodi, nessun bivio: la linea più dritta che si possa costruire. L'ultimo prepara una bozza, non manda — l'unico passo irreversibile resta a un umano. <a href="assets/automations/form-to-offer-1.png" target="_blank" rel="noopener">Apri a dimensione intera ↗</a></figcaption>
+        </figure>
+
+        <dl class="c-project__facts c-automation__facts">
+
+          <dt>Il problema di business</dt>
+          <dd>
+            <p>Scrivere proposte è un lavoro ripetitivo che nessuno tratta come tale. Finita la call, qualcuno riapre l’ultima proposta mandata, la duplica, cambia il nome dell’azienda, riscrive il problema, rifà lo scope, aggiorna le date, corregge il prezzo — e dimentica un riferimento al cliente precedente in fondo alla pagina sette.</p>
+            <p>Costa due volte: le ore di chi la scrive, e i giorni di ritardo con cui arriva. Una proposta che arriva il giovedì per una call del lunedì si legge quando l’entusiasmo è finito.</p>
+          </dd>
+
+          <dt>Esempi</dt>
+          <dd>
+            <ul>
+              <li><strong>Agenzia di automazione</strong> manda la proposta dieci minuti dopo la call di scoperta, con problema e scope detti dal cliente mezz’ora prima</li>
+              <li><strong>Studio di consulenza</strong> genera la lettera d’incarico dal modulo compilato dal partner che ha fatto il primo incontro</li>
+              <li><strong>Impresa edile</strong> trasforma i rilievi del sopralluogo in un preventivo impaginato, invece che in un PDF fatto a mano la sera</li>
+            </ul>
+          </dd>
+
+          <dt>Descrizione del flusso Modulo → Proposta</dt>
+          <dd>
+            <ul>
+              <li>Chi ha fatto la call compila un modulo, subito dopo, finché ha ancora le parole del cliente in testa: azienda, email, problema, soluzione, scope, costo, tempi.</li>
+              <li>L’invio del modulo fa partire il flusso: nessun altro gesto, nessun pulsante da premere dopo.</li>
+              <li>Un modello di linguaggio riceve quei campi e restituisce un unico oggetto JSON con tutti i testi della proposta: titolo, sommario del problema, tre blocchi di soluzione, tre voci di scope, quattro tappe con data.</li>
+              <li>n8n copia su Google Drive la presentazione-template, e chiama la copia col titolo della proposta.</li>
+              <li>Sulla copia sostituisce i segnaposto — <code>{{proposalTitle}}</code>, <code>{{oneParagraphProblemSummary}}</code> e gli altri — con i testi generati: ventiquattro sostituzioni in una chiamata sola.</li>
+              <li>Gmail prepara la bozza dell’email, già indirizzata a chi è scritto nel modulo e col link alla presentazione dentro.</li>
+            </ul>
+            <p>Dal tasto “invia” del modulo alla bozza pronta da rileggere passa meno di un minuto. Il solo gesto umano rimasto è premere invio su un’email già scritta.</p>
+          </dd>
+
+          <dt>Un’automazione solida</dt>
+          <dd>
+            <p><strong>Il testo è generato, l’impaginazione no.</strong></p>
+            <ul>
+              <li><strong>Le slide non vengono create dal modello</strong>: viene copiato un template impaginato a mano una volta. Il modello riempie caselle di testo che esistono già, quindi il documento non può venire brutto — al massimo può venire scritto male.</li>
+              <li><strong>Il modello risponde in JSON</strong>, con l’opzione JSON Output attiva: ogni testo ha un nome, e il nodo che riempie le slide pesca per nome. Se il modello rispondesse in prosa la mappatura si romperebbe a ogni esecuzione.</li>
+              <li><strong>Il prompt contiene una proposta d’esempio completa</strong>, domanda e risposta: il modello non deve indovinare la lunghezza e il tono di ogni campo, li vede.</li>
+              <li><strong>Il costo non lo decide il modello</strong>: arriva dal modulo e viene scritto nella slide così com’è.</li>
+            </ul>
+            <p>Dove si rompe davvero, e va sorvegliato: un campo che il modello lascia vuoto esce come segnaposto ancora visibile nella slide; un segnaposto scritto nel template in due battute separate non viene sostituito; le quote delle API di Google e OpenAI si esauriscono in silenzio.</p>
+          </dd>
+
+          <dt>Cosa non fa ancora</dt>
+          <dd>
+            <p>Sono decisioni, non dimenticanze.</p>
+            <ul>
+              <li><strong>Nessun controllo automatico prima della consegna</strong>: la revisione c’è, ma è umana. Il flusso si ferma alla bozza di proposito — nessuna regola verifica che quello che il modello ha scritto sia vero.</li>
+              <li><strong>Nessuna firma elettronica e nessuna tabella prezzi calcolata</strong>: una presentazione è un documento, non un contratto. Chi ha bisogno di far firmare usa la variante PandaDoc qui sotto.</li>
+              <li><strong>Nessun controllo su quello che il modello scrive</strong>: una data o una cifra inventate escono impaginate bene come tutto il resto.</li>
+              <li><strong>Nessun archivio</strong>: la proposta vive su Drive, ma non finisce né sul CRM né in un foglio che dica quante ne sono partite.</li>
+            </ul>
+          </dd>
+
+          <dt>Automazioni concettualmente identiche, nella forma diverse</dt>
+          <dd>
+            <p>L’architettura è: un modulo raccoglie dati grezzi, un modello li trasforma in campi con un nome, un documento-template viene copiato e riempito, e il link torna a chi deve leggerlo.</p>
+            <p><strong>La variante a pagamento: PandaDoc.</strong> Stessa spina dorsale — modulo, stesso modello, stesso JSON. Al posto della coppia Drive + Slides c’è una sola richiesta HTTP che crea il documento da un template PandaDoc, riempie i token, costruisce la tabella prezzi con il costo preso dal modulo e lo manda in firma al cliente. Si sceglie quando servono firma elettronica, prezzi opzionali e approvazioni; si paga in abbonamento e in una richiesta HTTP da scrivere a mano invece che in un nodo con i campi già pronti.</p>
+            <p>Altre implementazioni della stessa architettura:</p>
+            <ul>
+              <li>modulo di sopralluogo → preventivo impaginato</li>
+              <li>modulo di fine progetto → report di consegna per il cliente</li>
+              <li>contratto firmato → pacchetto di onboarding personalizzato</li>
+              <li>dati del mese → report mensile ricorrente, senza modulo: il trigger è il calendario</li>
+            </ul>
+            <p>Oppure <strong>cambia il documento</strong>: Google Docs al posto di Slides, quando la proposta è una lettera e non un mazzo di slide.</p>
+          </dd>
+
+          <dt>Subito dopo</dt>
+          <dd>
+            <p>Le due cose che i clienti chiedono subito dopo sono:</p>
+            <ol>
+              <li><strong>la bozza in revisione</strong>: la proposta arriva prima a te, e parte al cliente solo quando l’hai approvata da Slack o dalle bozze di Gmail</li>
+              <li><strong>il seguito</strong>: sapere se la presentazione è stata aperta, e mandare un promemoria se dopo due giorni non l’ha aperta nessuno.</li>
+            </ol>
+          </dd>
+
+        </dl>
+
+        <p class="c-entry__permalink"><a href="#proposal-generator">Link a questa automazione</a></p>
       </div>
     </details>
 
@@ -81,11 +232,8 @@
 
 </main>
 
-<footer class="l-footer">
-  <div class="l-footer__inner">
-    <p>Luca Leone 2026</p>
-    <p><a href="portfolio.html">Works</a> &middot; <a href="marketing.html">Results</a></p>
-  </div>
+<footer class="l-card__footer">
+  <p>2026 • Mucca Design di Luca Leone • VAT IT08200720962</p>
 </footer>
 
 <script src="js/portfolio-index.js"></script>

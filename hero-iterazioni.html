@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero — 4 iterazioni</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components/button.css">
+<link rel="stylesheet" href="css/components/video.css">
+<link rel="stylesheet" href="brand-kit/brand-tokens-light.css">
+<link rel="stylesheet" href="css/theme-brand.css">
+<style>
+  /* ---------------------------------------------------------------
+     Chrome della pagina di esplorazione — non è stile dell'hero.
+  --------------------------------------------------------------- */
+  .x-label {
+    max-width: var(--container-max-width);
+    margin: var(--space-72) auto var(--space-24);
+    padding: 0 var(--space-24);
+  }
+
+  .x-label__tag {
+    display: inline-block;
+    padding: var(--space-6) var(--space-12);
+    border: var(--border-width-1) solid var(--color-border);
+    border-radius: var(--radius-4);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-600);
+  }
+
+  .x-label__note {
+    max-width: var(--space-720);
+    margin: var(--space-12) 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-14);
+  }
+
+  .x-divider {
+    max-width: var(--container-max-width);
+    margin: var(--space-48) auto 0;
+    border: 0;
+    border-top: var(--border-width-1) solid var(--color-border);
+  }
+
+  /* Finta riga di contenuto dopo l'hero: senza, non si vede dove
+     finisce l'hero e quanto pesa rispetto a ciò che lo segue. */
+  .x-after {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-24);
+    color: var(--color-text-muted);
+  }
+
+  /* ---------------------------------------------------------------
+     Occhiello — usato da A, B e D: il nome del prodotto scende a
+     etichetta e lascia l'h1 alla promessa.
+  --------------------------------------------------------------- */
+  .x-eyebrow {
+    margin: 0 0 var(--space-12);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-600);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  /* ---------------------------------------------------------------
+     A — La promessa in testa
+  --------------------------------------------------------------- */
+  [data-hero="promessa"] .x-claim {
+    margin: 0 0 var(--space-24);
+    font-size: var(--font-size-20);
+    line-height: var(--line-height-relaxed);
+  }
+
+  [data-hero="promessa"] .x-claim strong {
+    font-weight: var(--font-weight-700);
+  }
+
+  /* ---------------------------------------------------------------
+     B — Il video è l'hero
+  --------------------------------------------------------------- */
+  [data-hero="cinema"] {
+    display: block;
+    max-width: var(--space-780);
+    text-align: center;
+  }
+
+  [data-hero="cinema"] .l-hero__media {
+    margin: var(--space-36) 0 var(--space-24);
+  }
+
+  [data-hero="cinema"] .l-hero__actions {
+    justify-content: center;
+  }
+
+  [data-hero="cinema"] h1 {
+    margin-bottom: var(--space-12);
+  }
+
+  /* ---------------------------------------------------------------
+     C — Solo testo, il video scende
+  --------------------------------------------------------------- */
+  [data-hero="manifesto"] {
+    display: block;
+    max-width: var(--space-780);
+    padding-top: var(--space-96);
+    padding-bottom: var(--space-96);
+  }
+
+  [data-hero="manifesto"] h1 {
+    font-size: var(--font-size-48);
+  }
+
+  [data-hero="manifesto"] .x-claim {
+    margin: var(--space-24) 0 var(--space-36);
+    font-size: var(--font-size-24);
+    line-height: var(--line-height-relaxed);
+  }
+
+  @media (min-width: 768px) {
+    [data-hero="manifesto"] h1 {
+      font-size: var(--font-size-72);
+    }
+  }
+
+  /* ---------------------------------------------------------------
+     D — Scheda del corso
+  --------------------------------------------------------------- */
+  [data-hero="scheda"] .x-claim {
+    margin: 0 0 var(--space-24);
+    font-size: var(--font-size-20);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .x-card {
+    padding: var(--space-24);
+    border: var(--border-width-2) solid var(--color-text);
+    border-radius: var(--radius-4);
+  }
+
+  .x-card__rows {
+    margin: 0 0 var(--space-24);
+    padding: 0;
+    list-style: none;
+  }
+
+  .x-card__row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-12);
+    padding: var(--space-12) 0;
+    border-bottom: var(--border-width-1) solid var(--color-border);
+  }
+
+  .x-card__row:last-child {
+    border-bottom: 0;
+  }
+
+  .x-card__key {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-14);
+  }
+
+  .x-card__value {
+    font-weight: var(--font-weight-700);
+    text-align: right;
+  }
+
+  .x-card .c-button {
+    display: block;
+    text-align: center;
+  }
+
+  .x-card__note {
+    margin: var(--space-12) 0 0;
+    font-size: var(--font-size-14);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="x-label">
+  <h1>Hero — 4 iterazioni</h1>
+  <p class="x-label__note">Quattro ipotesi diverse, non quattro restyling. Sotto ognuna c'è una riga di contenuto finta, per vedere dove finisce l'hero e quanto pesa rispetto a ciò che segue. Il copy è quello vero: dove cambia, cambia perché l'ipotesi lo richiede.</p>
+</div>
+
+<hr class="x-divider">
+
+<!-- ============================ ATTUALE ============================ -->
+<div class="x-label">
+  <span class="x-label__tag">Attuale — in produzione</span>
+  <p class="x-label__note">Quattro problemi, in ordine di gravità. <strong>Il titolo è il nome del prodotto, non la promessa</strong>: "Master UX/UI Design" è un'etichetta di catalogo, e la cosa che potrebbe farti restare — "Diventa Design Engineer" — è sotto, piccola e in peso normale. <strong>Sette blocchi impilati</strong> (titolo, tagline, lead, lista, lead, bottone, data) senza una dominante: l'occhio non sa dove posarsi. <strong>La lista numerata compete con il titolo</strong> e anticipa cose che la pagina ripete venti righe dopo. <strong>Il video è al 45% e centrato verticalmente</strong>: 5 minuti che spiegano tutto, messi lì come illustrazione di contorno, senza una riga che inviti a guardarli.</p>
+</div>
+
+<section class="l-hero">
+  <div class="l-hero__body">
+    <h1>Master UX/UI Design</h1>
+    <p class="l-hero__tagline">Diventa Design Engineer</p>
+    <p class="l-hero__lead">Un corso di 3 mesi per junior designer che vogliono:</p>
+    <ol class="l-hero__lead">
+      <li>usare l'AI per progettare interfacce (no Figma)</li>
+      <li>costruire un portfolio che convince</li>
+      <li>cercare lavoro, anche fuori dall'Italia, con una strategia che funziona</li>
+    </ol>
+    <p class="l-hero__lead">Prima del corso, 4 live gratuite a ottobre.</p>
+    <div class="l-hero__actions">
+      <a href="#" class="c-button">Iscriviti al pre-corso gratuito</a>
+    </div>
+    <p class="l-hero__meta">Prossima classe: lunedì 9 novembre 2026</p>
+  </div>
+  <div class="l-hero__media">
+    <figure class="c-video">
+      <div class="c-video__box" style="--video-aspect-ratio: 2004 / 1080">
+        <video controls preload="none" playsinline poster="assets/video/video-hero-poster.jpg" width="2004" height="1080">
+          <source src="assets/video/video-hero.mp4" type="video/mp4">
+        </video>
+      </div>
+      <figcaption>Video introduttivo — 4:49</figcaption>
+    </figure>
+  </div>
+</section>
+
+<p class="x-after">↓ qui comincia "Il problema del Junior Designer da quando c'è AI"</p>
+
+<hr class="x-divider">
+
+<!-- ============================ A ============================ -->
+<div class="x-label">
+  <span class="x-label__tag">A — La promessa in testa</span>
+  <p class="x-label__note"><strong>Ipotesi</strong>: il titolo deve dire cosa diventi, non come si chiama il corso. Il nome scende a occhiello, "Diventa Design Engineer" prende l'h1, e i tre punti si contraggono in una frase sola — le tre cose restano, ma smettono di essere una lista che compete con il titolo. Blocchi da sette a cinque. <strong>Costo</strong>: perde la scansione numerata, che era comoda da leggere a salti. <strong>Cambia solo l'ordine e il peso</strong>: nessun elemento nuovo, il video resta dov'è.</p>
+</div>
+
+<section class="l-hero" data-hero="promessa">
+  <div class="l-hero__body">
+    <p class="x-eyebrow">Master UX/UI Design</p>
+    <h1>Diventa Design Engineer</h1>
+    <p class="x-claim">Tre mesi per imparare a <strong>progettare interfacce con l'AI</strong>, costruire <strong>un portfolio che convince</strong> e <strong>cercare lavoro con una strategia che funziona</strong> — anche fuori dall'Italia.</p>
+    <div class="l-hero__actions">
+      <a href="#" class="c-button">Iscriviti al pre-corso gratuito</a>
+    </div>
+    <p class="l-hero__meta">4 live gratuite a ottobre · la classe parte lunedì 9 novembre 2026</p>
+  </div>
+  <div class="l-hero__media">
+    <figure class="c-video">
+      <div class="c-video__box" style="--video-aspect-ratio: 2004 / 1080">
+        <video controls preload="none" playsinline poster="assets/video/video-hero-poster.jpg" width="2004" height="1080">
+          <source src="assets/video/video-hero.mp4" type="video/mp4">
+        </video>
+      </div>
+      <figcaption>Guarda come lavoro — 4:49</figcaption>
+    </figure>
+  </div>
+</section>
+
+<p class="x-after">↓ qui comincia "Il problema del Junior Designer da quando c'è AI"</p>
+
+<hr class="x-divider">
+
+<!-- ============================ B ============================ -->
+<div class="x-label">
+  <span class="x-label__tag">B — Il video è l'hero</span>
+  <p class="x-label__note"><strong>Ipotesi</strong>: cinque minuti in cui ti vedono lavorare vendono più di qualsiasi paragrafo, quindi l'hero è un manifesto da cinema — titolo, video grande al centro, una riga, il bottone. Il resto della pagina fa il lavoro di dettaglio. <strong>Costo</strong>: chi non preme play riceve pochissimo, e su mobile il bottone finisce sotto la piega. <strong>Verifica che serve</strong>: quante persone lo guardano davvero. Se sono poche, questa è la variante peggiore delle quattro; se sono tante, è di gran lunga la migliore.</p>
+</div>
+
+<section class="l-hero" data-hero="cinema">
+  <p class="x-eyebrow">Master UX/UI Design · dal 9 novembre 2026</p>
+  <h1>Diventa Design Engineer</h1>
+  <p class="l-hero__lead">Guarda come lavoro. Poi decidi.</p>
+  <div class="l-hero__media">
+    <figure class="c-video">
+      <div class="c-video__box" style="--video-aspect-ratio: 2004 / 1080">
+        <video controls preload="none" playsinline poster="assets/video/video-hero-poster.jpg" width="2004" height="1080">
+          <source src="assets/video/video-hero.mp4" type="video/mp4">
+        </video>
+      </div>
+    </figure>
+  </div>
+  <div class="l-hero__actions">
+    <a href="#" class="c-button">Iscriviti al pre-corso gratuito</a>
+  </div>
+  <p class="l-hero__meta">4 live gratuite a ottobre · 12 posti per la prima classe</p>
+</section>
+
+<p class="x-after">↓ qui comincia "Il problema del Junior Designer da quando c'è AI"</p>
+
+<hr class="x-divider">
+
+<!-- ============================ C ============================ -->
+<div class="x-label">
+  <span class="x-label__tag">C — Manifesto, il video scende</span>
+  <p class="x-label__note"><strong>Ipotesi</strong>: la pagina sotto è lunga e piena di prove — gallery, recensioni, garanzia, FAQ. L'hero non deve convincere, deve solo colpire e indicare il primo passo; il video trova posto subito sotto, dove c'è spazio per essere grande davvero. Una colonna sola, titolo a 72px, una frase, il bottone. <strong>Costo</strong>: è la variante che dà meno informazioni in assoluto, e se il traffico arriva freddo da un annuncio potrebbe non bastare. <strong>Il vantaggio nascosto</strong>: è l'unica che su mobile tiene titolo, frase e bottone tutti sopra la piega.</p>
+</div>
+
+<section class="l-hero" data-hero="manifesto">
+  <p class="x-eyebrow">Master UX/UI Design</p>
+  <h1>Diventa Design Engineer</h1>
+  <p class="x-claim">Tre mesi, 12 posti, un portfolio pubblicato e una strategia per cercare lavoro. Se applichi il metodo e in sei mesi non trovi lavoro, ti restituisco tutto.</p>
+  <div class="l-hero__actions">
+    <a href="#" class="c-button">Iscriviti al pre-corso gratuito</a>
+  </div>
+  <p class="l-hero__meta">4 live gratuite a ottobre · la classe parte lunedì 9 novembre 2026</p>
+</section>
+
+<p class="x-after">↓ qui, subito sotto, il video a larghezza piena — poi "Il problema del Junior Designer"</p>
+
+<hr class="x-divider">
+
+<!-- ============================ D ============================ -->
+<div class="x-label">
+  <span class="x-label__tag">D — Scheda del corso</span>
+  <p class="x-label__note"><strong>Ipotesi</strong>: chi arriva qui ti conosce già — viene dal tuo canale, dalla newsletter, da un tuo video. Non deve essere convinto che il design engineering esista: vuole sapere quando parte, quanto costa, quanti posti ci sono. Promessa a sinistra, scheda coi fatti a destra. <strong>Costo</strong>: il prezzo in cima qualifica in entrata, il che è un bene per chi è pronto e un male per chi andava scaldato prima. <strong>E il video?</strong> Prende il posto della scheda subito sotto, oppure resta nella sezione "Come insegno". <strong>È la variante più lontana dalle altre tre</strong>: le prime tre discutono come dire la stessa cosa, questa discute a chi la stiamo dicendo.</p>
+</div>
+
+<section class="l-hero" data-hero="scheda">
+  <div class="l-hero__body">
+    <p class="x-eyebrow">Master UX/UI Design</p>
+    <h1>Diventa Design Engineer</h1>
+    <p class="x-claim">Progettare interfacce con l'AI, un portfolio che convince, una strategia di ricerca del lavoro che funziona. Con una garanzia: se applichi il metodo e in sei mesi non trovi lavoro, ti restituisco tutto.</p>
+  </div>
+  <div class="l-hero__media">
+    <div class="x-card">
+      <ul class="x-card__rows">
+        <li class="x-card__row">
+          <span class="x-card__key">Partenza</span>
+          <span class="x-card__value">lunedì 9 novembre 2026</span>
+        </li>
+        <li class="x-card__row">
+          <span class="x-card__key">Durata</span>
+          <span class="x-card__value">3 mesi · lun, mer, ven 19-21</span>
+        </li>
+        <li class="x-card__row">
+          <span class="x-card__key">Posti</span>
+          <span class="x-card__value">12</span>
+        </li>
+        <li class="x-card__row">
+          <span class="x-card__key">Costo</span>
+          <span class="x-card__value">987€ · anche a rate</span>
+        </li>
+      </ul>
+      <a href="#" class="c-button">Iscriviti al pre-corso gratuito</a>
+      <p class="x-card__note">4 live gratuite a ottobre, prima di decidere</p>
+    </div>
+  </div>
+</section>
+
+<p class="x-after">↓ qui comincia "Il problema del Junior Designer da quando c'è AI"</p>
+
+</body>
+</html>

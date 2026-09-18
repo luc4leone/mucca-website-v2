@@ -1,0 +1,119 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "replaceText",
+        "presentationId": "={{ $json.id }}",
+        "textUi": {
+          "textValues": [
+            {
+              "text": "{{proposalTitle}}",
+              "replaceText": "={{ $('Proposal').item.json.proposalTitle }}"
+            },
+            {
+              "text": "{{descriptionName}}",
+              "replaceText": "={{ $('Proposal').item.json.descriptionName }}"
+            },
+            {
+              "text": "{{oneParagraphProblemSummary}}",
+              "replaceText": "={{ $('Proposal').item.json.oneParagraphProblemSummary }}"
+            },
+            {
+              "text": "{{solutionHeadingOne}}",
+              "replaceText": "={{ $('Proposal').item.json.solutionHeadingOne }}"
+            },
+            {
+              "text": "{{solutionDescriptionOne}}",
+              "replaceText": "={{ $('Proposal').item.json.solutionDescriptionOne }}"
+            },
+            {
+              "text": "{{solutionHeadingTwo}}",
+              "replaceText": "={{ $('Proposal').item.json.solutionHeadingTwo }}"
+            },
+            {
+              "text": "{{solutionDescriptionTwo}}",
+              "replaceText": "={{ $('Proposal').item.json.solutionDescriptionTwo }}"
+            },
+            {
+              "text": "{{solutionHeadingThree}}",
+              "replaceText": "={{ $('Proposal').item.json.solutionHeadingThree }}"
+            },
+            {
+              "text": "{{solutionDescriptionThree}}",
+              "replaceText": "={{ $('Proposal').item.json.solutionDescriptionThree }}"
+            },
+            {
+              "text": "{{shortScopeTitleOne}}",
+              "replaceText": "={{ $('Proposal').item.json.shortScopeTitleOne }}"
+            },
+            {
+              "text": "{{shortScopeDescriptionOne}}",
+              "replaceText": "={{ $('Proposal').item.json.shortScopeDescriptionOne }}"
+            },
+            {
+              "text": "{{shortScopeTitleTwo}}",
+              "replaceText": "={{ $('Proposal').item.json.shortScopeTitleTwo }}"
+            },
+            {
+              "text": "{{shortScopeDescriptionTwo}}",
+              "replaceText": "={{ $('Proposal').item.json.shortScopeDescriptionTwo }}"
+            },
+            {
+              "text": "{{shortScopeTitleThree}}",
+              "replaceText": "={{ $('Proposal').item.json.shortScopeTitleThree }}"
+            },
+            {
+              "text": "{{shortScopeDescriptionThree}}",
+              "replaceText": "={{ $('Proposal').item.json.shortScopeDescriptionThree }}"
+            },
+            {
+              "text": "{{milestoneOneDay}}",
+              "replaceText": "={{ $('Proposal').item.json.milestoneOneDay }}"
+            },
+            {
+              "text": "{{milestoneDescriptionOne}}",
+              "replaceText": "={{ $('Proposal').item.json.milestoneDescriptionOne }}"
+            },
+            {
+              "text": "{{milestoneTwoDay}}",
+              "replaceText": "={{ $('Proposal').item.json.milestoneTwoDay }}"
+            },
+            {
+              "text": "{{milestoneDescriptionTwo}}",
+              "replaceText": "={{ $('Proposal').item.json.milestoneDescriptionTwo }}"
+            },
+            {
+              "text": "{{milestoneThreeDay}}",
+              "replaceText": "={{ $('Proposal').item.json.milestoneThreeDay }}"
+            },
+            {
+              "text": "{{milestoneDescriptionThree}}",
+              "replaceText": "={{ $('Proposal').item.json.milestoneDescriptionThree }}"
+            },
+            {
+              "text": "{{milestoneFourDay}}",
+              "replaceText": "={{ $('Proposal').item.json.milestoneFourDay }}"
+            },
+            {
+              "text": "{{milestoneDescriptionFour}}",
+              "replaceText": "={{ $('Proposal').item.json.milestoneDescriptionFour }}"
+            },
+            {
+              "text": "{{cost}}",
+              "replaceText": "={{ $('Sales Call Logging Form').item.json.Cost }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSlides",
+      "typeVersion": 2,
+      "position": [
+        220,
+        0
+      ],
+      "name": "Fill Slides"
+    }
+  ],
+  "connections": {}
+}

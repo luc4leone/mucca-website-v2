@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generatore di proposte — bozza per automations.html</title>
+<meta name="description" content="Bozza del secondo caso d'uso di automations.html: dal modulo compilato dopo la call alla presentazione Google Slides pronta da mandare.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components/entry.css">
+<link rel="stylesheet" href="../css/components/project.css">
+<link rel="stylesheet" href="../css/components/automation.css">
+<link rel="stylesheet" href="../brand-kit/brand-tokens-light.css">
+<link rel="stylesheet" href="../css/theme-brand.css">
+</head>
+<body>
+
+<main class="l-page">
+
+  <header>
+    <h1>Generatore di proposte.</h1>
+    <p>Bozza del secondo caso d’uso di <code>automations.html</code>. Il blocco <code>&lt;details&gt;</code> qui sotto è pronto da spostare dentro <code>.c-entry-list</code>; la sezione finale “Come si costruisce passo passo” non esiste nel primo caso d’uso ed è scritta a partire dal <code>.md</code> e dal JSON n8n in questa cartella.</p>
+  </header>
+
+  <div class="c-entry-list">
+
+    <details class="c-entry" id="proposal-generator" open>
+      <summary class="c-entry__summary">
+        <h2 class="c-entry__title">Generatore di proposte • Modulo → Google Slides</h2>
+        <p class="c-entry__meta">Modulo n8n · OpenAI · Google Slides · Gmail · settembre 2026</p>
+        <p class="c-entry__line">Proposta pronta mentre la call è ancora calda • Toglie di mezzo la scrittura ripetitiva</p>
+      </summary>
+      <div class="c-entry__body">
+
+        <dl class="c-project__facts c-automation__facts">
+
+          <dt>Il problema di business</dt>
+          <dd>
+            <p>Scrivere proposte è un lavoro ripetitivo che nessuno tratta come tale. Finita la call, qualcuno riapre l’ultima proposta mandata, la duplica, cambia il nome dell’azienda, riscrive il problema, rifà lo scope, aggiorna le date, corregge il prezzo — e dimentica un riferimento al cliente precedente in fondo alla pagina sette.</p>
+            <p>Costa due volte: le ore di chi la scrive, e i giorni di ritardo con cui arriva. Una proposta che arriva il giovedì per una call del lunedì si legge quando l’entusiasmo è finito.</p>
+          </dd>
+
+          <dt>Esempi</dt>
+          <dd>
+            <ul>
+              <li><strong>Agenzia di automazione</strong> manda la proposta dieci minuti dopo la call di scoperta, con problema e scope detti dal cliente mezz’ora prima</li>
+              <li><strong>Studio di consulenza</strong> genera la lettera d’incarico dal modulo compilato dal partner che ha fatto il primo incontro</li>
+              <li><strong>Impresa edile</strong> trasforma i rilievi del sopralluogo in un preventivo impaginato, invece che in un PDF fatto a mano la sera</li>
+            </ul>
+          </dd>
+
+          <dt>Descrizione del flusso Modulo → Proposta</dt>
+          <dd>
+            <ul>
+              <li>Chi ha fatto la call compila un modulo, subito dopo, finché ha ancora le parole del cliente in testa: azienda, email, problema, soluzione, scope, costo, tempi.</li>
+              <li>L’invio del modulo fa partire il flusso: nessun altro gesto, nessun pulsante da premere dopo.</li>
+              <li>Un modello di linguaggio riceve quei campi e restituisce un unico oggetto JSON con tutti i testi della proposta: titolo, sommario del problema, tre blocchi di soluzione, tre voci di scope, quattro tappe con data.</li>
+              <li>n8n copia su Google Drive la presentazione-template, e chiama la copia col titolo della proposta.</li>
+              <li>Sulla copia sostituisce i segnaposto — <code>{{proposalTitle}}</code>, <code>{{oneParagraphProblemSummary}}</code> e gli altri — con i testi generati: ventiquattro sostituzioni in una chiamata sola.</li>
+              <li>Gmail manda l’email con il link alla presentazione, all’indirizzo scritto nel modulo.</li>
+            </ul>
+            <p>Dal tasto “invia” del modulo al link nella casella del cliente passa meno di un minuto.</p>
+          </dd>
+
+          <dt>Un’automazione solida</dt>
+          <dd>
+            <p><strong>Il testo è generato, l’impaginazione no.</strong></p>
+            <ul>
+              <li><strong>Le slide non vengono create dal modello</strong>: viene copiato un template impaginato a mano una volta. Il modello riempie caselle di testo che esistono già, quindi il documento non può venire brutto — al massimo può venire scritto male.</li>
+              <li><strong>Il modello risponde in JSON</strong>, con l’opzione JSON Output attiva: ogni testo ha un nome, e il nodo che riempie le slide pesca per nome. Se il modello rispondesse in prosa la mappatura si romperebbe a ogni esecuzione.</li>
+              <li><strong>Il prompt contiene una proposta d’esempio completa</strong>, domanda e risposta: il modello non deve indovinare la lunghezza e il tono di ogni campo, li vede.</li>
+              <li><strong>Il costo non lo decide il modello</strong>: arriva dal modulo e viene scritto nella slide così com’è.</li>
+            </ul>
+            <p>Dove si rompe davvero, e va sorvegliato: un campo che il modello lascia vuoto esce come segnaposto ancora visibile nella slide; un segnaposto scritto nel template in due battute separate non viene sostituito; le quote delle API di Google e OpenAI si esauriscono in silenzio.</p>
+          </dd>
+
+          <dt>Cosa non fa ancora</dt>
+          <dd>
+            <p>Sono decisioni, non dimenticanze.</p>
+            <ul>
+              <li><strong>Nessuna revisione prima dell’invio</strong>: nella versione base l’email parte da sola. È la prima cosa che si cambia in produzione — la proposta arriva a te, e il cliente la riceve quando l’hai letta.</li>
+              <li><strong>Nessuna firma elettronica e nessuna tabella prezzi calcolata</strong>: una presentazione è un documento, non un contratto. Chi ha bisogno di far firmare usa la variante PandaDoc qui sotto.</li>
+              <li><strong>Nessun controllo su quello che il modello scrive</strong>: una data o una cifra inventate escono impaginate bene come tutto il resto.</li>
+              <li><strong>Nessun archivio</strong>: la proposta vive su Drive, ma non finisce né sul CRM né in un foglio che dica quante ne sono partite.</li>
+            </ul>
+          </dd>
+
+          <dt>Automazioni concettualmente identiche, nella forma diverse</dt>
+          <dd>
+            <p>L’architettura è: un modulo raccoglie dati grezzi, un modello li trasforma in campi con un nome, un documento-template viene copiato e riempito, e il link torna a chi deve leggerlo.</p>
+            <p><strong>La variante a pagamento: PandaDoc.</strong> Stessa spina dorsale — modulo, stesso modello, stesso JSON. Al posto della coppia Drive + Slides c’è una sola richiesta HTTP che crea il documento da un template PandaDoc, riempie i token, costruisce la tabella prezzi con il costo preso dal modulo e lo manda in firma al cliente. Si sceglie quando servono firma elettronica, prezzi opzionali e approvazioni; si paga in abbonamento e in una richiesta HTTP da scrivere a mano invece che in un nodo con i campi già pronti.</p>
+            <p>Altre implementazioni della stessa architettura:</p>
+            <ul>
+              <li>modulo di sopralluogo → preventivo impaginato</li>
+              <li>modulo di fine progetto → report di consegna per il cliente</li>
+              <li>contratto firmato → pacchetto di onboarding personalizzato</li>
+              <li>dati del mese → report mensile ricorrente, senza modulo: il trigger è il calendario</li>
+            </ul>
+            <p>Oppure <strong>cambia il documento</strong>: Google Docs al posto di Slides, quando la proposta è una lettera e non un mazzo di slide.</p>
+          </dd>
+
+          <dt>Subito dopo</dt>
+          <dd>
+            <p>Le due cose che i clienti chiedono subito dopo sono:</p>
+            <ol>
+              <li><strong>la bozza in revisione</strong>: la proposta arriva prima a te, e parte al cliente solo quando l’hai approvata da Slack o dalle bozze di Gmail</li>
+              <li><strong>il seguito</strong>: sapere se la presentazione è stata aperta, e mandare un promemoria se dopo due giorni non l’ha aperta nessuno.</li>
+            </ol>
+          </dd>
+
+        </dl>
+
+        <h3>Come si costruisce passo passo</h3>
+
+        <p>Sei nodi in fila, nessun bivio. La parte difficile non è il collegamento fra i nodi: è il template delle slide e il prompt, e conviene farli in quest’ordine.</p>
+
+        <p><strong>Cosa serve prima di cominciare</strong>: un’istanza n8n (cloud o self-hosted), una chiave API OpenAI, un account Google collegato a n8n con OAuth e i permessi su Drive, Slides e Gmail.</p>
+
+        <h4 class="c-automation__step">1. Il template Google Slides</h4>
+        <p>È l’unico passo tutto a mano; quando è fatto, i cinque nodi successivi sono mappatura meccanica.</p>
+
+        <p><strong>Cosa fare.</strong></p>
+        <ol>
+          <li>Vai su <code>slides.new</code>, chiama la presentazione <em>Proposal Template</em> e mettila in una cartella Drive dedicata (es. <code>Proposte/</code>). Il flusso ci copierà dentro ogni proposta.</li>
+          <li>Imposta il design una volta sola: font, colori, logo nel master (<em>Diapositiva › Modifica tema</em>). Tutto ciò che sta nel tema non viene toccato dalla sostituzione testo.</li>
+          <li>Crea 6 slide con questa distribuzione dei 24 segnaposto:</li>
+        </ol>
+        <pre class="c-automation__code"><code>1  Copertina    {{proposalTitle}}  {{descriptionName}}
+2  Il problema   {{oneParagraphProblemSummary}}
+3  La soluzione  {{solutionHeadingOne}}       ...Two, ...Three
+                 {{solutionDescriptionOne}}   ...Two, ...Three
+4  Scope         {{shortScopeTitleOne}}       ...Two, ...Three
+                 {{shortScopeDescriptionOne}} ...Two, ...Three
+5  Tempi         {{milestoneOneDay}}          ...Two, ...Three, ...Four
+                 {{milestoneDescriptionOne}}  ...Two, ...Three, ...Four
+6  Costo         {{cost}}</code></pre>
+
+        <p><strong>Le tre regole che fanno fallire tutto se ignorate.</strong></p>
+        <ul>
+          <li><strong>Ogni segnaposto deve stare dentro una casella di testo</strong> (<em>Inserisci › Casella di testo</em>). Non dentro un’immagine, non in un elemento del tema, non in una forma decorativa.</li>
+          <li><strong>Scrivilo tutto d’un fiato, digitando.</strong> Se lo componi copiando-incollando pezzi, Slides lo spezza internamente in frammenti separati e <em>Replace Text</em> non lo trova più. Se hai dubbi su un segnaposto: cancellalo e ridigitalo da zero.</li>
+          <li><strong>Nomi identici a quelli della tabella</strong>, maiuscole comprese. Sono la stessa lista che riscriverai nel prompt (passo 3) e nel nodo Slides (passo 5): è lì che nascono il 90% degli errori.</li>
+        </ul>
+
+        <p><strong>Dimensionamento delle caselle.</strong> Impagina ogni casella <code>...Description...</code> per <strong>quattordici parole</strong> — è il limite che imporrai al modello nel passo 3. Se la casella è più stretta di così, il testo trabocca fuori dalla slide e non te ne accorgi finché non guardi la proposta generata.</p>
+
+        <p><strong>Prima di chiudere.</strong></p>
+        <ul>
+          <li>Controlla i <strong>permessi di condivisione</strong> del template: le copie li ereditano, e un link che chiede l’accesso è peggio di nessuna automazione.</li>
+          <li>Copia l’<strong>ID dall’URL</strong> — <code>docs.google.com/presentation/d/<strong>1fHzjDQ…BkNE</strong>/edit</code> — e tienilo da parte: serve al passo 4.</li>
+        </ul>
+
+        <h4 class="c-automation__step">2. Il trigger: nodo <em>On form submission</em></h4>
+        <p>In n8n: nuovo workflow → <em>Add first step</em> → cerca <code>Form</code> → <strong>On form submission</strong>.</p>
+
+        <p><strong>Intestazione del modulo.</strong> Titolo <code>Sales Call Logging Form</code>, e nella descrizione scrivi a cosa serve davvero — chi lo compila deve capire che sta <em>generando una proposta</em>, non archiviando una nota. Se pensa di stare prendendo appunti, scrive appunti, e il modello riceve materiale inutile.</p>
+
+        <p><strong>I dieci campi</strong>, in quest’ordine:</p>
+        <pre class="c-automation__code"><code>First Name     Text      obbligatorio
+Last Name      Text      obbligatorio
+Company Name   Text      obbligatorio
+Email          Email
+Website        Text      obbligatorio
+Problem        Textarea  obbligatorio
+Solution       Textarea  obbligatorio
+Scope          Textarea  obbligatorio
+Cost           Text      obbligatorio
+How soon?      Text      obbligatorio</code></pre>
+
+        <p><strong>I nomi dei campi sono già codice.</strong> Diventano le chiavi di <code>$json</code> nei nodi successivi, quindi <code>Company Name</code> si leggerà <code>$json['Company Name']</code> e <code>How soon?</code> si leggerà <code>$json['How soon?']</code> — parentesi quadre perché contengono uno spazio e un punto interrogativo. Se li scrivi diversi da così, tutte le espressioni del passo 3 vanno riadattate. Meglio copiarli identici adesso.</p>
+        <p><strong>E le maiuscole contano.</strong> <code>Company name</code> e <code>Company Name</code> sono due campi diversi: il primo produce <code>$json['Company name']</code>, che nessuna espressione scritta per il secondo troverà mai. Il guasto è silenzioso — non ottieni un errore, ottieni una stringa vuota, e te ne accorgi tre nodi dopo quando il titolo della proposta dice “your ecommerce platform” invece del nome del cliente.</p>
+        <p>Se ti succede, correggi la label nel trigger e poi <strong>togli il pin dall’output</strong> prima di rieseguire: rinominare un campo non aggiorna il pin data, che resta congelato con la vecchia chiave. È il passaggio che si dimentica — correggi, riesegui, e il pin vecchio continua a servirti il nome sbagliato mentre giuri di aver sistemato tutto.</p>
+
+        <p><strong>I tre campi lunghi sono il cuore.</strong> <code>Problem</code>, <code>Solution</code> e <code>Scope</code> si compilano a braccio, con le parole del cliente, finché le hai in testa. Sono il materiale grezzo che il modello riformula: più sono specifici, meno il modello inventa. Se scrivi “vogliono automatizzare le vendite”, la proposta esce generica e lo vedi subito.</p>
+
+        <p><strong>Quanto devono essere lunghi.</strong> <code>Problem</code> deve reggere <code>{{oneParagraphProblemSummary}}</code>: una riga in entrata, un paragrafo in uscita, e la differenza il modello la colma inventando. <code>Solution</code> deve reggere tre blocchi (<code>solutionHeadingOne/Two/Three</code> più le descrizioni): se scrivi una cosa sola, il modello ne deve tirare fuori tre e ne inventa due. La regola pratica: <strong>ogni campo lungo deve contenere almeno tante idee distinte quante ne servono in uscita</strong> — una per il problema, tre per la soluzione, tre per lo scope. Non devi impaginarli né lucidarli: sono appunti post-call, con le parole del cliente. È il modello che li rende presentabili.</p>
+
+        <p><strong><code>Cost</code> resta un campo di testo, non un numero.</strong> Ci scrivi <code>$1,850</code> o <code>€1.850 + IVA</code> come vuoi che appaia nella slide: il valore viene copiato così com’è, senza che nessun modello lo tocchi. È una scelta, non una pigrizia — il prezzo è l’unica cosa che non deve mai passare da un LLM.</p>
+
+        <p><strong>Authentication: <code>None</code> adesso, <code>Basic Auth</code> prima di andare in produzione.</strong> Mentre costruisci, <code>None</code> ti toglie di mezzo un attrito che non serve a niente: apri l’URL del modulo, compili, il pin data è lì. Prima di attivare il flusso però cambialo, e non per igiene generica. Con <code>None</code> l’URL di produzione è pubblico per chiunque lo abbia: ogni invio spende token OpenAI, crea un file su Drive e <strong>manda un’email dal tuo dominio all’indirizzo scritto nel campo Email</strong>. Un modulo aperto è un relay di posta a nome tuo — è il campo Email che alza la posta, non il costo dei token.</p>
+        <ul>
+          <li><strong><code>Basic Auth</code></strong> — n8n chiede utente e password prima di mostrare il modulo, una coppia sola condivisa. Crei la credenziale al volo dal nodo stesso. È quello giusto qui: il modulo lo compilano poche persone note, e non serve che abbiano un account n8n.</li>
+          <li><strong><code>n8n User Auth</code></strong> — apre il modulo solo a chi è già loggato in quella istanza n8n. Va bene se il compilatore sei solo tu; se domani lo passi a un collaboratore, su n8n Cloud gli serve una seat a pagamento. Più stretto del necessario, e costoso nel modo sbagliato.</li>
+          <li><strong><code>None</code></strong> — solo in costruzione.</li>
+        </ul>
+        <p>Un dettaglio che risparmia confusione: il trigger ha <strong>due URL distinti</strong>, test e production. Quello di test vive solo finché il workflow è in ascolto e serve a generare il pin data; quello di production funziona solo a workflow attivo. Se il modulo “non risponde”, nove volte su dieci è il test URL scaduto, non l’autenticazione.</p>
+
+        <p><strong>Prima di chiudere:</strong> esegui il nodo una volta (<em>Execute step</em>) e compila il modulo per davvero, con dati plausibili. n8n conserva quella risposta come <em>pin data</em>, e da qui in avanti puoi riprovare i nodi successivi cento volte senza ricompilare il modulo ogni volta. È la differenza tra costruire il passo 3 in dieci minuti o in un’ora.</p>
+
+        <h4 class="c-automation__step">3. Il cervello: nodo OpenAI <em>Generate Proposal Copy</em></h4>
+        <p>Aggiungi <strong>OpenAI › Message a Model</strong> dopo il trigger. Poi, <em>prima di scrivere qualunque espressione</em>, <strong>rinomina il nodo in <code>Generate Proposal Copy</code></strong> (doppio clic sul titolo). I nodi 5 e 6 lo chiameranno per nome: rinominarlo dopo rompe tutte le espressioni in una volta.</p>
+
+        <p><strong>Credenziale</strong>: una chiave API OpenAI da <code>platform.openai.com</code>, con credito caricato — la chiave da sola non basta, ed è l’errore <code>429</code> più frequente al primo giro. In alternativa, per costruire e provare, n8n Cloud offre dei crediti inclusi (<em>Gateway credits</em>): bastano per qualche decina di esecuzioni, e ti evitano di aprire un account OpenAI prima di sapere se il flusso ti serve.</p>
+
+        <p><strong>Model</strong>: <code>gpt-4o</code>. Se hai accesso a un modello più recente usa quello: cambia la qualità della scrittura, non il flusso.</p>
+
+        <p><strong>L’opzione che decide tutto: <code>JSON Output</code> su ON.</strong> Senza, il modello risponde in prosa e i nodi 4 e 5 non hanno niente da pescare. Sta sotto le opzioni del nodo, e si dimentica sempre.</p>
+
+        <p><strong>I quattro messaggi, in quest’ordine.</strong></p>
+
+        <p><strong>1. System</strong> — una riga: <code>You are a helpful, intelligent writing assistant.</code></p>
+
+        <p><strong>2. User</strong> — il compito, il contesto, lo schema, le regole:</p>
+        <pre class="c-automation__code"><code>Your task is to generate a proposal using input data from a form.
+This proposal should be highly customized, specific, and
+high-quality, considering we're going to be sending it immediately
+after you're done.
+
+Context: we are a design studio specialising in UX and brand
+identity work for ecommerce and product companies.
+
+The proposal template we're using has many fields. You must return
+these fields in one JSON object.
+
+Use this format:
+
+{
+  "proposalTitle": "",
+  "descriptionName": "",
+  "oneParagraphProblemSummary": "",
+  "solutionHeadingOne": "",     "solutionDescriptionOne": "",
+  "solutionHeadingTwo": "",     "solutionDescriptionTwo": "",
+  "solutionHeadingThree": "",   "solutionDescriptionThree": "",
+  "shortScopeTitleOne": "",     "shortScopeDescriptionOne": "",
+  "shortScopeTitleTwo": "",     "shortScopeDescriptionTwo": "",
+  "shortScopeTitleThree": "",   "shortScopeDescriptionThree": "",
+  "milestoneOneDay": "",        "milestoneDescriptionOne": "",
+  "milestoneTwoDay": "",        "milestoneDescriptionTwo": "",
+  "milestoneThreeDay": "",      "milestoneDescriptionThree": "",
+  "milestoneFourDay": "",       "milestoneDescriptionFour": ""
+}
+
+Rules:
+1. Use a spartan, casual tone of voice.
+2. Be to-the-point but professional—assume you're writing to a
+   sophisticated audience.
+3. Ensure that all fields are filled out. Do not miss a field or
+   leave any variables empty.
+4. Keep things short. If a field contains the term "Description"
+   it should be no more than fourteen words. For "descriptionName"
+   do not use title case.</code></pre>
+
+        <p><strong>La riga <code>Context:</code> è l’unica che devi riscrivere per te.</strong> L’originale dice “automation/no-code agency” — è il contesto di chi ha scritto il prompt, non il tuo. Quella riga decide il vocabolario di ogni proposta che uscirà.</p>
+        <p>I nomi dei campi devono essere <strong>identici</strong> ai segnaposto del passo 1: sono la stessa lista scritta due volte, ed è lì che nascono gli errori.</p>
+        <p>La regola 4 non è un vezzo: una casella impaginata per quattordici parole che ne riceve quaranta trabocca fuori dalla slide. È un vincolo di layout travestito da istruzione di stile.</p>
+
+        <p><strong>3. User</strong> — un modulo finto: gli stessi sette campi del messaggio 5, ma con valori scritti a mano invece che con le espressioni. Ruolo <em>User</em>, modalità <em>Fixed</em>.</p>
+        <p>Il messaggio 3 e il 4 sono una coppia domanda-risposta <em>già avvenuta</em>, che metti in bocca al modello prima della domanda vera. Lui legge “quando mi arriva roba fatta così, io rispondo così” e replica il pattern sul messaggio 5. Per questo il 3 deve avere <strong>esattamente la stessa forma</strong> del 5 — stesse chiavi, stesso ordine — altrimenti l’esempio non insegna niente.</p>
+        <pre class="c-automation__code"><code>{
+  "companyName": "Fjord Supply",
+  "problem": "ecommerce does 40k sessions/month but converts at 0.9%. tons of
+    people hit the product page and bounce. the ones who add to cart abandon at
+    checkout. they've tried changing button colours and adding a discount banner,
+    nothing moved. mobile is 70% of traffic and converts worst.",
+  "solution": "full-funnel UX audit. we walk it ourselves on desktop and mobile,
+    then check what their analytics and session recordings actually say, then hand
+    over a prioritised PDF with a fix for every issue.",
+  "scope": "heuristic review of homepage, category, product, cart, checkout.
+    analytics + session recording review, no new tracking. PDF report with
+    screenshots, severity and fixes ranked by revenue impact. one 60-minute
+    handover call. no implementation, no copywriting, no user interviews.",
+  "currentDate": "Sep 3 2026",
+  "howSoon": "six weeks",
+  "depositCost": "$4,200"
+}</code></pre>
+        <p><strong>Usa un cliente diverso da quello con cui fai le prove.</strong> Se l’esempio e il test raccontano lo stesso caso, non riesci a distinguere il modello che ragiona dal modello che ricopia.</p>
+        <p>E scrivilo <strong>sciatto</strong>, minuscole e frasi mozze come sopra: è il modo in cui uno compila davvero un modulo dopo una call. Se ci metti prosa lucidata, insegni al modello ad aspettarsi prosa lucidata, e sul materiale vero — che sarà sciatto — lavora peggio.</p>
+
+        <p><strong>4. Assistant</strong> — la sua metà: i 24 campi compilati esattamente come vuoi leggerli nella slide.</p>
+        <pre class="c-automation__code"><code>{
+  "proposalTitle": "UX Audit for Fjord Supply",
+  "descriptionName": "a full-funnel audit that turns guesswork about your
+    checkout into a ranked list of fixes",
+  "oneParagraphProblemSummary": "Fjord Supply is buying 40,000 sessions a month
+    and converting 0.9% of them. The traffic isn't the problem — the path
+    through the site is. People reach the product page and leave, and the ones
+    who do add to cart drop out at checkout. So far the fixes have been guesses:
+    button colours, a discount banner, nothing that moved the number. What's
+    missing isn't effort, it's evidence — especially on mobile, which is
+    70% of your traffic and your worst-converting device.",
+  "solutionHeadingOne": "Full-Funnel Heuristic Review",
+  "solutionDescriptionOne": "We walk the full funnel on desktop and mobile,
+    logging every friction point.",
+  "solutionHeadingTwo": "Evidence From Your Own Data",
+  "solutionDescriptionTwo": "Session recordings show where people actually
+    leave, so fixes rank by lost revenue.",
+  "solutionHeadingThree": "A Ranked, Actionable Report",
+  "solutionDescriptionThree": "Every issue gets a screenshot, a severity score
+    and a shippable fix.",
+  "shortScopeTitleOne": "Heuristic review of the full purchase funnel",
+  "shortScopeTitleTwo": "Analytics and session recording review",
+  "shortScopeTitleThree": "PDF report plus handover call",
+  "shortScopeDescriptionOne": "Homepage, category, product, cart and checkout,
+    on desktop and mobile.",
+  "shortScopeDescriptionTwo": "Drop-off analysis from your existing analytics.
+    No new tracking installed.",
+  "shortScopeDescriptionThree": "PDF report and one 60-minute walkthrough. No
+    implementation included.",
+  "milestoneOneDay": "September 8th, 2026",
+  "milestoneTwoDay": "September 21st, 2026",
+  "milestoneThreeDay": "October 1st, 2026",
+  "milestoneFourDay": "October 9th, 2026",
+  "milestoneDescriptionOne": "Kickoff call and analytics access.",
+  "milestoneDescriptionTwo": "Full funnel review complete.",
+  "milestoneDescriptionThree": "Draft findings shared for feedback.",
+  "milestoneDescriptionFour": "Final PDF delivered and walkthrough call."
+}</code></pre>
+        <p><strong>È la parte del prompt che vale di più.</strong> Il modello copia registro e lunghezza dall’esempio, invece di dedurli dall’aggettivo “professionale”. Scrivi l’esempio con un caso tuo, non con quello di qualcun altro: quello che metti lì diventa il tono di ogni proposta futura.</p>
+        <p>Tre cose che questo esempio insegna al modello, e che nessuna regola scritta otterrebbe altrettanto bene: le milestone partono <strong>dopo</strong> <code>currentDate</code> e stanno dentro <code>howSoon</code>; i <code>Description</code> sono davvero corti mentre <code>oneParagraphProblemSummary</code> è davvero un paragrafo; e <code>descriptionName</code> è tutto minuscolo, senza title case.</p>
+
+        <p><strong>5. User</strong> — i dati veri, presi dal modulo con le espressioni n8n:</p>
+        <pre class="c-automation__code"><code>{
+  "companyName": "{{ $json['Company Name'] }}",
+  "problem":     "{{ $json.Problem }}",
+  "solution":    "{{ $json.Solution }}",
+  "scope":       "{{ $json.Scope }}",
+  "currentDate": "{{ $now.toLocaleString({ dateStyle: 'medium' }) }}",
+  "howSoon":     "{{ $json['How soon?'] }}",
+  "depositCost": "{{ $json.Cost }}"
+}</code></pre>
+        <p>Le parentesi quadre servono ai campi il cui nome contiene uno spazio o un punto interrogativo: <code>$json['Company Name']</code>, <code>$json['How soon?']</code>.</p>
+        <p>Questo messaggio va in modalità <strong>Expression</strong>, gli altri quattro restano <strong>Fixed</strong> — se metti in Expression il messaggio 2, n8n prova a valutare le graffe dello schema e il nodo esplode.</p>
+        <p>La data di oggi la mette n8n con <code>$now</code>, non il modello: un modello che si inventa la data di oggi è un classico, e da quella dipendono tutte e quattro le milestone.</p>
+
+        <p><strong>Come sapere che ha funzionato.</strong> Esegui il nodo e guarda l’output <em>prima</em> di passare al 4. Devono uscire 24 chiavi piene, annidate da qualche parte nella risposta — dove esattamente dipende dalla credenziale, ed è il problema che risolve il nodo qui sotto. Se un campo è vuoto qui, nella slide finale resta il segnaposto in chiaro — e te ne accorgi solo aprendo la presentazione.</p>
+
+        <p><strong>Un nodo in più che conviene: <em>Proposal</em>.</strong> Il tutorial legge i campi generati con <code>$json.message.content.proposalTitle</code>. Ma quel percorso dipende da <em>come</em> è fatta la busta che il provider restituisce, e la busta cambia: con una chiave OpenAI diretta i campi stanno sotto <code>message.content</code>, mentre passando dai crediti inclusi di n8n arriva la busta della Responses API e lo stesso oggetto finisce sotto <code>output[0].content[0].text</code>. Se scrivi il percorso sbagliato non ottieni un errore — ottieni <code>undefined</code>, ventiquattro volte, e lo scopri guardando una presentazione piena di segnaposto.</p>
+        <p>Conviene quindi mettere fra OpenAI e Google Drive un <strong>Code node</strong> chiamato <code>Proposal</code>, che appiattisce la risposta in un oggetto di 24 chiavi e basta:</p>
+        <pre class="c-automation__code"><code>const item = $input.first().json;
+
+const raw = item?.message?.content ?? item?.output?.[0]?.content?.[0]?.text;
+
+if (raw === undefined) {
+  throw new Error('Testo non trovato: ' + JSON.stringify(item).slice(0, 300));
+}
+
+const proposal = typeof raw === 'string' ? JSON.parse(raw) : raw;
+const company = $('On form submission').first().json['Company Name'];
+
+if (company &amp;&amp; !proposal.proposalTitle.includes(company)) {
+  proposal.proposalTitle = `${proposal.proposalTitle} · ${company}`;
+}
+
+return [{ json: proposal }];</code></pre>
+        <p>Da qui in avanti i campi si leggono <code>$('Proposal').item.json.proposalTitle</code>: più corto, e soprattutto indipendente dalla credenziale. Se domani passi dai crediti inclusi alla chiave OpenAI diretta, cambia questo nodo e non le altre ventiquattro espressioni. <strong>La forma della risposta del modello è la cosa che cambia più spesso in un flusso come questo</strong>, e questo nodo la isola in un punto solo.</p>
+        <p>Il <code>typeof</code> non è pignoleria: a seconda del provider <code>text</code> arriva già come oggetto oppure come stringa che <em>contiene</em> JSON, e così il nodo regge entrambi i casi.</p>
+        <p>Le ultime righe sono la vera lezione del passo 3: <strong>il nome dell’azienda non deve passare dal modello.</strong> Ce l’hai già, esatto, nel modulo — chiedere a un LLM di ricopiare una stringa è come chiedergli di sommare due numeri che hai in tasca. Una regola nel prompt aiuta, ma è una riga di JavaScript a garantire il risultato. Stesso principio del <code>Cost</code> e di <code>$now</code>: quello che è già un dato certo non attraversa il modello.</p>
+        <p>Attenzione al nome nel <code>$()</code>: va scritto quello che il nodo ha <em>davvero</em> sul canvas. Se il trigger si chiama <code>Sales Call Logging Form</code> e scrivi <code>$('On form submission')</code>, n8n risponde <em>Referenced node doesn’t exist</em>. Nel Code node basta digitare <code>$(</code> e scegliere dall’elenco che n8n propone, invece di fidarsi della memoria.</p>
+
+        <h4 class="c-automation__step">4. La copia del template: nodo <em>Google Drive</em></h4>
+        <p>Cercando “Google Drive” n8n propone due trigger e diciassette azioni: scegli l’azione <strong>Copy file</strong>. I trigger fanno partire un flusso quando qualcosa cambia su Drive, e il tuo parte già dal modulo. Le azioni sono solo scorciatoie che precompilano <code>Resource</code> e <code>Operation</code>: cliccando <em>Copy file</em> il nodo si apre già su <code>File</code> + <code>Copy</code>. Vale per tutti i nodi Google di questo flusso — al passo 5 cercherai <em>Replace text in a presentation</em>, al passo 6 <em>Send a message</em>.</p>
+        <p>Rinomina il nodo <code>Copy Template</code> subito, prima di scrivere qualunque espressione.</p>
+
+        <p><strong>La credenziale, e qui dipende da dove gira n8n.</strong></p>
+        <p>Su <strong>n8n Cloud</strong> l’app OAuth la mette n8n: crei la credenziale <em>Google Drive OAuth2 API</em>, fai <em>Sign in with Google</em>, e hai finito. Se è già collegata all’account sbagliato, dentro la credenziale c’è un pulsante <em>Switch account</em> che risolve in un clic.</p>
+        <p>Su <strong>n8n self-hosted</strong> l’app OAuth devi portartela tu, ed è la parte lunga di tutto il flusso. Una volta sola:</p>
+        <ol>
+          <li><code>console.cloud.google.com</code> → crea un progetto</li>
+          <li><em>APIs &amp; Services › Library</em> → abilita <strong>Google Drive API</strong>, <strong>Google Slides API</strong> e <strong>Gmail API</strong>. Tutte e tre adesso: tornarci al passo 6 significa rifare il consenso da capo</li>
+          <li><em>OAuth consent screen</em> → tipo <strong>Internal</strong>. È il motivo per cui conviene usare un account Workspace e non un Gmail personale: su un account personale il tipo è per forza <em>External</em>, e finché resta in <em>Testing</em> Google fa scadere il refresh token <strong>ogni sette giorni</strong>. Il flusso muore una volta a settimana, e per uscirne servirebbe la verifica Google</li>
+          <li><em>Credentials › Create credentials › OAuth client ID</em> → tipo <strong>Web application</strong></li>
+          <li>In n8n crea la credenziale <em>Google Drive OAuth2 API</em>: ti mostra un <em>redirect URL</em> da incollare in Google fra gli <em>Authorized redirect URIs</em>; poi client ID e secret in n8n, e <em>Sign in with Google</em></li>
+        </ol>
+        <p>Le credenziali in n8n sono tre — Drive, Slides, Gmail — ma il progetto Google è uno: tutte e tre usano lo <strong>stesso</strong> client ID e secret.</p>
+        <p>In entrambi i casi, al momento del login apri una <strong>finestra in incognito</strong>. Cliccando <em>Sign in with Google</em>, Google usa in silenzio l’account con cui il browser è già loggato: se il tuo predefinito è quello personale, ti ritrovi collegato a quello senza che nessuno te lo chieda.</p>
+        <p>E se ti ritrovi con due credenziali, <strong>dàgli un nome che dica l’account</strong> — <code>Google Drive — nomeazienda</code>. Fra un mese “Google Drive account” non vorrà dire niente.</p>
+
+        <p><strong>I parametri.</strong></p>
+        <pre class="c-automation__code"><code>Resource   File
+Operation  Copy
+File       By ID → l'ID del template del passo 1
+Name       {{ $('Proposal').item.json.proposalTitle }}</code></pre>
+        <p>Nelle opzioni aggiungi la <strong>cartella di destinazione</strong> e punta a <code>Proposte/</code>. Senza, la copia atterra nella radice del Drive, e dopo venti proposte non trovi più niente. (La voce si chiama <em>Parent Folder</em> o <em>Copy In The Same Folder</em> a seconda della versione del nodo.)</p>
+        <p>Un modo rapido di verificare che la credenziale sia quella giusta: nel campo <code>File</code> passa da <em>By ID</em> a <strong>From list</strong> e cerca il template. Se compare, questa credenziale arriva al tuo Drive — che è la domanda vera, più utile di “quale indirizzo email è collegato”. Poi torni a <em>By ID</em>.</p>
+
+        <p><strong>Perché copiare invece di creare.</strong> È la decisione che tiene in piedi tutto il flusso: il testo è generato, l’impaginazione no. Il modello non crea slide, riempie caselle disegnate a mano una volta sola. Per questo la presentazione non può venire brutta — al massimo può venire scritta male, che è un problema molto più piccolo e molto più correggibile. E il template originale resta intatto: ogni proposta è un file nuovo, e un errore su una proposta non contamina le successive.</p>
+
+        <p><strong>L’output.</strong> Il nodo restituisce <code>$json.id</code>: l’ID della <em>copia</em>, non del template. È il documento su cui lavora il passo 5, ed è l’unica cosa che ti serve da qui. Attenzione a una conseguenza che confonde al passo dopo: da questo nodo in poi <code>$json</code> contiene <strong>il file</strong>, non la proposta. I testi generati vanno ripresi chiamando il nodo per nome, <code>$('Proposal')</code>.</p>
+
+        <p><strong>Prima di andare avanti</strong>, esegui e apri Drive: deve esserci un file nuovo in <code>Proposte/</code>, col titolo della proposta, e dentro i segnaposto ancora in chiaro. Tre sintomi e le loro cause:</p>
+        <ul>
+          <li><strong>Il file c’è ma il nome è vuoto</strong> — l’espressione non trova <code>proposalTitle</code>: torna al nodo <code>Proposal</code> e guarda il suo output.</li>
+          <li><strong><code>File not found</code>, ma il file esiste benissimo</strong> — la credenziale è dell’account sbagliato. È l’errore numero uno di questo passo: proprietà del template, cartella e credenziale devono stare tutte sullo stesso account.</li>
+          <li><strong><code>insufficient permissions</code></strong> — hai abilitato le API dopo aver fatto il consenso. Revoca la credenziale in n8n e rifai <em>Sign in with Google</em>.</li>
+        </ul>
+
+        <h4 class="c-automation__step">5. Il riempimento: nodo <em>Google Slides › Replace text in a presentation</em></h4>
+        <p>Un nodo solo, 24 sostituzioni in una chiamata.</p>
+        <pre class="c-automation__code"><code>Operation        Replace Text
+Presentation ID  {{ $json.id }}
+
+Text          {{proposalTitle}}
+Replace With  {{ $('Proposal').item.json.proposalTitle }}
+
+Text          {{descriptionName}}
+Replace With  {{ $('Proposal').item.json.descriptionName }}
+
+... una coppia per ognuno dei 24 segnaposto</code></pre>
+
+        <p><strong>La trappola che fa perdere un’ora</strong>: il campo <code>Text</code> deve restare in modalità <strong>Fixed</strong>. Contiene <code>{{proposalTitle}}</code>, che è testo letterale da cercare dentro la slide — se lo metti in Expression, n8n prova a <em>valutarlo</em> come espressione e finisci per cercare una stringa vuota. Solo <code>Replace With</code> va in Expression.</p>
+
+        <p><strong>Perché <code>$('Proposal')</code> e non <code>$json</code>.</strong> Il nodo precedente è Google Drive, quindi qui <code>$json</code> contiene il file, non la proposta: <code>$json.id</code> è l’ID della presentazione, giusto per <code>Presentation ID</code> e inutile per i testi. I 24 valori vanno ripresi chiamando il nodo per nome. È il concetto da capire una volta e poi riusare ovunque in n8n — da cui la regola pratica: <strong>i nodi vanno rinominati prima di scrivere le espressioni</strong>, perché rinominarli dopo le rompe tutte insieme.</p>
+
+        <p><strong><code>{{cost}}</code> è l’eccezione</strong>: non viene dal modello, viene dal modulo.</p>
+        <pre class="c-automation__code"><code>Text          {{cost}}
+Replace With  {{ $('On form submission').item.json.Cost }}</code></pre>
+        <p>Se lo cerchi in <code>Proposal</code> non lo trovi: <code>cost</code> non è fra i 24 campi generati, apposta. Il prezzo non attraversa mai il modello. (L’esportazione JSON in questa cartella qui scrive un valore fisso, <code>$1,850</code>: va sostituito, altrimenti ogni proposta esce con lo stesso prezzo.)</p>
+
+        <p><strong>Come non cliccare 24 volte.</strong> Compilare le coppie a mano è venti minuti di clic e un’occasione di sbagliare un nome. Conviene configurarne <em>una</em>, poi copiare il nodo dal canvas (<kbd>Ctrl+C</kbd>, che mette negli appunti il suo JSON), incollarlo in un editor di testo, duplicare le voci dell’array <code>textValues</code> — sono due righe l’una, <code>text</code> e <code>replaceText</code> — e reincollare il tutto sul canvas con <kbd>Ctrl+V</kbd>: n8n riconosce il JSON di un nodo e lo ricrea già configurato. Restano da fare solo le due cose che il JSON non si porta dietro: collegare la credenziale e tirare la freccia dal nodo precedente.</p>
+
+        <p><strong>La verifica che chiude il passo</strong>: apri la copia generata su Drive e cerca <code>{{</code> <em>dentro il documento</em>. Zero occorrenze vuol dire che la mappatura è completa. Cercarlo nell’output del nodo non serve: lì c’è la risposta dell’API, non il contenuto delle slide, e di <code>{{</code> non ce n’è comunque.</p>
+        <p>Se qualche segnaposto è rimasto in chiaro, le due cause si distinguono a occhio:</p>
+        <ul>
+          <li><strong>Il segnaposto è ancora lì identico</strong> — nel template è scritto in modo che Slides non lo riconosce come testo unico: cancellalo e ridigitalo da zero. È la trappola del passo 1.</li>
+          <li><strong>Il segnaposto è sparito ma la casella è vuota</strong> — il campo era vuoto già nell’output di <code>Proposal</code>: il problema è al passo 3, non qui.</li>
+        </ul>
+        <p>Guarda anche se qualche testo <strong>trabocca fuori dalla slide</strong>: è il momento in cui scopri se le quattordici parole della regola 4 stanno davvero nelle caselle che hai disegnato. Sulla slide dei tempi, dove le colonne sono quattro invece di tre, è lì che succede.</p>
+
+        <h4 class="c-automation__step">6. La consegna: nodo <em>Gmail</em></h4>
+        <p><strong>Qui conviene deviare dal tutorial.</strong> La versione base usa l’operazione <em>Send</em>, destinatario l’indirizzo scritto nel modulo: premi invio sul form e trenta secondi dopo la proposta è nella casella del cliente, senza che nessun umano l’abbia letta.</p>
+        <p>Ogni altro passo di questo flusso è rimediabile: una copia sbagliata su Drive si cancella, un segnaposto rimasto in chiaro si corregge. L’email no — è l’unico passo irreversibile, e sta subito dopo l’unico passo non deterministico. Un modello che sbaglia una data o gonfia una promessa produce un testo impaginato benissimo e indistinguibile da uno giusto, e te ne accorgi dalla risposta del cliente.</p>
+        <p>Quindi: operazione <strong>Create a draft</strong> invece di <em>Send</em>. Il flusso resta identico, la bozza compare già indirizzata e già scritta, e l’ultima parola resta a un umano. Il tempo che questo sistema ti fa risparmiare è tutto nella scrittura, non nel clic su “invia”: mandare a mano costa tre secondi, e ti compra l’unica revisione che il flusso non ha. In alternativa, un messaggio Slack a te stesso col link.</p>
+
+        <pre class="c-automation__code"><code>Resource  Draft
+Subject   Re: Proposal for {{ $('On form submission').item.json['Company Name'] }}
+To Email  {{ $('On form submission').item.json.Email }}
+Message   Ciao {{ $('On form submission').item.json['First Name'] }},
+
+          come promesso, trovi la proposta qui:
+          https://docs.google.com/presentation/d/{{ $('Copy Template').item.json.id }}/preview
+
+          Fammi sapere cosa ne pensi.</code></pre>
+        <p><code>To Email</code> non è fra i campi principali: sta sotto <em>Add option</em>. È una conseguenza della scelta di prima — per <em>inviare</em> un messaggio il destinatario è obbligatorio, una <em>bozza</em> è valida anche senza. Il mittente invece non si sceglie: non c’è nessun campo <em>From</em>, perché la bozza nasce nella casella dell’account autenticato. È la credenziale a decidere l’indirizzo che il cliente vedrà.</p>
+
+        <p><strong>Due dettagli nell’URL.</strong> <code>$('Copy Template').item.json.id</code> invece di <code>$json.presentationId</code>: il nodo Slides restituisce anche <code>presentationId</code> e funzionerebbe, ma prenderlo dal nodo Drive è più solido — è lo stesso ID già verificato al passo 4, e non dipende dalla forma della risposta di Slides. E <code>/preview</code> invece di <code>/edit</code>: apre la presentazione a schermo pieno, senza barra degli strumenti e senza invito implicito a modificarla. <code>/edit</code> dice al cliente “questo è un documento di lavoro”, <code>/preview</code> dice “questa è la proposta”.</p>
+
+        <p><strong>Da controllare prima di attivare: i permessi di condivisione del template.</strong> La copia li eredita, quindi se il template è privato il cliente riceve un link che chiede l’accesso — peggio di nessuna automazione, perché hai promesso velocità e consegnato un ostacolo. Due strade:</p>
+        <ul>
+          <li><strong>Template su “chiunque abbia il link · visualizzatore”</strong>: ogni copia nasce accessibile, il cliente clicca e legge. In cambio, ogni proposta è leggibile da chiunque indovini l’URL — in pratica nessuno, ma vale la pena saperlo.</li>
+          <li><strong>Un nodo Drive <em>Share file</em> in più</strong>, che condivide la singola copia con la sola email del cliente. Più stretto, ma il cliente deve avere un account Google e fare login: un attrito vero, su un documento che deve essere letto subito.</li>
+        </ul>
+        <p>Per una proposta commerciale la prima è la scelta ragionevole. Se un giorno ci metti dentro numeri che non vuoi in giro, passi alla seconda.</p>
+
+        <h4 class="c-automation__step">7. Prova e messa in esercizio</h4>
+        <p>Il flusso si prova a strati, dal basso, e l’ordine non è arbitrario: ogni nodo eredita gli errori di quello prima, travestiti da qualcos’altro. Un campo vuoto al passo 3 diventa un segnaposto in chiaro al passo 5, e se guardi solo le slide cerchi il guasto nel posto sbagliato.</p>
+        <ul>
+          <li><strong>Esegui il trigger una volta e compila il modulo per davvero.</strong> n8n conserva quella risposta come <em>pin data</em>, e da lì in poi puoi riprovare i nodi successivi senza ricompilare ogni volta. Se correggi qualcosa nel modulo, però, togli il pin prima di rieseguire: resta congelato sulla vecchia risposta.</li>
+          <li><strong>Guarda l’output del nodo OpenAI prima di guardare le slide</strong>, e conta le chiavi: devono essere 24, tutte piene. Ogni riesecuzione di quel nodo però è una chiamata pagata — è l’unico nodo che costa, quindi leggi l’output con attenzione invece di rilanciarlo per vedere se stavolta viene meglio.</li>
+          <li><strong>Apri la copia generata su Drive e cerca <code>{{</code> dentro il documento.</strong> Zero occorrenze vuol dire che la mappatura è completa. Guarda anche se qualche testo trabocca fuori dalla slide: è qui che scopri se le caselle del passo 1 reggono davvero quattordici parole.</li>
+          <li><strong>Poi la prova vera, dall’inizio alla fine.</strong> Metti il tuo indirizzo nel campo Email del modulo e fai girare tutto dal trigger. Ti arriva la bozza, apri il link, e leggi la proposta come la leggerebbe il cliente — impaginata, su schermo, senza il contesto di chi l’ha costruita. È l’unico momento in cui ti accorgi se il tono che hai chiesto al prompt è quello che volevi davvero.</li>
+        </ul>
+        <p><strong>Prima di attivare il workflow</strong>, tre cose che in costruzione si lasciano aperte e in esercizio no: l’autenticazione sul modulo (passo 2), <em>Create a draft</em> al posto di <em>Send</em> (passo 6), e i permessi di condivisione del template (passo 1). Sono le tre porte che restano spalancate se nessuno le chiude, e nessuna delle tre dà segno di sé finché non è tardi.</p>
+        <p>Da lì in avanti il flusso non ha bisogno di sorveglianza quotidiana, ma ha un punto cieco: le quote delle API di Google e OpenAI si esauriscono in silenzio, e il primo sintomo è una proposta che non arriva. Se lo lasci acceso per mesi, vale la pena che il ramo d’errore scriva da qualche parte dove guardi già — un messaggio Slack, non un log.</p>
+
+        <p><strong>Due trappole dell’esportazione JSON in questa cartella</strong>, per chi la importa invece di ricostruire il flusso: il canvas contiene <em>due</em> flussi affiancati (Google Slides e PandaDoc), quindi i nodi del secondo hanno il suffisso <code>1</code> nel nome — <code>Generate Proposal Copy1</code>, <code>On form submission1</code> — e le espressioni li chiamano con quel nome esatto. Inoltre nel ramo Slides il trigger risulta scollegato dal nodo OpenAI: il collegamento va rifatto a mano dopo l’importazione.</p>
+
+        <p class="c-entry__permalink"><a href="#proposal-generator">Link a questa automazione</a></p>
+      </div>
+    </details>
+
+  </div>
+
+</main>
+
+<footer class="l-card__footer">
+  <p>2026 • Mucca Design di Luca Leone • VAT IT08200720962</p>
+</footer>
+
+</body>
+</html>

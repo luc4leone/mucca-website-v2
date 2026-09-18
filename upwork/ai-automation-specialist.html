@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Automation Specialist — analisi annuncio</title>
+<meta name="description" content="Analisi dell'annuncio AI Automation Specialist: cosa chiedono, come si costruisce, cosa so fare e cosa mi manca.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components/job.css">
+<link rel="stylesheet" href="../brand-kit/brand-tokens-light.css">
+<link rel="stylesheet" href="../css/theme-brand.css">
+</head>
+<body class="p-upwork">
+
+<main class="l-page">
+
+  <header>
+    <p class="c-back"><a href="../upwork.html">← Tutti gli annunci</a></p>
+    <div class="c-rule"></div>
+    <p class="c-eyebrow"><time datetime="2026-09-16">16 settembre 2026</time> • Analisi annuncio</p>
+    <h1>AI Automation Specialist</h1>
+    <p class="u-lead">Sono in grado di costruire quello che chiedono, con conoscenza base di n8n?</p>
+  </header>
+
+  <section id="annuncio">
+    <h2>L'annuncio</h2>
+    <div class="c-posting">
+      <p class="c-posting__label">Summary</p>
+      <p>We need a specialist to build and maintain automated workflows that connect Trello, SMS, and other business tools. The role includes creating reliable automation, improving existing processes, and supporting day-to-day operations with efficient systems. You should be comfortable troubleshooting issues, refining workflows, and helping keep automation running smoothly. We are not looking for someone to sell us a proprietary platform. We want a hands-on consultant who can evaluate our existing processes, recommend the most practical and cost-effective tools, build the automations, test them thoroughly, and train our team to manage them.</p>
+    </div>
+  </section>
+
+  <section id="verdetto">
+    <h2>Risposta secca</h2>
+    <div class="c-verdict">
+      <p>Sì. Il nucleo tecnico di quello che chiedono si costruisce con n8n a livello base. Trello e SMS sono i due casi più documentati e più facili che esistono in n8n.</p>
+      <p>Il rischio non è tecnico. È che il lavoro descritto sia <strong>consulenziale</strong> — analizzare i loro processi, scegliere i tool, formare il team — e lì non basta saper montare un workflow: serve saper fare le domande giuste a gente che spiega male quello che fa. Su quello sono più scoperto che sulla parte n8n.</p>
+    </div>
+  </section>
+
+  <section id="glossario">
+    <h2>1. I termini, definiti prima di usarli</h2>
+
+    <dl class="c-defs">
+
+      <dt>Automazione / workflow (flusso di lavoro)</dt>
+      <dd>
+        <p>Una sequenza di passaggi che parte da sola quando succede un fatto, e fa cose senza che nessuno clicchi. È fatta di due parti: un <em>trigger</em> e una o più <em>azioni</em>.</p>
+      </dd>
+
+      <dt>Trigger (innesco)</dt>
+      <dd>
+        <p>Il fatto che fa partire il flusso.</p>
+        <p class="c-example">Esempio: «una card di Trello viene spostata nella lista <em>Confermato</em>».</p>
+      </dd>
+
+      <dt>Azione</dt>
+      <dd>
+        <p>Quello che il flusso fa dopo.</p>
+        <p class="c-example">Esempio: «manda un SMS al numero scritto nella card».</p>
+      </dd>
+
+      <dt>API</dt>
+      <dd>
+        <p>Il modo in cui due programmi si parlano senza interfaccia grafica. Trello ha un'API: significa che un altro programma può leggere le card, crearle, spostarle, esattamente come faresti tu col mouse, ma via codice.</p>
+        <p class="c-example">Esempio: la tua automazione chiede all'API di Trello «dammi tutte le card nella lista X» e Trello risponde con un elenco in formato testo strutturato.</p>
+      </dd>
+
+      <dt>Webhook</dt>
+      <dd>
+        <p>Il contrario dell'API appena descritta. Invece che tu chieda a Trello «è successo qualcosa?», è Trello che chiama te appena succede.</p>
+        <p class="c-example">Esempio: registri presso Trello l'indirizzo <code>https://tuo-n8n.com/webhook/abc123</code>. Appena qualcuno sposta una card, Trello manda un messaggio a quell'indirizzo, in tempo reale.</p>
+      </dd>
+
+      <dt>Polling</dt>
+      <dd>
+        <p>L'alternativa al webhook: il tuo flusso chiede ogni N minuti «novità?». Più semplice, ma più lento e consuma più chiamate.</p>
+        <p class="c-example">Esempio: ogni 5 minuti controlla se ci sono card nuove.</p>
+      </dd>
+
+      <dt>n8n</dt>
+      <dd>
+        <p>Lo strumento che già conosco: un editor visuale dove si collegano blocchi (trigger, azioni, condizioni) invece di scrivere codice. Ogni blocco si chiama <em>nodo</em>.</p>
+      </dd>
+
+      <dt>SMS gateway</dt>
+      <dd>
+        <p>Un servizio che spedisce SMS via internet. Tu mandi una richiesta al servizio, lui manda l'SMS al telefono. Il più usato è <strong>Twilio</strong>. n8n ha già il nodo pronto.</p>
+        <p class="c-example">Esempio: chiami Twilio con <code>a: +393331234567</code>, <code>testo: "Appuntamento confermato"</code>, e Twilio lo recapita.</p>
+      </dd>
+
+      <dt>Integrazione</dt>
+      <dd>
+        <p>Collegare due strumenti diversi perché si scambino dati. «Integrare Trello con Twilio» = quando succede qualcosa in Trello, parte un SMS.</p>
+      </dd>
+
+      <dt>Error handling (gestione errori)</dt>
+      <dd>
+        <p>Cosa fa il flusso quando qualcosa va storto: numero di telefono sbagliato, Trello offline, Twilio che rifiuta.</p>
+        <p class="c-example">Esempio: se l'SMS fallisce, riprova dopo 2 minuti; se fallisce ancora, scrivi un commento sulla card e avvisa il responsabile su Slack.</p>
+      </dd>
+
+      <dt>Logging</dt>
+      <dd>
+        <p>Tenere traccia scritta di cosa è successo, per poterlo controllare dopo.</p>
+        <p class="c-example">Esempio: una riga in un Google Sheet per ogni SMS partito, con data, numero, esito.</p>
+      </dd>
+
+      <dt>Idempotenza</dt>
+      <dd>
+        <p>La garanzia che eseguire due volte la stessa operazione non produca due effetti.</p>
+        <p class="c-example">Esempio: se il flusso riparte per un errore di rete, il cliente non deve ricevere due SMS identici. Si risolve segnando sulla card «SMS già inviato» e controllando quel segno prima di inviare.</p>
+      </dd>
+
+      <dt>Piattaforma proprietaria</dt>
+      <dd>
+        <p>Un software chiuso, di proprietà di chi te lo vende, da cui non puoi portare via il tuo lavoro.</p>
+        <p class="c-example">Esempio: se mi costruissi un mio «LucaFlow» e glielo affittassi, loro sarebbero bloccati con me per sempre. È esattamente ciò che hanno scritto di non volere.</p>
+      </dd>
+
+    </dl>
+  </section>
+
+  <section id="traduzione">
+    <h2>2. L'annuncio tradotto, frase per frase</h2>
+
+    <div class="c-scroll">
+      <table class="c-table">
+        <thead>
+          <tr>
+            <th scope="col">Cosa scrivono</th>
+            <th scope="col">Cosa significa davvero</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">«build and maintain automated workflows that connect Trello, SMS, and other business tools»</th>
+            <td>Costruire flussi che collegano Trello, invio SMS e altri strumenti che useranno (email, fogli di calcolo, gestionale, calendario). <strong>«Other business tools» è la variabile pericolosa</strong>: non so ancora quali siano.</td>
+          </tr>
+          <tr>
+            <th scope="row">«creating reliable automation»</th>
+            <td>Non basta che funzioni la prima volta. Deve reggere gli errori: riprova automatica, notifiche, nessun doppio invio.</td>
+          </tr>
+          <tr>
+            <th scope="row">«improving existing processes»</th>
+            <td>Hanno già qualcosa che gira — probabilmente Zapier, Make, o lavoro manuale. Va sistemato, non solo creato da zero.</td>
+          </tr>
+          <tr>
+            <th scope="row">«supporting day-to-day operations»</th>
+            <td>Lavoro continuativo: quando si rompe alle 9 di mattina, chiamano me. Non è un progetto «consegna e ciao».</td>
+          </tr>
+          <tr>
+            <th scope="row">«comfortable troubleshooting issues»</th>
+            <td>Saper leggere il log di un'esecuzione fallita e capire quale nodo ha rotto e perché.</td>
+          </tr>
+          <tr>
+            <th scope="row">«we are not looking for someone to sell us a proprietary platform»</th>
+            <td>Vogliono strumenti standard, intestati a loro. n8n, Make e Zapier vanno benissimo: l'account è il loro.</td>
+          </tr>
+          <tr>
+            <th scope="row">«evaluate our existing processes»</th>
+            <td>Fase 1: interviste. Mi siedo con loro e mi faccio raccontare cosa fanno a mano, quante volte al giorno, quanto tempo ci mettono.</td>
+          </tr>
+          <tr>
+            <th scope="row">«recommend the most practical and cost-effective tools»</th>
+            <td>Devo saper dire: «per questo Make costa 20&nbsp;$/mese, n8n self-hosted costa 0 ma richiede un server, Zapier è il più semplice ma a 500 esecuzioni/mese diventa caro». Cioè: conoscere i prezzi.</td>
+          </tr>
+          <tr>
+            <th scope="row">«build the automations»</th>
+            <td>La parte che so fare.</td>
+          </tr>
+          <tr>
+            <th scope="row">«test them thoroughly»</th>
+            <td>Provarle con dati finti prima di metterle sui clienti veri.</td>
+          </tr>
+          <tr>
+            <th scope="row">«train our team to manage them»</th>
+            <td>Videochiamata o video registrato in cui spiego a personale non tecnico come vedere se un flusso è fallito e come farlo ripartire. <strong>In inglese.</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="costruzione">
+    <h2>3. Come si costruisce, passo per passo</h2>
+
+    <p>Caso realistico: <em>quando una card viene spostata nella lista «Confermato», manda un SMS al cliente.</em></p>
+
+    <ol class="c-steps">
+
+      <li>
+        <h3>Accessi</h3>
+        <p>Farsi dare un account Trello con permessi sulla board, e un account Twilio con un numero di telefono attivo. Non i miei: gli account devono essere loro. È il punto «no proprietary platform».</p>
+      </li>
+
+      <li>
+        <h3>Decidere dove gira n8n</h3>
+        <p>Due opzioni:</p>
+        <ul>
+          <li><strong>n8n Cloud</strong> — abbonamento, è già online e raggiungibile da internet. Più semplice.</li>
+          <li><strong>n8n self-hosted</strong> — lo installo io su un server (es. Hetzner, 5&nbsp;€/mese). Più economico, più lavoro mio.</li>
+        </ul>
+        <p>Questo passo è obbligatorio e non banale: <strong>il trigger di Trello è un webhook, quindi Trello deve poter raggiungere n8n da internet.</strong> Un n8n che gira solo sul mio Mac non riceve nulla.</p>
+      </li>
+
+      <li>
+        <h3>Nodo trigger</h3>
+        <p>Nodo <strong>Trello Trigger</strong>. Si imposta: board = «Ordini», evento = «card aggiornata». n8n registra da solo il webhook presso Trello.</p>
+      </li>
+
+      <li>
+        <h3>Filtro</h3>
+        <p>Il trigger si attiva per <em>qualsiasi</em> modifica alla card: rinomina, commento, spostamento. Serve un nodo <strong>IF</strong> che lasci passare solo quando la lista di destinazione è «Confermato».</p>
+        <p class="c-example">Esempio di condizione: <code>listAfter.name</code> uguale a <code>Confermato</code>.</p>
+      </li>
+
+      <li>
+        <h3>Estrarre il numero di telefono</h3>
+        <p>Il numero sta da qualche parte nella card: nella descrizione, in un campo personalizzato, o in un sistema esterno. Con un nodo <strong>Set</strong> o <strong>Code</strong> lo si pesca e lo si normalizza in formato internazionale (<code>+39…</code>), perché Twilio rifiuta i numeri scritti male.</p>
+      </li>
+
+      <li>
+        <h3>Controllo anti-doppione (idempotenza)</h3>
+        <p>Prima di inviare, si controlla se sulla card c'è già l'etichetta «SMS inviato». Se c'è, il flusso si ferma.</p>
+      </li>
+
+      <li>
+        <h3>Nodo Twilio</h3>
+        <p>Nodo <strong>Twilio → Send SMS</strong>. Si compila: da = numero Twilio dell'azienda, a = numero estratto al passo 5, messaggio = testo con i dati della card (nome, data, ora).</p>
+      </li>
+
+      <li>
+        <h3>Conferma</h3>
+        <p>Dopo l'invio riuscito: aggiungere l'etichetta «SMS inviato» alla card (nodo Trello) e scrivere una riga in un Google Sheet con data, numero, esito.</p>
+      </li>
+
+      <li>
+        <h3>Ramo errore</h3>
+        <p>Collegare un <strong>Error Trigger</strong>, o impostare il nodo su «continue on fail», con un ramo che riprova una volta e — se fallisce ancora — manda una email o un messaggio Slack a un responsabile, con il link alla card.</p>
+      </li>
+
+      <li>
+        <h3>Test</h3>
+        <p>Provare con un numero mio e sei casi: numero valido, numero vuoto, numero scritto male, card spostata due volte di fila, Twilio senza credito, Trello temporaneamente irraggiungibile.</p>
+      </li>
+
+      <li>
+        <h3>Documentazione e training</h3>
+        <p>Una pagina scritta: cosa fa il flusso, cosa succede se fallisce, come si controlla. Poi un video di 10 minuti che mostra dove guardare in n8n quando qualcosa non va.</p>
+      </li>
+
+    </ol>
+
+    <p>Questo è un flusso da <strong>8-12 nodi</strong>. È dentro il livello «n8n base», soprattutto con assistenza AI sulle espressioni e sulla logica dei nodi Code.</p>
+  </section>
+
+  <section id="coperto">
+    <h2>4. Dove sono già coperto</h2>
+    <ul>
+      <li>Costruire il flusso Trello → SMS.</li>
+      <li>Collegare Google Sheets, Gmail, Slack, Calendar: sono nodi pronti.</li>
+      <li>Leggere un'esecuzione fallita in n8n e capire dove si è rotta: l'interfaccia lo mostra nodo per nodo.</li>
+      <li>Scrivere la logica dentro i nodi Code: è JavaScript semplice.</li>
+    </ul>
+  </section>
+
+  <section id="buchi">
+    <h2>5. Dove ho un buco reale</h2>
+
+    <h3>a) Deploy e hosting</h3>
+    <p>Con n8n self-hosted servono Docker, un dominio, un certificato HTTPS e i backup. Mai fatto: la prima volta sono 1-2 giorni di lavoro. <strong>Scorciatoia: proporre n8n Cloud o Make, e il problema sparisce.</strong></p>
+
+    <h3>b) Regole SMS negli USA (A2P 10DLC)</h3>
+    <p>Se il cliente è americano, dal 2023 per mandare SMS commerciali a numeri USA bisogna registrare l'azienda e la «campagna» presso gli operatori, tramite Twilio. È burocrazia — nome azienda, codice fiscale, esempio di messaggio — richiede giorni di attesa e ha un costo mensile. Se non lo so in anticipo, i messaggi vengono bloccati e sembro incompetente. <strong>È il tranello numero uno di questo lavoro.</strong></p>
+
+    <h3>c) «Other business tools»</h3>
+    <p>Se salta fuori un gestionale interno senza API, o un CRM di nicchia, il lavoro cambia natura. Va chiesto prima di fare un'offerta.</p>
+
+    <h3>d) Costi dei tool</h3>
+    <p>Chiedono raccomandazioni «cost-effective»: devo arrivare al colloquio sapendo a memoria i piani di Zapier, Make, n8n Cloud e Twilio.</p>
+
+    <h3>e) Inglese operativo</h3>
+    <p>Interviste sui loro processi, training al team, gestione quotidiana. È il fattore che pesa più della tecnica.</p>
+
+    <h3>f) Manutenzione continuativa</h3>
+    <p>«Day-to-day operations» significa che scriveranno quando è rotto. Va deciso se vendere ore a consumo o un canone mensile di assistenza.</p>
+  </section>
+
+  <section id="domande">
+    <h2>6. Le domande da fare al cliente</h2>
+
+    <p>Sei domande, prima di poter dare una stima che significhi qualcosa. Sono anche il pezzo da mostrare nel video allegato alla cover letter: in inglese, e presentate come «ecco cosa mi serve sapere», non come «ti sto valutando».</p>
+
+    <div data-lang-toggle="it">
+      <ol id="domande-elenco">
+        <li>
+          <span lang="it" data-lang="it">Quali sono esattamente gli «other business tools»? Un CRM, la contabilità, un gestionale interno?</span>
+          <span lang="en" data-lang="en" hidden>Which tools exactly are the “other business tools” you mention — a CRM, accounting, scheduling, something in-house?</span>
+        </li>
+        <li>
+          <span lang="it" data-lang="it">Oggi cosa usate per automatizzare: Zapier, Make, script, o niente?</span>
+          <span lang="en" data-lang="en" hidden>What are you using to automate today — Zapier, Make, scripts, or nothing yet?</span>
+        </li>
+        <li>
+          <span lang="it" data-lang="it">Gli SMS vanno a numeri USA? Avete già la registrazione A2P 10DLC su Twilio?</span>
+          <span lang="en" data-lang="en" hidden>Are the SMS going to US numbers? Do you already have A2P 10DLC registration in place on Twilio?</span>
+        </li>
+        <li>
+          <span lang="it" data-lang="it">Quante automazioni stimate? Quanti messaggi al mese?</span>
+          <span lang="en" data-lang="en" hidden>Roughly how many automations do you expect, and how many messages per month?</span>
+        </li>
+        <li>
+          <span lang="it" data-lang="it">Cercate un progetto chiuso o un rapporto continuativo a ore?</span>
+          <span lang="en" data-lang="en" hidden>Is this a fixed-scope project, or an ongoing hourly engagement?</span>
+        </li>
+        <li>
+          <span lang="it" data-lang="it">Preferite pagare un abbonamento (Make / n8n Cloud) o volete self-hosting?</span>
+          <span lang="en" data-lang="en" hidden>Would you rather pay for a hosted subscription (Make / n8n Cloud), or have it self-hosted on your own server?</span>
+        </li>
+      </ol>
+    </div>
+
+    <div class="c-private">
+      <p class="c-private__label">Nota privata — non va nel video</p>
+      <p>Se rispondono «Trello + Twilio + Google Workspace, oggi facciamo tutto a mano, ~500 SMS/mese»: <strong>accettare, è alla mia portata.</strong></p>
+      <p>Se rispondono «abbiamo un ERP custom e 40 automazioni Zapier da migrare»: lasciar perdere, o propormi come affiancamento.</p>
+      <p>Questa parte resta qui: al cliente le domande vanno presentate come diligenza, non come valutazione del rischio che lui rappresenta.</p>
+    </div>
+  </section>
+
+  <section id="senza-case-study">
+    <h2>7. Come mi candido senza case study</h2>
+
+    <p>Non ho case study pubblici di automation. La domanda è se candidarmi lo stesso o costruire prima qualcosa da mostrare.</p>
+
+    <div class="c-verdict">
+      <p><strong>Non sono alternative: sono due cose con tempi diversi.</strong> Candidarmi oggi, e costruire la demo in parallelo.</p>
+    </div>
+
+    <h3>Perché non aspettare</h3>
+    <p>Gli annunci su Upwork si chiudono in fretta: il cliente sceglie spesso tra i primi dieci-quindici che rispondono, nelle prime 24-48 ore. Aspettare la demo significa rischiare di arrivare con la proposta perfetta a selezione chiusa. Una proposta buona al giorno&nbsp;1 batte una proposta ottima al giorno&nbsp;7.</p>
+    <p>Quindi: candidarmi subito, scrivendo nella cover letter che sto montando la demo del loro caso e che gliela mando entro 48 ore. Poi mandarla davvero. Quel secondo messaggio mi fa risalire in cima alla loro casella proprio mentre stanno decidendo.</p>
+
+    <h3>Pubblicare il workflow su n8n: si può, ma non è la leva</h3>
+    <p>Sì, si può. n8n ha una libreria pubblica di template (<code>n8n.io/workflows</code>) dove chiunque può proporre un workflow, che viene rivisto e poi pubblicato con il profilo dell'autore. In alternativa si esporta il workflow come file JSON — n8n lo fa nativamente — e lo si mette dove si vuole.</p>
+    <p>Ma non è quello che serve qui, per due motivi. La revisione della libreria richiede tempo che non dipende da me. E un template pubblicato dimostra che so montare un workflow: cosa che questo cliente dà per scontata, visto che cerca un consulente. Un JSON su una libreria non gli dice niente su come ragiono.</p>
+    <p>Resta un'attività utile sul lungo periodo — costruisce reputazione e porta contatti nel tempo. Non è la leva per vincere <em>questo</em> lavoro.</p>
+
+    <h3>Cosa conta davvero come prova, in ordine</h3>
+    <ol>
+      <li><strong>Un video di 2-3 minuti che mostra l'automazione del loro caso mentre funziona.</strong> Schermo diviso: da un lato la board Trello, dall'altro il telefono. Sposto la card in «Confermato», e dopo due secondi l'SMS arriva sul telefono ripreso in video. Poi il ramo errore: numero sbagliato, nessun SMS, commento automatico sulla card, notifica. Trenta secondi di questo valgono più di dieci righe di descrizione.</li>
+      <li><strong>Una pagina scritta che spiega le scelte.</strong> Perché webhook e non polling, come evito il doppio invio, cosa succede se Twilio è giù. È la prova che sono un consulente e non uno che collega blocchi.</li>
+      <li><strong>Il workflow esportato in JSON</strong>, allegato o su GitHub. Costa zero, e chi è tecnico lo apre.</li>
+      <li><strong>Il template pubblico su n8n.io.</strong> Ultimo. Bello da avere, non decisivo.</li>
+    </ol>
+
+    <h3>Quello che ho già e sto sottovalutando</h3>
+    <p>Due case study reali con clienti veri, con numeri, già pubblicati su <code>marketing.html</code>: numeroverde.it, da 30 a 60 nuovi clienti al mese e valore mensile da 11.400&nbsp;€ a 31.200&nbsp;€; beautytune.it, da 2.000&nbsp;€ in sei mesi a 180.000&nbsp;€ nei dodici successivi, conversione dallo 0,30% al 2%. Più venticinque progetti in portfolio.</p>
+    <p>Non sono «uno senza case study». Sono <strong>uno con risultati di business dimostrati, a cui manca la prova specifica sull'automation</strong>. È una posizione diversa, e va detta in quel modo: non fingo esperienza che non ho, e sposto il confronto su un terreno dove nessun altro candidato mi segue — loro raccontano, io mostro il loro caso già funzionante.</p>
+
+    <div class="c-private">
+      <p class="c-private__label">Riga da non superare</p>
+      <p>Niente clienti inventati, e la demo non va mai presentata come lavoro fatto per qualcuno. Oltre a essere sbagliato, salta fuori alla prima domanda di dettaglio.</p>
+    </div>
+
+    <h3>Il piano, mezza giornata</h3>
+    <ol class="c-steps">
+      <li>
+        <h4>Twilio, account di prova</h4>
+        <p>Gratis, con credito iniziale. Gli account trial mandano SMS solo a numeri verificati: verifico il mio, e per la demo basta.</p>
+      </li>
+      <li>
+        <h4>n8n Cloud, prova gratuita</h4>
+        <p>Risparmia il problema del server pubblico per il webhook. Il self-hosting si impara dopo, con calma.</p>
+      </li>
+      <li>
+        <h4>Board Trello finta</h4>
+        <p>Tre liste: Nuovo / Confermato / Fatto. Tre card con nome e numero di telefono.</p>
+      </li>
+      <li>
+        <h4>Il flusso</h4>
+        <p>I passi 3-9 della sezione&nbsp;3: trigger, filtro, estrazione numero, anti-doppione, Twilio, etichetta, log su Sheet, ramo errore.</p>
+      </li>
+      <li>
+        <h4>Il video</h4>
+        <p>Prima il caso buono, poi il caso di errore.</p>
+      </li>
+      <li>
+        <h4>La pagina delle scelte tecniche</h4>
+        <p>Quella del punto 2 qui sopra.</p>
+      </li>
+    </ol>
+
+    <p>Il pezzo che costerà più tempo non è il flusso: è la normalizzazione del numero di telefono e il ramo errore.</p>
+  </section>
+
+  <section id="cover-letter">
+    <h2>8. Cover letter — bozza</h2>
+
+    <p>Corta di proposito: cinque blocchi, non venti righe. In ordine: una domanda specifica che quasi nessun altro farà, cosa userei e perché, la rassicurazione sulla piattaforma, i numeri che ho, la demo in arrivo.</p>
+
+    <div class="c-letter" lang="en">
+      <p>Hi — two questions first, because they'll shape the estimate more than my rate will.</p>
+      <p>Are the SMS going to US numbers, and do you already have A2P 10DLC registration in place on Twilio? Without it carriers block commercial SMS, and clearing it takes days. And what exactly are the “other business tools”? A tool with a documented API is a different job from an in-house system without one.</p>
+      <p>On tooling: I'd build this on n8n or Make, on accounts registered to you. Nothing of mine in the middle, nothing you can't take elsewhere or hand to someone else. For a Trello + SMS + Google Workspace setup you're looking at roughly <span class="c-slot">$X</span>/month in tool costs, and I'll put the comparison in writing before you commit to anything.</p>
+      <p>I don't have public automation case studies yet — that's a newer part of my practice, and I'd rather say so than pad it. What I do have is a record of measurable outcomes: I rebuilt an ecommerce site and its conversion funnel and took it from €2,000 in six months to €180,000 over the following year, conversion rate 0.30% to 2%.</p>
+      <p>So rather than describe what I'd build for you, I'm building it: your Trello → SMS flow, error handling included. I'll send you the video within 48 hours.</p>
+      <p>Luca</p>
+    </div>
+
+    <h3>Chiusura alternativa, se il video è già pronto</h3>
+    <div class="c-letter" lang="en">
+      <p>So rather than describe what I'd build for you, I built it — your Trello → SMS flow, error handling included. Two minutes: <span class="c-slot">link</span>. It's a demo on my own test board, not client work, but it's the exact flow your post describes.</p>
+    </div>
+
+    <h3>Prima di inviare</h3>
+    <ul>
+      <li>Riempire <span class="c-slot">$X</span> con il costo mensile reale dei tool, dopo aver controllato i piani di Make, n8n Cloud e Twilio. Se il numero non è verificato, togliere la frase: una cifra sbagliata sul loro criterio dichiarato (<em>cost-effective</em>) fa più danno del non averla detta.</li>
+      <li>La domanda su A2P 10DLC va fatta <strong>come domanda</strong>. «Ho gestito registrazioni 10DLC» non è vero e non va scritto.</li>
+      <li>Niente contatti diretti né inviti a spostarsi fuori piattaforma: viola i termini di Upwork. Un link a un video non elencato va bene.</li>
+      <li>Rileggere togliendo ogni frase che non contiene né una domanda né un fatto verificabile.</li>
+    </ul>
+  </section>
+
+  <p class="c-back"><a href="../upwork.html">← Tutti gli annunci</a></p>
+
+</main>
+
+<footer class="l-card__footer">
+  <p>2026 • Mucca Design di Luca Leone • VAT IT08200720962</p>
+</footer>
+
+<script src="../js/lang-toggle.js" defer></script>
+
+</body>
+</html>

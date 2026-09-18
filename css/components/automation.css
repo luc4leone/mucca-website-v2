@@ -30,3 +30,49 @@
 .c-automation__figure figcaption {
   margin-top: var(--space-6);
 }
+
+/* Le voci di automations.html sono elenchi, non prosa: con il passo di
+   portfolio.html (12px) l'ultimo <li> di una voce e il titolo della
+   successiva si toccano, e non si capisce più dove finisce una sezione.
+   Triplicato a 36px. Modificatore invece di una modifica a
+   `.c-project__facts`, che regge anche i 25 progetti del portfolio —
+   lì le voci sono blocchi di testo e il passo stretto va bene. */
+.c-automation__facts dd {
+  margin-bottom: var(--space-36);
+}
+
+.c-automation__facts dd:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .c-automation__facts {
+    row-gap: var(--space-36);
+  }
+
+  .c-automation__facts dd {
+    margin-bottom: 0;
+  }
+}
+
+/* Il "passo passo" del generatore di proposte porta schema JSON ed
+   espressioni n8n: righe che non vanno mandate a capo, altrimenti
+   un'espressione spezzata in due sembra due espressioni. Il blocco
+   scorre per conto suo invece di allargare la colonna. */
+.c-automation__code {
+  margin: 0 0 var(--space-12);
+  padding: var(--space-12);
+  border-radius: var(--radius-4);
+  background: var(--zinc-200);
+  overflow-x: auto;
+  font-size: var(--font-size-14);
+  line-height: 1.5;
+}
+
+/* I passi del "come si costruisce" sono h4, e h4 non ha ancora un
+   margin-top globale (vedi design-system.md): senza questo il titolo
+   del passo si incolla al paragrafo del passo precedente. Stesso
+   valore dell'h3, il raggruppamento resta leggibile. */
+.c-automation__step {
+  margin-top: var(--space-30);
+}

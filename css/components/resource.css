@@ -1,0 +1,57 @@
+/*
+  Voce di una lista di risorse: icona del tipo (audio, testo, video),
+  titolo che è il link, una riga di metadati, e il motivo per cui vale
+  la pena — opzionale, la voce regge anche senza.
+
+  Nessun fondino e nessun box: le voci si separano con un filetto, come
+  le righe di una bibliografia. È il trattamento più piatto possibile,
+  che è quello che il brand chiede.
+*/
+.c-resources {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c-resource {
+  display: grid;
+  grid-template-columns: var(--space-24) 1fr;
+  gap: var(--space-18);
+  padding: var(--space-24) 0;
+  border-bottom: var(--border-width-1) solid var(--color-border);
+}
+
+.c-resource:first-child {
+  border-top: var(--border-width-1) solid var(--color-border);
+}
+
+/* L'icona si allinea alla prima riga del titolo, non al bordo del box:
+   il titolo è a 20px, l'icona a 24 — senza questo scarto galleggia alta. */
+.c-resource__icon {
+  margin-top: var(--space-6);
+}
+
+.c-resource__title {
+  margin: 0;
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-700);
+  line-height: var(--line-height-tight);
+}
+
+.c-resource__meta {
+  margin: var(--space-6) 0 0;
+  font-size: var(--font-size-14);
+  color: var(--color-text-muted);
+}
+
+.c-resource__why {
+  margin: var(--space-12) 0 0;
+}
+
+/* Alternative alla risorsa principale (un'altra edizione, una via per
+   averla in italiano): stessa voce, non una voce a parte. */
+.c-resource__alt {
+  margin: var(--space-12) 0 0;
+  font-size: var(--font-size-14);
+  color: var(--color-text-muted);
+}
