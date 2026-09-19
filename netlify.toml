@@ -52,3 +52,9 @@
   for = "/outreach.html"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
+
+# Piano di marketing: date, decisioni, messaggi di outreach. Materiale di lavoro.
+[[headers]]
+  for = "/marketing-actions.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
