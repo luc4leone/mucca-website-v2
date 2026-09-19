@@ -32,10 +32,15 @@
   font-size: var(--font-size-16);
 }
 
+/* Su mobile la card è larga quanto la colonna e lo sketch a tutta
+   larghezza risulta ingrandito: all'80%, centrato. Da 768px le card
+   stanno in riga e lo sketch torna a riempire la sua. */
 .c-step-card__sketch {
   display: block;
   width: 100%;
+  max-width: 80%;
   height: auto;
+  margin: 0 auto;
 }
 
 /* ---------------------------------------------------------------
@@ -134,6 +139,10 @@
 
   .c-step-card {
     flex: 1;
+  }
+
+  .c-step-card__sketch {
+    max-width: none;
   }
 
   .c-step-cards__arrow {

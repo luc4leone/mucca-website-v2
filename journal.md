@@ -784,3 +784,16 @@ Correzione alla voce del 18 settembre («le recensioni prendono una faccia»): p
 ## 19 settembre 2026 — il video di Ilaria parte al suo posto
 
 Il video in «Come insegno?» non apre più l'overlay: al click la facade lascia il posto al player Vimeo dentro lo stesso box, e per ingrandirlo c'è il fullscreen dei controlli. È un'opzione della facade (`data-inline` in `js/video-facade.js`), non un cambio di comportamento generale: senza l'attributo l'overlay funziona come prima.
+
+## 19 settembre 2026 — il bottone del pre-corso su mobile
+
+Su iPhone il bottone «Iscriviti al pre-corso gratuito», andato a capo sotto il campo email, restava largo quanto il suo testo: in verticale sembrava un errore, in orizzontale peggio. Ora in entrambi i form (hero e sezione «Iscriviti»):
+
+- **quando va a capo si allarga a tutta la riga**, come il campo sopra;
+- **quando c'è spazio sta in riga col campo**, come su desktop.
+
+Niente breakpoint nuovo: il punto in cui si passa da una forma all'altra dipende dalla larghezza del testo del bottone, e lo decide lo spazio reale con due flex-grow sproporzionati (999 sul campo, 1 sul bottone — dettaglio in `css/components/form.css`). Misurato: impilati fino a ~570px di viewport (iPhone in verticale), in riga da ~667 (iPhone in orizzontale).
+
+La riga «4 live gratuite…» sotto il form dell'hero è allineata a sinistra sotto i 768px, a destra da 768 in su (il breakpoint unico del sito).
+
+Stesso giro su iPhone: gli sketch delle tre step card in «3 sfide per il Junior Designer di oggi» sotto i 768px erano a tutta larghezza e risultavano ingranditi. Ora `max-width: 80%`, centrati; da 768px, con le card in riga, tornano a riempire la card.
