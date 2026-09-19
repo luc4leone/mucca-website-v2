@@ -4,8 +4,18 @@
   gap: var(--space-12);
 }
 
+/* Campo e bottone in riga finché ci stanno, uno sotto l'altro quando no —
+   e il punto di rottura lo decide lo spazio reale, non un breakpoint:
+   dipende dalla larghezza del testo del bottone, che nessuna soglia fissa
+   conosce. Il trucco è la sproporzione dei flex-grow:
+   - in riga, il campo (999) si prende tutto lo spazio libero e il bottone
+     (1) resta largo quanto il suo testo;
+   - andato a capo, il bottone è solo sulla sua riga e il suo grow lo
+     allarga a tutta la larghezza, come il campo sopra.
+   Su iPhone: in verticale sono impilati e larghi uguali, in orizzontale
+   stanno in una riga. */
 .c-form__input {
-  flex: 1 1 var(--space-240);
+  flex: 999 1 var(--space-240);
   min-width: 0;
   appearance: none;
   border: var(--border-width-1) solid var(--color-border);
@@ -15,6 +25,10 @@
   color: var(--color-text);
   font-family: inherit;
   font-size: var(--font-size-16);
+}
+
+.c-form > .c-button {
+  flex: 1 0 auto;
 }
 
 .c-form__input::placeholder {

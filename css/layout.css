@@ -54,13 +54,21 @@
   text-align: left;
 }
 
-/* Larga quanto il form, allineata a destra: si appoggia al bordo del
-   bottone che sta sopra, invece di galleggiare al centro dell'hero. */
+/* Larga quanto il form. Su mobile allineata a sinistra, come il bottone
+   a tutta larghezza che ha sopra; da 768px allineata a destra, dove si
+   appoggia al bordo del bottone in riga invece di galleggiare al centro
+   dell'hero. */
 .l-hero__meta {
   margin: var(--space-12) 0 0;
   font-size: var(--font-size-16);
   color: var(--color-text-muted);
-  text-align: right;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .l-hero__meta {
+    text-align: right;
+  }
 }
 
 .l-section {

@@ -38,7 +38,7 @@
   border: var(--border-width-1) solid var(--color-border);
 }
 
-/* .c-form__input porta flex: 1 1 var(--space-240), dimensionato per il
+/* .c-form__input porta flex: 999 1 var(--space-240), dimensionato per il
    form in riga dell'hero. In colonna quel basis diventa un'altezza e la
    casella email viene alta 240px: qui ogni campo sta alto quanto serve. */
 .c-message-widget__panel .c-form__input {
