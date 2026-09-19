@@ -1,0 +1,25 @@
+/* Pagina 404. Il numero è l'elemento visivo, il titolo dice cosa è
+   successo. Il corallo sta solo sul bottone di ritorno: un accento per
+   vista (brand-kit/brand-style.md, principio 2).
+
+   La scala di tokens.css si ferma a 72px: il numero va oltre di proposito,
+   è un segno grafico più che testo. clamp() lo tiene dentro la viewport
+   su mobile. */
+
+.c-error__code {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-400);
+  font-size: clamp(var(--font-size-72), 28vw, 240px);
+  line-height: 0.9;
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text);
+}
+
+.c-error__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-12) var(--space-24);
+  margin-top: var(--space-12);
+}
