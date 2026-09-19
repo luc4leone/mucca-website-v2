@@ -310,6 +310,26 @@
   }
 }
 
+/* Variante per tabelle di dati (numeri, celle corte): impilata, una cella
+   senza intestazione è un valore orfano — «0» non dice niente. Ogni td porta
+   la sua etichetta in data-label, mostrata solo sotto i 768px.
+   Da tabella la prima colonna non si prende il 40%: le colonne sono tante. */
+.c-table--labeled td[data-label]::before {
+  content: attr(data-label) ": ";
+  font-weight: var(--font-weight-600);
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 768px) {
+  .c-table--labeled td[data-label]::before {
+    content: none;
+  }
+
+  .c-table--labeled tbody th {
+    width: auto;
+  }
+}
+
 /* Navigazione di ritorno all'elenco. */
 .c-back {
   margin: 0 0 var(--space-24);

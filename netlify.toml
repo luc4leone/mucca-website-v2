@@ -46,3 +46,9 @@
   for = "/manifesto.html"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
+
+# Journal dell'outreach: nomi e profili di persone contattate, non contenuto pubblico.
+[[headers]]
+  for = "/outreach.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
