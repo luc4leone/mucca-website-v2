@@ -762,3 +762,21 @@ Committato anche **`.claude/settings.json`**, che finora era fuori dal repo pur 
 Prima live: **7 ottobre**, fra diciannove giorni. `strategia-marketing.md` §8 chiede 400-600 contatti per arrivare a 60-80 iscritti al pre-corso, cioè ai 12 studenti; LinkedIn permette ~100-200 inviti a settimana, quindi il tetto fisico è ~270-540 contatti — **partendo oggi e senza saltare un giorno**. L'outreach non è ancora partito: in repo non c'era nessuna lista né journal, benché il piano lo prevedesse dal 14 settembre.
 
 Aperto `outreach.md`, che è anche lo strumento che il Modulo 3 chiede agli studenti. Ma il numero da guardare non è lì: **la coorte da 12 non è più lo scenario centrale**, ed è una decisione da prendere adesso e non a metà ottobre. §8 lo contemplava già («un pre-corso con 20 iscritti si tiene lo stesso e produce le registrazioni per la coorte 2»).
+
+## 19 settembre 2026 — Tre recensioni in più nel Master
+
+Da tre a sei citazioni firmate in `master-ux-ui.html`, ognuna accanto alla sezione che conferma:
+
+- **Andrea Schiavon**, in fondo a «Come insegno?»: «non ci hai mai fatto vedere una slide» conferma il primo punto della lista, «Ti mostro come faccio, non te lo racconto». Al suo posto c'era stata per poco Ilaria Bottinelli, tolta: la sua frase ripeteva quello che dice già nel video sopra.
+- **Andrea De Nuccio**, sotto il secondo form del pre-corso: «Non vedevo l'ora di collegarmi a lezione» è la cosa giusta da leggere subito dopo aver lasciato l'email per una live. Corretto nel copy un refuso («II famoso» → «Il famoso»).
+- **Bryan Zanella**, in fondo a «Risultati, non promesse»: è l'unica delle rimaste che parla del lavoro prodotto («è tutto un altro livello», «super analitico»), non dell'insegnante. Testo dal vecchio sito, aggiunto anche a `content.md`.
+
+Foto di Andrea Schiavon e Bryan Zanella ridotte a 184px webp come le altre. Resta senza collocazione Nicolò Giglietti.
+
+Poi altre due, con il testo arrivato oggi (non stava in nessun file del repo né del vecchio sito):
+
+- **Antonello Padolecchia**, in fondo ad «Ammissione alla prossima classe», subito prima delle FAQ. Nella prima versione stava sotto Stefano Falvella in «Cosa rende diverso questo corso?»; spostata qui, chiude la parte pratica (costi, date, ammissione) prima delle domande.
+- **Riccardo Porrega**, in fondo a «Programma del corso»: un ringraziamento generico, messo in una sezione che non aveva voci di studenti.
+
+Correzione alla voce del 18 settembre («le recensioni prendono una faccia»): per `davide-galli.webp` il testo c'è, nel vecchio sito (`mucca-website/public/pages/chi-sono.html`, firmato «Senior Developer and Architect»). Non ancora in pagina.
+

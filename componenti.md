@@ -194,7 +194,7 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 
 **Stile**: `object-fit: cover` (ritaglio pulito indipendentemente dal rapporto d'aspetto originale), `border-radius: var(--radius-full)` (cerchio).
 
-**Nota**: le foto degli autori delle testimonianze in `assets/images/` sono il secondo uso del componente, dentro `.c-byline` (sotto). Davide Cester e Stefano Falvella sono in pagina; De Nuccio, Zanella, Schiavon, Giglietti e Bottinelli hanno la foto ma non ancora una collocazione.
+**Nota**: le foto degli autori delle testimonianze in `assets/images/` sono il secondo uso del componente, dentro `.c-byline` (sotto). Davide Cester, Stefano Falvella, Andrea Schiavon, Andrea De Nuccio, Bryan Zanella, Antonello Padolecchia e Riccardo Porrega sono in pagina; Giglietti, Galli e Bottinelli hanno la foto ma non ancora una collocazione (la voce di Ilaria in pagina è il video in «Come insegno?»).
 
 ## Citazione di una recensione (`.c-quote`)
 

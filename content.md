@@ -91,6 +91,14 @@ Progetto interfacce dal 2012. Ecommerce, gestionali, CAD, player musicali, e mol
 - **Crescita delle competenze**: Ho studiato la progressione degli esercizi per costruire competenze una alla volta in modo naturale e TRASFERIRE IL MINDSET da Designer. L'opposto di rigurgitare la propria conoscenza.
 - **Esperienza reale**: insegno solo ciò che ho sperimentato in prima persona. Ciò che so che funziona.
 
+> Mi permetto l'ultima sviolinata (come si dice dalle mie parti), averti come primo prof al corso è stato molto di impatto ma so di parlare a nome di tutti, complimenti perché ci hai passato i valori di questo mondo e soprattutto non ci hai mai fatto vedere una slide e questo dice tanto di te
+
+<!-- style: caption -->
+![Foto di Andrea Schiavon](assets/images/andrea_schiavon.webp)
+**Andrea Schiavon**
+classe 2 Corso UX/UI Design Boolean
+<!-- /style -->
+
 ## Mini corso (gratis)
 
 ### modulo 1
@@ -169,6 +177,15 @@ Per entrambi i progetti del Modulo 1 e 2 **partiremo da Specifiche molto simili 
 
 
  
+
+> Ciao Luca! Purtroppo non credo di esserci alla lezione di sta sera… ci tenevo soltanto a ringraziarti per quello che hai fatto per noi, sei stato un insegnante super super bravo. 🫶
+
+<!-- style: caption -->
+![Foto di Riccardo Porrega](assets/images/riccardo_porrega.webp)
+**Riccardo Porrega**
+classe 2 Corso UX/UI Design Boolean
+<!-- /style -->
+
  ## Che esperienza ti aspetta?
 
 Andrea sta sketchando una funzionalità.
@@ -188,7 +205,7 @@ Qualche altro esempio
 ---
 
 ### Recensione Andrea Denuccio - classe 2 Corso UX/UI Design Boolean
-Inoltre vorrei cogliere l'occasione per ringraziarti di cuore. Il percorso di UX è stato fantastico, ho imparato tantissimo e le lezioni sono state super interessanti e mai banali. Non vedevo l'ora di collegarmi a lezione! II famoso "mindset" me lo hai trasmesso. Credo che se ci fossero sempre insegnanti come te, piacerebbe a tutti studiare! Grazie davvero
+Inoltre vorrei cogliere l'occasione per ringraziarti di cuore. Il percorso di UX è stato fantastico, ho imparato tantissimo e le lezioni sono state super interessanti e mai banali. Non vedevo l'ora di collegarmi a lezione! Il famoso "mindset" me lo hai trasmesso. Credo che se ci fossero sempre insegnanti come te, piacerebbe a tutti studiare! Grazie davvero
 
 ---
 
@@ -252,6 +269,14 @@ Un altro corso mio, all'inizio del 2025.
 
 ⚠️ **Le tre voci marcate «dedotto»** non avevano `data-caption` nella vecchia gallery: nome e corso sono ricavati dal nome del file e dal gruppo. Da confermare.
 
+> Fantastico, ovviamente non potrò portarlo in produzione, ma è tutto un altro livello. Certo che puoi portarlo domani, devo dire che hai proprio dei ragionamenti importanti, cioè super analitico. Interessante come hai preso punto per punto e smembrato mantenendo comunque una visione globale.
+
+<!-- style: caption -->
+![Foto di Bryan Zanella](assets/images/bryan_zanella.webp)
+**Bryan Zanella**
+classe 2 Corso UX/UI Design Boolean
+<!-- /style -->
+
 ## Ammissione alla prossima classe
 
 Partenza 9 Novembre 2026
@@ -281,6 +306,14 @@ Il corso costa 987€. È possibile pagare a rate:
 
 [Prenota il tuo posto] <!-- bottone -->
 
+
+> Ciao Luca, ti volevo sentitamente ringraziare per il tempo extra che dedichi dopo ogni lezione. Ai miei occhi quei momenti di confronto hanno un valore enorme.
+
+<!-- style: caption -->
+![Foto di Antonello Padolecchia](assets/images/antonello_padolecchia.webp)
+**Antonello Padolecchia**
+classe 2 Corso UX/UI Design Boolean
+<!-- /style -->
 
 ## Domande frequenti
 
