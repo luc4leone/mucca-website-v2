@@ -780,3 +780,7 @@ Poi altre due, con il testo arrivato oggi (non stava in nessun file del repo né
 
 Correzione alla voce del 18 settembre («le recensioni prendono una faccia»): per `davide-galli.webp` il testo c'è, nel vecchio sito (`mucca-website/public/pages/chi-sono.html`, firmato «Senior Developer and Architect»). Non ancora in pagina.
 
+
+## 19 settembre 2026 — il video di Ilaria parte al suo posto
+
+Il video in «Come insegno?» non apre più l'overlay: al click la facade lascia il posto al player Vimeo dentro lo stesso box, e per ingrandirlo c'è il fullscreen dei controlli. È un'opzione della facade (`data-inline` in `js/video-facade.js`), non un cambio di comportamento generale: senza l'attributo l'overlay funziona come prima.

@@ -204,7 +204,7 @@ Qualche altro esempio
 
 ---
 
-### Recensione Andrea Denuccio - classe 2 Corso UX/UI Design Boolean
+### Recensione Andrea Denuccio - classe 2 Corso UX/UI Design Boolean + Master Mucca Design
 Inoltre vorrei cogliere l'occasione per ringraziarti di cuore. Il percorso di UX è stato fantastico, ho imparato tantissimo e le lezioni sono state super interessanti e mai banali. Non vedevo l'ora di collegarmi a lezione! Il famoso "mindset" me lo hai trasmesso. Credo che se ci fossero sempre insegnanti come te, piacerebbe a tutti studiare! Grazie davvero
 
 ---

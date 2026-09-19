@@ -1,4 +1,25 @@
-document.querySelectorAll('.c-video__facade').forEach((facade) => {
+// data-inline sulla facade: il video parte al suo posto, dentro il box,
+// senza overlay. Per ingrandirlo c'è il fullscreen dei controlli del player.
+// La thumbnail resta sotto finché l'iframe non ha caricato, come nell'overlay.
+function playInline(facade) {
+  const iframe = document.createElement('iframe');
+  iframe.className = 'c-video__iframe';
+  iframe.src = facade.dataset.src;
+  iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+  iframe.allowFullscreen = true;
+  iframe.addEventListener('load', () => {
+    iframe.classList.add('is-loaded');
+    facade.remove();
+  });
+  facade.style.cursor = 'progress';
+  facade.parentElement.appendChild(iframe);
+}
+
+document.querySelectorAll('.c-video__facade[data-inline]').forEach((facade) => {
+  facade.addEventListener('click', () => playInline(facade), { once: true });
+});
+
+document.querySelectorAll('.c-video__facade:not([data-inline])').forEach((facade) => {
   const column = facade.closest('.l-section__content') || document.body;
 
   const overlay = document.createElement('div');

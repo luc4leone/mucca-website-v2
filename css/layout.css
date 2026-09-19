@@ -78,8 +78,10 @@
   padding: 0;
 }
 
+/* Un passo sopra il 6 della scala: con lo stesso interlinea stretto,
+   6px faceva leggere i link come un blocco unico invece che come voci. */
 .l-section__toc li {
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-12);
   line-height: var(--line-height-tight);
 }
 
