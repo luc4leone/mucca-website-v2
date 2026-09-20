@@ -24,13 +24,15 @@
 /* auto + minmax(0, 1fr): la colonna del numero si dimensiona sul suo
    contenuto, quella del testo può restringersi sotto il proprio
    contenuto invece di sfondare a schermo stretto.
-   align-items: baseline allinea la cifra piccola alla prima riga del
-   testo grande senza padding calcolati a mano — come nel manifesto. */
+   align-items: baseline appoggia la cifra alla prima riga del testo
+   senza padding calcolati a mano — come nel manifesto. Qui conta più
+   che altrove: il numero è grande, e una cifra grande allineata in alto
+   invece che alla linea di base galleggerebbe sopra la regola. */
 .c-life__item {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: baseline;
-  gap: 0 var(--space-12);
+  gap: 0 var(--space-18);
   margin: 0;
   padding: var(--space-18) 0;
   border-top: var(--border-width-1) solid var(--color-border);
@@ -40,11 +42,17 @@
   border-bottom: var(--border-width-1) solid var(--color-border);
 }
 
+/* Il numero è un elemento grafico, non un'etichetta: in Archivo Black a
+   36px scandisce la lista da lontano e dà alla pagina il suo ritmo.
+   Resta comunque secondario nel colore — a leggersi per primo è la
+   regola accanto, non la cifra. */
 .c-life__item::before {
   counter-increment: life;
   content: counter(life, decimal-leading-zero);
-  font-size: var(--font-size-14);
-  color: var(--color-text-muted);
+  font-family: var(--font-display);
+  font-size: var(--font-size-36);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-secondary);
   font-variant-numeric: tabular-nums;
 }
 
