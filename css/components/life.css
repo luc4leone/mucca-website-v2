@@ -1,0 +1,93 @@
+/* Life: la lista di insegnamenti di life.html.
+
+   Stessa grammatica visiva del manifesto — numero tabular a sinistra,
+   filetto fra le voci, paragrafo a 62ch — ma senza <details>: qui non
+   c'è niente da aprire, ogni voce è una frase sola e si legge tutta
+   scorrendo. Riusare .c-entry per poi tenere ogni voce sempre aperta
+   sarebbe un accordion finto.
+
+   La differenza sostanziale col manifesto sta nel numero. Lì è il nome
+   della voce ("il punto 07"), quindi sta nel markup e non si muove qui.
+   Qui invece l'ordine è l'unica cosa che il numero dice, e la lista è
+   destinata a crescere: il numero lo genera un counter CSS su un <ol>
+   vero, così inserire una voce a metà non costringe a rinumerare a mano
+   quelle sotto. `decimal-leading-zero` per lo stesso motivo del
+   manifesto: 01 e 08 restano incolonnati. */
+
+.c-life {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  counter-reset: life;
+}
+
+/* auto + minmax(0, 1fr): la colonna del numero si dimensiona sul suo
+   contenuto, quella del testo può restringersi sotto il proprio
+   contenuto invece di sfondare a schermo stretto.
+   align-items: baseline allinea la cifra piccola alla prima riga del
+   testo grande senza padding calcolati a mano — come nel manifesto. */
+.c-life__item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0 var(--space-12);
+  margin: 0;
+  padding: var(--space-18) 0;
+  border-top: var(--border-width-1) solid var(--color-border);
+}
+
+.c-life__item:last-child {
+  border-bottom: var(--border-width-1) solid var(--color-border);
+}
+
+.c-life__item::before {
+  counter-increment: life;
+  content: counter(life, decimal-leading-zero);
+  font-size: var(--font-size-14);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* La regola in sé: poche parole, in grassetto, da sole sulla loro riga.
+   È quella che deve restare in testa, e deve leggersi scorrendo la
+   pagina senza fermarsi — la spiegazione sotto si legge solo se serve. */
+.c-life__text {
+  margin: 0;
+  max-width: 62ch;
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-700);
+  line-height: var(--line-height-normal);
+}
+
+/* La spiegazione: stessa colonna della regola, corpo del testo normale.
+   Non è muted — si legge davvero, a differenza del riferimento, che è
+   solo una fonte da controllare. La gerarchia qui la fa il peso. */
+.c-life__body {
+  grid-column: 2;
+  max-width: 62ch;
+  margin: var(--space-6) 0 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* L'inciso fra parentesi è la voce dell'autore dentro l'affermazione,
+   non l'affermazione: sta sulla stessa riga ma un gradino sotto. */
+.c-life__aside {
+  color: var(--color-text-muted);
+}
+
+/* Il riferimento è la fonte, non la frase: va in seconda riga della
+   griglia, incolonnato col testo e non col numero. Il filetto a
+   sinistra lo stacca senza aggiungere un bordo nuovo alla pagina. */
+.c-life__ref {
+  grid-column: 2;
+  max-width: 62ch;
+  margin: var(--space-12) 0 0;
+  padding-left: var(--space-12);
+  border-left: var(--border-width-2) solid var(--color-border);
+  font-size: var(--font-size-16);
+  color: var(--color-text-muted);
+}
+
+.c-life__ref cite {
+  font-style: italic;
+}
