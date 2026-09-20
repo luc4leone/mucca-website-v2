@@ -148,6 +148,19 @@ classe 2 Corso UX/UI Design Boolean
 - Se credi nello specchietto per le allodole del supporto carriera. Qui il focus è sulla competenza...e la costruzione di un eccellente portfolio.
 
 
+## Cosa ti porti a casa
+
+<!-- BOZZA, da rivedere -->
+
+Alla fine del Master, questo è il risultato. È quello che stai comprando.
+
+1. **Disegni meglio le interfacce complesse**: quelle con tante schermate collegate, tanti stati, tanti casi limite. Dove il lavoro vero si complica e i tutorial si fermano.
+2. **Usi l'AI per progettare un'applicazione intera**: non per generare una schermata, ma come strumento dentro un processo che controlli tu, dall'inizio alla fine.
+3. **Tre progetti nuovi in portfolio**: interessanti, complessi, diversi dal solito. E tutti reali: due partono da specifiche simili a quelle che ho ricevuto io dai clienti, il terzo da una startup che quel prodotto lo sta costruendo davvero.
+4. **Un portfolio migliore, anche fuori**: non solo più lavori e di qualità più alta: migliora anche il contenitore, cioè il modo in cui li presenti.
+5. **Strategie per trovare lavoro**: che vanno oltre «applico a un job post su LinkedIn».
+
+
 ## Programma del corso
 
 Il corso è strutturato in moduli progressivi. 
@@ -158,7 +171,9 @@ Il corso è strutturato in moduli progressivi.
 
 **Modulo 2 – Progetto Press Office**: Progetteremo la UI di una wep app responsive per la gestione dell'Ufficio Stampa 📣.
 
-**Modulo 3 – Portfolio e ricerca del lavoro**: Risponderemo a queste domande:
+**Modulo 3 – Progetto Pound 4 Pound**: Progetteremo la UI di un'app mobile per la gestione di una palestra di sport da combattimento: lezioni, atleti, certificati medici 🥊.
+
+**Modulo 4 – Portfolio e ricerca del lavoro**: Risponderemo a queste domande:
 
 - Come faccio a trovare progetti reali da mettere in portfolio?
 - La strategia "creo profilo Linkedin ➡️ applico a job post" funziona? Posso fare meglio di così?
@@ -172,6 +187,7 @@ Disegneremo progetti reali e complessi:
 
 - 👉 Per RANCILIO/EGRO ho disegnato la UX/UI di una macchina di distribuzione automatica di caffè: cappucino, cioccolata, ecc – quelli che trovi negli hotel per capirci. 
 - 👉 Per MEDIADDRESS ho disegnato la UX/UI del programma di gestione dell’Ufficio Stampa. 
+- 👉 Pound 4 Pound nasce da Nimesh Palakuttige, ex studente e founder di una startup che sta costruendo proprio quel gestionale per palestre di sport da combattimento.
 
 Per entrambi i progetti del Modulo 1 e 2 **partiremo da Specifiche molto simili a quelle che ho ricevuto io dal cliente**, procederemo rapidi sulla parte di ricerca UX, per concentrarci sulla parte di progettazione della UI con AI.
 
@@ -240,7 +256,7 @@ I metadati per immagine vengono da `mucca-website/public/index.html` (attributo 
 
 ### Dalla prima edizione del Master
 
-La macchina del caffè e la gestione dell'ufficio stampa sono gli stessi due progetti del Modulo 1 e del Modulo 2. Questi studenti sono partiti dalle stesse specifiche da cui partirai tu, con lo stesso metodo e lo stesso ricevimento tre volte a settimana.
+La macchina del caffè e la gestione dell'ufficio stampa sono gli stessi progetti del Modulo 1 e del Modulo 2, e Pound 4 Pound è il Modulo 3. Questi studenti sono partiti dalle stesse specifiche da cui partirai tu, con lo stesso metodo e lo stesso ricevimento tre volte a settimana.
 
 - Roberto Migani · Wireflow della macchina del caffè · Master Mucca Design UX/UI ⚠️ dedotto
 - Andrea De Nuccio · Prototipo della macchina del caffè · Master Mucca Design UX/UI ⚠️ dedotto
@@ -355,7 +371,7 @@ Per seguire il corso no: lezioni, ricevimento e forum sono in italiano.
 Per la garanzia sì, e vale la pena dirlo qui: vale per chi cerca sui mercati internazionali, ed è lì che serve l'inglese. Senza, il corso lo segui lo stesso e impari lo stesso, ma la parte di ricerca del lavoro ti resta dentro il mercato italiano — che è una frazione di quello disponibile.
 
 **Mi aiuti a trovare lavoro?**
-Non con il ripasso del CV e la simulazione del colloquio. Il Modulo 3 è un modulo come gli altri, con consegne: un portfolio pubblicato come pagina HTML, con dentro i progetti del corso che funzionano davvero nel browser, e un journal delle azioni di ricerca che tieni durante il corso e nei mesi dopo.
+Non con il ripasso del CV e la simulazione del colloquio. Il Modulo 4 è un modulo come gli altri, con consegne: un portfolio pubblicato come pagina HTML, con dentro i progetti del corso che funzionano davvero nel browser, e un journal delle azioni di ricerca che tieni durante il corso e nei mesi dopo.
 
 È anche la parte su cui rispondo: se applichi il metodo e in 6 mesi dalla fine non trovi lavoro, ti restituisco tutto. Le condizioni sono scritte per esteso in `garanzia.html`.
 

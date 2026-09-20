@@ -77,6 +77,29 @@
   color: var(--color-text-secondary);
 }
 
+/* Presupposto, non requisito: l'inglese non è un conteggio e non ha una
+   data, quindi non può stare nella lista numerata — i criteri citabili
+   nel contratto sono sette, e sono tutti misure. Resta la stessa forma
+   del requisito, meno il numero: al posto della colonna stretta c'è
+   l'etichetta che dice cos'è.
+
+   Il corpo scavalca le colonne invece di ridefinirle: `.c-requirement`
+   cambia griglia dentro il breakpoint, e un `grid-template-columns`
+   riscritto qui verrebbe annullato da quella regola, che nel file viene
+   dopo e ha la stessa specificità. `1 / -1` vale in entrambi i casi. */
+.c-requirement--premise > .c-requirement__body {
+  grid-column: 1 / -1;
+}
+
+.c-requirement__label {
+  margin: 0 0 var(--space-6);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
 .c-requirement__title {
   margin: 0 0 var(--space-6);
   font-size: var(--font-size-18);

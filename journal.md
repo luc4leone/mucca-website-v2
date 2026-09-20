@@ -797,3 +797,13 @@ Niente breakpoint nuovo: il punto in cui si passa da una forma all'altra dipende
 La riga «4 live gratuite…» sotto il form dell'hero è allineata a sinistra sotto i 768px, a destra da 768 in su (il breakpoint unico del sito).
 
 Stesso giro su iPhone: gli sketch delle tre step card in «3 sfide per il Junior Designer di oggi» sotto i 768px erano a tutta larghezza e risultavano ingranditi. Ora `max-width: 80%`, centrati; da 768px, con le card in riga, tornano a riempire la card.
+
+## 19 settembre 2026 — tre progetti, quattro moduli
+
+Il programma elencava due progetti (Coffee Machine, Press Office) mentre «Risultati» ne mostrava tre. Sono tre: **Pound 4 Pound**, il gestionale per una palestra di sport da combattimento, entra come **Modulo 3** (app mobile: lezioni, atleti, certificati). Nella prima edizione l'aveva scelto Roberto di sua iniziativa; ora è nel programma.
+
+Il portfolio e la ricerca del lavoro diventano **Modulo 4**. Rinumerati tutti i riferimenti: FAQ del Master, `garanzia.html` («le esercitazioni dei quattro moduli»), `outreach`, `marketing-actions`, `content.md`. Il portfolio finale contiene «i tre progetti del corso».
+
+Nasce insieme alla bozza di **«Cosa ti porti a casa»**, subito prima del programma: cinque risultati (interfacce complesse, AI per un'app intera, tre progetti in portfolio, un portfolio presentato meglio, strategie oltre LinkedIn). Prima si legge cosa ottieni, poi come ci arrivi.
+
+Pound 4 Pound non è un cliente pagante ma è un progetto reale: nasce da Nimesh Palakuttige, ex studente e founder di una startup che quel gestionale lo sta costruendo. Detto in «Retroscena», accanto a Rancilio/Egro e Mediaddress, e nel punto 3 di «Cosa ti porti a casa» («due partono da specifiche simili a quelle dei clienti, il terzo da una startup»).

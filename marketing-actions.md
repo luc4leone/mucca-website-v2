@@ -48,7 +48,7 @@ Altre decisioni operative:
 
 - **Deploy su Netlify.** ✅ Fatto: `www.mucca.design`, repo `luc4leone/mucca-website-v2`, deploy automatico da `main`.
 - **La landing alla radice** → **cambiata**: `index.html` è rimasto un biglietto da visita e la landing del corso vive su `/master-ux-ui.html`. Il traffico arriva dal link diretto nei DM, non dalla radice. `content.html` è stato rimosso il 18 settembre.
-- **Tieni un journal dell'outreach tu** — `outreach.md` in questo repo, con commit giornalieri: contatti, risposte, click, iscritti. È la metrica del checkpoint del 5 ottobre, ed è la stessa cosa che chiederai agli studenti nel Modulo 3.
+- **Tieni un journal dell'outreach tu** — `outreach.md` in questo repo, con commit giornalieri: contatti, risposte, click, iscritti. È la metrica del checkpoint del 5 ottobre, ed è la stessa cosa che chiederai agli studenti nel Modulo 4.
 
 ## Stato: cosa è pronto e cosa manca
 

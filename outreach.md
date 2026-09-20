@@ -2,7 +2,7 @@
 
 Registro delle azioni di ricerca contatti su LinkedIn per il pre-corso di ottobre 2026. Una voce per persona, aggiornata il giorno stesso, commit giornaliero.
 
-È lo stesso strumento che il Modulo 3 chiede agli studenti (`garanzia.html`, "Il journal"): tenerlo è anche il modo di sapere se quello che insegno funziona quando lo faccio io.
+È lo stesso strumento che il Modulo 4 chiede agli studenti (`garanzia.html`, "Il journal"): tenerlo è anche il modo di sapere se quello che insegno funziona quando lo faccio io.
 
 **Target**: alumni Boolean UX/UI che **non** sono stati miei studenti diretti. Come trovarli: `marketing-actions.md`, sezione "Chi cercare".
 
