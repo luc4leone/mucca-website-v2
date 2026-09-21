@@ -947,10 +947,9 @@ scritto: un pezzo del 2024 letto nel 2026 senza quella riga sembra attuale.
 
 «Libri su UX/UI design (bozza)», del 7 dicembre 2024. L'autore l'aveva marcato
 bozza, e la decisione è stata di lasciarlo morire col sito invece di aprire
-`books/` con un pezzo che non convinceva. Restano fuori anche le due liste di
-link della vecchia home, «Persone che mi hanno ispirato» e «Articoli che mi
-hanno ispirato»: sono segnalibri, e se servono hanno una casa diversa da
-`articles/`.
+`books/` con un pezzo che non convinceva. Le due liste di link della vecchia
+home, «Persone che mi hanno ispirato» e «Articoli che mi hanno ispirato», sono
+finite in `link.html` — vedi sotto.
 
 ### `articles/` diventa pubblica
 
@@ -984,3 +983,39 @@ sezione «Altrove», che li elenca e li linka. Riusato `.c-resource`, lo stesso
 componente di `motivation.html` — icona, titolo che è il link, riga di
 metadati — così le due sezioni della pagina sono la stessa lista con due
 destinazioni diverse, e non è servito CSS nuovo.
+
+## 21 settembre 2026 — `link.html`: i segnalibri di birbi.biz
+
+Le due liste che stavano in fondo alla home del vecchio blog — tre persone e
+tredici articoli — hanno una pagina loro alla radice. **Pubblica**, come
+`articles/`.
+
+**Perché non in `articles/`.** Lì c'è roba scritta da Luca; qui roba letta.
+Sono due gesti diversi: uno si aggiorna quando scrivi, l'altro quando leggi, e
+mescolarli renderebbe la sezione «Altrove» di `articles/` — che sono comunque
+pezzi suoi, solo ospitati altrove — indistinguibile dai consigli di lettura.
+La pagina lo dice in testa, e linka in tutte e due le direzioni.
+
+**Nessun CSS nuovo.** Riusato `.c-resource`, che ormai è il terzo impiego dopo
+`motivation.html` e `articles/index.html`: icona, titolo che è il link, riga di
+metadati, e il «perché» dove c'è qualcosa da dire. Le tre persone lo hanno, i
+tredici articoli no — e questa è una scelta, non una dimenticanza.
+
+**Sui «perché» mancanti.** Il vecchio sito elencava gli articoli senza una riga
+di commento: solo i titoli. Inventarne uno per tredici pezzi avrebbe voluto
+dire mettere in bocca a Luca motivi che non ha mai scritto, quindi sotto ogni
+titolo c'è solo quello che è verificabile — autore e testata, controllati uno
+per uno sul sito di origine, non dedotti dal dominio. Se un motivo va scritto,
+lo scrive lui.
+
+Le tre persone invece una riga ce l'hanno, perché il materiale esisteva già:
+quella di Richard Turner è copiata da `motivation.html`, dove Luca l'aveva
+scritta per il documentario *Dealt*; Ainsworth e Sivers sono descritti con
+quello che dicono di sé i loro siti.
+
+**Tutti e 16 i link rispondono 200**, verificati prima di scriverli. Due
+correzioni rispetto alla lista vecchia: «Defensive design» si chiama in realtà
+**Defensive CSS**, e il titolo vero è quello che si legge arrivando sulla
+pagina di Ahmad Shadeed; «Math Conversations at Home» era una voce con due link
+dentro, ed è rimasta una voce sola con parte I e parte II, invece di diventare
+due righe che dicono quasi la stessa cosa.
