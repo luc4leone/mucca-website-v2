@@ -949,7 +949,7 @@ scritto: un pezzo del 2024 letto nel 2026 senza quella riga sembra attuale.
 bozza, e la decisione è stata di lasciarlo morire col sito invece di aprire
 `books/` con un pezzo che non convinceva. Le due liste di link della vecchia
 home, «Persone che mi hanno ispirato» e «Articoli che mi hanno ispirato», sono
-finite in `link.html` — vedi sotto.
+finite in `links.html` — vedi sotto.
 
 ### `articles/` diventa pubblica
 
@@ -984,7 +984,7 @@ componente di `motivation.html` — icona, titolo che è il link, riga di
 metadati — così le due sezioni della pagina sono la stessa lista con due
 destinazioni diverse, e non è servito CSS nuovo.
 
-## 21 settembre 2026 — `link.html`: i segnalibri di birbi.biz
+## 21 settembre 2026 — `links.html`: i segnalibri di birbi.biz
 
 Le due liste che stavano in fondo alla home del vecchio blog — tre persone e
 tredici articoli — hanno una pagina loro alla radice. **Pubblica**, come
