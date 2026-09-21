@@ -47,7 +47,9 @@ Da controllare quando si crea una superficie nuova: testo e testo secondario (di
 
 ### Tipografia
 
-**Font-family**: un solo font, **Lora** (variable, asse `wght` 400–700), fallback `serif`. File in `assets/Lora/`, caricato via `@font-face` in `css/tokens.css` (upright + italic). TTF variable direttamente in produzione: niente build step per convertirlo. Eventuale conversione a woff2 (più leggero) resta un'ottimizzazione futura opzionale.
+**Font-family**: due, entrambi del brand e presi da Google Fonts con un `@import` in testa a `css/tokens.css` — **Archivo Black** per i titoli (`--font-display`) e **Archivo** per il corpo (`--font-body`, aliasato da `--font-family-base`). Nessun file di font nel repo e nessun build step.
+
+Prima era **Lora**, un serif servito da `assets/Lora/`. L'ultimo `font-family` che la nominava è sparito con l'adozione del brand, ma i dieci `.ttf` e il suo `@font-face` sono rimasti a bordo fino al 21 settembre 2026, quando sono stati rimossi: 1,5 MB che nessuna pagina chiedeva.
 
 **Font-size**: scala fissa in px, naming `--font-size-<valore>`.
 
@@ -57,7 +59,7 @@ Da controllare quando si crea una superficie nuova: testo e testo secondario (di
 
 - `tight`: titoli grandi (hero, titoli di sezione) — righe corte, non serve respiro.
 - `normal`: default per UI e body text generico.
-- `relaxed`: paragrafi lunghi (descrizione corso, programma) — con un serif come Lora, un'interlinea più generosa aiuta la lettura prolungata.
+- `relaxed`: paragrafi lunghi (descrizione corso, programma) — un'interlinea più generosa aiuta la lettura prolungata.
 
 **La regola che decide quale usare: `tight` solo su testo che non va a capo.** È una misura da display — titoli, numeri grandi, etichette di una riga sola. Qualunque cosa possa arrivare alla seconda riga (paragrafi, voci di lista, descrizioni, didascalie) sta a `normal`; a 1.1 le discendenti di una riga sfiorano le maiuscole di quella dopo, e il blocco si legge come una macchia.
 
@@ -86,7 +88,7 @@ Riassunto operativo, per dimensione del testo:
 
 **Letter-spacing**: stessa ragione di naming del line-height — decimali (anche negativi) scomodi come suffisso, naming per fascia:
 
-- `tight`: titoli grandi in Lora — un filo più stretti a dimensioni display.
+- `tight`: titoli grandi in Archivo Black — un filo più stretti a dimensioni display.
 - `normal`: esplicito a `0` per poterlo sovrascrivere senza ambiguità.
 - `wide`: badge/eyebrow in maiuscolo — la tracciatura larga aiuta la leggibilità dell'uppercase.
 

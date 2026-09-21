@@ -1155,3 +1155,9 @@ problema non può ripresentarsi.
 **Ancora da fare**: `@font-face` di Lora è stato tolto da `tokens.css` perché
 nessun `font-family` la nominava più, ma i dieci `.ttf` sono ancora in
 `assets/Lora/`. Vanno cancellati, o tenuti con una riga che dica perché.
+
+**Lora rimossa.** I dieci `.ttf` in `assets/Lora/` più licenza e readme: 1,5 MB
+che nessuna pagina chiedeva. Era il serif del tema precedente, e l'ultimo
+`font-family` che la nominava era sparito con l'adozione del brand — restavano
+solo i file e un `@font-face` che li dichiarava a vuoto. Corrette anche le tre
+righe di `design-system.md` che la davano ancora per il font del sito.

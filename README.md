@@ -17,6 +17,29 @@ Documentazione: `CLAUDE.md` (istruzioni operative), `design-system/`
 campioni negli `.html`), `journal.md` (decisioni prese e da prendere,
 in ordine di data).
 
+## Come è organizzato il CSS
+
+Quattro livelli, e nient'altro:
+
+| file | cosa contiene |
+|---|---|
+| `css/tokens.css` | **tutti** i token, in tre blocchi: scale (misure e tempi), palette (i colori del brand), semantiche (i nomi che i componenti consumano). Nessuna regola CSS oltre a `:root` |
+| `css/base.css` | gli elementi HTML nudi: titoli, paragrafi, link, liste, citazioni |
+| `css/layout.css` | gli impianti di pagina, classi `l-*` |
+| `css/components/<nome>.css` | un componente per file, **completo**: forma e colore insieme |
+
+La regola che tiene su tutto: **un componente non ha stili in nessun altro
+file.** Per sapere com'è fatto un bottone si apre `button.css`, e basta.
+
+Fino al 21 settembre 2026 non era così: `css/theme-brand.css` rimappava i token
+del brand *e* ridisegnava venti regole di componente — il `border-radius` di
+mezzo sito, la scala dei titoli, il font del calendario. Lo stile di un
+componente stava in due file, e il secondo non portava il suo nome. Le
+motivazioni e cosa è cambiato: `design-system/design-system.md`.
+
+Un valore nuovo è un token in `tokens.css`, non un numero scritto nel
+componente.
+
 ## Una cartella per argomento
 
 I file che si leggono insieme stanno insieme, e ogni cartella ha il suo
