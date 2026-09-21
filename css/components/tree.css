@@ -1,0 +1,147 @@
+/* Tree: l'indice privato come albero di file (index-abf92932.html).
+
+   Sostituisce la lista a righe di `.c-sitemap`, che elencava ogni pagina
+   col suo path completo e una riga di descrizione. Il path ripetuto per
+   intero a ogni voce nascondeva la cosa che si vuole vedere qui — cosa
+   sta dentro cosa — e le descrizioni non venivano lette.
+
+   Gerarchia vera nel markup: `<ul>` dentro `<li>`, così l'annidamento
+   che si vede è quello che legge anche uno screen reader. Niente JS:
+   l'albero è sempre aperto, 37 voci non chiedono di essere richiuse.
+
+   I filetti sono CSS, non caratteri: un ├─ nel testo verrebbe letto ad
+   alta voce e si copierebbe insieme al nome del file. */
+
+.c-tree {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-normal);
+}
+
+.c-tree__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Le liste annidate rientrano e portano il filetto verticale che tiene
+   insieme i figli di una cartella. Il padding sinistro fa spazio al
+   trattino orizzontale disegnato da ::before sulla voce. */
+.c-tree__list .c-tree__list {
+  margin-left: var(--space-6);
+  padding-left: var(--space-18);
+  border-left: var(--border-width-1) solid var(--color-border);
+}
+
+.c-tree__item {
+  position: relative;
+  padding: 1px 0 1px var(--space-18);
+}
+
+/* Il trattino che va dal filetto verticale al nome. Parte da sinistra
+   del padding e si ferma prima del testo. `top` a metà della prima riga
+   così resta agganciato al nome anche se la voce va a capo su schermo
+   stretto. */
+.c-tree__item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(1px + 0.75em);
+  width: var(--space-12);
+  border-top: var(--border-width-1) solid var(--color-border);
+}
+
+/* Le voci di primo livello non hanno un filetto verticale a cui
+   agganciarsi: senza trattino partono dritte dal margine. */
+.c-tree > .c-tree__list > .c-tree__item {
+  padding-left: 0;
+}
+
+.c-tree > .c-tree__list > .c-tree__item::before {
+  content: none;
+}
+
+/* I link restano sottolineati: è la regola del sito — un link non si
+   stilizza mai come testo normale (design-system.md, WCAG 1.4.1) — e qui
+   la sottolineatura è anche l'unica cosa che separa un file, che si
+   apre, dal nome di cartella che gli sta sopra e non si apre.
+
+   Su 37 voci incolonnate pesava, però, e la leva non è lo spessore:
+   l'`auto` del browser qui vale già circa 1px, quindi fissarlo non
+   cambia niente da solo — resta solo perché a zoom alto `auto`
+   arrotonda a 2px e la riga raddoppierebbe.
+
+   Quello che pesa è l'offset del tema, 0.15em: tarato sull'Archivo del
+   testo, sul monospace fa passare la riga dentro le discendenti di
+   `p`, `g`, `y`, e i nomi di file qui ne sono pieni
+   (`pensiero-divergente.html`). A 0.25em la riga stacca e si legge come
+   sottolineatura invece che come cancellatura. Colore e accento
+   all'hover restano quelli del tema. */
+.c-tree__item > a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+
+/* Nome di cartella: non è un link — la pagina dentro la cartella è
+   `index.html`, elencata come figlia insieme alle altre, e resta
+   l'unica cosa cliccabile. Il grassetto separa la struttura dai file
+   senza aggiungere un colore. */
+.c-tree__dir {
+  font-weight: var(--font-weight-600);
+  color: var(--color-text-muted);
+}
+
+/* Etichetta "noindex": sta sulla riga del file, non sopra o sotto,
+   perché è una proprietà di quel file. Ereditata da `.c-sitemap__tag`,
+   che se n'è andato con sitemap.css quando la lista piatta è stata
+   sostituita da questo albero. */
+.c-tree__tag {
+  display: inline-block;
+  margin-left: var(--space-6);
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-4);
+  border: var(--border-width-1) solid var(--color-border);
+  color: var(--color-text-muted);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-12);
+  letter-spacing: var(--letter-spacing-wide);
+  vertical-align: middle;
+}
+
+/* Le istruzioni d'uso della pagina, prima dell'albero. Filetto a
+   sinistra come il blockquote di base.css: è una voce a parte rispetto
+   al contenuto, ma non un avviso da allarmare. Niente margine sotto:
+   la separazione la dà già il padding-top di `.l-page > section`. */
+.c-tree__note {
+  margin: 0;
+  padding-left: var(--space-18);
+  border-left: var(--border-width-2) solid var(--color-border);
+  font-size: var(--font-size-16);
+  color: var(--color-text-muted);
+}
+
+.c-tree__note p:last-child {
+  margin-bottom: 0;
+}
+
+/* Sotto i 600px il rientro di tre livelli mangia la colonna: i nomi di
+   file qui sono lunghi (proposal-generator.html) e andrebbero a capo a
+   ogni voce. Filetto e trattino si stringono, il testo resta intero. */
+@media (max-width: 600px) {
+  .c-tree {
+    font-size: var(--font-size-14);
+  }
+
+  .c-tree__list .c-tree__list {
+    margin-left: 0;
+    padding-left: var(--space-12);
+  }
+
+  .c-tree__item {
+    padding-left: var(--space-12);
+  }
+
+  .c-tree__item::before {
+    width: var(--space-6);
+  }
+}

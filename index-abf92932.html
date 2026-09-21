@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/components/sitemap.css">
+<link rel="stylesheet" href="css/components/tree.css">
 <link rel="stylesheet" href="brand-kit/brand-tokens-light.css">
 <link rel="stylesheet" href="css/theme-brand.css">
 </head>
@@ -21,215 +21,121 @@
     <p>Tutte le pagine del sito, comprese quelle fuori dai motori di ricerca.</p>
   </header>
 
-  <div class="c-sitemap__note">
-    <p>Pagina di servizio. Non è linkata da nessuna pagina pubblica, ha un nome non indovinabile ed è esclusa dall'indicizzazione: <code>noindex</code> nel markup, <code>X-Robots-Tag</code> in <code>netlify.toml</code>. L'etichetta <span class="c-sitemap__tag">noindex</span> segnala le pagine che restano fuori dai motori.</p>
-    <p>L'elenco si aggiorna a mano: quando aggiungi o togli una pagina, passa di qui.</p>
+  <div class="c-tree__note">
+    <p>Pagina di servizio. Non è linkata da nessuna pagina pubblica, ha un nome non indovinabile ed è esclusa dall'indicizzazione: <code>noindex</code> nel markup, <code>X-Robots-Tag</code> in <code>netlify.toml</code>. L'etichetta <span class="c-tree__tag">noindex</span> segnala le pagine che restano fuori dai motori.</p>
   </div>
 
-  <section id="pubbliche">
-    <h2>Pubbliche</h2>
-    <div class="c-sitemap">
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/index.html">index.html</a></p>
-        <p class="c-sitemap__desc">Home. Biglietto da visita: nome, cosa fai, email. Nessuna navigazione.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/master-ux-ui.html">master-ux-ui.html</a></p>
-        <p class="c-sitemap__desc">Landing del Master UX/UI Design. Il copy di riferimento sta in <code>content.md</code>.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/garanzia.html">garanzia.html</a></p>
-        <p class="c-sitemap__desc">Le condizioni della garanzia per esteso. Linkata dal Master, non sta in piedi da sola.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/motivation.html">motivation.html</a></p>
-        <p class="c-sitemap__desc">Motivazione. Lista di risorse per chi ha un obiettivo: podcast, libri, video.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/portfolio.html">portfolio.html</a></p>
-        <p class="c-sitemap__desc">Works. Indice di 25 progetti, ognuno si apre sul posto.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/results.html">results.html</a></p>
-        <p class="c-sitemap__desc">Results. Due case study di marketing con i numeri che hanno mosso.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/automations/">automations/index.html</a></p>
-        <p class="c-sitemap__desc">Automations. Case study delle automazioni, una riga per automazione che si apre sul posto. Accanto, in cartella, gli appunti di costruzione (<code>trello-twilio-automation.md</code>).</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/articles/">articles/index.html</a></p>
-        <p class="c-sitemap__desc">Articoli. I cinque pezzi salvati da birbi.biz prima che chiuda, più i link ai cinque vecchi articoli su Medium e Smashing Magazine, che restano dove sono.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/articles/la-via-del-codice-dialogo-1.html">articles/la-via-del-codice-dialogo-1.html</a></p>
-        <p class="c-sitemap__desc">Dialogo fra un giovane programmatore e un anziano sviluppatore: costruire un pezzo alla volta, il debug come lavoro da detective, il codice imperfetto come passaggio necessario.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/articles/la-via-del-codice-dialogo-2.html">articles/la-via-del-codice-dialogo-2.html</a></p>
-        <p class="c-sitemap__desc">Il seguito: livelli di astrazione, pseudocodice come schizzo, strade alternative, metodo scientifico applicato al debug.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/articles/calcioclip-due-lezioni.html">articles/calcioclip-due-lezioni.html</a></p>
-        <p class="c-sitemap__desc">Postmortem di Calcioclip: 500 squadre contattate, zero abbonamenti. Chi decide l'acquisto, e perché uno strumento non è una soluzione. Lo screenshot sta in <code>assets/images/articoli/</code>.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/articles/il-blog-piu-semplice-del-mondo.html">articles/il-blog-piu-semplice-del-mondo.html</a></p>
-        <p class="c-sitemap__desc">Un post è una pagina HTML, un blog è una lista di pagine HTML. Tre passi, e i commenti risolti con una riga di testo.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/articles/pensiero-divergente.html">articles/pensiero-divergente.html</a></p>
-        <p class="c-sitemap__desc">Le sedie di Munari e la seconda soluzione che quasi nessuno cerca. Le sei immagini stanno in <code>assets/images/articoli/</code>, non più sul CDN di birbi.biz.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/links.html">links.html</a></p>
-        <p class="c-sitemap__desc">Link. Persone e articoli di altri che mi hanno ispirato, salvati da birbi.biz prima che chiuda. Roba letta, non scritta: quella sta in <a href="/articles/">articles/</a>.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/mini-corso/">mini-corso/index.html</a></p>
-        <p class="c-sitemap__desc">Lead magnet: il mini corso gratuito che porta al Master.</p>
-      </article>
-
-    </div>
-  </section>
-
-  <section id="riservate">
-    <h2>Riservate</h2>
-    <div class="c-sitemap">
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/offerta-mediaddress/">offerta-mediaddress/index.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">Offerta per Mediaddress. Raggiungibile solo da chi ha il link.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/upwork/">upwork/index.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">Journal: gli annunci di lavoro analizzati prima di candidarmi. Una pagina di analisi per annuncio, nella stessa cartella.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/upwork/ai-automation-specialist.html">upwork/ai-automation-specialist.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">Analisi dell'annuncio Upwork "AI Automation Specialist". Non destinata a diventare pubblica.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/marketing/">marketing/index.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">Il materiale di lavoro del lancio, in tre livelli: l'analisi che decide, il piano che dice cosa fare, il journal che conta cosa è successo. La pagina pubblica dei risultati è <a href="/results.html">results.html</a>, alla radice.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/marketing/marketing-actions.html">marketing/marketing-actions.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">Piano di marketing del pre-corso: date, decisioni prese, cosa manca, messaggi LinkedIn, ritmo settimanale. La fonte è <code>marketing-actions.md</code>, accanto.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/marketing/outreach.html">marketing/outreach.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">Journal dell'outreach su LinkedIn per il pre-corso di ottobre: conteggi settimanali, contatti, diario. La fonte è <code>outreach.md</code>, accanto.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/manifesto.html">manifesto.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">Manifesto: tredici affermazioni su cosa hanno in comune design, marketing e automazione, una lista che si apre voce per voce. Prototipo, la fonte del copy è <code>manifesto.md</code>.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/life.html">life.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">Cosa ho imparato: le regole di vita per Ale e Nus, una lista numerata che cresce. Pagina personale, fuori dal sito di lavoro.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/books/">books/index.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">Libri letti e recensiti. Per ora solo il guscio della pagina: la lista non è scritta.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/index-abf92932.html">index-abf92932.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">Questa pagina.</p>
-      </article>
-
-    </div>
-  </section>
-
-  <section id="lavoro">
-    <h2>Di lavoro</h2>
-    <div class="c-sitemap">
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/design-system/">design-system/index.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">Design system: l'indice della cartella e il criterio che divide i file — le decisioni nel <code>.md</code>, i campioni nell'<code>.html</code>. Vale per il sistema e per i componenti.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/design-system/design-system.html">design-system/design-system.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">I campioni: interlinea, scala tipografica, colori semantici, disegnati con i token veri.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/design-system/componenti.html">design-system/componenti.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">Galleria visiva dei componenti: ogni variante accanto a quella in uso. Di proposito senza tema brand, per vedere i soli default di <code>tokens.css</code>.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/iterazioni/">iterazioni/index.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">Le esplorazioni grafiche: più varianti della stessa cosa, una sotto l'altra, con quella in produzione in cima.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/iterazioni/grafica-recensione.html">iterazioni/grafica-recensione.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">Le tre varianti grafiche esplorate per la citazione di una recensione, ognuna nella sezione vera.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/iterazioni/hero-iterazioni.html">iterazioni/hero-iterazioni.html</a><span class="c-sitemap__tag">noindex</span></p>
-        <p class="c-sitemap__desc">Quattro ipotesi per l'hero del Master, ognuna con la sua e il suo costo.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/workflows/">workflows/index.html</a></p>
-        <p class="c-sitemap__desc">Indice delle cartelle di lavoro dei workflow n8n: una cartella per automazione, dalla spec del corso alle pagine di bozza.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/workflows/your-third-workflow/">workflows/your-third-workflow/index.html</a></p>
-        <p class="c-sitemap__desc">Generatore di proposte: i file della cartella, spec e export n8n compresi.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/workflows/your-third-workflow/proposal-generator.html">workflows/your-third-workflow/proposal-generator.html</a></p>
-        <p class="c-sitemap__desc">Bozza del secondo caso d'automazione (modulo → proposta in Google Slides), da spostare dentro <code>automations/index.html</code>.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/workflows/your-third-workflow/come-si-costruisce.html">workflows/your-third-workflow/come-si-costruisce.html</a></p>
-        <p class="c-sitemap__desc">I sette passi per costruire quel flusso in n8n. Sta fuori dalla bozza perché il caso d'uso pubblico non li contiene.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/workflows/your-fourth-workflow/">workflows/your-fourth-workflow/index.html</a></p>
-        <p class="c-sitemap__desc">Template della prossima automazione: segnaposto «lorem ipsum» e cartella delle spec vuota.</p>
-      </article>
-
-      <article class="c-sitemap__row">
-        <p class="c-sitemap__link"><a href="/assets/Icons_v1.0.2/demo.html">assets/Icons_v1.0.2/demo.html</a></p>
-        <p class="c-sitemap__desc">Demo del set di icone. File di terze parti, arrivato col pacchetto.</p>
-      </article>
-
-
+  <section>
+    <div class="c-tree">
+      <ul class="c-tree__list">
+        <li class="c-tree__item c-tree__item--dir">
+          <span class="c-tree__dir">articles/</span>
+          <ul class="c-tree__list">
+            <li class="c-tree__item"><a href="/articles/calcioclip-due-lezioni.html">calcioclip-due-lezioni.html</a></li>
+            <li class="c-tree__item"><a href="/articles/il-blog-piu-semplice-del-mondo.html">il-blog-piu-semplice-del-mondo.html</a></li>
+            <li class="c-tree__item"><a href="/articles/">index.html</a></li>
+            <li class="c-tree__item"><a href="/articles/la-via-del-codice-dialogo-1.html">la-via-del-codice-dialogo-1.html</a></li>
+            <li class="c-tree__item"><a href="/articles/la-via-del-codice-dialogo-2.html">la-via-del-codice-dialogo-2.html</a></li>
+            <li class="c-tree__item"><a href="/articles/pensiero-divergente.html">pensiero-divergente.html</a></li>
+          </ul>
+        </li>
+        <li class="c-tree__item c-tree__item--dir">
+          <span class="c-tree__dir">assets/</span>
+          <ul class="c-tree__list">
+            <li class="c-tree__item c-tree__item--dir">
+              <span class="c-tree__dir">Icons_v1.0.2/</span>
+              <ul class="c-tree__list">
+                <li class="c-tree__item"><a href="/assets/Icons_v1.0.2/demo.html">demo.html</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="c-tree__item c-tree__item--dir">
+          <span class="c-tree__dir">automations/</span>
+          <ul class="c-tree__list">
+            <li class="c-tree__item"><a href="/automations/">index.html</a></li>
+          </ul>
+        </li>
+        <li class="c-tree__item c-tree__item--dir">
+          <span class="c-tree__dir">books/</span>
+          <ul class="c-tree__list">
+            <li class="c-tree__item"><a href="/books/">index.html</a><span class="c-tree__tag">noindex</span></li>
+          </ul>
+        </li>
+        <li class="c-tree__item c-tree__item--dir">
+          <span class="c-tree__dir">design-system/</span>
+          <ul class="c-tree__list">
+            <li class="c-tree__item"><a href="/design-system/componenti.html">componenti.html</a><span class="c-tree__tag">noindex</span></li>
+            <li class="c-tree__item"><a href="/design-system/design-system.html">design-system.html</a><span class="c-tree__tag">noindex</span></li>
+            <li class="c-tree__item"><a href="/design-system/">index.html</a><span class="c-tree__tag">noindex</span></li>
+          </ul>
+        </li>
+        <li class="c-tree__item"><a href="/garanzia.html">garanzia.html</a></li>
+        <li class="c-tree__item"><a href="/index-abf92932.html">index-abf92932.html</a><span class="c-tree__tag">noindex</span></li>
+        <li class="c-tree__item"><a href="/index.html">index.html</a></li>
+        <li class="c-tree__item c-tree__item--dir">
+          <span class="c-tree__dir">iterazioni/</span>
+          <ul class="c-tree__list">
+            <li class="c-tree__item"><a href="/iterazioni/grafica-recensione.html">grafica-recensione.html</a><span class="c-tree__tag">noindex</span></li>
+            <li class="c-tree__item"><a href="/iterazioni/hero-iterazioni.html">hero-iterazioni.html</a><span class="c-tree__tag">noindex</span></li>
+            <li class="c-tree__item"><a href="/iterazioni/">index.html</a><span class="c-tree__tag">noindex</span></li>
+          </ul>
+        </li>
+        <li class="c-tree__item"><a href="/life.html">life.html</a><span class="c-tree__tag">noindex</span></li>
+        <li class="c-tree__item"><a href="/links.html">links.html</a></li>
+        <li class="c-tree__item"><a href="/manifesto.html">manifesto.html</a><span class="c-tree__tag">noindex</span></li>
+        <li class="c-tree__item c-tree__item--dir">
+          <span class="c-tree__dir">marketing/</span>
+          <ul class="c-tree__list">
+            <li class="c-tree__item"><a href="/marketing/">index.html</a><span class="c-tree__tag">noindex</span></li>
+            <li class="c-tree__item"><a href="/marketing/marketing-actions.html">marketing-actions.html</a><span class="c-tree__tag">noindex</span></li>
+            <li class="c-tree__item"><a href="/marketing/outreach.html">outreach.html</a><span class="c-tree__tag">noindex</span></li>
+          </ul>
+        </li>
+        <li class="c-tree__item"><a href="/master-ux-ui.html">master-ux-ui.html</a></li>
+        <li class="c-tree__item c-tree__item--dir">
+          <span class="c-tree__dir">mini-corso/</span>
+          <ul class="c-tree__list">
+            <li class="c-tree__item"><a href="/mini-corso/">index.html</a></li>
+          </ul>
+        </li>
+        <li class="c-tree__item"><a href="/motivation.html">motivation.html</a></li>
+        <li class="c-tree__item c-tree__item--dir">
+          <span class="c-tree__dir">offerta-mediaddress/</span>
+          <ul class="c-tree__list">
+            <li class="c-tree__item"><a href="/offerta-mediaddress/">index.html</a><span class="c-tree__tag">noindex</span></li>
+          </ul>
+        </li>
+        <li class="c-tree__item"><a href="/portfolio.html">portfolio.html</a></li>
+        <li class="c-tree__item"><a href="/results.html">results.html</a></li>
+        <li class="c-tree__item c-tree__item--dir">
+          <span class="c-tree__dir">upwork/</span>
+          <ul class="c-tree__list">
+            <li class="c-tree__item"><a href="/upwork/ai-automation-specialist.html">ai-automation-specialist.html</a><span class="c-tree__tag">noindex</span></li>
+            <li class="c-tree__item"><a href="/upwork/">index.html</a><span class="c-tree__tag">noindex</span></li>
+          </ul>
+        </li>
+        <li class="c-tree__item c-tree__item--dir">
+          <span class="c-tree__dir">workflows/</span>
+          <ul class="c-tree__list">
+            <li class="c-tree__item"><a href="/workflows/">index.html</a></li>
+            <li class="c-tree__item c-tree__item--dir">
+              <span class="c-tree__dir">your-fourth-workflow/</span>
+              <ul class="c-tree__list">
+                <li class="c-tree__item"><a href="/workflows/your-fourth-workflow/">index.html</a></li>
+              </ul>
+            </li>
+            <li class="c-tree__item c-tree__item--dir">
+              <span class="c-tree__dir">your-third-workflow/</span>
+              <ul class="c-tree__list">
+                <li class="c-tree__item"><a href="/workflows/your-third-workflow/come-si-costruisce.html">come-si-costruisce.html</a></li>
+                <li class="c-tree__item"><a href="/workflows/your-third-workflow/">index.html</a></li>
+                <li class="c-tree__item"><a href="/workflows/your-third-workflow/proposal-generator.html">proposal-generator.html</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </section>
 
