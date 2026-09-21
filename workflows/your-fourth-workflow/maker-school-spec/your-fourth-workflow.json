@@ -1,0 +1,553 @@
+{
+  "name": "Your fourth workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "c984015f-ff04-4b1f-9d73-25aead462e0a",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "81484219-a8cf-4ff4-8522-2eb26d0eaf3a",
+      "name": "New Booking",
+      "webhookId": "c984015f-ff04-4b1f-9d73-25aead462e0a"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "getAll",
+        "team": "9014503208",
+        "space": "90141867536",
+        "folder": "90142951349",
+        "list": "901404845426",
+        "filters": {
+          "customFieldsUi": {
+            "customFieldsValues": [
+              {
+                "fieldId": "=30b33b79-5499-47d5-ab7c-63484689fb69",
+                "value": "=nicknicjoicncinci@gmail.com"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.clickUp",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "ece39738-7d22-41b4-98d4-004838c5bb97",
+      "name": "Get many tasks",
+      "alwaysOutputData": true,
+      "credentials": {
+        "clickUpOAuth2Api": {
+          "id": "X2svQ2YYCIP1DPXl",
+          "name": "YouTube"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "224ba41b-aa1e-4f70-87f1-1ae1df3ee53e",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "89a79e5f-37fc-4e8f-9e18-6bc7aafc51c6",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "team": "9014503208",
+        "space": "90141867536",
+        "folder": "90142951349",
+        "list": "901404845426",
+        "name": "={{ $('New Booking').item.json.body.payload.attendees[0].name }}",
+        "additionalFields": {
+          "assignees": [
+            60851651
+          ],
+          "customFieldsJson": "=[\n  {\n    \"id\": \"30b33b79-5499-47d5-ab7c-63484689fb69\",\n    \"value\": \"{{ $('New Booking').item.json.body.payload.attendees[0].email }}\"\n  },\n{\n    \"id\": \"228aec96-112e-4d2b-86a2-a00dfdac8d81\",\n    \"value\": \"{{ $('New Booking').item.json.body.payload.metadata.videoCallUrl }}\"\n  }\n]",
+          "dueDate": "={{ $now }}",
+          "status": "meeting booked"
+        }
+      },
+      "type": "n8n-nodes-base.clickUp",
+      "typeVersion": 1,
+      "position": [
+        624,
+        -96
+      ],
+      "id": "f0c1bf4c-3484-469b-91a2-1653b0606389",
+      "name": "Create a task",
+      "credentials": {
+        "clickUpOAuth2Api": {
+          "id": "X2svQ2YYCIP1DPXl",
+          "name": "YouTube"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C07APQ51T60",
+          "mode": "list",
+          "cachedResultName": "sales"
+        },
+        "text": "=Hey! {{ $('New Booking').item.json.body.payload.title }} booked a moment ago. You can find the CRM details here: https://app.clickup.com/t/{{ $json.id }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        832,
+        -96
+      ],
+      "id": "94273b24-a95d-4f64-a22d-5849f6748358",
+      "name": "Send a message",
+      "webhookId": "3fb07b79-a137-4806-ad66-0f36ae515914",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "6ZLJzJyNo1VvYHJd",
+          "name": "nick@nicksaraev.com (Oct 24 2025)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "team": "9014503208",
+        "events": [
+          "taskStatusUpdated"
+        ],
+        "filters": {
+          "folderId": "90142951349"
+        }
+      },
+      "type": "n8n-nodes-base.clickUpTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        256
+      ],
+      "id": "b15f3be9-3aaf-4f2b-b27b-b87a7ccd8ed7",
+      "name": "ClickUp Trigger",
+      "webhookId": "ac3aef38-f13d-42be-aec4-51ff23d81b64",
+      "credentials": {
+        "clickUpOAuth2Api": {
+          "id": "X2svQ2YYCIP1DPXl",
+          "name": "YouTube"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.custom_fields[4].value }}",
+        "subject": "=Hey {{ $json.name }}, welcome aboard!",
+        "emailType": "text",
+        "message": "Hey {{name}}, Welcome aboard. We're really excited to have you, and I wanted to personally thank you for filling out the invoice and the payment details so promptly. Your next steps are booking a kickoff call. You can do so using the calendar link below. On it, I and my colleague John will walk you through a workflow audit before giving you everything you need in order to monitor and track your project progress (dashboards etc).Thanks again & talk soon,Nick",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        432,
+        256
+      ],
+      "id": "2fa47491-7cc1-4c26-92f1-86e9188a1b8e",
+      "name": "Send a message1",
+      "webhookId": "6bf65f4c-48be-462d-b32e-a247c5f4c8c2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "yBNIxFSZK8K6SIm2",
+          "name": "nick@leftclick.ai (Oct 20 2025)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "get",
+        "id": "={{ $json.task_id }}"
+      },
+      "type": "n8n-nodes-base.clickUp",
+      "typeVersion": 1,
+      "position": [
+        208,
+        256
+      ],
+      "id": "9f4c1708-d876-435d-b411-f3d80031ee10",
+      "name": "Get a task",
+      "credentials": {
+        "clickUpOAuth2Api": {
+          "id": "X2svQ2YYCIP1DPXl",
+          "name": "YouTube"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "New Booking": [
+      {
+        "json": {
+          "headers": {
+            "host": "nicksaraev.app.n8n.cloud",
+            "user-agent": "node",
+            "content-length": "3246",
+            "accept": "*/*",
+            "accept-encoding": "gzip, br",
+            "accept-language": "*",
+            "baggage": "sentry-environment=vercel-production,sentry-public_key=7fa2ea46dede9404597bde582525baca,sentry-trace_id=22b49dcd9748420bba12ca3f23a4e18c,sentry-transaction=%2Fnick-leftclick%2F15-minute-example-frontfill-calendar,sentry-sampled=false,sentry-sample_rand=0.6683324609530902,sentry-sample_rate=0",
+            "cdn-loop": "cloudflare; loops=1; subreqs=1",
+            "cf-connecting-ip": "52.14.42.222",
+            "cf-ew-via": "15",
+            "cf-ipcountry": "US",
+            "cf-ray": "993b646555986fb6-IAD",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-worker": "n8n.cloud",
+            "content-type": "application/json",
+            "sec-fetch-mode": "cors",
+            "sentry-trace": "22b49dcd9748420bba12ca3f23a4e18c-1ad9534d4c9a4333-0",
+            "x-cal-signature-256": "no-secret-provided",
+            "x-forwarded-for": "52.14.42.222, 172.68.244.159",
+            "x-forwarded-host": "nicksaraev.app.n8n.cloud",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "traefik-prod-users-gwc-9-7bb7d4c57c-flnmz",
+            "x-is-trusted": "yes",
+            "x-real-ip": "52.14.42.222",
+            "x-vercel-id": "pdx1:pdx1::8wxnd-1761329014690-b2e7f539bc59"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "triggerEvent": "BOOKING_CREATED",
+            "createdAt": "2025-10-24T18:03:39.568Z",
+            "payload": {
+              "bookerUrl": "https://cal.com",
+              "title": "15 Minute Live Roast w Nick & Sally",
+              "startTime": "2025-10-28T17:30:00Z",
+              "endTime": "2025-10-28T17:45:00Z",
+              "additionalNotes": "Hey, I'm looking to get my bakery CRM roasted.",
+              "type": "15-minute-example-frontfill-calendar",
+              "description": "Hey, I'm looking to get my bakery CRM roasted.",
+              "eventTypeId": 3599062,
+              "hideCalendarNotes": false,
+              "hideCalendarEventDetails": false,
+              "hideOrganizerEmail": false,
+              "schedulingType": null,
+              "seatsPerTimeSlot": null,
+              "seatsShowAttendees": true,
+              "seatsShowAvailabilityCount": true,
+              "customReplyToEmail": null,
+              "disableRescheduling": false,
+              "disableCancelling": false,
+              "organizer": {
+                "id": 85845,
+                "name": "Nick Saraev",
+                "email": "nick@leftclick.ai",
+                "username": "nick-leftclick",
+                "timeZone": "America/Edmonton",
+                "language": {
+                  "locale": "en"
+                },
+                "timeFormat": "h:mma",
+                "utcOffset": -360
+              },
+              "attendees": [
+                {
+                  "email": "sally@sallysbakery.com",
+                  "name": "Sally",
+                  "firstName": "",
+                  "lastName": "",
+                  "timeZone": "America/Edmonton",
+                  "language": {
+                    "locale": "en"
+                  },
+                  "utcOffset": -360
+                }
+              ],
+              "customInputs": {},
+              "responses": {
+                "attendeePhoneNumber": {
+                  "label": "phone_number",
+                  "isHidden": true
+                },
+                "name": {
+                  "label": "your_name",
+                  "value": "Sally",
+                  "isHidden": false
+                },
+                "email": {
+                  "label": "email_address",
+                  "value": "sally@sallysbakery.com",
+                  "isHidden": false
+                },
+                "location": {
+                  "label": "location",
+                  "value": {
+                    "value": "integrations:google:meet",
+                    "optionValue": ""
+                  },
+                  "isHidden": false
+                },
+                "title": {
+                  "label": "what_is_this_meeting_about",
+                  "isHidden": true
+                },
+                "notes": {
+                  "label": "What is the main thing you want roasted during this session?",
+                  "value": "Hey, I'm looking to get my bakery CRM roasted.",
+                  "isHidden": false
+                },
+                "sure": {
+                  "label": "Will you absolutely, 100%, show up at the scheduled time?",
+                  "value": "Yes—and I'll be one minute early.",
+                  "isHidden": false
+                },
+                "guests": {
+                  "label": "additional_guests",
+                  "value": [],
+                  "isHidden": true
+                },
+                "rescheduleReason": {
+                  "label": "reason_for_reschedule",
+                  "isHidden": true
+                },
+                "utm_source": {
+                  "label": "Source",
+                  "isHidden": true
+                }
+              },
+              "userFieldsResponses": {
+                "sure": {
+                  "label": "Will you absolutely, 100%, show up at the scheduled time?",
+                  "value": "Yes—and I'll be one minute early.",
+                  "isHidden": false
+                },
+                "utm_source": {
+                  "label": "Source",
+                  "isHidden": true
+                }
+              },
+              "location": "integrations:google:meet",
+              "conferenceCredentialId": 1440156,
+              "destinationCalendar": [
+                {
+                  "id": 874333,
+                  "integration": "google_calendar",
+                  "externalId": "nick@nicksaraev.com",
+                  "primaryEmail": "nick@nicksaraev.com",
+                  "userId": null,
+                  "eventTypeId": 3599062,
+                  "credentialId": 1046363,
+                  "createdAt": "2025-10-07T14:45:47.150Z",
+                  "updatedAt": "2025-10-07T14:45:47.150Z",
+                  "delegationCredentialId": null,
+                  "domainWideDelegationCredentialId": null
+                }
+              ],
+              "iCalUID": "v4W1So8rN5cfMgSP4rY8hQ@Cal.com",
+              "iCalSequence": 0,
+              "requiresConfirmation": false,
+              "oneTimePassword": null,
+              "uid": "v4W1So8rN5cfMgSP4rY8hQ",
+              "conferenceData": {
+                "createRequest": {
+                  "requestId": "8a0ce172-f69a-51b5-8481-93feb73d58e2"
+                }
+              },
+              "appsStatus": [
+                {
+                  "appName": "google-calendar",
+                  "type": "google_calendar",
+                  "success": 1,
+                  "failures": 0,
+                  "errors": [],
+                  "warnings": []
+                },
+                {
+                  "appName": "Google Meet",
+                  "type": "conferencing",
+                  "success": 1,
+                  "failures": 0,
+                  "errors": []
+                }
+              ],
+              "eventTitle": "15 Minute Example Frontfill Calendar",
+              "eventDescription": "",
+              "price": 0,
+              "currency": "usd",
+              "length": 15,
+              "bookingId": 12094729,
+              "metadata": {
+                "videoCallUrl": "https://meet.google.com/pkz-efeb-sai"
+              },
+              "status": "ACCEPTED"
+            }
+          },
+          "webhookUrl": "https://nicksaraev.app.n8n.cloud/webhook-test/c984015f-ff04-4b1f-9d73-25aead462e0a",
+          "executionMode": "test"
+        }
+      }
+    ],
+    "ClickUp Trigger": [
+      {
+        "json": {
+          "event": "taskStatusUpdated",
+          "history_items": [
+            {
+              "id": "4790470508364479242",
+              "type": 1,
+              "date": "1761330432574",
+              "field": "status",
+              "parent_id": "901404845426",
+              "data": {
+                "status_type": "closed"
+              },
+              "source": null,
+              "user": {
+                "id": 60851651,
+                "username": "Nick Saraev",
+                "email": "nick@nicksaraev.com",
+                "color": "",
+                "initials": "NS",
+                "profilePicture": "https://attachments.clickup.com/profilePictures/60851651_bpR.jpg",
+                "role": 1,
+                "role_subtype": 0
+              },
+              "before": {
+                "status": "meeting booked",
+                "color": "#1090e0",
+                "orderindex": 1,
+                "type": "custom"
+              },
+              "after": {
+                "status": "closed won",
+                "color": "#008844",
+                "orderindex": 4,
+                "type": "closed"
+              }
+            }
+          ],
+          "task_id": "86b77hpgd",
+          "team_id": "9014503208",
+          "webhook_id": "f2e7c89c-904c-43bd-b7b6-a48c266e1a06"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "New Booking": {
+      "main": [
+        [
+          {
+            "node": "Get many tasks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many tasks": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Create a task",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a task": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ClickUp Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get a task",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a task": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "caebb0c0-3678-4eb1-af94-6339a2d07ceb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d7661a849ead114a9aa6d9ceaf4160465aeb79532a35bde62160c840ffba9fc8"
+  },
+  "id": "O4vICia8U1x2Yd2x",
+  "tags": []
+}

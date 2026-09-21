@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generatore di proposte — bozza per automations.html</title>
+<meta name="description" content="Bozza del secondo caso d'uso di automations.html: dal modulo compilato dopo la call alla presentazione Google Slides pronta da mandare.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components/entry.css">
+<link rel="stylesheet" href="../../css/components/project.css">
+<link rel="stylesheet" href="../../css/components/automation.css">
+<link rel="stylesheet" href="../../brand-kit/brand-tokens-light.css">
+<link rel="stylesheet" href="../../css/theme-brand.css">
+</head>
+<body>
+
+<main class="l-page">
+
+  <header>
+    <p><a href="index.html">← Your third workflow</a></p>
+    <h1>Generatore di proposte.</h1>
+    <p>Bozza del secondo caso d’uso di <code>automations.html</code>. Il blocco <code>&lt;details&gt;</code> qui sotto è pronto da spostare dentro <code>.c-entry-list</code>.</p>
+  </header>
+
+  <div class="c-entry-list">
+
+    <details class="c-entry" id="proposal-generator" open>
+      <summary class="c-entry__summary">
+        <h2 class="c-entry__title">Generatore di proposte • Modulo → Google Slides</h2>
+        <p class="c-entry__meta">Modulo n8n · OpenAI · Google Slides · Gmail · settembre 2026</p>
+        <p class="c-entry__line">Proposta pronta mentre la call è ancora calda • Toglie di mezzo la scrittura ripetitiva</p>
+      </summary>
+      <div class="c-entry__body">
+
+        <dl class="c-project__facts c-automation__facts">
+
+          <dt>Il problema di business</dt>
+          <dd>
+            <p>Scrivere proposte è un lavoro ripetitivo che nessuno tratta come tale. Finita la call, qualcuno riapre l’ultima proposta mandata, la duplica, cambia il nome dell’azienda, riscrive il problema, rifà lo scope, aggiorna le date, corregge il prezzo — e dimentica un riferimento al cliente precedente in fondo alla pagina sette.</p>
+            <p>Costa due volte: le ore di chi la scrive, e i giorni di ritardo con cui arriva. Una proposta che arriva il giovedì per una call del lunedì si legge quando l’entusiasmo è finito.</p>
+          </dd>
+
+          <dt>Esempi</dt>
+          <dd>
+            <ul>
+              <li><strong>Agenzia di automazione</strong> manda la proposta dieci minuti dopo la call di scoperta, con problema e scope detti dal cliente mezz’ora prima</li>
+              <li><strong>Studio di consulenza</strong> genera la lettera d’incarico dal modulo compilato dal partner che ha fatto il primo incontro</li>
+              <li><strong>Impresa edile</strong> trasforma i rilievi del sopralluogo in un preventivo impaginato, invece che in un PDF fatto a mano la sera</li>
+            </ul>
+          </dd>
+
+          <dt>Descrizione del flusso Modulo → Proposta</dt>
+          <dd>
+            <ul>
+              <li>Chi ha fatto la call compila un modulo, subito dopo, finché ha ancora le parole del cliente in testa: azienda, email, problema, soluzione, scope, costo, tempi.</li>
+              <li>L’invio del modulo fa partire il flusso: nessun altro gesto, nessun pulsante da premere dopo.</li>
+              <li>Un modello di linguaggio riceve quei campi e restituisce un unico oggetto JSON con tutti i testi della proposta: titolo, sommario del problema, tre blocchi di soluzione, tre voci di scope, quattro tappe con data.</li>
+              <li>n8n copia su Google Drive la presentazione-template, e chiama la copia col titolo della proposta.</li>
+              <li>Sulla copia sostituisce i segnaposto — <code>{{proposalTitle}}</code>, <code>{{oneParagraphProblemSummary}}</code> e gli altri — con i testi generati: ventiquattro sostituzioni in una chiamata sola.</li>
+              <li>Gmail manda l’email con il link alla presentazione, all’indirizzo scritto nel modulo.</li>
+            </ul>
+            <p>Dal tasto “invia” del modulo al link nella casella del cliente passa meno di un minuto.</p>
+          </dd>
+
+          <dt>Un’automazione solida</dt>
+          <dd>
+            <p><strong>Il testo è generato, l’impaginazione no.</strong></p>
+            <ul>
+              <li><strong>Le slide non vengono create dal modello</strong>: viene copiato un template impaginato a mano una volta. Il modello riempie caselle di testo che esistono già, quindi il documento non può venire brutto — al massimo può venire scritto male.</li>
+              <li><strong>Il modello risponde in JSON</strong>, con l’opzione JSON Output attiva: ogni testo ha un nome, e il nodo che riempie le slide pesca per nome. Se il modello rispondesse in prosa la mappatura si romperebbe a ogni esecuzione.</li>
+              <li><strong>Il prompt contiene una proposta d’esempio completa</strong>, domanda e risposta: il modello non deve indovinare la lunghezza e il tono di ogni campo, li vede.</li>
+              <li><strong>Il costo non lo decide il modello</strong>: arriva dal modulo e viene scritto nella slide così com’è.</li>
+            </ul>
+            <p>Dove si rompe davvero, e va sorvegliato: un campo che il modello lascia vuoto esce come segnaposto ancora visibile nella slide; un segnaposto scritto nel template in due battute separate non viene sostituito; le quote delle API di Google e OpenAI si esauriscono in silenzio.</p>
+          </dd>
+
+          <dt>Cosa non fa ancora</dt>
+          <dd>
+            <p>Sono decisioni, non dimenticanze.</p>
+            <ul>
+              <li><strong>Nessuna revisione prima dell’invio</strong>: nella versione base l’email parte da sola. È la prima cosa che si cambia in produzione — la proposta arriva a te, e il cliente la riceve quando l’hai letta.</li>
+              <li><strong>Nessuna firma elettronica e nessuna tabella prezzi calcolata</strong>: una presentazione è un documento, non un contratto. Chi ha bisogno di far firmare usa la variante PandaDoc qui sotto.</li>
+              <li><strong>Nessun controllo su quello che il modello scrive</strong>: una data o una cifra inventate escono impaginate bene come tutto il resto.</li>
+              <li><strong>Nessun archivio</strong>: la proposta vive su Drive, ma non finisce né sul CRM né in un foglio che dica quante ne sono partite.</li>
+            </ul>
+          </dd>
+
+          <dt>Automazioni concettualmente identiche, nella forma diverse</dt>
+          <dd>
+            <p>L’architettura è: un modulo raccoglie dati grezzi, un modello li trasforma in campi con un nome, un documento-template viene copiato e riempito, e il link torna a chi deve leggerlo.</p>
+            <p><strong>La variante a pagamento: PandaDoc.</strong> Stessa spina dorsale — modulo, stesso modello, stesso JSON. Al posto della coppia Drive + Slides c’è una sola richiesta HTTP che crea il documento da un template PandaDoc, riempie i token, costruisce la tabella prezzi con il costo preso dal modulo e lo manda in firma al cliente. Si sceglie quando servono firma elettronica, prezzi opzionali e approvazioni; si paga in abbonamento e in una richiesta HTTP da scrivere a mano invece che in un nodo con i campi già pronti.</p>
+            <p>Altre implementazioni della stessa architettura:</p>
+            <ul>
+              <li>modulo di sopralluogo → preventivo impaginato</li>
+              <li>modulo di fine progetto → report di consegna per il cliente</li>
+              <li>contratto firmato → pacchetto di onboarding personalizzato</li>
+              <li>dati del mese → report mensile ricorrente, senza modulo: il trigger è il calendario</li>
+            </ul>
+            <p>Oppure <strong>cambia il documento</strong>: Google Docs al posto di Slides, quando la proposta è una lettera e non un mazzo di slide.</p>
+          </dd>
+
+          <dt>Subito dopo</dt>
+          <dd>
+            <p>Le due cose che i clienti chiedono subito dopo sono:</p>
+            <ol>
+              <li><strong>la bozza in revisione</strong>: la proposta arriva prima a te, e parte al cliente solo quando l’hai approvata da Slack o dalle bozze di Gmail</li>
+              <li><strong>il seguito</strong>: sapere se la presentazione è stata aperta, e mandare un promemoria se dopo due giorni non l’ha aperta nessuno.</li>
+            </ol>
+          </dd>
+
+        </dl>
+
+        <p><a href="come-si-costruisce.html">Come si costruisce, passo passo →</a></p>
+
+        <p class="c-entry__permalink"><a href="#proposal-generator">Link a questa automazione</a></p>
+      </div>
+    </details>
+
+  </div>
+
+</main>
+
+<footer class="l-card__footer">
+  <p>2026 • <a href="/">Mucca Design</a> di Luca Leone • VAT IT08200720962</p>
+</footer>
+
+</body>
+</html>
