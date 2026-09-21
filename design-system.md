@@ -46,6 +46,31 @@ Semantiche assegnate secondo un criterio di **minimalismo estetico** — pochi c
 - `normal`: default per UI e body text generico.
 - `relaxed`: paragrafi lunghi (descrizione corso, programma) — con un serif come Lora, un'interlinea più generosa aiuta la lettura prolungata.
 
+**La regola che decide quale usare: `tight` solo su testo che non va a capo.** È una misura da display — titoli, numeri grandi, etichette di una riga sola. Qualunque cosa possa arrivare alla seconda riga (paragrafi, voci di lista, descrizioni, didascalie) sta a `normal`; a 1.1 le discendenti di una riga sfiorano le maiuscole di quella dopo, e il blocco si legge come una macchia.
+
+Il corollario pratico è che **il body text non ha bisogno di dichiarare l'interlinea**: `body` è già a `normal` in `base.css`, e il valore eredita. Una dichiarazione di `line-height` dentro un componente è quindi sempre un'eccezione, e va scritta solo quando c'è una ragione — di solito per stringere un titolo, non per allargare un paragrafo.
+
+Caso reale che ha prodotto la regola: `.l-section__toc li` stava a `tight`. Nell'indice di sezione del Master ogni voce è una riga sola e la differenza non si vedeva; negli indici di cartella (`workflows/`, `books/`) la stessa classe porta una descrizione che va a capo, e le righe si toccavano.
+
+**E i titoli che vanno a capo?** Restano l'eccezione vera: `tight` su un titolo di 18px che occupa due righe si legge male, ma `normal` lo fa smettere di sembrare un titolo. Il criterio che risolve il caso non è il ruolo — "titolo" — ma la **dimensione**: l'interlinea giusta scende al crescere del corpo, perché a 48px lo spazio fra due righe è già abbondante in proporzione, a 18px no.
+
+La banda mancante è quindi una sola, fra `tight` e `normal`, per i titoli sotto i 30px: **`snug`, 1.3**.
+
+`--line-height-snug: 1.3` è in `tokens.css`, e i tre titoli che l'hanno motivato sono stati convertiti tutti insieme — `.c-requirement__title` (18px), `.c-resource__title` e `.c-entry__title` (20px) — perché convertirli a spizzichi avrebbe lasciato due interlinee diverse su titoli identici in pagine diverse.
+
+Per lo stesso motivo `base.css` porta a `snug` anche gli `h3`-`h6`, che stanno sotto i 30px: lasciarli a 1.1 avrebbe reso un `h3` più stretto di un `.c-entry__title` che gli sta accanto, a parità di corpo. `h1` e `h2` sono display e restano `tight`.
+
+Cosa resta a `tight`, e perché: i titoli display (`h1` e `h2` in `base.css`), i numeri grandi (`.c-requirement__num`, `.c-manifesto__num`, il contatore di `.c-life`), il marcatore `+`/`–` di `.c-entry__summary` e le date di `.c-schedule` — tutta roba che non va mai a capo.
+
+Riassunto operativo, per dimensione del testo:
+
+| Corpo | Interlinea | Cosa |
+| --- | --- | --- |
+| ≥ 30px | `tight` (1.1) | titoli display, numeri grandi |
+| 18-24px, titolo | `snug` (1.3) | titoli di componente che vanno a capo |
+| qualsiasi, testo corrente | `normal` (1.5) | paragrafi, liste, descrizioni — ereditato da `body` |
+| paragrafi lunghi | `relaxed` (1.7) | lettura prolungata |
+
 **Letter-spacing**: stessa ragione di naming del line-height — decimali (anche negativi) scomodi come suffisso, naming per fascia:
 
 - `tight`: titoli grandi in Lora — un filo più stretti a dimensioni display.

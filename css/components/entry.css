@@ -61,6 +61,9 @@
 .c-entry__title {
   margin: 0;
   font-size: var(--font-size-20);
+  /* snug e non tight: a 20px un titolo su due righe a 1.1 si impasta
+     (design-system.md, «Line-height»). */
+  line-height: var(--line-height-snug);
   /* Non è un <a>, quindi la regola sui link del tema non lo raggiunge:
      stessa resa, replicata qui. Sottolineato sempre, accento all'hover
      — la riga è cliccabile e deve dirlo da ferma. */

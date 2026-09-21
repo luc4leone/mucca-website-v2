@@ -29,6 +29,18 @@ h6 {
   line-height: var(--line-height-tight);
 }
 
+/* Dall'h3 in giù il corpo scende sotto i 30px e l'interlinea sale a snug:
+   a quelle dimensioni un titolo su due righe a 1.1 si impasta. È la stessa
+   misura dei titoli di componente (.c-entry__title, .c-requirement__title),
+   che stanno nello stesso intorno di corpo — vedi design-system.md,
+   «Line-height». h1 e h2 restano display, quindi tight. */
+h3,
+h4,
+h5,
+h6 {
+  line-height: var(--line-height-snug);
+}
+
 /* Ritmo verticale: margin-top > margin-bottom, il titolo si raggruppa
    col contenuto che introduce, non con quello che precede. h1/h2/h4-6
    ancora da decidere (vedi design-system.md). */
