@@ -1,0 +1,123 @@
+/*
+  Articolo: una pagina di prosa lunga, con data in testa e — per la prima
+  volta nel sito — blocchi di codice.
+
+  Non è un componente nel senso stretto: è il trattamento della pagina
+  intera, come .c-garanzia. Sta in un file suo perché i blocchi di codice
+  li vuole solo questa pagina, e caricarli ovunque significherebbe pagare
+  un font monospace su pagine che non ne hanno uno.
+*/
+
+/* La data sotto il titolo: c'è, ma non compete con l'attacco del pezzo. */
+.c-article__date {
+  margin-bottom: var(--space-48);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-14);
+}
+
+/* Un pezzo tradotto da un altro sito porta con sé una storia che il
+   lettore non ha: da dove viene, quando è stato scritto, cosa è
+   cambiato. Va detto una volta, in fondo, non in cima. */
+.c-article__nota {
+  margin-top: var(--space-72);
+  padding-top: var(--space-24);
+  border-top: var(--border-width-1) solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-14);
+}
+
+/* ---------------------------------------------------------------------
+   Dialogo
+
+   Le battute sono paragrafi normali che si aprono con il nome di chi
+   parla in <strong>. L'unica cosa che serve è stringere lo spazio fra
+   una battuta e l'altra: a interlinea di prosa normale, uno scambio di
+   venti battute si legge come venti paragrafi scollegati invece che
+   come una conversazione.
+--------------------------------------------------------------------- */
+.c-dialogue p {
+  margin-bottom: var(--space-12);
+}
+
+/* Fra una battuta e il blocco di codice che la illustra, invece, lo
+   spazio torna pieno: il codice è un cambio di registro. */
+.c-dialogue pre {
+  margin-top: var(--space-24);
+  margin-bottom: var(--space-24);
+}
+
+/* Il nome di chi parla. Non è un colore d'accento — il corallo è del
+   CTA — ma il testo attenuato: si distingue senza gridare, e il peso
+   del <strong> fa già il lavoro di separazione. */
+.c-dialogue p > strong:first-child {
+  color: var(--color-text-muted);
+}
+
+/* ---------------------------------------------------------------------
+   Blocchi di codice
+
+   `base.css` toglie la pastiglia al <code> dentro un <pre> proprio
+   aspettando questo momento: la superficie è del <pre>, una sola per
+   blocco, e il <code> dentro resta nudo.
+--------------------------------------------------------------------- */
+pre {
+  margin: var(--space-24) 0;
+  padding: var(--space-18) var(--space-24);
+  border-radius: var(--radius-8);
+  background: var(--zinc-100);
+  /* Una riga lunga scorre dentro il blocco invece di allargare la
+     pagina: su mobile è la differenza fra un blocco e uno scroll
+     orizzontale su tutto il documento. */
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-relaxed);
+  /* Il codice non si giustifica e non si sillaba: si legge a colonne. */
+  tab-size: 2;
+}
+
+/* Lo pseudocodice non è JavaScript: è una ricetta scritta in italiano,
+   e nell'articolo ha una funzione diversa — si discute, non si esegue.
+   Un filetto invece del fondo pieno lo dice senza didascalia. */
+pre.c-code--sketch {
+  background: none;
+  border-left: var(--border-width-2) solid var(--color-border);
+  border-radius: 0;
+  padding-left: var(--space-18);
+  color: var(--color-text-muted);
+}
+
+/* ---------------------------------------------------------------------
+   Griglia di figure
+
+   Sei varianti della stessa cosa, da guardare insieme: è il confronto
+   il contenuto, non la singola immagine. Tre colonne dove c'è spazio,
+   due sul telefono — mai una sola, che distruggerebbe il paragone.
+--------------------------------------------------------------------- */
+.c-figures {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-12);
+  margin: var(--space-36) 0 var(--space-24);
+}
+
+@media (min-width: 768px) {
+  .c-figures {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-24);
+  }
+}
+
+.c-figures img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-8);
+  border: var(--border-width-1) solid var(--color-border);
+}
+
+.c-figures__caption {
+  margin-bottom: var(--space-48);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-14);
+}

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Via del Codice: Dialogo 1 — Luca Leone</title>
+<meta name="description" content="Un giovane programmatore bloccato su un e-commerce, un anziano sviluppatore e una torta che non si ingoia intera. Sul costruire un pezzo alla volta, sul debug come lavoro da detective, e sul perché il codice imperfetto è necessario.">
+<meta property="og:title" content="La Via del Codice: Dialogo 1">
+<meta property="og:description" content="Un giovane programmatore bloccato su un e-commerce, un anziano sviluppatore e una torta che non si ingoia intera.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.mucca.design/articles/la-via-del-codice-dialogo-1.html">
+<meta property="og:locale" content="it_IT">
+<meta property="article:published_time" content="2024-07-30">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components/article.css">
+<link rel="stylesheet" href="../brand-kit/brand-tokens-light.css">
+<link rel="stylesheet" href="../css/theme-brand.css">
+</head>
+<body>
+
+<main class="l-page">
+
+  <header>
+    <p><a href="./">← Articoli</a></p>
+    <h1>La Via del Codice: Dialogo 1</h1>
+    <p class="c-article__date"><time datetime="2024-07-30">30 luglio 2024</time></p>
+  </header>
+
+  <div class="c-dialogue">
+
+    <p>In una piccola caffetteria, un giovane programmatore siede frustrato davanti al suo laptop. Un anziano sviluppatore, notando la sua agitazione, si avvicina.</p>
+
+    <p><strong>Anziano:</strong> Vedo che stai lottando con il codice, giovane.</p>
+
+    <p><strong>Giovane:</strong> <em>(sospirando)</em> Non riesco a far funzionare questo maledetto contatore. È solo JavaScript, dovrebbe essere semplice! Ho un deadline domani per un intero e-commerce, e sono bloccato su questa stupida funzione.</p>
+
+    <p><strong>Anziano:</strong> <em>(sedendosi)</em> Mmh. Dimmi, quando mangi una torta, come procedi?</p>
+
+    <p><strong>Giovane:</strong> <em>(perplesso)</em> La… mangio? Un morso alla volta, suppongo.</p>
+
+    <p><strong>Anziano:</strong> E perché non la ingoi intera?</p>
+
+    <p><strong>Giovane:</strong> <em>(ridendo)</em> Sarebbe assurdo! Mi strozzerei.</p>
+
+    <p><strong>Anziano:</strong> Eppure è esattamente quello che stai cercando di fare con il tuo codice. Mostrami cosa hai scritto.</p>
+
+    <p><strong>Giovane:</strong></p>
+
+<pre><code>function buildEcommerce() {
+    setupDatabase();
+    createUI();
+    handlePayments();
+    // Altri 200 righe di codice...
+}</code></pre>
+
+    <p><strong>Anziano:</strong> Vedi? Stai cercando di ingoiare l'intera torta. Proviamo un approccio diverso. Qual è la cosa più piccola che potresti costruire ora?</p>
+
+    <p><strong>Giovane:</strong> Beh… suppongo che potrei iniziare dal contatore che non funziona.</p>
+
+    <p><strong>Anziano:</strong> Ancora troppo grande. Più piccolo.</p>
+
+    <p><strong>Giovane:</strong> Un… bottone che cambia colore quando ci clicco sopra?</p>
+
+    <p><strong>Anziano:</strong> <em>(sorridendo)</em> Ora ci siamo. Scrivilo.</p>
+
+    <p><strong>Giovane:</strong></p>
+
+<pre><code>const button = document.querySelector('#myButton');
+button.addEventListener('click', () =&gt; {
+    button.style.backgroundColor = 'blue';
+});</code></pre>
+
+    <p><strong>Anziano:</strong> Funziona?</p>
+
+    <p><strong>Giovane:</strong> Sì! È… quasi troppo semplice.</p>
+
+    <p><strong>Anziano:</strong> La semplicità è il primo passo della maestria. Ora, aggiungi il contatore.</p>
+
+    <p><strong>Giovane:</strong></p>
+
+<pre><code>let count = 0;
+button.addEventListener('click', () =&gt; {
+    count++;
+    button.textContent = count;
+});</code></pre>
+
+    <p><strong>Anziano:</strong> Vedi? Da un semplice bottone a un contatore. Da un contatore a un carrello. Da un carrello a un e-commerce. Questo è la Via.</p>
+
+    <p><strong>Giovane:</strong> <em>(pensieroso)</em> Ma quando scrivo codice più complesso, spesso mi perdo nei dettagli. È frustrante, faccio errori stupidi…</p>
+
+    <p><strong>Anziano:</strong> Ah, la fretta. Il più grande nemico del programmatore. Quando il codice non funziona, cosa fai?</p>
+
+    <p><strong>Giovane:</strong> Di solito mi arrabbio e inizio a cambiare cose a caso sperando che funzioni.</p>
+
+    <p><strong>Anziano:</strong> <em>(prendendo un sorso di caffè)</em> Quando un detective trova un cadavere, corre subito ad arrestare il primo sospetto?</p>
+
+    <p><strong>Giovane:</strong> Non credo</p>
+
+    <p><strong>Anziano:</strong> Che fa?</p>
+
+    <p><strong>Giovane:</strong> Boh… raccoglie indizi, formula ipotesi, le testa?</p>
+
+    <p><strong>Anziano:</strong> Esatto. Mostrami un bug che ti sta tormentando.</p>
+
+    <p><strong>Giovane:</strong></p>
+
+<pre><code>for(let i=0; i&lt;array.lenght; i++) {
+    // Il loop non funziona!
+}</code></pre>
+
+    <p><strong>Anziano:</strong> <em>(indicando lo schermo)</em> Guarda attentamente. Lettera per lettera.</p>
+
+    <p><strong>Giovane:</strong> <em>(dopo un momento)</em> Oh… ho scritto 'lenght' invece di 'length'!</p>
+
+    <p><strong>Anziano:</strong> Un detective paziente nota ciò che un detective frettoloso ignora. Ma dimmi, quando scrivi una nuova funzione, cerchi subito la perfezione?</p>
+
+    <p><strong>Giovane:</strong> Ci provo… ma spesso finisco paralizzato dal tentativo di scrivere codice perfetto al primo colpo.</p>
+
+    <p><strong>Anziano:</strong> <em>(sorridendo)</em> Un maestro di arti marziali non nasce tale. Prima impara a stare in piedi, poi a camminare, poi a correre, infine a combattere. Ogni versione del suo stile è imperfetta, ma necessaria.</p>
+
+    <p><strong>Giovane:</strong> Quindi… va bene scrivere codice imperfetto?</p>
+
+    <p><strong>Anziano:</strong> Non solo va bene, è necessario. Guarda:</p>
+
+<pre><code>// Versione 1: Funziona, ma è brutta
+function calcolaPrezzo(prodotto) {
+    return prodotto.prezzo * 1.22;
+}
+
+// Versione 2: Meglio, ma ancora migliorabile
+function calcolaPrezzo(prodotto, tassaPercentuale = 22) {
+    return prodotto.prezzo * (1 + tassaPercentuale / 100);
+}
+
+// Versione 3: Ora sì!
+function calcolaPrezzo({prezzo}, {tassaPercentuale = 22} = {}) {
+    if (prezzo &lt; 0) throw new Error('Prezzo non valido');
+    return prezzo * (1 + Math.max(0, tassaPercentuale) / 100);
+}</code></pre>
+
+    <p><strong>Giovane:</strong> Ogni versione itera la precedente…</p>
+
+    <p><strong>Anziano:</strong> E ogni versione era perfetta per il suo momento. La perfezione non è uno stato, è un processo.</p>
+
+    <p><strong>Giovane:</strong> <em>(dopo una pausa)</em> Ho sempre pensato che la programmazione fosse solo… scrivere codice. Ma mi stai insegnando molto di più.</p>
+
+    <p><strong>Anziano:</strong> La programmazione è uno specchio. Ci mostra come pensiamo, come affrontiamo i problemi, come gestiamo la frustrazione. Ogni bug è un'opportunità di crescita, ogni refactoring una lezione di umiltà.</p>
+
+    <p><strong>Giovane:</strong> <em>(guardando il suo codice con occhi nuovi)</em> Quindi quale dovrebbe essere il mio prossimo passo con l'e-commerce?</p>
+
+    <p><strong>Anziano:</strong> Quale pensi che sia il più piccolo passo utile che puoi fare ora?</p>
+
+    <p><strong>Giovane:</strong> Potrei… iniziare con una semplice lista di prodotti. Solo HTML e CSS. Poi aggiungere il bottone che abbiamo fatto. Poi il carrello…</p>
+
+    <p><strong>Anziano:</strong> <em>(alzandosi)</em> Hai capito la Via. Ricorda: la fretta genera errori, la pazienza genera codice. La perfezione paralizza, l'imperfezione insegna. E soprattutto…</p>
+
+    <p><strong>Giovane:</strong> Sì?</p>
+
+    <p><strong>Anziano:</strong> Controlla sempre l'ortografia di 'length'. <em>(sorride e se ne va)</em></p>
+
+    <p><strong>Giovane:</strong> <em>(ridendo, mentre torna al suo codice con rinnovato entusiasmo)</em> Length. Non lenght. Mai più.</p>
+
+  </div>
+
+  <section>
+    <h2>Continua</h2>
+    <p>→ <a href="la-via-del-codice-dialogo-2.html">La Via del Codice: Dialogo 2</a> — i livelli di astrazione, lo pseudocodice come schizzo, e il debug come metodo scientifico.</p>
+  </section>
+
+  <p class="c-article__nota">Scritto il 30 luglio 2024 su <span>birbi.biz</span>, dove usciva con il titolo «Tutti dovrebbero imparare a programmare». Quel sito chiude: il pezzo è stato spostato qui così com'era. Hai domande o commenti? Scrivimi a <a href="mailto:luca@mucca.design">luca@mucca.design</a>.</p>
+
+</main>
+
+<footer class="l-card__footer">
+  <p>2026 • <a href="/">Mucca Design</a> di Luca Leone • VAT IT08200720962</p>
+</footer>
+
+</body>
+</html>
