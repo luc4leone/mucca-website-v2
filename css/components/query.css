@@ -1,0 +1,45 @@
+/* Query: i blocchi di ricerca booleana di upwork/keyword-ricerca.html.
+
+   Non riusa `.c-automation__code`, che è il blocco di pseudocodice dei
+   case study: quello si legge, questo si seleziona e si incolla nella
+   ricerca di Upwork. Da qui le due differenze — niente a capo
+   automatico, perché una query spezzata in due righe sembra due query,
+   e il blocco scorre per conto suo invece di allargare la colonna. */
+
+.c-query {
+  margin: 0 0 var(--space-12);
+  padding: var(--space-12);
+  border-radius: var(--radius-4);
+  background: var(--zinc-200);
+  overflow-x: auto;
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-normal);
+}
+
+/* Una query per riga, e la riga non si spezza. */
+.c-query code {
+  display: block;
+  padding: 0;
+  background: none;
+  font-size: inherit;
+  white-space: pre;
+}
+
+.c-query code + code {
+  margin-top: var(--space-12);
+}
+
+/* La riga che dice a cosa serve il blocco, sopra di esso. Non è un
+   titolo: i titoli di questa pagina sono le due architetture. */
+.c-query__label {
+  margin: 0 0 var(--space-6);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-600);
+}
+
+/* La colonna «priorità» della tabella: una parola sola, non deve
+   prendersi un terzo della larghezza. */
+.c-query-table th:first-child,
+.c-query-table td:first-child {
+  white-space: nowrap;
+}

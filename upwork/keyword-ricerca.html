@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keyword di ricerca — gig di automazione</title>
+<meta name="description" content="Le query da incollare nella ricerca di Upwork, dedotte dai due case study in automations/ e dalle loro varianti.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components/job.css">
+<link rel="stylesheet" href="../css/components/query.css">
+</head>
+<body class="p-upwork">
+
+<main class="l-page">
+
+  <p class="c-back"><a href="./">← Upwork</a></p>
+
+  <header>
+    <div class="c-rule"></div>
+    <p class="c-eyebrow"><time datetime="2026-09-21">21 settembre 2026</time> • Ricerca</p>
+    <h1>Keyword di ricerca</h1>
+    <p class="u-lead">Le query da incollare nella ricerca di Upwork, per i gig di automazione.</p>
+    <p>Da cosa nascono: i due case study finiti in <a href="/automations/">automations/</a> — Trello → SMS e Modulo → Google Slides — e in particolare la sezione «Automazioni concettualmente identiche, nella forma diverse» di ciascuno. È lì che sta il bacino vero: la competenza non è Trello+Twilio, che quasi nessuno cerca con quelle due parole, ma l'architettura sotto, e ogni variante di quella architettura è una query diversa.</p>
+    <p>Il principio, che vale più delle liste qui sotto: <strong>i clienti non cercano «automazione», nominano i loro tool e il loro problema.</strong> Le query che funzionano sono fatte di nomi propri.</p>
+    <p>Upwork accetta <code>OR</code>, <code>NOT</code>, le parentesi e le virgolette per la frase esatta.</p>
+  </header>
+
+  <section id="architettura-1">
+    <h2>Architettura 1 — evento su un sistema → messaggio, esito riscritto sul sistema</h2>
+
+    <p class="c-query__label">Da incollare così come sono</p>
+    <pre class="c-query"><code>n8n AND (Twilio OR SMS OR WhatsApp)</code><code>("appointment reminder" OR "no-show" OR "booking confirmation" OR "reminder system") AND (SMS OR WhatsApp OR Twilio)</code><code>(Trello OR Airtable OR Calendly OR "Google Calendar" OR HubSpot OR Pipedrive OR GoHighLevel) AND (SMS OR Twilio OR Slack OR notification)</code><code>(Typeform OR Jotform OR "Google Forms" OR Stripe) AND (webhook OR notification OR automation)</code></pre>
+  </section>
+
+  <section id="architettura-2">
+    <h2>Architettura 2 — modulo → modello → documento da template → link</h2>
+
+    <p class="c-query__label">Da incollare così come sono</p>
+    <pre class="c-query"><code>("proposal" OR "quote" OR "estimate" OR "onboarding") AND (automation OR generator OR template)</code><code>("Google Slides" OR "Google Docs" OR PandaDoc OR DocuSign) AND (API OR automation OR template)</code><code>("document generation" OR "document automation" OR "report automation")</code><code>n8n AND (OpenAI OR GPT OR JSON)</code></pre>
+  </section>
+
+  <section id="keyword">
+    <h2>Le keyword singole, per resa</h2>
+
+    <div class="c-scroll">
+      <table class="c-table c-query-table">
+        <thead>
+          <tr>
+            <th scope="col">Priorità</th>
+            <th scope="col">Keyword</th>
+            <th scope="col">Perché</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alta</td>
+            <td><code>n8n</code></td>
+            <td>La skill dichiarata, ed è il filo conduttore di 2 dei 3 annunci raccolti in <code>upwork-gigs.md</code></td>
+          </tr>
+          <tr>
+            <td>Alta</td>
+            <td><code>Twilio</code>, <code>SMS automation</code>, <code>WhatsApp automation</code></td>
+            <td>Il lato messaggio del caso 1, più raro e meno affollato di «n8n» secco</td>
+          </tr>
+          <tr>
+            <td>Alta</td>
+            <td><code>proposal automation</code>, <code>document generation</code></td>
+            <td>Il caso 2 ha pochi concorrenti che mostrano un flusso finito</td>
+          </tr>
+          <tr>
+            <td>Media</td>
+            <td><code>Airtable</code>, <code>Trello</code>, <code>Calendly</code>, <code>GoHighLevel</code>, <code>Stripe</code></td>
+            <td>I trigger: ognuno è una variante già costruibile</td>
+          </tr>
+          <tr>
+            <td>Media</td>
+            <td><code>Google Slides API</code>, <code>Google Docs template</code>, <code>PandaDoc</code></td>
+            <td>Il lato documento</td>
+          </tr>
+          <tr>
+            <td>Media</td>
+            <td><code>webhook</code>, <code>API integration</code>, <code>workflow automation</code></td>
+            <td>Generiche: molto volume, molta concorrenza</td>
+          </tr>
+          <tr>
+            <td>Bassa</td>
+            <td><code>Zapier</code>, <code>Make.com</code></td>
+            <td>Moltiplicano il bacino, ma solo se si sanno usare — dai case study risulta solo n8n</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="riparazione">
+    <h2>I gig di riparazione</h2>
+
+    <p>Il vantaggio competitivo non è tecnico: è la sezione «Un'automazione solida» dei case study. Gli annunci raccolti finora chiedono «fix», «audit», «troubleshooting» — cercano chi sa <em>perché</em> un flusso si rompe. La gestione degli errori scritta sulla card invece che in un log, il JSON Output, il template impaginato a mano una volta: è roba che quasi nessuno mostra in un portfolio.</p>
+
+    <pre class="c-query"><code>("fix" OR "debug" OR "troubleshoot" OR "broken" OR "audit") AND (n8n OR Zapier OR Make.com OR automation OR workflow)</code></pre>
+
+    <p>Gig più piccoli, concorrenza molto più debole, e portano il cliente in casa.</p>
+  </section>
+
+  <section id="filtrare">
+    <h2>Cosa filtrare via</h2>
+
+    <p>Dagli annunci raccolti si vede il tipo di gig che fa perdere tempo: <code>AI video</code>, <code>voice agent</code>, e il fisso da 40 dollari «da completare oggi». Sulle query generiche conviene aggiungere:</p>
+
+    <pre class="c-query"><code>NOT video NOT voice</code></pre>
+  </section>
+
+  <section id="aggiornare">
+    <h2>Come si aggiorna</h2>
+
+    <p>Questa pagina si tiene allineata a <a href="upwork-gigs.md">upwork-gigs.md</a>: quando un annuncio nuovo viene salvato lì, le parole che il cliente ha usato davvero per descrivere il suo problema entrano qui. Le liste qui sopra sono dedotte da tre annunci soli — vanno corrette da come parla il mercato, non da come si descrive il lavoro.</p>
+  </section>
+
+</main>
+
+<footer class="l-card__footer">
+  <p>2026 • <a href="/">Mucca Design</a> di Luca Leone • VAT IT08200720962</p>
+</footer>
+
+</body>
+</html>

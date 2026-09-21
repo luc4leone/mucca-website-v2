@@ -1161,3 +1161,23 @@ che nessuna pagina chiedeva. Era il serif del tema precedente, e l'ultimo
 `font-family` che la nominava era sparito con l'adozione del brand — restavano
 solo i file e un `@font-face` che li dichiarava a vuoto. Corrette anche le tre
 righe di `design-system.md` che la davano ancora per il font del sito.
+
+
+## 21 settembre 2026 — le keyword diventano una pagina
+
+`upwork/keyword-ricerca.md` era nato come file di lavoro; ora è
+`upwork/keyword-ricerca.html`, pagina vera dentro `upwork/`, `noindex` come
+tutta la cartella (regola unica in `netlify.toml`, più il meta nella pagina).
+
+Il `.md` è stato rimosso invece che tenuto accanto. La convenzione del repo —
+un `.md` e l'`.html` che ne nasce stanno nella stessa cartella — vale quando i
+due file dicono cose diverse: `design-system.md` le decisioni, `design-system.html`
+i campioni. Qui avrebbero detto la stessa identica cosa, e sarebbero divergenti
+alla prima modifica.
+
+**Un componente nuovo**, `css/components/query.css`. Non riusa
+`.c-automation__code`, che è il blocco di pseudocodice dei case study: quello si
+legge, questo si seleziona e si incolla nella ricerca di Upwork. Da qui le
+differenze — niente a capo automatico, perché una query spezzata in due righe
+sembra due query, e ogni blocco scorre per conto suo invece di allargare la
+colonna. È uno stile di pagina, e sta con gli altri in fondo alla galleria.
