@@ -119,11 +119,11 @@ Il footer di chiusura è **identico in ogni pagina**, e si copia da `index.html`
 
 ```html
 <footer class="l-card__footer">
-  <p>2026 • Mucca Design di Luca Leone • VAT IT08200720962</p>
+  <p>2026 • <a href="/">Mucca Design</a> di Luca Leone • VAT IT08200720962</p>
 </footer>
 ```
 
-Non contiene link, quindi funziona uguale dalla root e dalle sottocartelle (`upwork/`, `mini-corso/`). Sta sempre fuori da `<main>`, subito prima degli `<script>`.
+Il nome porta alla home, e l'`href` è **assoluto dalla radice** (`/`), non relativo: è l'unico modo di tenere il footer identico ovunque, visto che da `books/` servirebbe `../index.html` e da `workflows/your-third-workflow/` `../../index.html`. Vale anche in locale, purché il server stia sulla radice del repo (`python3 -m http.server` da qui). Sta sempre fuori da `<main>`, subito prima degli `<script>`.
 
 Se una pagina ha bisogno di contenuto proprio in fondo (il form di contatto in `master-ux-ui.html`, la nota sulle fonti in `offerta-mediaddress/`, link incrociati ad altre pagine), quello è contenuto di pagina: va **sopra** il footer, non al posto suo.
 
