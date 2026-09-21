@@ -51,3 +51,15 @@
 .c-schedule__item p {
   margin: 0;
 }
+
+/* La data in Archivo Black: è il primo elemento che si cerca scorrendo
+   il calendario, e stacca per font invece che per colore. Il `small`
+   torna al font del corpo — è un'ora, non un titolo. */
+.c-schedule__date {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-400);
+}
+
+.c-schedule__date small {
+  font-family: var(--font-body);
+}

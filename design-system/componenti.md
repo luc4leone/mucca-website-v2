@@ -205,7 +205,7 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 
 **Dove usato**: i tre `blockquote` di `master-ux-ui.html` — la recensione anonima in "Ciao, mi chiamo Luca Leone", Davide Cester in "Non è il corso giusto per tutti", Stefano Falvella in "Cosa rende diverso questo corso?".
 
-**File**: `css/components/quote.css` (struttura e default) + valori in `css/theme-brand.css`.
+**File**: `css/components/quote.css` — struttura e valori insieme.
 
 **Markup**: una classe sul `blockquote`, niente di più. Dentro, la firma è `.c-byline`.
 
@@ -417,7 +417,7 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 
 **Stati**: nessuno.
 
-**Nota tema**: `css/theme-brand.css` mette la data in `--font-display`; il componente di per sé usa solo il peso (`--font-weight-700`), così resta neutro rispetto al tema.
+**Nota**: la data è in `--font-display`, dichiarato in fondo a `schedule.css`. Il resto del componente usa solo il peso, così non dipende dal font scelto.
 
 ## Filmstrip (`.c-filmstrip`)
 
@@ -627,7 +627,7 @@ La differenza visiva è il bordo: tratteggiato per il privato, continuo per la l
 </div>
 ```
 
-**Variabili (interfaccia)**: nessuna — usa i token semantici di spazio, corpo e colore. Gli eventuali ritocchi di brand vanno nella sezione "Componenti" di `css/theme-brand.css`.
+**Variabili (interfaccia)**: nessuna — usa i token semantici di spazio, corpo e colore. Gli eventuali ritocchi di brand vanno nel file del componente stesso, non altrove.
 
 **Convenzioni di contenuto**:
 

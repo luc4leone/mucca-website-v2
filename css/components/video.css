@@ -153,3 +153,10 @@
   line-height: 1;
   cursor: pointer;
 }
+
+/* Fondo nero sotto il player: mentre il video carica, il box non
+   lampeggia bianco. */
+.c-video__box {
+  border-radius: var(--radius-4);
+  background: var(--color-black);
+}

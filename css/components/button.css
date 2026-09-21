@@ -30,3 +30,14 @@
   cursor: not-allowed;
   opacity: var(--opacity-disabled);
 }
+
+/* Il corallo del brand è qui, sul CTA: è l'unico accento della pagina.
+   Archivo Black in un solo peso, quindi font-weight 400 — un 600 su un
+   font già nero lo farebbe sintetizzare finto. */
+.c-button {
+  --button-bg: var(--color-primary);
+  --button-fg: var(--color-on-primary);
+  border-radius: var(--radius-4);
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-400);
+}

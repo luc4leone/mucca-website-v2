@@ -1,33 +1,40 @@
 /*
-  Design token. Vedi design-system.md per le motivazioni.
+  Design token — l'unico posto dove un valore è scritto.
+  Le motivazioni stanno in design-system/design-system.md, le scelte di
+  identità visiva in brand-kit/brand-style.md.
+
+  Tre blocchi, in quest'ordine:
+
+    1. Scale        misure e tempi, indipendenti dall'identità visiva
+    2. Palette      i colori del brand, più i grigi e i funzionali
+    3. Semantiche   i nomi che i componenti consumano
+
+  Un componente consuma sempre il blocco 3, mai gli altri due: così
+  cambiare identità visiva è riscrivere il blocco 2 e rimappare il 3,
+  senza toccare un solo file in components/.
+
+  Prima c'erano tre file — questo, brand-kit/brand-tokens-light.css e
+  css/theme-brand.css — e l'ultimo non conteneva solo token: ridisegnava
+  venti regole di componenti, dal border-radius dei bottoni alla scala
+  dei titoli. Quelle regole sono tornate nei file dei rispettivi
+  componenti, dove si cercano.
 
   Breakpoint (768px, mobile-first) NON è qui: le custom property non
   funzionano dentro @media, quindi resta una costante documentata da
   ripetere letteralmente in ogni `@media (min-width: 768px)`.
 */
 
-/* Font: Lora (variable, asse wght 400–700), file in assets/Lora/.
-   TTF variable, niente build step: format("truetype-variations"). */
-@font-face {
-  font-family: "Lora";
-  src: url("../assets/Lora/Lora-VariableFont_wght.ttf") format("truetype-variations");
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Lora";
-  src: url("../assets/Lora/Lora-Italic-VariableFont_wght.ttf") format("truetype-variations");
-  font-weight: 400 700;
-  font-style: italic;
-  font-display: swap;
-}
+/* Archivo Black per i titoli, Archivo per il corpo. Da Google Fonts:
+   nessun file nel repo, nessun build step. L'@import deve restare la
+   prima riga del file — il CSS lo richiede. */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap');
 
 :root {
-  /* ---------------------------------------------------------------
-     Tipografia
-  --------------------------------------------------------------- */
+  /* ===============================================================
+     1. SCALE — misure e tempi. Non cambiano con l'identità visiva.
+     =============================================================== */
+
+  /* --- Tipografia --- */
   --font-size-12: 12px;
   --font-size-14: 14px;
   --font-size-16: 16px;
@@ -40,9 +47,8 @@
   --font-size-60: 60px;
   --font-size-72: 72px;
 
-  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
-
-  /* pesi statici effettivamente inclusi nel font (Regular/Medium/SemiBold/Bold) */
+  /* Archivo Black esiste in un solo peso: un font-weight alto su un
+     font già nero farebbe sintetizzare un finto bold. */
   --font-weight-400: 400;
   --font-weight-500: 500;
   --font-weight-600: 600;
@@ -53,15 +59,14 @@
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.7;
 
-  /* naming per fascia, non per valore: decimali (anche negativi) scomodi come suffisso */
+  /* naming per fascia, non per valore: decimali (anche negativi)
+     scomodi come suffisso */
   --letter-spacing-tight: -0.02em;
   --letter-spacing-normal: 0;
   --letter-spacing-wide: 0.08em;
 
-  /* ---------------------------------------------------------------
-     Spaziatura e dimensioni — stessa scala per margin/padding/gap
-     e per dimensioni di elementi (larghezze, altezze, icone...)
-  --------------------------------------------------------------- */
+  /* --- Spaziatura e dimensioni --- */
+  /* Stessa scala per margin/padding/gap e per dimensioni di elementi. */
   --space-6: 6px;
   --space-12: 12px;
   --space-18: 18px;
@@ -90,11 +95,74 @@
   --space-720: 720px;
   --space-780: 780px;
 
-  /* ---------------------------------------------------------------
-     Colori — primitive e semantiche
-  --------------------------------------------------------------- */
+  /* --- Radius --- */
+  /* Naming per valore, più --radius-full per pillole e cerchi:
+     "full" non è un px, è un concetto a sé. */
+  --radius-2: 2px;
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-full: 9999px;
 
-  /* primitive: scala di grigio neutro (zinc, Tailwind) */
+  --border-width-1: 1px;
+  --border-width-2: 2px;
+  --border-width-4: 4px;
+
+  /* --- Transizioni --- */
+  /* Durata per valore (coerente con font-size e space), easing per
+     nome: sono curve bezier, non un numero singolo. */
+  --duration-150: 150ms;
+  --duration-250: 250ms;
+  --duration-400: 400ms;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* --- Z-index --- */
+  --z-base: 0;
+  --z-sticky: 10;
+  --z-overlay: 20;
+  --z-modal: 30;
+  --z-toast: 40;
+
+  /* --- Layout --- */
+  --container-max-width: 1080px;
+
+  /* --- Opacity --- */
+  /* Primo caso d'uso reale: lo stato disabled di .c-button. */
+  --opacity-disabled: 0.5;
+
+  /* ===============================================================
+     2. PALETTE — i colori grezzi. Cambiare identità visiva
+        significa riscrivere questo blocco e rimappare il terzo.
+     =============================================================== */
+
+  /* --- Brand --- */
+  --color-coral: #FF6B4A;
+  --color-black: #0E0E10;
+  --color-white: #FAFAFA;
+  --color-grey: #8C8C94;
+
+  /* Varianti scurite, non nel brand kit originale: servono dove il
+     colore diventa testo, e il brand kit stesso prevede il caso
+     («scurisci leggermente solo per quel caso d'uso, senza cambiare
+     il token base»).
+       --color-grey-dark  #8C8C94 su bianco fa ~3,2:1, sotto la soglia
+                          AA (4,5:1) per il testo piccolo. Questo ~5:1.
+       --color-coral-dark #FF6B4A su bianco fa 2,8:1, sotto la soglia
+                          anche per il testo grande (3:1). Questo 3,1:1. */
+  --color-grey-dark: #6B6B73;
+  --color-coral-dark: #FF5833;
+
+  /* Il brand kit non ha un colore per linee e bordi: grigio chiaro
+     derivato dal nero, stessa temperatura neutra. */
+  --color-line: #E3E3E6;
+
+  /* --- Grigi neutri (scala zinc, Tailwind) --- */
+  /* Restano perché alcuni componenti li consumano direttamente per
+     superfici e fondi tenui, dove un alias semantico non direbbe di
+     più di quanto dica il numero. */
   --zinc-50: #fafafa;
   --zinc-100: #f4f4f5;
   --zinc-200: #e4e4e7;
@@ -107,115 +175,62 @@
   --zinc-900: #18181b;
   --zinc-950: #09090b;
 
-  /* primitive: colori brand */
-  --midnight-violet: #3b1c32ff;
-  --hot-pink-web: #ff69b4ff;
+  /* --- Funzionali (non di brand) --- */
+  /* Devono restare riconoscibili qualunque sia il mood del brand. */
   --celadon: #a4d4b4ff;
-  --apricot-cream: #ffcf9cff;
-  --cinnamon-wood: #b96d40ff;
-
-  /* primitive: colore funzionale (non di brand) — nessun rosso nella
-     palette data, serve per errore e deve restare riconoscibile
-     indipendentemente dal mood del brand */
   --red-600: #dc2626;
 
-  /* semantiche, consumate dai componenti */
-  --color-background: var(--zinc-50);
-  --color-text: var(--zinc-900);
-  --color-text-muted: var(--zinc-600);
-  --color-border: var(--zinc-200);
+  /* ===============================================================
+     3. SEMANTICHE — i nomi che i componenti consumano.
+     =============================================================== */
 
-  --color-primary: var(--hot-pink-web);
-  --color-on-primary: var(--zinc-900);
+  --color-background: var(--color-white);
+  --color-text: var(--color-black);
+  --color-text-muted: var(--color-grey-dark);
+  --color-border: var(--color-line);
 
-  --color-secondary: var(--midnight-violet);
-  --color-on-secondary: var(--zinc-50);
+  /* Un solo accento, e va sul CTA. Testo scuro sopra (~7,4:1). */
+  --color-primary: var(--color-coral);
+  --color-on-primary: var(--color-black);
 
-  /* uso limitato a elementi grandi/decorativi: con testo piccolo sopra
-     il contrasto è al limite della soglia AA (~4:1) */
-  --color-accent: var(--cinnamon-wood);
+  --color-secondary: var(--color-black);
+  --color-on-secondary: var(--color-white);
 
-  --color-icon-primary: var(--zinc-900);
-  --color-icon-secondary: var(--zinc-400);
+  --color-accent: var(--color-coral);
+  /* L'accento quando è testo da leggere, non un bordo o un'icona. */
+  --color-accent-text: var(--color-coral-dark);
 
-  /* success: celadon, verde tenue già in palette, riserva usata qui.
-     Contrasto: testo scuro sopra (~10.7:1), non testo chiaro (~1.7:1). */
+  --color-icon-primary: var(--color-black);
+  --color-icon-secondary: var(--color-grey);
+
+  /* success: celadon, verde tenue. Testo scuro sopra (~10,7:1), non
+     testo chiaro (~1,7:1). */
   --color-success: var(--celadon);
-  --color-on-success: var(--zinc-900);
+  --color-on-success: var(--color-black);
 
-  /* error: rosso funzionale, non di brand. Contrasto: testo chiaro
-     sopra (~4.8:1, passa AA), non testo scuro piccolo (~3.7:1). */
+  /* error: rosso funzionale. Testo chiaro sopra (~4,8:1, passa AA),
+     non testo scuro piccolo (~3,7:1). */
   --color-error: var(--red-600);
-  --color-on-error: var(--zinc-50);
+  --color-on-error: var(--color-white);
 
-  /* overlay: sfondo dietro modale/lead-magnet, tinto di zinc-900 */
-  --color-overlay: rgba(24, 24, 27, 0.5);
+  /* overlay: fondo dietro modale e lead magnet, tinto del nero brand */
+  --color-overlay: rgba(14, 14, 16, 0.6);
 
-  /* apricot-cream: ancora non mappata, riserva per iterazioni future */
-
-  /* ---------------------------------------------------------------
-     Radius — naming per valore, più --radius-full per pillole/cerchi
-     (eccezione di naming: "full" non è un px, è un concetto a sé)
-  --------------------------------------------------------------- */
-  --radius-2: 2px;
-  --radius-4: 4px;
-  --radius-8: 8px;
-  --radius-12: 12px;
-  --radius-16: 16px;
-  --radius-full: 9999px;
-
-  --border-width-1: 1px;
-  --border-width-2: 2px;
-  --border-width-4: 4px;
-
-  /* ---------------------------------------------------------------
-     Ombre — naming per fascia (sm/md/lg), non per valore: sono
-     composite (offset+blur+colore), non un singolo numero.
-     Tinte di zinc-900 invece di nero puro: ombra più morbida.
-  --------------------------------------------------------------- */
-  --shadow-sm: 0 1px 2px rgba(24, 24, 27, 0.06);
-  --shadow-md: 0 4px 8px rgba(24, 24, 27, 0.08);
-  --shadow-lg: 0 12px 24px rgba(24, 24, 27, 0.12);
-
-  /* ---------------------------------------------------------------
-     Transizioni — durata per valore (coerente con font-size/space),
-     easing per nome (curve bezier, non un numero singolo)
-  --------------------------------------------------------------- */
-  --duration-150: 150ms;
-  --duration-250: 250ms;
-  --duration-400: 400ms;
-
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-
-  /* ---------------------------------------------------------------
-     Z-index
-  --------------------------------------------------------------- */
-  --z-base: 0;
-  --z-sticky: 10;
-  --z-overlay: 20;
-  --z-modal: 30;
-  --z-toast: 40;
-
-  /* ---------------------------------------------------------------
-     Focus (accessibilità) — midnight-violet: verificato ≥3:1 sia su
-     sfondo chiaro (zinc-50, ~14:1) sia su --color-primary (~5.7:1).
-     Componenti su altri sfondi colorati vanno verificati caso per
-     caso e possono sovrascrivere --focus-ring-color.
-  --------------------------------------------------------------- */
-  --focus-ring-color: var(--color-secondary);
+  /* Nero su bianco ~19:1, nero su corallo ~7,4:1. */
+  --focus-ring-color: var(--color-black);
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
 
-  /* ---------------------------------------------------------------
-     Layout — valore deciso in container.md
-  --------------------------------------------------------------- */
-  --container-max-width: 1080px;
+  --font-display: 'Archivo Black', sans-serif;
+  --font-body: 'Archivo', sans-serif;
+  --font-family-base: var(--font-body);
 
-  /* ---------------------------------------------------------------
-     Opacity — primo caso d'uso reale: stato disabled di .c-button
-  --------------------------------------------------------------- */
-  --opacity-disabled: 0.5;
+  /* Il brand è piatto: niente ombre. I token restano perché i
+     componenti li consumano — qui valgono `none`, e riaccenderle è
+     cambiare tre righe invece di cercarle in venti file. */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
 }
 
 /*

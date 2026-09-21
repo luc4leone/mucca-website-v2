@@ -45,3 +45,10 @@ textarea.c-form__input {
 .c-form__honeypot {
   display: none;
 }
+
+/* Angolo appena smussato e bordo grigio: il campo si vede senza pesare
+   quanto il bottone che gli sta accanto. */
+.c-form__input {
+  border-radius: var(--radius-4);
+  border-color: var(--color-grey);
+}

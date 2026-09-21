@@ -10,8 +10,6 @@
 <link rel="stylesheet" href="../css/base.css">
 <link rel="stylesheet" href="../css/layout.css">
 <link rel="stylesheet" href="../css/components/quote.css">
-<link rel="stylesheet" href="../brand-kit/brand-tokens-light.css">
-<link rel="stylesheet" href="../css/theme-brand.css">
 </head>
 <body>
 
@@ -35,7 +33,7 @@
     <p>Stessa divisione, un piano più in basso: il sistema decide i valori, i componenti li consumano.</p>
     <ul class="l-section__toc">
       <li>→ <a href="componenti.md">componenti.md</a> — <strong>uno per uno</strong>: a cosa serve, il markup, i token che consuma, le varianti provate e quella scelta.</li>
-      <li>→ <a href="componenti.html">componenti.html</a> — la <strong>galleria</strong>: ogni variante accanto a quella in uso. Di proposito <em>non</em> carica il tema brand, così si vede cosa fa un componente con i soli default di <code>tokens.css</code>.</li>
+      <li>→ <a href="componenti.html">componenti.html</a> — la <strong>galleria</strong>: ogni variante accanto a quella in uso. Carica gli stessi fogli di una pagina vera, quindi i componenti si vedono come sono davvero — prima caricava solo <code>tokens.css</code> senza il tema, e li mostrava in colori e font che il sito non usa.</li>
       <li>→ <a href="container.md">container.md</a> — il <strong>contenitore</strong>: la griglia a due colonne (30/70, max 1080px) dentro cui tutto il resto sta. È la decisione più vecchia del sistema, ed è quella che nessun campione può mostrare.</li>
     </ul>
     <p>Le scale di valori non stanno in nessuno di questi file: vivono in <code>css/tokens.css</code>, che è l'unico posto dove un numero è scritto. Le varianti <strong>scartate</strong> non stanno qui ma in <a href="../iterazioni/">iterazioni/</a>: lì si escludono a vicenda, qui convivono in produzione.</p>

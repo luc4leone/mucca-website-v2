@@ -1,6 +1,6 @@
 # Brand Style — Luca (versione portabile)
 
-Versione ridotta di `_sandy/html/brand-kit-luca.md`, senza i prompt per asset specifici (thumbnail YouTube, banner canale, mood board, avatar, post social) — quelli restano nel Brand Kit originale, servono solo per il progetto del canale. Questo file è pensato per essere copiato in un altro progetto (prototipo, app) insieme a `brand-tokens.css`, per dare a chi ci lavora (persona o AI) il contesto di *perché* queste scelte visive, non solo i valori.
+Versione ridotta di `_sandy/html/brand-kit-luca.md`, senza i prompt per asset specifici (thumbnail YouTube, banner canale, mood board, avatar, post social) — quelli restano nel Brand Kit originale, servono solo per il progetto del canale. Questo file è pensato per essere copiato in un altro progetto (prototipo, app) insieme al blocco «palette» di `css/tokens.css`, per dare a chi ci lavora (persona o AI) il contesto di *perché* queste scelte visive, non solo i valori.
 
 ---
 
