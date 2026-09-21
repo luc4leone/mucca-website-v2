@@ -185,6 +185,22 @@
   gap: var(--space-18);
 }
 
+/* La «u» di Mucca, in corallo: unico accento della home, come chiede la
+   regola di moderazione del brand kit. Il corallo dei link compare solo
+   all'hover, che è transitorio e non conta come secondo elemento.
+
+   Qui il corallo è scurito. A differenza di un segno decorativo questa
+   è una lettera del nome, quindi vale la soglia AA per il testo grande
+   (3:1) che il token base non raggiunge su bianco: 2.8:1. È il caso
+   previsto dal brand kit — scurire solo dove serve, senza toccare
+   --color-accent, che altrove sta su bordi e icone e va bene com'è.
+
+   Il fallback è il corallo pieno: --color-accent-text esiste solo nella
+   variante light, e su fondo scuro il corallo come testo si legge già. */
+.l-card__accent {
+  color: var(--color-accent-text, var(--color-accent));
+}
+
 .l-card__tagline {
   font-size: var(--font-size-24);
 }

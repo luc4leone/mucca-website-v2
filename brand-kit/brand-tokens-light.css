@@ -19,15 +19,23 @@
        per testo piccolo. Va bene per bordi e elementi sottili, non per testo
        secondario leggibile. Questa tinta più scura fa ~5:1 e passa.
      - --color-border: il brand kit non ha un colore per linee/bordi;
-       grigio chiaro derivato dal nero, stessa temperatura neutra. */
+       grigio chiaro derivato dal nero, stessa temperatura neutra.
+     - --color-coral-dark: #FF6B4A su bianco fa 2.8:1, sotto la soglia AA (3:1)
+       perfino per il testo grande. Va bene per bordi, icone e badge — non per
+       una parola. Stessa tinta e stessa saturazione, solo più scura: fa 3.1:1.
+       È il caso che il brand kit prevede qui sotto, «scurisci leggermente solo
+       per quel caso d'uso, senza cambiare il token base». */
   --color-grey-dark: #6B6B73;
   --color-border: #E3E3E6;
+  --color-coral-dark: #FF5833;
 
   /* Colori — alias semantici, usa questi nel resto del CSS */
   --color-bg: var(--color-white);
   --color-text: var(--color-black);
   --color-text-secondary: var(--color-grey-dark);
   --color-accent: var(--color-coral);
+  /* L'accento quando è testo da leggere, non un bordo o un'icona. */
+  --color-accent-text: var(--color-coral-dark);
 
   /* Font */
   --font-display: 'Archivo Black', sans-serif;
