@@ -18,7 +18,7 @@
 }
 
 /* Sottolineati sempre: sono link (`?tag=…`), non bottoni. Colore della
-   riga e accento all'hover li dà `a` nel tema. */
+   riga e accento all'hover li dà `a` in base.css. */
 .c-tag-filter a {
   font-weight: var(--font-weight-700);
 }

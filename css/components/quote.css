@@ -8,7 +8,7 @@
   resta libero per il CTA — e senza ombre o gradienti, che il brand non
   ammette.
 
-  Struttura e default qui, valori nel tema (css/theme-brand.css).
+  Struttura e valori qui: il componente sta tutto in questo file.
 */
 .c-quote {
   --quote-bg: var(--color-secondary);

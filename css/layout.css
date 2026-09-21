@@ -99,7 +99,7 @@
 
 /* Sottolineati sempre, come ogni link: è la sottolineatura a renderli
    riconoscibili come link, e qui il colore è quello del testo (WCAG 1.4.1).
-   Colore della riga e accento all'hover li dà `a` nel tema. */
+   Colore della riga e accento all'hover li dà `a` in base.css. */
 .l-section__toc a {
   font-size: var(--font-size-16);
   font-weight: var(--font-weight-500);

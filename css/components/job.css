@@ -64,7 +64,7 @@
    sottolineatura è ciò che lo rende riconoscibile come link, e toglierla
    perché "si vede che è un titolo" lascia l'affordance al solo colore —
    che qui è quello del testo (WCAG 1.4.1). Il colore della riga e
-   l'accento all'hover li dà già `a` in theme-brand.css; qui si ispessisce
+   l'accento all'hover li dà già `a` in base.css; qui si ispessisce
    soltanto, perché sotto Archivo Black a 24px la riga di default sparisce. */
 .c-job__title a {
   text-decoration-thickness: var(--border-width-2);

@@ -71,12 +71,12 @@
    cambia niente da solo — resta solo perché a zoom alto `auto`
    arrotonda a 2px e la riga raddoppierebbe.
 
-   Quello che pesa è l'offset del tema, 0.15em: tarato sull'Archivo del
+   Quello che pesa è l'offset di base.css, 0.15em: tarato sull'Archivo del
    testo, sul monospace fa passare la riga dentro le discendenti di
    `p`, `g`, `y`, e i nomi di file qui ne sono pieni
    (`pensiero-divergente.html`). A 0.25em la riga stacca e si legge come
    sottolineatura invece che come cancellatura. Colore e accento
-   all'hover restano quelli del tema. */
+   all'hover restano quelli di base.css. */
 .c-tree__item > a {
   text-decoration-thickness: 1px;
   text-underline-offset: 0.25em;
