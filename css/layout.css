@@ -86,11 +86,15 @@
   padding: 0;
 }
 
-/* Un passo sopra il 6 della scala: con lo stesso interlinea stretto,
-   6px faceva leggere i link come un blocco unico invece che come voci. */
+/* Un passo sopra il 6 della scala: 6px faceva leggere i link come un
+   blocco unico invece che come voci.
+   Interlinea normale e non tight: nell'indice del Master ogni voce è una
+   riga sola e le due misure si equivalgono, ma negli indici di cartella
+   (workflows/, books/) la voce porta una descrizione che va a capo, e a
+   1.1 le righe si toccano. Vedi design-system.md, «Line-height». */
 .l-section__toc li {
   margin-bottom: var(--space-12);
-  line-height: var(--line-height-tight);
+  line-height: var(--line-height-normal);
 }
 
 /* Sottolineati sempre, come ogni link: è la sottolineatura a renderli
@@ -187,6 +191,26 @@
 
 .l-card__contact {
   margin-top: var(--space-12);
+}
+
+/* La riga di annuncio sopra il footer (index.html). Sta fuori da .l-card
+   perché è coda di pagina, non biglietto da visita, ma prende la stessa
+   gabbia del footer — larghezza del container e stesso padding laterale —
+   così i due blocchi sono incolonnati. Niente filetto: quello segna
+   l'inizio del footer, e l'annuncio sta ancora dentro la pagina. */
+.l-card__notice {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  /* Lo spazio sotto è quello che separa l'annuncio dal filetto del
+     footer, e vale quanto il padding interno del footer: sotto quella
+     misura le due righe si leggono come un blocco solo, col filetto
+     in mezzo per caso. */
+  padding: 0 var(--space-24) var(--space-24);
+}
+
+.l-card__notice p {
+  margin: 0;
 }
 
 /* Stesso trattamento del footer di offerta-mediaddress:
