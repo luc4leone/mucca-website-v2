@@ -7,13 +7,38 @@ python3 -m http.server 8765
 # → http://localhost:8765/index.html
 ```
 
-Pagine: `index.html` (biglietto da visita alla radice), `master-ux-ui.html`
-(landing del corso, italiano), `garanzia.html`, `portfolio.html`
-(Works, inglese), `componenti.html` (galleria dei componenti).
+Pagine pubbliche: `index.html` (biglietto da visita alla radice),
+`master-ux-ui.html` (landing del corso, italiano), `garanzia.html`,
+`portfolio.html` (Works, inglese), `results.html` (Results),
+`automations/` (case study delle automazioni), `mini-corso/`.
 
-Documentazione: `CLAUDE.md` (istruzioni operative), `design-system.md`
-(token, breakpoint, convenzioni CSS), `componenti.md` (componenti),
-`journal.md` (decisioni prese e da prendere, in ordine di data).
+Documentazione: `CLAUDE.md` (istruzioni operative), `design-system/`
+(token, breakpoint, convenzioni CSS, componenti — decisioni nei `.md`,
+campioni negli `.html`), `journal.md` (decisioni prese e da prendere,
+in ordine di data).
+
+## Una cartella per argomento
+
+I file che si leggono insieme stanno insieme, e ogni cartella ha il suo
+`index.html` che dice cosa c'è dentro e in che ordine si legge. La
+distinzione utile non è il formato — un `.md` e l'`.html` che ne nasce
+sono lo stesso argomento — ma l'argomento:
+
+| cartella | cosa tiene insieme |
+|---|---|
+| `design-system/` | il sistema e i componenti: decisioni nei `.md`, campioni negli `.html`, più `container.md` per la griglia |
+| `marketing/` | il materiale di lavoro del lancio: l'analisi, il piano, il journal dell'outreach — la pagina pubblica «Results» è `results.html`, alla radice |
+| `automations/` | la pagina dei case study e gli appunti di costruzione |
+| `workflows/` | una cartella per automazione n8n: spec, export del canvas, pagine di bozza |
+| `iterazioni/` | le esplorazioni grafiche: più varianti della stessa cosa, una sotto l'altra |
+| `upwork/` | gli annunci analizzati prima di candidarsi, uno per pagina |
+| `spiega/` | le guide che servono a chi legge il repo, non a chi visita il sito |
+| `books/`, `articles/` | quello che ho letto e quello che ho scritto |
+
+Le cartelle di lavoro sono fuori dai motori di ricerca con una regola
+sola in `netlify.toml` (`for = "/<cartella>/*"`): è l'altro motivo per
+cui il raggruppamento conviene. Il footer usa `href="/"` assoluto proprio
+per restare identico a qualsiasi profondità.
 
 ## Varianti: dove sono finite
 

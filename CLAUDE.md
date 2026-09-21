@@ -91,7 +91,18 @@ il copy va scritto già giusto.
 - Nessun brand kit completo esistente.
 - Asset parziali già disponibili: immagini, logo, font — incompleti, verificare cosa manca prima di darli per scontati.
 - Riferimenti/ispirazioni da raccogliere man mano (link, screenshot) quando disponibili.
-- Convenzioni sul "contenitore" (variabili di tema, naming componenti, interfaccia via CSS custom property) in `design-system.md`. Rispettarle quando si scrive CSS o markup di componenti.
+- Convenzioni sul "contenitore" (variabili di tema, naming componenti, interfaccia via CSS custom property) in `design-system/design-system.md`, con i campioni visivi in `design-system/design-system.html`. I singoli componenti stanno nella stessa cartella e con la stessa divisione: `design-system/componenti.md` (uno per uno, token consumati, varianti) e `design-system/componenti.html` (la galleria). La griglia in `design-system/container.md`. Indice e criterio di divisione: `design-system/index.html`. Rispettarle quando si scrive CSS o markup di componenti.
+
+## Dove va un file nuovo
+
+Il repo raggruppa **per argomento, non per formato**: un `.md` e l'`.html` che ne nasce stanno nella stessa cartella. Ogni cartella ha un `index.html` che elenca cosa contiene e in che ordine si legge — quando aggiungi un file alla cartella, aggiungi la sua riga lì.
+
+Le cartelle esistenti e cosa tengono insieme sono elencate in `README.md`, sezione «Una cartella per argomento». Due regole che non si vedono dall'elenco:
+
+- **Una cartella di lavoro è `noindex` in blocco**, con una regola sola in `netlify.toml` (`for = "/<cartella>/*"`). Per questo una pagina pubblica non entra in una cartella di lavoro: «Results» resta alla radice e non va in `marketing/`, che contiene date, decisioni non annunciate e nomi di persone contattate. Si chiama `results.html` proprio per questo: da `marketing.html` a `/marketing` la distanza era una barra.
+- **Spostare una pagina pubblica costa un redirect.** Se un indirizzo è già stato condiviso, il vecchio percorso resta valido con un `[[redirects]]` 301 in `netlify.toml` (esempio: `/automations.html` → `/automations/`). Le pagine riservate si spostano senza.
+
+Il footer usa `href="/"` assoluto proprio per restare identico a qualsiasi profondità; gli altri percorsi in una pagina spostata vanno corretti a mano (`css/`, `assets/`, `js/` diventano `../css/` e così via).
 
 ## Workflow di iterazione (worktree)
 

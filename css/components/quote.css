@@ -17,6 +17,13 @@
      fondo scuro, il testo secondario resta nel colore del testo. */
   --quote-fg-muted: var(--quote-fg);
 
+  /* Il fondo di `code` dentro la citazione. `base.css` glielo dà chiaro
+     (zinc-200) perché lì sotto c'è la pagina; qui sotto c'è la superficie
+     scura, e un frammento di codice finirebbe bianco su grigio chiaro —
+     illeggibile. Un velo chiaro sul fondo scuro invece del colore pieno:
+     regge su qualsiasi `--quote-bg` il tema decida. */
+  --quote-code-bg: rgba(250, 250, 250, 0.16);
+
   /* Le semantiche ridefinite qui dentro fanno il lavoro sui figli:
      .c-byline__name e il testo secondario si ricolorano da soli. */
   --color-text: var(--quote-fg);
@@ -35,6 +42,11 @@
   background: var(--quote-bg);
   color: var(--quote-fg);
   font-size: var(--font-size-18);
+}
+
+.c-quote code {
+  background: var(--quote-code-bg);
+  color: inherit;
 }
 
 /* Stacco fra l'ultima riga della citazione e la firma. */

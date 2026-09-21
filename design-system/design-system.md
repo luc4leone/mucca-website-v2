@@ -2,6 +2,8 @@
 
 Decisioni sul "contenitore": variabili di tema, breakpoint, organizzazione CSS, convenzione componenti, e come i componenti espongono la propria interfaccia. Il contenuto (copy) resta in `content.md`.
 
+I campioni visivi delle scelte qui descritte stanno in [`design-system.html`](design-system.html), disegnati con i token veri. Il criterio di divisione fra i due file — e perché non sono due fonti di verità — è in [`index.html`](index.html).
+
 Questo file documenta **scelte, principi e regole** — non le scale di valori, che vivono in `css/tokens.css` e vanno lette lì. Un token compare qui solo come esempio isolato per spiegare un concetto, mai come elenco completo.
 
 ## Variabili di tema
@@ -31,6 +33,17 @@ Semantiche assegnate secondo un criterio di **minimalismo estetico** — pochi c
 - **`--color-error` = red-600**: unica primitiva introdotta fuori dalla palette originale — un colore funzionale come l'errore deve restare riconoscibile a prescindere dal brand, non è un compromesso estetico. Testo chiaro sopra passa AA (~4.8:1); testo scuro piccolo no (~3.7:1).
 - **`--color-overlay`**: sfondo dietro modale/lead-magnet, tinto di zinc-900 (coerente con le ombre) invece di nero puro.
 - **`apricot-cream` non mappata**: riserva per iterazioni future — non tutte le primitive devono avere una semantica.
+
+### Superfici
+
+Un componente che si prende una superficie propria — un fondo diverso da quello della pagina — **si prende anche tutto quello che ci sta sopra**. `base.css` colora gli elementi pensando a un solo fondo, quello della pagina: `code` ha un fondino chiaro, i link hanno il colore d'accento, i filetti sono grigio chiaro. Su una superficie scura nessuna di queste scelte regge, e il difetto non si vede finché qualcuno non ci mette dentro proprio quell'elemento.
+
+La regola è quindi: chi cambia il fondo dichiara, come variabili proprie, ogni convenzione ereditata che quel fondo rompe. Le due volte in cui è già successo:
+
+- **`code` dentro `.c-quote`**: fondo nero del componente, fondino chiaro di `base.css`, testo bianco sopra — illeggibile. Risolto con `--quote-code-bg`, un velo chiaro invece di un colore pieno, così vale per qualunque `--quote-bg` il tema decida.
+- **`.c-icon` su fondo scuro**: i due token dell'icona puntano a grigi scuri, e l'icona sparisce. Vanno rimappati dal contenitore (campione in `design-system.html`, sezione Icone).
+
+Da controllare quando si crea una superficie nuova: testo e testo secondario (di solito già coperti ridefinendo `--color-text` e `--color-text-muted`), `code`, il colore dei link, i bordi, il focus ring, le icone.
 
 ### Tipografia
 

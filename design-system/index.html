@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Design System — indice</title>
+<meta name="description" content="I due file del design system: le decisioni in Markdown, i campioni in HTML. Cosa va dove, e perché non sono due fonti di verità.">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components/quote.css">
+<link rel="stylesheet" href="../brand-kit/brand-tokens-light.css">
+<link rel="stylesheet" href="../css/theme-brand.css">
+</head>
+<body>
+
+<main class="l-page">
+
+  <header>
+    <h1>Design System.</h1>
+    <p class="u-lead">Due coppie di file e una regola sola: le decisioni si leggono, i campioni si guardano.</p>
+  </header>
+
+  <section>
+    <h2>Il sistema</h2>
+    <ul class="l-section__toc">
+      <li>→ <a href="design-system.md">design-system.md</a> — le <strong>decisioni e i perché</strong>. Variabili di tema, breakpoint, organizzazione del CSS, convenzione di naming, interlinea, z-index. È prosa: si discute, si versiona, si legge in diff.</li>
+      <li>→ <a href="design-system.html">design-system.html</a> — i <strong>campioni</strong>. Interlinea, scala tipografica, colori, spaziatura, pesi, icone, focus ring e ombre, disegnati con i token veri.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>I componenti</h2>
+    <p>Stessa divisione, un piano più in basso: il sistema decide i valori, i componenti li consumano.</p>
+    <ul class="l-section__toc">
+      <li>→ <a href="componenti.md">componenti.md</a> — <strong>uno per uno</strong>: a cosa serve, il markup, i token che consuma, le varianti provate e quella scelta.</li>
+      <li>→ <a href="componenti.html">componenti.html</a> — la <strong>galleria</strong>: ogni variante accanto a quella in uso. Di proposito <em>non</em> carica il tema brand, così si vede cosa fa un componente con i soli default di <code>tokens.css</code>.</li>
+      <li>→ <a href="container.md">container.md</a> — il <strong>contenitore</strong>: la griglia a due colonne (30/70, max 1080px) dentro cui tutto il resto sta. È la decisione più vecchia del sistema, ed è quella che nessun campione può mostrare.</li>
+    </ul>
+    <p>Le scale di valori non stanno in nessuno di questi file: vivono in <code>css/tokens.css</code>, che è l'unico posto dove un numero è scritto. Le varianti <strong>scartate</strong> non stanno qui ma in <a href="../iterazioni/">iterazioni/</a>: lì si escludono a vicenda, qui convivono in produzione.</p>
+  </section>
+
+  <section>
+    <h2>Perché due file non sono due fonti di verità</h2>
+
+    <p>La domanda è legittima: due documenti sullo stesso argomento di solito divergono, e mantenerli allineati è lavoro che prima o poi nessuno fa. Qui non succede, per due motivi.</p>
+
+    <p><strong>Non contengono la stessa cosa.</strong> Il <code>.md</code> dice <em>perché</em> l'interlinea scende quando il corpo cresce. L'<code>.html</code> mostra 48px e 18px alla stessa interlinea, uno accanto all'altro. Il campione non è la descrizione della regola: è la cosa di cui la regola parla. Un campione non si può scrivere in Markdown, e una spiegazione non si può leggere in un campione.</p>
+
+    <p><strong>La pagina non descrive il sistema, lo esegue.</strong> Ogni campione è disegnato con i token: <code>line-height: var(--line-height-snug)</code>, non <code>1.3</code>. Se domani <code>snug</code> diventa 1.35 in <code>css/tokens.css</code>, la pagina lo mostra da sola, senza che nessuno la aggiorni. L'unica cosa che potrebbe divergere è la prosa — e la prosa sta in un posto solo.</p>
+
+    <p>Da qui la regola, che è anche l'unico modo di sbagliare:</p>
+
+    <blockquote class="c-quote">
+      <p>Il <code>.md</code> spiega e decide. L'<code>.html</code> mostra, con i token veri, e per ogni campione ha una riga sola di didascalia che dice cosa stai guardando. <strong>Se ti trovi a scrivere un paragrafo dentro l'HTML, sta andando nel posto sbagliato.</strong></p>
+    </blockquote>
+
+    <p>Le due alternative sono state scartate così. Tenere solo l'HTML mette il ragionamento nei commenti del markup, dove non si legge e non si confronta bene fra versioni. Generare un file dall'altro richiede un build step, che il repo esclude per scelta (<code>CLAUDE.md</code>, «Stack tecnico»).</p>
+  </section>
+
+</main>
+
+<footer class="l-card__footer">
+  <p>2026 • <a href="/">Mucca Design</a> di Luca Leone • VAT IT08200720962</p>
+</footer>
+
+</body>
+</html>

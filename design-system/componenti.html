@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Componenti — galleria visiva</title>
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/components/button.css">
-<link rel="stylesheet" href="css/components/accordion.css">
-<link rel="stylesheet" href="css/components/step-cards.css">
-<link rel="stylesheet" href="css/components/avatar.css">
-<link rel="stylesheet" href="css/components/byline.css">
-<link rel="stylesheet" href="css/components/quote.css">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components/button.css">
+<link rel="stylesheet" href="../css/components/accordion.css">
+<link rel="stylesheet" href="../css/components/step-cards.css">
+<link rel="stylesheet" href="../css/components/avatar.css">
+<link rel="stylesheet" href="../css/components/byline.css">
+<link rel="stylesheet" href="../css/components/quote.css">
 <style>
   /* Solo chrome della galleria, non è stile di componenti reali. */
   body {
@@ -122,8 +122,8 @@
     <span class="gallery-variant__label">Variante "sketch" — attuale in produzione, sketch utente come card intera + audio (.c-step-card__audio, presente su tutti e 3 gli step)</span>
     <div class="gallery-variant__demo">
       <div class="c-step-card" data-variant="sketch">
-        <img class="c-step-card__sketch" src="assets/images/step-card-sketch-1.svg" alt="Step 1: Diventa Design Engineer">
-        <audio class="c-step-card__audio" controls src="assets/audio/step-card-audio-1.m4a"></audio>
+        <img class="c-step-card__sketch" src="../assets/images/step-card-sketch-1.svg" alt="Step 1: Diventa Design Engineer">
+        <audio class="c-step-card__audio" controls src="../assets/audio/step-card-audio-1.m4a"></audio>
       </div>
     </div>
   </div>
@@ -132,7 +132,7 @@
     <span class="gallery-variant__label">Variante "sketch" senza audio — .c-step-card__audio è opzionale, non obbligatorio per ogni card</span>
     <div class="gallery-variant__demo">
       <div class="c-step-card" data-variant="sketch">
-        <img class="c-step-card__sketch" src="assets/images/step-card-sketch-2.svg" alt="Step 2: Migliora la qualità e la presentazione dei tuoi lavori">
+        <img class="c-step-card__sketch" src="../assets/images/step-card-sketch-2.svg" alt="Step 2: Migliora la qualità e la presentazione dei tuoi lavori">
       </div>
     </div>
   </div>
@@ -140,7 +140,7 @@
 
 <section class="gallery-component" id="quote">
   <h2>Citazione di una recensione</h2>
-  <p class="x-gallery-note">Qui la galleria non carica il tema brand: <code>.c-quote</code> mostra i suoi default, cioè <code>--color-secondary</code> di <code>tokens.css</code>. In <code>master-ux-ui.html</code>, dove il tema è caricato, la stessa superficie è il nero del brand. È il componente che consuma i token, il tema che ne decide il valore. Le tre varianti esplorate stanno in <code>grafica-recensione.html</code>.</p>
+  <p class="x-gallery-note">Qui la galleria non carica il tema brand: <code>.c-quote</code> mostra i suoi default, cioè <code>--color-secondary</code> di <code>tokens.css</code>. In <code>master-ux-ui.html</code>, dove il tema è caricato, la stessa superficie è il nero del brand. È il componente che consuma i token, il tema che ne decide il valore. Le tre varianti esplorate stanno in <code>iterazioni/grafica-recensione.html</code>.</p>
 
   <div class="gallery-variant gallery-variant--current">
     <span class="gallery-variant__label">Superficie invertita — attuale in produzione</span>
@@ -148,7 +148,7 @@
       <blockquote class="c-quote">
         <p>A mio parere come Teacher sei uno dei migliori che abbia avuto, contando anche i professori universitari eh che poi nella realtà non sono dei grandi insegnanti ma solo grandi ricercatori 😬</p>
         <footer class="c-byline">
-          <img class="c-avatar c-byline__avatar" src="assets/images/davide_cester.webp" alt="Foto di Davide Cester">
+          <img class="c-avatar c-byline__avatar" src="../assets/images/davide_cester.webp" alt="Foto di Davide Cester">
           <span>
             <strong class="c-byline__name">Davide Cester</strong>
             <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>
@@ -179,7 +179,7 @@
       <blockquote>
         <p>A mio parere come Teacher sei uno dei migliori che abbia avuto, contando anche i professori universitari eh che poi nella realtà non sono dei grandi insegnanti ma solo grandi ricercatori 😬</p>
         <footer class="c-byline">
-          <img class="c-avatar c-byline__avatar" src="assets/images/davide_cester.webp" alt="Foto di Davide Cester">
+          <img class="c-avatar c-byline__avatar" src="../assets/images/davide_cester.webp" alt="Foto di Davide Cester">
           <span>
             <strong class="c-byline__name">Davide Cester</strong>
             <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>
@@ -205,7 +205,7 @@
       <blockquote>
         <p>Ciao Luca, Volevo farti i complimenti per il livello didattico al quale hai portato la classe. Ciò che mi hai trasmesso più che didattico è personale: stavo perdendo la passione per la progettazione, in questi mesi è rinata grazie alla tua concezione di designer come problem solver pratico che prende la complessità e la rende semplice.</p>
         <footer class="c-byline">
-          <img class="c-avatar c-byline__avatar" src="assets/images/stefano_falvella.webp" alt="Foto di Stefano Falvella">
+          <img class="c-avatar c-byline__avatar" src="../assets/images/stefano_falvella.webp" alt="Foto di Stefano Falvella">
           <span>
             <strong class="c-byline__name">Stefano Falvella</strong>
             <span class="c-byline__meta">classe 2 Corso UX/UI Design Boolean</span>

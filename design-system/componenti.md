@@ -1,6 +1,6 @@
 # Componenti
 
-Documentazione dei componenti riusabili (`.c-<nome>`). Convenzioni generali in `design-system.md`.
+Documentazione dei componenti riusabili (`.c-<nome>`). Convenzioni generali in `design-system/design-system.md`.
 
 ## Button (`.c-button`)
 
@@ -213,15 +213,17 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 </blockquote>
 ```
 
-**Variabili (interfaccia)**: `--quote-bg`, `--quote-fg`, `--quote-fg-muted`. Le prime due hanno come default `--color-secondary`/`--color-on-secondary`; la terza ricade su `--quote-fg`, così senza un tema che dia un grigio leggibile sul fondo scuro il testo secondario resta comunque visibile. Il tema brand le porta a nero, bianco sporco e grigio neutro.
+**Variabili (interfaccia)**: `--quote-bg`, `--quote-fg`, `--quote-fg-muted`, `--quote-code-bg`. Le prime due hanno come default `--color-secondary`/`--color-on-secondary`; la terza ricade su `--quote-fg`, così senza un tema che dia un grigio leggibile sul fondo scuro il testo secondario resta comunque visibile. Il tema brand le porta a nero, bianco sporco e grigio neutro.
 
 **Stile**: superficie piena con `--radius-4`, niente filetto a sinistra, testo a 18px. La superficie scura è quella nativa del brand (`brand-kit/brand-style.md`, principio 1: "sfondo scuro di default") — il sito ne adotta la variante light, la recensione se la riprende per un blocco solo. Nessun colore d'accento speso: il corallo resta al CTA, come vuole il principio 2.
+
+`--quote-code-bg` è il fondo di `code` dentro la citazione: `base.css` lo dà chiaro perché lì sotto c'è la pagina, ma qui sotto c'è la superficie scura e un frammento di codice uscirebbe bianco su grigio chiaro. Il default è un velo chiaro al 16% e non un colore pieno, così regge su qualunque `--quote-bg` il tema decida.
 
 **Come ricolora i figli**: il componente ridefinisce `--color-text` e `--color-text-muted` su di sé. Nome e provenienza della firma si adeguano da soli, senza una regola per ogni figlio — è il motivo per cui `.c-byline` non sa niente della superficie su cui sta.
 
 **Stati**: nessuno. Non è interattivo.
 
-**Varianti esplorate**: tre, in `grafica-recensione.html` — superficie invertita (questa), virgoletta corallo, fuori colonna. Le altre due restano lì come riferimento.
+**Varianti esplorate**: tre, in `iterazioni/grafica-recensione.html` — superficie invertita (questa), virgoletta corallo, fuori colonna. Le altre due restano lì come riferimento.
 
 ## Firma di una citazione (`.c-byline`)
 
@@ -582,7 +584,7 @@ La differenza visiva è il bordo: tratteggiato per il privato, continuo per la l
 
 **Scopo**: una riga di risultato — un cliente e il numero che è cambiato. Fratello di `.c-entry` (portfolio), ma senza `<details>`: la riga è già tutto il contenuto, quindi niente marker "+", niente cursore, niente titolo sottolineato.
 
-**Dove usato**: `marketing.html`, lista unica sotto l'header "Results.".
+**Dove usato**: `results.html`, lista unica sotto l'header "Results.".
 
 **File**: `css/components/result.css`
 

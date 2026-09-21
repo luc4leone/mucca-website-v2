@@ -12,6 +12,22 @@
   status = 404
   force = true
 
+# Due pagine pubbliche hanno cambiato indirizzo il 21 settembre 2026.
+# I percorsi vecchi restano validi e portano ai nuovi.
+[[redirects]]
+  from = "/automations.html"
+  to = "/automations/"
+  status = 301
+  force = true
+
+# marketing.html → results.html: il nome era a una barra di distanza da
+# /marketing/, la cartella del materiale di lavoro, che è tutt'altro.
+[[redirects]]
+  from = "/marketing.html"
+  to = "/results.html"
+  status = 301
+  force = true
+
 # L'offerta a Mediaddress è raggiungibile solo da chi ha il link.
 [[headers]]
   for = "/offerta-mediaddress/*"
@@ -24,20 +40,34 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
 
-# Journal privato degli annunci analizzati: note di lavoro, non contenuto pubblico.
-[[headers]]
-  for = "/upwork.html"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-
+# Journal privato degli annunci analizzati, una pagina di analisi per annuncio:
+# note di lavoro, non contenuto pubblico. L'indice è /upwork/index.html.
 [[headers]]
   for = "/upwork/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
 
-# Bozza del caso d'uso in lavorazione + export n8n: materiale di lavoro.
+# Cartelle di lavoro dei workflow n8n: bozze dei casi d'uso, spec del corso,
+# export del canvas. Fino al 21 settembre 2026 questa regola diceva ancora
+# "/your-third-workflow/*", il percorso che la cartella aveva prima di finire
+# dentro workflows/: copriva un indirizzo che non esisteva più.
 [[headers]]
-  for = "/your-third-workflow/*"
+  for = "/workflows/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Esplorazioni grafiche: più varianti della stessa cosa, una accanto all'altra.
+# Pagine di lavoro, con del copy che nel sito vero non c'è (o non c'è ancora).
+[[headers]]
+  for = "/iterazioni/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Design system e galleria dei componenti: documentazione interna. La galleria
+# mostra anche varianti non in produzione e copy fuori contesto — indicizzarla
+# significa far arrivare qualcuno su un pezzo di pagina invece che sulla pagina.
+[[headers]]
+  for = "/design-system/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
 
@@ -47,14 +77,11 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
 
-# Journal dell'outreach: nomi e profili di persone contattate, non contenuto pubblico.
+# Materiale di lavoro del lancio: analisi, piano, journal dell'outreach — date,
+# decisioni non annunciate, nomi e profili delle persone contattate.
+# La pagina pubblica "Results" è /results.html, alla radice: non è qui dentro,
+# e questa regola non la tocca.
 [[headers]]
-  for = "/outreach.html"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-
-# Piano di marketing: date, decisioni, messaggi di outreach. Materiale di lavoro.
-[[headers]]
-  for = "/marketing-actions.html"
+  for = "/marketing/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"

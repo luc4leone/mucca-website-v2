@@ -807,3 +807,101 @@ Il portfolio e la ricerca del lavoro diventano **Modulo 4**. Rinumerati tutti i 
 Nasce insieme alla bozza di **«Cosa ti porti a casa»**, subito prima del programma: cinque risultati (interfacce complesse, AI per un'app intera, tre progetti in portfolio, un portfolio presentato meglio, strategie oltre LinkedIn). Prima si legge cosa ottieni, poi come ci arrivi.
 
 Pound 4 Pound non è un cliente pagante ma è un progetto reale: nasce da Nimesh Palakuttige, ex studente e founder di una startup che quel gestionale lo sta costruendo. Detto in «Retroscena», accanto a Rancilio/Egro e Mediaddress, e nel punto 3 di «Cosa ti porti a casa» («due partono da specifiche simili a quelle dei clienti, il terzo da una startup»).
+
+## 21 settembre 2026 — il design system diventa una cartella, con i campioni
+
+Domanda di partenza: gli esempi di interlinea si capiscono solo vedendoli, ma una pagina di esempi accanto a `design-system.md` sembra creare due fonti di verità.
+
+Non le crea, per due motivi. **Non contengono la stessa cosa**: il `.md` dice *perché* l'interlinea scende quando il corpo cresce, l'`.html` mostra 48px e 18px alla stessa interlinea uno accanto all'altro. Un campione non si scrive in Markdown e una spiegazione non si legge in un campione. **E la pagina non descrive il sistema, lo esegue**: ogni campione riceve i token per custom property (`--sample-lh: var(--line-height-snug)`, mai `1.3`), quindi segue `tokens.css` da sé. L'unica cosa che può divergere è la prosa, che sta in un posto solo.
+
+La regola, che è anche l'unico modo di sbagliare: *il `.md` spiega e decide; l'`.html` mostra, e per ogni campione ha una riga sola di didascalia. Se stai scrivendo un paragrafo dentro l'HTML, sta andando nel posto sbagliato.*
+
+Scartate: tenere solo l'HTML (il ragionamento finirebbe nei commenti del markup, illeggibile in diff) e generare un file dall'altro (serve un build step, che il repo esclude).
+
+Struttura: `design-system/` con `index.html` (indice e rationale), `design-system.md` (spostato, nome invariato così i «vedi design-system.md» sparsi nei commenti CSS restano validi) e `design-system.html` (i campioni). Precedente nel repo: `componenti.md` + `componenti.html`, che già dividevano così senza che la regola fosse scritta.
+
+I campioni: interlinea (le quattro bande, più i due confronti che hanno prodotto `snug`), scala tipografica (nome del token e corpo reale — i numeri restano solo in `tokens.css`), colori semantici (fondo + testo, non quadrati: la domanda è se si legge), spaziatura, pesi del font, focus ring sui fondi colorati, ombre.
+
+## 21 settembre 2026 — chi si prende una superficie si prende quello che ci sta sopra
+
+Il frammento `.md` dentro la citazione dell'indice del design system era bianco su grigio chiaro. Non era un difetto di quella pagina: `.c-quote` ha fondo nero e `code` si teneva il fondino chiaro che `base.css` gli dà pensando alla pagina. Vale per tutte e 12 le citazioni del sito — nessuno se n'era accorto perché finora nessuna conteneva codice.
+
+Risolto nel componente con `--quote-code-bg`, un velo chiaro al 16% invece di un colore pieno: regge su qualunque `--quote-bg` decida il tema, oggi nero e domani altro.
+
+La cosa interessante è che è la seconda volta, e la prima l'avevamo appena documentata: `.c-icon` su fondo scuro sparisce, per lo stesso motivo. Due casi fanno una regola, ora in `design-system.md` come sezione **Superfici**: chi cambia il fondo dichiara, come variabili proprie, ogni convenzione ereditata che quel fondo rompe — `code`, colore dei link, bordi, focus ring, icone. Con la checklist da ripassare quando nasce una superficie nuova.
+
+## 21 settembre 2026 — una cartella per argomento, non per formato
+
+`design-system/`, `workflows/`, `books/`, `articles/` erano già nate così, una
+alla volta. Fatto l'inventario della radice, il criterio si è lasciato
+generalizzare: **i file che si leggono insieme stanno insieme**, e la divisione
+utile è l'argomento, non il formato — un `.md` e l'`.html` che ne nasce sono la
+stessa cosa in due stati, e separarli per estensione è la cosa che rompe di più.
+
+Cinque cartelle nuove, ognuna col suo `index.html` che dice cosa c'è dentro e in
+che ordine si legge:
+
+| cartella | cosa ha assorbito |
+|---|---|
+| `upwork/` | `upwork.html` → `upwork/index.html`: l'indice stava fuori dalla cartella che indicizzava |
+| `marketing/` | `marketing-actions` + `outreach` (`.html` e `.md`) e `strategia-marketing.md` |
+| `iterazioni/` | `hero-iterazioni.html` e `grafica-recensione.html` |
+| `design-system/` | `componenti.html`, `componenti.md`, `container.md` |
+| `automations/` | `automations.html` → `index.html`, più `trello-twilio-automation.md` |
+
+### Le tre cose che non erano ovvie
+
+**La pagina «Results» non è entrata in `marketing/`.** È «Results», una pagina
+pubblica, mentre la cartella contiene date non annunciate, decisioni in corso e i
+nomi delle persone contattate su LinkedIn. Mescolarli non è un problema di
+ordine ma di conseguenze: le cartelle di lavoro sono `noindex` con **una regola
+sola** in `netlify.toml` (`for = "/marketing/*"`), e una pagina pubblica lì
+dentro sparirebbe dai motori insieme al resto. Il criterio che ne esce: il
+raggruppamento segue l'argomento, tranne quando taglia la linea
+pubblico/riservato — lì vince quella.
+
+L'ambiguità che ne nasceva — `/marketing` (il file) e `/marketing/` (la
+cartella) convivono su Netlify, ma si distinguono per una barra — è stata
+chiusa subito: la pagina si chiama **`results.html`**, che era già il suo
+titolo. Non era un problema di funzionamento: i due indirizzi si servono senza
+conflitto. Era un problema di lettura, e il costo di sbagliare non è simmetrico
+— chi cerca la pagina pubblica e finisce in cartella vede materiale di lavoro,
+chi cerca la cartella e finisce sulla pagina si accorge subito. Il vecchio
+indirizzo resta valido con un 301.
+
+**Spostare una pagina pubblica costa un redirect.** `automations.html` era
+l'unica delle cinque a essere pubblica: il vecchio indirizzo resta valido con un
+301 in `netlify.toml`. Le altre quattro sono riservate e si sono spostate senza
+lasciare traccia.
+
+**Le varianti hanno due sedi, e non è una ridondanza.** In `iterazioni/` stanno
+le varianti che si **escludono a vicenda** — quattro hero, di cui uno solo andrà
+in pagina. In `design-system/componenti.html` stanno quelle che **convivono in
+produzione**. E quando una variante riscrive la pagina intera, la sede non è né
+l'una né l'altra ma un branch `feature/*` in worktree, come il portfolio.
+
+### Il bug trovato per strada
+
+`netlify.toml` proteggeva ancora `/your-third-workflow/*`, percorso che non
+esiste dal giorno in cui la cartella è finita dentro `workflows/`. La regola
+girava a vuoto da allora: i file erano raggiungibili e indicizzabili, e nessuno
+se n'era accorto perché una regola che non matcha niente non fallisce, tace.
+Ora è `/workflows/*`. È l'argomento più concreto a favore delle regole per
+cartella: una regola per file è una riga che va aggiornata a ogni spostamento,
+e non protesta quando non lo fai.
+
+Aggiunte anche `/design-system/*` e `/iterazioni/*`, che prima non avevano
+nessuna regola: la galleria dei componenti mostra copy fuori contesto e varianti
+mai andate in pagina.
+
+### Cosa non si è fatto
+
+`personale/` (`life`, `motivation`, `manifesto`, e sotto `books/` e `articles/`)
+è rimandata: annidare cartelle appena nate e ancora vuote è lavoro che si
+disfa. `master/` (`master-ux-ui`, `garanzia`, `content.md`, `mini-corso/`) è il
+raggruppamento logicamente più forte del repo ed è **quello da non fare adesso**:
+è l'URL che sta girando nei DM dell'outreach, e si sposta a lancio finito.
+
+`automations/` e `workflows/` restano due cartelle: i case study raccontano cosa
+fa un'automazione, le cartelle di lavoro come è stata costruita. Pubblici i
+primi, interne le seconde.
