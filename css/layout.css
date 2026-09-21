@@ -238,7 +238,7 @@
   padding: var(--space-24);
   border-top: var(--border-width-1) solid var(--color-border);
   font-size: var(--font-size-14);
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
 }
 
 .l-card__footer p {

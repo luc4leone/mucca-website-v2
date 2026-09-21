@@ -29,6 +29,39 @@ h6 {
   line-height: var(--line-height-tight);
 }
 
+/* Da h1 a h3 il font è quello display. Archivo Black esiste in un solo
+   peso: un font-weight 600 sopra un font già nero farebbe sintetizzare
+   al browser un finto bold. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-400);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+h1 {
+  font-size: var(--font-size-48);
+}
+
+h2 {
+  font-size: var(--font-size-30);
+}
+
+h3 {
+  font-size: var(--font-size-20);
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: var(--font-size-60);
+  }
+
+  h2 {
+    font-size: var(--font-size-36);
+  }
+}
+
 /* Dall'h3 in giù il corpo scende sotto i 30px e l'interlinea sale a snug:
    a quelle dimensioni un titolo su due righe a 1.1 si impasta. È la stessa
    misura dei titoli di componente (.c-entry__title, .c-requirement__title),
@@ -73,8 +106,18 @@ li:last-child {
   margin-bottom: 0;
 }
 
+/* Gerarchia per peso, non per colore: il link è nel colore del testo e
+   si distingue dalla sottolineatura (WCAG 1.4.1). L'accento compare solo
+   all'hover, che è transitorio e non conta come «secondo elemento» nella
+   regola di moderazione del brand kit. */
 a {
-  color: var(--color-primary);
+  color: inherit;
+  text-decoration-color: var(--color-grey);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  text-decoration-color: var(--color-accent);
 }
 
 /* Nome di file, percorso, proprietà CSS: un frammento di codice dentro
@@ -103,7 +146,7 @@ pre code {
    h3, senza essere un vero heading (niente voce separata nell'outline). */
 .u-lead {
   font-size: var(--font-size-20);
-  font-weight: var(--font-weight-600);
+  font-weight: var(--font-weight-700);
 }
 
 /* Utility: rimuove il marker di lista, per liste con un'emoji già
@@ -116,8 +159,11 @@ pre code {
 blockquote {
   margin: 0 0 var(--space-18);
   padding-left: var(--space-18);
-  border-left: var(--border-width-2) solid var(--color-border);
-  font-style: italic;
+  border-left: var(--border-width-2) solid var(--color-text);
+  /* Di Archivo sono caricati solo i pesi upright: meglio tondo che un
+     corsivo sintetizzato dal browser. La citazione si distingue per il
+     bordo, non per l'inclinazione. */
+  font-style: normal;
 }
 
 blockquote footer {

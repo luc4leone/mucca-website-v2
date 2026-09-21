@@ -10,8 +10,6 @@
 <link rel="stylesheet" href="../css/base.css">
 <link rel="stylesheet" href="../css/layout.css">
 <link rel="stylesheet" href="../css/components/icon.css">
-<link rel="stylesheet" href="../brand-kit/brand-tokens-light.css">
-<link rel="stylesheet" href="../css/theme-brand.css">
 <style>
   /* Solo chrome della pagina, non stile di componenti reali — stessa
      convenzione di componenti.html.
@@ -550,7 +548,7 @@
   <section class="ds-section" id="ombre">
     <h2>Ombre</h2>
     <div class="ds-section__intro">
-      <p><strong>Nel brand attuale non ci sono ombre.</strong> <code>css/theme-brand.css</code> rimappa tutte e tre le fasce a <code>none</code>: l'identità visiva separa i piani con filetti e fondini, non con l'elevazione. Le card qui sotto chiedono <code>--shadow-sm</code>, <code>-md</code> e <code>-lg</code> e restano piatte — è il campione che funziona, non che è rotto.</p>
+      <p><strong>Nel brand attuale non ci sono ombre.</strong> <code>css/tokens.css</code> mappa tutte e tre le fasce a <code>none</code>: l'identità visiva separa i piani con filetti e fondini, non con l'elevazione. Le card qui sotto chiedono <code>--shadow-sm</code>, <code>-md</code> e <code>-lg</code> e restano piatte — è il campione che funziona, non che è rotto.</p>
       <p>La scala di base resta definita in <code>css/tokens.css</code> (tre fasce, tinte di <code>--zinc-900</code> invece che di nero puro, con il naming per fascia perché un'ombra è composita — scostamento, sfocatura, colore). Serve al tema che la vorrà: basta togliere le tre righe di override e il sito intero prende l'elevazione, senza toccare un componente.</p>
     </div>
 

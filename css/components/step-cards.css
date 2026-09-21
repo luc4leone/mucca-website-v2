@@ -151,3 +151,7 @@
     font-size: var(--font-size-24);
   }
 }
+
+.c-step-card {
+  border-radius: var(--radius-4);
+}

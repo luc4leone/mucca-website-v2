@@ -52,7 +52,7 @@
   font-family: var(--font-display);
   font-size: var(--font-size-36);
   line-height: var(--line-height-tight);
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
   font-variant-numeric: tabular-nums;
 }
 

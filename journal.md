@@ -1112,3 +1112,46 @@ con una riga in `componenti.md` che dice dove vivono.
 **Documentati anche `.c-job`/`.c-badge` e `.c-tree`**, che non avevano una scheda.
 Il badge è quello che ha fatto partire tutta questa verifica: era in `upwork/` da
 giorni senza che nulla lo descrivesse.
+
+## 21 settembre 2026 — il CSS si riorganizza: un solo file di token
+
+Il sospetto era che i token fossero sparsi su troppi file — `css/tokens.css`,
+`brand-kit/brand-tokens-light.css`, `css/theme-brand.css`. Misurandoli, il
+problema era un altro: `theme-brand.css` aveva 19 token e **21 regole CSS**, e
+di queste solo 2 cambiavano un colore. Le altre cambiavano la forma — il
+`border-radius` di bottone, FAQ, step card, video, pannello e campo di input, la
+scala di h1/h2/h3, il font del calendario, il peso di `.u-lead`.
+
+Non era un tema: era un secondo foglio di stile che ridisegnava mezzo sito. Lo
+stile di un componente stava in due file, e il secondo non portava il suo nome.
+
+**Ora.** `css/tokens.css` è l'unico file di token, in tre blocchi — scale,
+palette, semantiche — e non contiene una riga di CSS oltre a `:root`. Le regole
+di componente sono tornate nei rispettivi file di `components/`, quelle di
+elemento in `base.css`. Gli `<head>` passano da cinque link a tre.
+
+**Due doppioni scoperti strada facendo**, entrambi nati dal ponte fra i due
+sistemi di nomi: `--color-text-secondary` era un alias di `--color-text-muted`
+(4 usi contro 42) e `--color-bg` di `--color-background` (1 contro 7).
+Consolidati sul nome maggioritario.
+
+**Verifica.** Diciannove pagine confrontate una per una fra `main` e il branch,
+misurando i valori calcolati di body, titoli, link, paragrafi, citazioni, lead,
+bottone e righe di elenco: **identiche, tutte e diciannove.** Il primo giro ne
+dava diciotto — `life.html` differiva perché `--color-text-secondary`, che stava
+solo nel file del brand, non era stato portato. È così che i due doppioni sono
+saltati fuori.
+
+**Rimossi**: `brand-kit/brand-tokens.css` (la variante dark, che nessuna pagina
+caricava) e i due file di tema. `brand-kit/` resta con `brand-style.md`, che è
+documentazione: i principi, non i valori.
+
+**Effetto collaterale utile**: la galleria dei componenti ora mostra i
+componenti come sono davvero. Prima caricava `tokens.css` senza il tema, quindi
+li disegnava in rosa shocking e font di sistema — colori che il sito non usa da
+nessuna parte. Non essendoci più un tema separato da caricare o dimenticare, il
+problema non può ripresentarsi.
+
+**Ancora da fare**: `@font-face` di Lora è stato tolto da `tokens.css` perché
+nessun `font-family` la nominava più, ma i dieci `.ttf` sono ancora in
+`assets/Lora/`. Vanno cancellati, o tenuti con una riga che dica perché.

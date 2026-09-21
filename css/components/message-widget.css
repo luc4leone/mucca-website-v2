@@ -54,3 +54,19 @@
 .c-message-widget__panel .c-button {
   align-self: start;
 }
+
+/* Il summary è un link a tutti gli effetti: stesso trattamento di `a`
+   in base.css — colore del testo, riga grigia, accento all'hover. */
+.c-message-widget summary {
+  color: inherit;
+  text-decoration-color: var(--color-grey);
+  text-underline-offset: 0.15em;
+}
+
+.c-message-widget summary:hover {
+  text-decoration-color: var(--color-accent);
+}
+
+.c-message-widget__panel {
+  border-radius: var(--radius-4);
+}

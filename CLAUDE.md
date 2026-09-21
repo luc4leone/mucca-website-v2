@@ -91,6 +91,7 @@ il copy va scritto già giusto.
 - Nessun brand kit completo esistente.
 - Asset parziali già disponibili: immagini, logo, font — incompleti, verificare cosa manca prima di darli per scontati.
 - Riferimenti/ispirazioni da raccogliere man mano (link, screenshot) quando disponibili.
+- **Il CSS ha quattro livelli e basta**: `css/tokens.css` (tutti i token, in tre blocchi: scale, palette, semantiche — e nessuna regola CSS), `css/base.css` (elementi HTML nudi), `css/layout.css` (`l-*`), `css/components/<nome>.css` (un componente per file, **completo**: forma e colore insieme). Un componente non ha mai stili in un altro file — è la regola che il refactor del 21 settembre 2026 ha ristabilito togliendo `theme-brand.css`. Un valore nuovo è un token in `tokens.css`, non un numero scritto nel componente.
 - Convenzioni sul "contenitore" (variabili di tema, naming componenti, interfaccia via CSS custom property) in `design-system/design-system.md`, con i campioni visivi in `design-system/design-system.html`. I singoli componenti stanno nella stessa cartella e con la stessa divisione: `design-system/componenti.md` (uno per uno, token consumati, varianti) e `design-system/componenti.html` (la galleria). La griglia in `design-system/container.md`. Indice e criterio di divisione: `design-system/index.html`. Rispettarle quando si scrive CSS o markup di componenti.
 
 ## Dove va un file nuovo
