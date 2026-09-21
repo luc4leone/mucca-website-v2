@@ -88,6 +88,25 @@ pre.c-code--sketch {
 }
 
 /* ---------------------------------------------------------------------
+   Figura singola
+
+   Uno screenshot a tutta colonna. Il bordo serve: quasi tutte le
+   schermate di un'app hanno il fondo bianco, e senza filetto si
+   fonderebbero con la pagina invece di leggersi come un'immagine.
+--------------------------------------------------------------------- */
+.c-figure {
+  margin: var(--space-36) 0;
+}
+
+.c-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-8);
+  border: var(--border-width-1) solid var(--color-border);
+}
+
+/* ---------------------------------------------------------------------
    Griglia di figure
 
    Sei varianti della stessa cosa, da guardare insieme: è il confronto

@@ -906,24 +906,34 @@ raggruppamento logicamente più forte del repo ed è **quello da non fare adesso
 fa un'automazione, le cartelle di lavoro come è stata costruita. Pubblici i
 primi, interne le seconde.
 
-## 21 settembre 2026 — tre articoli salvati da birbi.biz prima che chiuda
+## 21 settembre 2026 — cinque articoli salvati da birbi.biz prima che chiuda
 
 `birbi.biz` è il vecchio blog personale, e chiude. Tre pezzi sono stati
 copiati in `articles/`, che finora era un guscio vuoto:
 
 | qui | là |
 |---|---|
-| `la-via-del-codice-dialogo-1.html` | `/tutti-dovrebbero-imparare-a-programmare/`, 30 lug 2024 |
 | `la-via-del-codice-dialogo-2.html` | `/la-via-del-codice-dialogo-2/`, 16 dic 2024 |
 | `pensiero-divergente.html` | `/pensiero-divergente/`, 3 dic 2024 |
+| `la-via-del-codice-dialogo-1.html` | `/tutti-dovrebbero-imparare-a-programmare/`, 30 lug 2024 |
+| `calcioclip-due-lezioni.html` | `/calcioclip-postmortem-2-lezioni-dal-fallimento-di-una-startup/`, 30 apr 2024 |
+| `il-blog-piu-semplice-del-mondo.html` | `/il-blog-piu-semplice-del-mondo/`, 24 apr 2024 |
 
-**Il primo dialogo aveva l'URL sbagliato.** Lo slug diceva «tutti dovrebbero
+I primi tre sono arrivati per primi, gli ultimi due in un secondo giro: la
+cartella era già in piedi, e aggiungerli è costato due file e due righe
+d'indice. È la prova che la struttura regge — era il punto di aprirla.
+
+**Due URL su cinque erano sbagliati o troppo lunghi.** Il primo dialogo Lo slug diceva «tutti dovrebbero
 imparare a programmare», il titolo in pagina «La Via del Codice: Dialogo 1» —
-residuo di un titolo precedente rimasto nell'indirizzo. Visto che il sito
-chiude e nessun vecchio link sopravvive comunque, qui il file prende il nome
-del titolo vero, e i due dialoghi si linkano a vicenda come la serie che sono.
+residuo di un titolo precedente rimasto nell'indirizzo. Il postmortem aveva
+invece uno slug di sessanta caratteri che ripeteva il titolo per intero
+(`calcioclip-postmortem-2-lezioni-dal-fallimento-di-una-startup`), accorciato
+in `calcioclip-due-lezioni.html`. Visto che il sito chiude e nessun vecchio
+link sopravvive comunque, qui i file prendono il nome che gli serve, e i due
+dialoghi si linkano a vicenda come la serie che sono.
 
-**Le sei immagini di Munari sono state scaricate**, non linkate. Stavano su un
+**Le sette immagini sono state scaricate**, non linkate — le sei di Munari e
+lo screenshot di Calcioclip. Stavano su un
 CDN legato alla piattaforma del blog: lasciare l'`src` puntato lì avrebbe
 significato pubblicare una pagina che dipende da un servizio che stiamo
 chiudendo. Ora sono in `assets/images/articoli/`, con `width`/`height` in
@@ -937,7 +947,10 @@ scritto: un pezzo del 2024 letto nel 2026 senza quella riga sembra attuale.
 
 «Libri su UX/UI design (bozza)», del 7 dicembre 2024. L'autore l'aveva marcato
 bozza, e la decisione è stata di lasciarlo morire col sito invece di aprire
-`books/` con un pezzo che non convinceva.
+`books/` con un pezzo che non convinceva. Restano fuori anche le due liste di
+link della vecchia home, «Persone che mi hanno ispirato» e «Articoli che mi
+hanno ispirato»: sono segnalibri, e se servono hanno una casa diversa da
+`articles/`.
 
 ### `articles/` diventa pubblica
 
@@ -953,7 +966,9 @@ cartella è pubblica, e il default è già quello.
 di codice, ma la regola sopra senza questa si rompe il giorno che ne arriva
 uno» — e i dialoghi sono quel giorno. Nasce `css/components/article.css`, che
 lo carica solo chi ne ha bisogno: un font monospace su `garanzia.html` sarebbe
-peso pagato per niente.
+peso pagato per niente. Il file tiene anche `.c-figure` — una schermata a tutta
+colonna col filetto attorno, perché uno screenshot su fondo bianco senza bordo
+si fonde con la pagina invece di leggersi come immagine.
 
 Due cose decise lì dentro. Il **nome di chi parla** in un dialogo è attenuato,
 non corallo: il colore d'accento è del CTA, e venti battute in corallo lo
