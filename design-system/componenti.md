@@ -122,7 +122,10 @@ Markup delle altre varianti (`corner`/`bar`/`badge`/`outline`/`ghost`, con `.c-s
 
 **Stile**: minimalista — nessun bordo nel default, radius `--radius-12`. Freccia: emoji `➡️`, marcata `aria-hidden="true"` perché puramente decorativa (l'ordine è già chiaro dai numeri e dall'ordine del DOM).
 
-## Masonry (`.c-masonry`)
+## Masonry (`.c-masonry`) — solo su branch
+
+> Su `main` nessuna pagina carica `masonry.css`: il componente è in uso su
+> `feature/step-cards-v2`. Resta qui perché quel branch è vivo.
 
 **Scopo**: griglia di immagini a colonne (effetto "masonry"), altezze diverse impaginate senza buchi vistosi.
 
@@ -491,25 +494,17 @@ L'attributo `data-filmstrip` accoppia la strip alla sua riga: servono perché in
 
 **Stati**: nessuno.
 
-## Cluster nav (`.c-cluster-nav`)
+## Cluster nav (`.c-cluster-nav`) — rimosso
 
-**Scopo**: indice orizzontale di anchor alle sezioni della pagina. Non sticky, nessuno stato attivo, zero JS.
+`css/components/cluster-nav.css` è stato cancellato il 21 settembre 2026: nessuna
+pagina lo caricava e nessun branch lo usava. Era l'indice orizzontale di anchor in
+testa a `portfolio.html`, sostituito da `.c-section-index`. Il codice resta nella
+storia di git, se dovesse servire.
 
-**Dove**: `portfolio.html`, sotto l'intestazione.
+## Tag filter (`.c-tag-filter`) — solo su branch
 
-**Markup**:
-
-```html
-<nav aria-label="Work by type">
-  <ul class="c-cluster-nav">
-    <li><a href="#hmi">HMI &amp; embedded</a></li>
-  </ul>
-</nav>
-```
-
-**Variabili esposte**: nessuna. **Stati**: nessuno.
-
-## Tag filter (`.c-tag-filter`) — branch `feature/portfolio-themes`
+> Su `main` nessuna pagina lo carica, e `js/portfolio-filter.js` non esiste: il
+> componente vive su `feature/portfolio-themes` e `feature/portfolio-filtro-sticky`.
 
 **Scopo**: filtra i progetti per tipo di lavoro. Le sezioni della pagina sono le 4 tesi ("I simplify complex software"…), i tag sono i tipi (HMI, ecommerce…). Un tag attivo nasconde i progetti senza quel tag e le sezioni rimaste vuote.
 
@@ -680,3 +675,105 @@ La differenza visiva è il bordo: tratteggiato per il privato, continuo per la l
 **Il numero è testo vero nel markup, non un contatore CSS**: la numerazione è citabile nel contratto ("requisito 4"), quindi deve stare nell'albero di accessibilità e non solo nel rendering. Stessa scelta, stesso motivo, di `.c-manifesto__num`.
 
 **L'accento**: il bordo del pledge è l'unico elemento con il corallo in pagina, come chiede la regola di moderazione del brand kit. `__check` si stacca con un filetto e non con un fondino: i fondini sono già presi dal pledge e da `.c-faq`, e un terzo livello di superficie renderebbe la pagina a strisce.
+
+## Annuncio analizzato (`.c-job`) e Pastiglia di esito (`.c-badge`)
+
+**Scopo**: la riga di un annuncio Upwork analizzato — data, titolo che è il link, sommario, e il verdetto con la pastiglia.
+
+**Dove**: `upwork/index.html`, dentro `.c-job-list`. Il CSS sta in `css/components/job.css`, che porta anche gli stili della pagina di analisi (`.c-posting`, e altri).
+
+**Markup**:
+
+```html
+<ol class="c-job-list">
+  <li class="c-job">
+    <p class="c-job__date"><time datetime="2026-09-16">16 settembre 2026</time></p>
+    <h3 class="c-job__title"><a href="…">AI Automation Specialist</a></h3>
+    <p class="c-job__summary">Cosa chiede l'annuncio.</p>
+    <p class="c-job__verdict">
+      <span class="c-badge">Fattibile</span>
+      <span>Il perché, in una riga.</span>
+    </p>
+  </li>
+</ol>
+```
+
+**Variabili esposte**: nessuna.
+
+**Stati**: `.c-badge--no` per l'esito negativo. Stesso disegno, pallino spento (`--color-text-muted` invece di `--color-accent`).
+
+**Perché il pallino e non il testo colorato**: la pastiglia sta in un elenco di titoli, e un testo colorato competerebbe con loro. Il pallino è l'unico accento della riga, il testo resta nel colore del corpo: gerarchia per peso, non per colore.
+
+## Albero di file (`.c-tree`)
+
+**Scopo**: l'elenco delle pagine del sito come albero di cartelle, nell'indice privato.
+
+**Dove**: `index-abf92932.html`. Ha sostituito `.c-sitemap`, che era una lista piatta col path intero ripetuto a ogni riga e una descrizione sotto: il path ripetuto nascondeva la gerarchia, e le descrizioni non venivano lette.
+
+**Markup**: `<ul>` dentro `<li>`, così l'annidamento che si vede è quello che legge anche uno screen reader.
+
+```html
+<div class="c-tree">
+  <ul class="c-tree__list">
+    <li class="c-tree__item c-tree__item--dir">
+      <span class="c-tree__dir">articles/</span>
+      <ul class="c-tree__list">
+        <li class="c-tree__item"><a href="/articles/">index.html</a></li>
+      </ul>
+    </li>
+    <li class="c-tree__item"><a href="/life.html">life.html</a><span class="c-tree__tag">noindex</span></li>
+  </ul>
+</div>
+```
+
+**Variabili esposte**: nessuna.
+
+**Stati**: nessuno. Niente JS, nessun nodo da aprire o chiudere: con 37 voci non c'è niente da richiudere.
+
+**Note**: i filetti dell'albero sono bordi CSS, non caratteri `├─`, che verrebbero letti ad alta voce e si copierebbero insieme al nome del file. Il nome di cartella non è un link: la pagina della cartella è il suo `index.html`, elencato come figlio. I link restano sottolineati come ovunque nel sito, ma con `text-underline-offset: 0.25em` invece dello `0.15em` del tema: quello è tarato sull'Archivo, e sul monospace la riga passava dentro le discendenti di `p`, `g`, `y`.
+
+## Pezzi di articolo (`article.css`) — raccolta, non blocco
+
+Gli altri file di `css/components/` definiscono un blocco con i suoi elementi.
+Questo no: raccoglie quello che serve a una pagina di `articles/` e che non è né
+un componente riusabile né stile di base. Non esiste una classe `.c-article`, e
+non deve esistere: il contenitore è il `<main>` della pagina.
+
+Cinque pagine lo caricano, quindi non è uno stile di pagina — è un insieme di
+pezzi condivisi fra pagine della stessa famiglia.
+
+- **`.c-article__date`** — la data sotto il titolo. C'è, ma non compete con
+  l'attacco del pezzo.
+- **`.c-article__nota`** — la nota che un pezzo tradotto o recuperato da un altro
+  sito porta con sé. Voce a parte rispetto al corpo.
+- **`.c-dialogue`** — il dialogo: le battute sono paragrafi normali che si aprono
+  col nome di chi parla in `<strong>`. Il nome prende il testo attenuato, non il
+  corallo: l'accento è del CTA.
+- **`.c-figure`** — uno screenshot a tutta colonna, col bordo, perché quasi tutte
+  le immagini hanno il fondo chiaro come la pagina.
+- **`.c-figures`** e **`.c-figures__caption`** — la griglia di figure da guardare
+  insieme, quando il confronto è il contenuto.
+
+**Markup**: vedi `articles/pensiero-divergente.html`.
+
+## Pezzi di case study (`automation.css`) — raccolta, non blocco
+
+Come sopra: nessuna classe `.c-automation`, solo gli elementi che servono a una
+pagina di automazione. Caricato da `automations/index.html` e dalle pagine di
+`workflows/`.
+
+- **`.c-automation__figure`** — lo schema del flusso. Il canvas di n8n è largo
+  ~2500px: alla larghezza della colonna il testo dei nodi non si legge, quindi
+  l'immagine è un link a sé stessa a dimensione intera, e la didascalia porta lo
+  stesso link per chi non pensa a cliccare l'immagine.
+- **`.c-automation__facts`** — si usa **insieme a `.c-project__facts`**, che dà la
+  griglia: è un `<dl>`, e questo file aggiunge solo il passo verticale, perché le
+  voci sono elenchi e non prosa.
+- **`.c-automation__step`** — il passo numerato del «come si costruisce». È un
+  **titolo** (`<h2>`), non un paragrafo.
+- **`.c-automation__code`** — lo pseudocodice: un filetto a sinistra invece del
+  fondo pieno, perché non è un linguaggio vero ma una ricetta scritta in italiano,
+  e il fondo pieno lo farebbe sembrare JavaScript.
+
+**Markup**: vedi `automations/index.html` e
+`workflows/your-third-workflow/come-si-costruisce.html`.

@@ -1019,3 +1019,96 @@ correzioni rispetto alla lista vecchia: «Defensive design» si chiama in realt�
 pagina di Ahmad Shadeed; «Math Conversations at Home» era una voce con due link
 dentro, ed è rimasta una voce sola con parte I e parte II, invece di diventare
 due righe che dicono quasi la stessa cosa.
+
+## 21 settembre 2026 — l'indice privato diventa un albero
+
+`index-abf92932.html` elencava le sue 37 pagine come lista piatta, in tre
+sezioni — «Pubbliche», «Riservate», «Di lavoro» — e ogni riga portava il path
+intero più una descrizione. Ora è un albero solo, senza sezioni e senza
+descrizioni.
+
+**Perché l'albero.** Il path ripetuto per intero a ogni voce
+(`workflows/your-third-workflow/proposal-generator.html`) nascondeva proprio la
+cosa che si guarda qui: cosa sta dentro cosa. Con l'annidamento il nome della
+cartella si scrive una volta e i file stanno sotto. Le cartelle sono `<ul>`
+dentro `<li>`: la gerarchia che si vede è quella che legge anche uno screen
+reader, e i filetti sono bordi CSS, non caratteri `├─`, che verrebbero letti ad
+alta voce e si copierebbero insieme al nome del file.
+
+**Le descrizioni sono sparite** perché non venivano lette — 37 righe da 93
+caratteri di mediana. Restano in git, se un domani servissero.
+
+**Le sezioni sono sparite** e al loro posto c'è solo l'etichetta `noindex` sui
+16 file che stanno fuori dai motori. La divisione in tre portava
+un'informazione che il badge non porta: `workflows/` e `assets/` erano «Di
+lavoro» pur essendo indicizzabili, e adesso stanno in mezzo alle pagine
+pubbliche senza niente che li distingua. È il prezzo di avere un elenco solo.
+
+**Niente JS**: l'albero è sempre aperto. Con 37 voci non c'è niente da
+richiudere, e la pagina resta senza script come tutte le altre.
+
+`css/components/tree.css` prende il posto di `sitemap.css`, che ora non è più
+incluso da nessuna pagina.
+
+**I link restano sottolineati.** Una prima versione li aveva tolti, perché su
+37 righe incolonnate il sottolineato continuo faceva rumore: sbagliato, il sito
+ha una regola e non fa eccezioni (`design-system.md`, WCAG 1.4.1 — un link non
+si stilizza mai come testo normale). Qui poi la sottolineatura porta anche
+altro: è l'unica cosa che separa un file, che si apre, dal nome di cartella che
+gli sta sopra e non si apre.
+
+Alleggerita invece dove si poteva. Non sullo spessore: l'`auto` del browser su
+questo monospace vale già circa 1px, e fissarlo non cambia niente — resta solo
+perché a zoom alto `auto` arrotonda a 2px. Quello che pesava era l'offset del
+tema, `0.15em`, tarato sull'Archivo del testo: sul monospace la riga passava
+dentro le discendenti di `p`, `g`, `y`, di cui i nomi di file qui sono pieni
+(`pensiero-divergente.html`), e si leggeva come cancellatura. A `0.25em`
+stacca. Colore e accento all'hover restano quelli del tema.
+
+## 21 settembre 2026 — la «u» di Mucca in corallo
+
+`index.html`: la **u** di «Mucca» prende l'accento del brand. Una prima
+versione aveva colorato il punto fermo del titolo, poi tolta: il punto è un
+segno, la lettera è il nome. Sotto il tema brand `--color-primary` è un alias
+di `--color-accent`, quindi è lo stesso corallo comunque lo si chiami.
+
+**Il corallo qui è scurito, e questo ha aggiunto un token.** `#FF6B4A` su
+bianco fa 2,8:1, sotto la soglia AA anche per il testo grande, che è 3:1. Su un
+punto decorativo non contava — se non si vede, la pagina dice lo stesso; su una
+lettera del nome conta, perché è testo da leggere. Il brand kit prevede
+esattamente questo caso e dice come uscirne: scurire solo per quell'uso, senza
+toccare il token base. Da qui `--color-coral-dark` (#FF5833, 3,1:1) e l'alias
+`--color-accent-text`, fratelli di `--color-grey-dark`, nato nello stesso modo
+e per lo stesso motivo. `--color-accent` resta com'è: altrove sta su bordi,
+icone e badge, dove 2,8:1 va bene.
+
+Resta l'unico accento della home, come chiede la regola di moderazione del
+brand kit: il corallo dei link compare solo all'hover, che è transitorio e non
+conta come secondo elemento.
+
+## 21 settembre 2026 — la galleria dei componenti si allinea al CSS
+
+`design-system/componenti.html` mostrava quattro componenti — step card, citazione,
+firma, avatar — mentre `css/components/` ne conteneva trenta. Non era una selezione:
+era arretrato. L'indice del design system dichiara che la galleria è «ogni variante
+accanto a quella in uso», quindi il criterio c'era già e non veniva rispettato.
+
+**Tre categorie, non una.** Contando quante pagine caricano ogni file, i trenta si
+dividono da soli: diciassette sono caricati da due o più pagine, nove da una sola,
+e alcuni da nessuna. La galleria ora copre i diciassette condivisi. I nove
+one-off — `garanzia`, `life`, `manifesto`, `error`, `form`, `message-widget`,
+`result`, `section-index`, `tree` — stanno in fondo elencati ma non disegnati:
+servono una pagina sola e probabilmente sempre serviranno, e metterli accanto a un
+componente riusabile mescolerebbe due cose diverse.
+
+**Due file cancellati, due salvati.** `sitemap.css` era orfano dopo il passaggio
+all'albero, e `cluster-nav.css` non era caricato da nessuna pagina né usato su
+nessun branch: via entrambi. `masonry.css` e `tag-filter.css` sembravano orfani
+quanto loro, e invece sono in uso su `feature/step-cards-v2`, `feature/portfolio-themes`
+e `feature/portfolio-filtro-sticky` — contare solo su `main` non basta, e
+cancellarli avrebbe prodotto un conflitto delete/modify al primo merge. Restano,
+con una riga in `componenti.md` che dice dove vivono.
+
+**Documentati anche `.c-job`/`.c-badge` e `.c-tree`**, che non avevano una scheda.
+Il badge è quello che ha fatto partire tutta questa verifica: era in `upwork/` da
+giorni senza che nulla lo descrivesse.

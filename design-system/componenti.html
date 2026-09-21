@@ -12,6 +12,17 @@
 <link rel="stylesheet" href="../css/components/avatar.css">
 <link rel="stylesheet" href="../css/components/byline.css">
 <link rel="stylesheet" href="../css/components/quote.css">
+<link rel="stylesheet" href="../css/components/icon.css">
+<link rel="stylesheet" href="../css/components/resource.css">
+<link rel="stylesheet" href="../css/components/faq.css">
+<link rel="stylesheet" href="../css/components/schedule.css">
+<link rel="stylesheet" href="../css/components/filmstrip.css">
+<link rel="stylesheet" href="../css/components/video.css">
+<link rel="stylesheet" href="../css/components/project.css">
+<link rel="stylesheet" href="../css/components/entry.css">
+<link rel="stylesheet" href="../css/components/job.css">
+<link rel="stylesheet" href="../css/components/article.css">
+<link rel="stylesheet" href="../css/components/automation.css">
 <style>
   /* Solo chrome della galleria, non è stile di componenti reali. */
   body {
@@ -41,15 +52,37 @@
     color: var(--color-on-success);
   }
 
+  /* 260px è la misura della step card, che è l'unico componente stretto.
+     Tutto il resto — una citazione, una riga di elenco, un case study —
+     ha bisogno della larghezza che ha in pagina per leggersi come si
+     legge in pagina. */
   .gallery-variant__demo {
+    max-width: 520px;
+  }
+
+  #step-card .gallery-variant__demo {
     max-width: 260px;
   }
 
-  /* Una citazione ha bisogno di più larghezza di una step card per
-     leggersi come si legge in pagina. */
-  #byline .gallery-variant__demo,
-  #quote .gallery-variant__demo {
-    max-width: 520px;
+  /* Filmstrip e figure vogliono tutta la colonna: sono immagini in fila. */
+  #filmstrip .gallery-variant__demo,
+  #article .gallery-variant__demo,
+  #automation .gallery-variant__demo,
+  #video .gallery-variant__demo {
+    max-width: 760px;
+  }
+
+  .x-gallery-where {
+    color: var(--color-text-muted);
+  }
+
+  #stili-di-pagina dt {
+    margin-top: var(--space-12);
+    font-weight: var(--font-weight-600);
+  }
+
+  #stili-di-pagina dd {
+    margin: 0;
   }
 
   .x-gallery-note {
@@ -64,6 +97,13 @@
 
 <h1>Componenti — galleria visiva</h1>
 <p>Riferimento visivo permanente: qui restano tutte le varianti esplorate per ogni componente, non solo quella scelta. Documentazione testuale in <code>componenti.md</code>.</p>
+
+<p class="x-gallery-note">La galleria copre i <strong>componenti condivisi</strong>: quelli che almeno due pagine
+caricano. Gli stili che servono una pagina sola — <code>garanzia</code>, <code>life</code>, <code>manifesto</code>,
+<code>error</code>, <code>form</code>, <code>message-widget</code>, <code>result</code>, <code>section-index</code>,
+<code>tree</code> — stanno in fondo, elencati ma non disegnati: mostrarli accanto a un componente riusabile
+mescolerebbe due cose diverse. Restano fuori anche <code>masonry</code> e <code>tag-filter</code>, che su
+<code>main</code> non sono in uso: vivono sui branch delle varianti.</p>
 
 <section class="gallery-component" id="step-card">
   <h2>Step card</h2>
@@ -214,6 +254,369 @@
       </blockquote>
     </div>
   </div>
+</section>
+
+
+<section class="gallery-component" id="button">
+  <h2>Bottone</h2>
+  <p class="x-gallery-note">Un solo bottone in tutto il sito, e una sola variante: la CTA del Master.</p>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">In produzione — <code>master-ux-ui.html</code></span>
+    <div class="gallery-variant__demo">
+      <button type="button" class="c-button">Iscriviti ora</button>
+    </div>
+  </div>
+  <div class="gallery-variant">
+    <span class="gallery-variant__label">Disabilitato — stato nativo, nessuna classe in più</span>
+    <div class="gallery-variant__demo">
+      <button type="button" class="c-button" disabled>Iscriviti ora</button>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-component" id="accordion">
+  <h2>Accordion</h2>
+  <p class="x-gallery-note">Elemento nativo <code>&lt;details&gt;</code>: apre e chiude senza JS. Il secondo è aperto con <code>open</code>.</p>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">Chiuso — stato di partenza</span>
+    <div class="gallery-variant__demo">
+      <details class="c-accordion">
+        <summary>Quanto dura il Master?</summary>
+        <ul>
+          <li>Sei mesi, due live a settimana.</li>
+          <li>Le registrazioni restano.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+  <div class="gallery-variant">
+    <span class="gallery-variant__label">Aperto — attributo <code>open</code></span>
+    <div class="gallery-variant__demo">
+      <details class="c-accordion" open>
+        <summary>Quanto dura il Master?</summary>
+        <ul>
+          <li>Sei mesi, due live a settimana.</li>
+          <li>Le registrazioni restano.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-component" id="faq">
+  <h2>FAQ</h2>
+  <p class="x-gallery-note">Contenitore: raggruppa accordion sotto un titolo. Non ha disegno proprio, dà il ritmo verticale.</p>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">In produzione</span>
+    <div class="gallery-variant__demo">
+      <div class="c-faq">
+        <h3>FAQ</h3>
+        <details class="c-accordion">
+          <summary>Serve saper programmare?</summary>
+          <ul><li>No. Si parte dal design.</li></ul>
+        </details>
+        <details class="c-accordion">
+          <summary>Quanto costa?</summary>
+          <ul><li>Il prezzo è in fondo alla pagina.</li></ul>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-component" id="icon">
+  <h2>Icona</h2>
+  <p class="x-gallery-note">SVG a due livelli: <code>.primary</code> e <code>.secondary</code> prendono due token diversi, così l'icona ha profondità senza secondo file.</p>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">In produzione</span>
+    <div class="gallery-variant__demo">
+      <svg class="c-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path class="primary" d="M22 17a1 1 0 0 1-2 0v-5a8 8 0 1 0-16 0v5a1 1 0 0 1-2 0v-5a10 10 0 1 1 20 0v5z"/><path class="secondary" d="M7 12a2 2 0 0 1 2 2v6a2 2 0 1 1-4 0v-6c0-1.1.9-2 2-2zm10 0a2 2 0 0 1 2 2v6a2 2 0 1 1-4 0v-6c0-1.1.9-2 2-2z"/></svg>
+    </div>
+  </div>
+  <div class="gallery-variant">
+    <span class="gallery-variant__label">In riga con del testo — la dimensione segue il testo</span>
+    <div class="gallery-variant__demo">
+      <p><svg class="c-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path class="primary" d="M22 17a1 1 0 0 1-2 0v-5a8 8 0 1 0-16 0v5a1 1 0 0 1-2 0v-5a10 10 0 1 1 20 0v5z"/><path class="secondary" d="M7 12a2 2 0 0 1 2 2v6a2 2 0 1 1-4 0v-6c0-1.1.9-2 2-2zm10 0a2 2 0 0 1 2 2v6a2 2 0 1 1-4 0v-6c0-1.1.9-2 2-2z"/></svg> Una risorsa da ascoltare.</p>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-component" id="resource">
+  <h2>Risorsa</h2>
+  <p class="x-gallery-note">Riga di una lista di risorse: icona, titolo che è il link, righe di metadati. Terzo impiego dopo <code>motivation.html</code> e <code>articles/</code>.</p>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">Completa — tutte le righe opzionali presenti</span>
+    <div class="gallery-variant__demo">
+      <ul><li class="c-resource">
+        <span class="c-resource__icon"><svg class="c-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path class="primary" d="M22 17a1 1 0 0 1-2 0v-5a8 8 0 1 0-16 0v5a1 1 0 0 1-2 0v-5a10 10 0 1 1 20 0v5z"/><path class="secondary" d="M7 12a2 2 0 0 1 2 2v6a2 2 0 1 1-4 0v-6c0-1.1.9-2 2-2zm10 0a2 2 0 0 1 2 2v6a2 2 0 1 1-4 0v-6c0-1.1.9-2 2-2z"/></svg></span>
+        <div>
+          <p class="c-resource__title"><a href="#">The Go-Getter ↗</a></p>
+          <p class="c-resource__meta">Racconto lungo · Peter B. Kyne, 1921 · in inglese</p>
+          <p class="c-resource__why">Perché vale la pena: si legge in un'ora e non si dimentica.</p>
+          <p class="c-resource__alt">Esiste anche in italiano, con un altro titolo.</p>
+        </div>
+      </li></ul>
+    </div>
+  </div>
+  <div class="gallery-variant">
+    <span class="gallery-variant__label">Minima — solo titolo e metadati</span>
+    <div class="gallery-variant__demo">
+      <ul><li class="c-resource">
+        <span class="c-resource__icon"><svg class="c-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path class="primary" d="M22 17a1 1 0 0 1-2 0v-5a8 8 0 1 0-16 0v5a1 1 0 0 1-2 0v-5a10 10 0 1 1 20 0v5z"/><path class="secondary" d="M7 12a2 2 0 0 1 2 2v6a2 2 0 1 1-4 0v-6c0-1.1.9-2 2-2zm10 0a2 2 0 0 1 2 2v6a2 2 0 1 1-4 0v-6c0-1.1.9-2 2-2z"/></svg></span>
+        <div>
+          <p class="c-resource__title"><a href="#">Defensive CSS ↗</a></p>
+          <p class="c-resource__meta">Ahmad Shadeed · in inglese</p>
+        </div>
+      </li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-component" id="schedule">
+  <h2>Calendario</h2>
+  <p class="x-gallery-note">Lista di date: la colonna della data è fissa, il testo scorre accanto.</p>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">In produzione — <code>master-ux-ui.html</code></span>
+    <div class="gallery-variant__demo">
+      <ol class="c-schedule">
+        <li class="c-schedule__item">
+          <div class="c-schedule__date">14 ott <small>mercoledì, 19:00</small></div>
+          <div>
+            <p class="c-schedule__title">Il design non è decorazione</p>
+            <p>Cosa fa davvero un design engineer.</p>
+          </div>
+        </li>
+        <li class="c-schedule__item">
+          <div class="c-schedule__date">21 ott <small>mercoledì, 19:00</small></div>
+          <div>
+            <p class="c-schedule__title">Dal problema all'interfaccia</p>
+            <p>Un caso vero, dall'inizio alla fine.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-component" id="filmstrip">
+  <h2>Filmstrip</h2>
+  <p class="x-gallery-note">Striscia di immagini che scorre in orizzontale. <code>tabindex</code> e <code>role</code> la rendono raggiungibile da tastiera.</p>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">In produzione — dentro <code>.c-entry</code> e <code>.c-project</code></span>
+    <div class="gallery-variant__demo">
+      <div class="c-filmstrip" tabindex="0" role="group" aria-label="3 immagini del progetto">
+        <img src="../assets/portfolio/41.png" alt="" loading="lazy">
+        <img src="../assets/portfolio/10.jpg" alt="" loading="lazy">
+        <img src="../assets/portfolio/12.jpg" alt="" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-component" id="entry">
+  <h2>Riga apribile</h2>
+  <p class="x-gallery-note">Riga di elenco che si apre: <code>&lt;details&gt;</code> col titolo nel <code>&lt;summary&gt;</code>. Il componente più riusato del sito — sei pagine.</p>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">Chiusa — come si presenta in elenco</span>
+    <div class="gallery-variant__demo">
+      <div class="c-entry-list">
+        <details class="c-entry">
+          <summary class="c-entry__summary">
+            <h3 class="c-entry__title">Next2 — automatic fabric cutter</h3>
+            <p class="c-entry__meta">Morgan Tecnica · UX/UI + console fisica · 2020</p>
+            <p class="c-entry__line">Logica da cockpit: quasi nessuna navigazione, molti meno errori.</p>
+          </summary>
+          <div class="c-entry__body">
+            <p>Il corpo si vede solo da aperta.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+  <div class="gallery-variant">
+    <span class="gallery-variant__label">Aperta</span>
+    <div class="gallery-variant__demo">
+      <div class="c-entry-list">
+        <details class="c-entry" open>
+          <summary class="c-entry__summary">
+            <h3 class="c-entry__title">Next2 — automatic fabric cutter</h3>
+            <p class="c-entry__meta">Morgan Tecnica · UX/UI + console fisica · 2020</p>
+            <p class="c-entry__line">Logica da cockpit: quasi nessuna navigazione, molti meno errori.</p>
+          </summary>
+          <div class="c-entry__body">
+            <p>Il corpo si vede solo da aperta.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-component" id="project">
+  <h2>Progetto</h2>
+  <p class="x-gallery-note">Un progetto del portfolio. Le cinque etichette del <code>&lt;dl&gt;</code> sono sempre le stesse: il ritmo ripetuto è parte del disegno. Una riga si può omettere, mai riempire per forza.</p>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">In produzione — <code>portfolio.html</code></span>
+    <div class="gallery-variant__demo">
+      <article class="c-project">
+        <h3 class="c-project__title">Next2 — automatic fabric cutter</h3>
+        <p class="c-project__meta">Morgan Tecnica · Windows touch desktop · 2020</p>
+        <dl>
+          <dt>Product</dt><dd>Console di taglio automatico per l'industria tessile.</dd>
+          <dt>Complexity</dt><dd>Nove schermate, ognuna con stati che si escludono.</dd>
+          <dt>Immersion</dt><dd>Tre giorni in reparto a guardare chi taglia.</dd>
+          <dt>Made obvious</dt><dd>Un solo pulsante grande per l'azione che si fa mille volte.</dd>
+        </dl>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-component" id="job">
+  <h2>Annuncio analizzato</h2>
+  <p class="x-gallery-note">Riga di <code>upwork/index.html</code>. Contiene <code>.c-badge</code>, la pastiglia di esito: il pallino è l'unico accento dell'elenco, il testo resta nel colore del corpo.</p>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">Esito positivo — <code>.c-badge</code></span>
+    <div class="gallery-variant__demo">
+      <ol class="c-job-list">
+        <li class="c-job">
+          <p class="c-job__date"><time datetime="2026-09-16">16 settembre 2026</time></p>
+          <h3 class="c-job__title"><a href="#">AI Automation Specialist</a></h3>
+          <p class="c-job__summary">Costruire e mantenere automazioni che collegano Trello, SMS e altri strumenti aziendali.</p>
+          <p class="c-job__verdict">
+            <span class="c-badge">Fattibile</span>
+            <span>Il nucleo tecnico è alla mia portata con n8n.</span>
+          </p>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="gallery-variant">
+    <span class="gallery-variant__label">Esito negativo — <code>.c-badge--no</code>, stesso disegno, pallino spento</span>
+    <div class="gallery-variant__demo">
+      <ol class="c-job-list">
+        <li class="c-job">
+          <p class="c-job__date"><time datetime="2026-09-18">18 settembre 2026</time></p>
+          <h3 class="c-job__title"><a href="#">AI Video Automation Expert</a></h3>
+          <p class="c-job__summary">Sistema completo di video generati, consegnato in giornata, fisso da 40 dollari.</p>
+          <p class="c-job__verdict">
+            <span class="c-badge c-badge--no">Da evitare</span>
+            <span>Fuori dal mio dominio, e il budget non regge il lavoro descritto.</span>
+          </p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-component" id="video">
+  <h2>Video</h2>
+  <p class="x-gallery-note">Il video sta in casa, con <code>preload="none"</code>: niente viene scaricato finché non si preme play. Il rapporto d'aspetto arriva da una variabile inline, così il box non salta prima del caricamento.</p>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">In produzione — <code>master-ux-ui.html</code></span>
+    <div class="gallery-variant__demo">
+      <figure class="c-video">
+        <div class="c-video__box" style="--video-aspect-ratio: 16 / 9">
+          <video controls preload="none" playsinline width="1600" height="900"></video>
+        </div>
+        <figcaption>Video introduttivo — 4:49</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-component" id="article">
+  <h2>Pezzi di articolo</h2>
+  <p class="x-gallery-note">Non un blocco solo: <code>article.css</code> raccoglie gli elementi che servono a una pagina di articolo — la data, la nota, il dialogo, il gruppo di figure. Cinque pagine in <code>articles/</code> li caricano insieme.</p>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">Data del pezzo</span>
+    <div class="gallery-variant__demo">
+      <p class="c-article__date"><time datetime="2024-12-07">7 dicembre 2024</time></p>
+    </div>
+  </div>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">Nota — voce a parte rispetto al corpo</span>
+    <div class="gallery-variant__demo">
+      <p class="c-article__nota">Questo pezzo è del 2024: l'ho salvato da birbi.biz prima che chiudesse, senza riscriverlo.</p>
+    </div>
+  </div>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">Gruppo di figure con didascalia</span>
+    <div class="gallery-variant__demo">
+      <div class="c-figures">
+        <img src="../assets/portfolio/10.jpg" alt="" loading="lazy">
+        <img src="../assets/portfolio/12.jpg" alt="" loading="lazy">
+        <p class="c-figures__caption">Due delle sei sedie di Munari.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-component" id="automation">
+  <h2>Pezzi di case study</h2>
+  <p class="x-gallery-note">Come <code>article.css</code>: non un blocco, ma gli elementi di una pagina di automazione — lo schema del flusso, i fatti in riga, il passo numerato, il blocco di codice. Caricato da <code>automations/</code> e da <code>workflows/</code>.</p>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">Figura dello schema — il flusso a dimensione intera</span>
+    <div class="gallery-variant__demo">
+      <figure class="c-automation__figure">
+        <a href="../assets/automations/trello-twilio-automation-1.png" target="_blank" rel="noopener">
+          <img src="../assets/automations/trello-twilio-automation-1.png" alt="Il canvas di n8n del flusso Trello → SMS" loading="lazy">
+        </a>
+        <figcaption>Nove nodi. Ogni strada finisce sulla card. <a href="../assets/automations/trello-twilio-automation-1.png" target="_blank" rel="noopener">Apri a dimensione intera ↗</a></figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">Fatti — <code>&lt;dl&gt;</code> insieme a <code>.c-project__facts</code>, che dà la griglia</span>
+    <div class="gallery-variant__demo">
+      <dl class="c-project__facts c-automation__facts">
+        <dt>Il problema di business</dt>
+        <dd>Un cliente che fa no-show costa soldi al business.</dd>
+        <dt>Esempi</dt>
+        <dd>Un dentista manda l'SMS il giorno prima dell'appuntamento.</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">Passo — è un titolo, non un paragrafo: <code>&lt;h2&gt;</code> in <code>come-si-costruisce.html</code></span>
+    <div class="gallery-variant__demo">
+      <h2 class="c-automation__step">2. Il trigger: nodo <em>On form submission</em></h2>
+    </div>
+  </div>
+  <div class="gallery-variant gallery-variant--current">
+    <span class="gallery-variant__label">Pseudocodice — filetto invece del fondo pieno: non è un linguaggio vero</span>
+    <div class="gallery-variant__demo">
+      <pre class="c-automation__code"><code>1  Copertina    {{proposalTitle}}
+2  Problema     {{oneParagraphProblemSummary}}</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-component" id="stili-di-pagina">
+  <h2>Stili di pagina</h2>
+  <p class="x-gallery-note">Servono una pagina sola e probabilmente sempre serviranno. Sono elencati per
+    completezza — la galleria li disegnerebbe fuori dal loro contesto, dove non vogliono dire niente.
+    Le decisioni che li riguardano stanno in <code>componenti.md</code> e nel <code>journal.md</code>.</p>
+  <dl>
+    <dt><code>css/components/garanzia.css</code></dt>
+    <dd>La pagina della garanzia: pledge e requirement. <span class="x-gallery-where">→ garanzia.html</span></dd>
+    <dt><code>css/components/life.css</code></dt>
+    <dd>Pagina personale, disegno tutto suo. <span class="x-gallery-where">→ life.html</span></dd>
+    <dt><code>css/components/manifesto.css</code></dt>
+    <dd>Il manifesto: tipografia larga, niente altro. <span class="x-gallery-where">→ manifesto.html</span></dd>
+    <dt><code>css/components/error.css</code></dt>
+    <dd>La pagina di errore. <span class="x-gallery-where">→ 404.html</span></dd>
+    <dt><code>css/components/form.css</code></dt>
+    <dd>Il modulo di contatto in fondo alla landing. <span class="x-gallery-where">→ master-ux-ui.html</span></dd>
+    <dt><code>css/components/message-widget.css</code></dt>
+    <dd>Il widget dei messaggi, con il suo JS. <span class="x-gallery-where">→ master-ux-ui.html</span></dd>
+    <dt><code>css/components/result.css</code></dt>
+    <dd>Le righe dei risultati: un cliente e il numero che è cambiato. <span class="x-gallery-where">→ results.html</span></dd>
+    <dt><code>css/components/section-index.css</code></dt>
+    <dd>L'indice delle sezioni in testa al portfolio. <span class="x-gallery-where">→ portfolio.html</span></dd>
+    <dt><code>css/components/tree.css</code></dt>
+    <dd>L'albero dei file dell'indice privato. <span class="x-gallery-where">→ index-abf92932.html</span></dd>
+  </dl>
 </section>
 
 </body>
