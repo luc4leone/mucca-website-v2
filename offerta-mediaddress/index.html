@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Più attivazioni, meno disdette — Offerta per Mediaddress</title>
   <meta name="robots" content="noindex, nofollow">
+  <!-- Solo i token: questa pagina ha il suo stile qui sotto e non usa
+       base.css, layout.css o i componenti. Serve comunque il file dei
+       token, perché il <style> consuma --color-*, --font-* e le scale. -->
+  <link rel="stylesheet" href="../css/tokens.css">
   <style>
     :root {
       --color-surface: #F1F1F3;
@@ -13,12 +17,26 @@
 
     * { box-sizing: border-box; }
 
+    /* Font, sfondo e colore del testo: prima arrivavano dalla «baseline
+       minima» di brand-tokens-light.css, che questa pagina caricava per
+       i token e si portava dietro anche quelle tre righe. Dal 22
+       settembre 2026 i token stanno in css/tokens.css e non impongono
+       più nulla, quindi la baseline è qui — dove peraltro è il suo
+       posto, visto che questa pagina ha uno stile tutto suo e non
+       carica base.css. */
     body {
       margin: 0;
       padding-block: 3rem 5rem;
       padding-inline: 1.25rem;
+      background: var(--color-background);
+      color: var(--color-text);
+      font-family: var(--font-body);
       line-height: 1.5;
       font-size: 1rem;
+    }
+
+    h1, h2 {
+      font-family: var(--font-display);
     }
 
     header, main, footer {

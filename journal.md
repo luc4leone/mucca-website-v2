@@ -1181,3 +1181,33 @@ legge, questo si seleziona e si incolla nella ricerca di Upwork. Da qui le
 differenze — niente a capo automatico, perché una query spezzata in due righe
 sembra due query, e ogni blocco scorre per conto suo invece di allargare la
 colonna. È uno stile di pagina, e sta con gli altri in fondo alla galleria.
+
+## 22 settembre 2026 — la pagina che il refactor aveva lasciato nuda
+
+`offerta-mediaddress/index.html` era rimasta senza stile dopo il refactor del
+CSS. Era l'unica pagina del sito a caricare `brand-kit/brand-tokens-light.css`
+**e nient'altro**: ha il suo `<style>` inline e non usa `base.css`, `layout.css`
+né i componenti. Lo script che ha ripulito i 36 `<head>` ha tolto quel link,
+come in tutte le altre pagine — solo che qui non c'era un `tokens.css` a
+raccogliere il testimone.
+
+Due cose sono andate perse con quel file, non una:
+
+1. **I token.** Ripristinati con un `<link>` a `css/tokens.css`, l'unico foglio
+   che questa pagina carica.
+2. **La «baseline minima»** che `brand-tokens-light.css` si portava dietro —
+   tre righe su `body` (sfondo, colore, font) e una su `h1, h2, h3`. Nelle
+   altre pagine quel lavoro lo fa `base.css`; qui non lo faceva nessuno, e il
+   risultato era il Times di sistema. Ora la baseline sta nel `<style>` della
+   pagina, che è anche il suo posto giusto: una pagina con uno stile tutto suo
+   dichiara anche il proprio font.
+
+**Perché non l'avevo vista.** Il confronto prima/dopo aveva coperto diciannove
+pagine, scelte fra quelle alla radice e gli `index.html` delle cartelle:
+`offerta-mediaddress/` non era nell'elenco, e nemmeno le altre due pagine fuori
+dal guscio comune. La verifica cercava differenze nei valori calcolati sulle
+pagine che conoscevo, non pagine che non avevo pensato di guardare.
+
+Il controllo che l'avrebbe presa esiste ora ed è diverso: per ogni `.html` del
+repo, ogni `var(--token)` senza fallback deve risolversi con i fogli che quella
+pagina carica davvero. Su tutto il sito, oggi, passa.
