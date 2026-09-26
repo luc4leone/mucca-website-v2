@@ -1211,3 +1211,36 @@ pagine che conoscevo, non pagine che non avevo pensato di guardare.
 Il controllo che l'avrebbe presa esiste ora ed è diverso: per ogni `.html` del
 repo, ogni `var(--token)` senza fallback deve risolversi con i fogli che quella
 pagina carica davvero. Su tutto il sito, oggi, passa.
+
+## 26 settembre 2026 — l'elenco degli articoli diventa uno solo
+
+Un articolo nuovo, «Mi sono costruito tre tool in due giorni» (titolo
+provvisorio, il pezzo è ancora una bozza). È il primo articolo che sta in una
+**cartella sua**, `articles/tre-tool-in-due-giorni/`, con il `.md` e l'`.html`
+accanto — gli altri cinque sono file piatti in `articles/`. La cartella tiene
+insieme la bozza e la pagina che ne nasce, come fa `upwork/` con
+`upwork-gigs.md`; se il pezzo resta l'unico articolo con questa forma, va
+uniformato in un senso o nell'altro.
+
+**Via la divisione «Qui» / «Altrove».** `articles/index.html` era due liste: i
+pezzi ospitati sul sito e quelli rimasti dove li ho pubblicati. Ora è un elenco
+solo, dal più recente al più vecchio. La divisione chiedeva al lettore di
+scegliere prima una sezione e poi un pezzo, ma nessuno cerca un articolo per
+piattaforma: lo cerca per argomento o per quanto è recente. E l'informazione che
+la sezione portava non è andata persa — la provenienza sta nella riga di
+metadati di ogni voce («Substack · 14 maggio 2026»), e l'icona con la freccia ↗
+dice già che il link esce dal sito. Due liste per dire una cosa che ogni voce
+diceva da sé.
+
+**Le date mancanti.** Per ordinare cronologicamente servivano date che l'elenco
+non aveva: i tre pezzi su Medium erano senza, i due di Smashing avevano solo
+l'anno. Le ho prese dal feed RSS (`medium.com/feed/@luc4leone`), che le
+espone tutte — e che ha rivelato un quarto articolo su Medium mai linkato,
+*Designing UIs without Figma* (giugno 2025), ora in elenco. Aggiunti anche i due
+post Substack, i primi due pezzi in italiano pubblicati fuori dal sito.
+
+**Via anche le descrizioni.** Le `c-resource__why` non ci sono più in questa
+pagina: con quattordici voci in colonna il paragrafo sotto ogni titolo
+trasformava un elenco da scorrere in una pagina da leggere. Restano titolo e
+data. La regola CSS resta in `resource.css`, dove il commento dice da sempre che
+è opzionale: altre pagine la usano ancora.

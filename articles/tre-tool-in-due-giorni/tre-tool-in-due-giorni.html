@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi sono costruito tre tool in due giorni — Luca Leone</title>
+<meta name="description" content="Flashcards, Annotando, Dettato: tre strumenti scritti per me in due giorni. Costruirli, usarli, iterare sull'uso e non sulle opinioni — e cosa c'entra con il portfolio di un junior designer.">
+<meta property="og:title" content="Mi sono costruito tre tool in due giorni">
+<meta property="og:description" content="Flashcards, Annotando, Dettato. Li costruisci, li usi, iteri in base all'uso: qui lo user sei tu.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.mucca.design/articles/tre-tool-in-due-giorni/tre-tool-in-due-giorni.html">
+<meta property="og:locale" content="it_IT">
+<meta property="article:published_time" content="2026-09-26">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components/article.css">
+</head>
+<body>
+
+<main class="l-page">
+
+  <header>
+    <p><a href="../">← Articoli</a></p>
+    <h1>Ognuno può costruirsi le sue app ora.</h1>
+    <p class="c-article__date"><time datetime="2026-09-26">26 settembre 2026</time></p>
+  </header>
+
+  <p class="u-lead">Le costruisci con AI, le usi, e le iteri in base all'uso.</p>
+
+  <section id="prototipo">
+    <h2>Un progetto valido «sulla carta»</h2>
+
+    <p>L'ultima settimana l'ho passata a contattare «a freddo» UX/UI Designer su LinkedIn, per promuovere la seconda edizione del mio master UX/UI.</p>
+
+    <p>Così ho conosciuto Matteo Ghirardini, che mi ha chiesto un parere sul suo progetto: <a href="https://www.behance.net/gallery/256143855/UniPadova-Redesign" target="_blank" rel="noopener">UniPadova Redesign ↗</a>.</p>
+
+    <p>La sua soluzione è interessante e valida. Valida «sulla carta»: per capire se lo è sul serio dovrei provare un prototipo. E presentare i propri progetti nel 2026 con i <code>pdf</code> su Behance non è la strada giusta. Non lo era nemmeno nel 2016, ma almeno allora avevi una scusa. Oggi no.</p>
+
+    <p>Se non mi fai vedere un prototipo nel 2026, nell'era AI, e pensi che qualcuno si leggerà i tuoi diagrammi di flusso, ti sbagli.</p>
+  </section>
+
+  <section id="flashcards">
+    <h2>Flashcards</h2>
+
+    <p>Mi sono creato uno strumento. L'ho chiamato <strong>Flashcards</strong>. È una pagina HTML che mi propone delle flashcard: mi serve quando voglio ricordare qualcosa un po' meglio.</p>
+
+    <p>Se dovessi presentarlo a qualcuno, lo presenterei così:</p>
+
+    <ul>
+      <li><a href="https://luc4leone.github.io/how-to-think-clearly-nick-saraev/flashcards/index.html" target="_blank" rel="noopener">Un esempio reale ↗</a></li>
+      <li><a href="https://github.com/luc4leone/how-to-think-clearly-nick-saraev/tree/main/flashcards" target="_blank" rel="noopener">Il repo GitHub ↗</a> → leggi il <a href="https://github.com/luc4leone/how-to-think-clearly-nick-saraev/blob/main/flashcards/README.md" target="_blank" rel="noopener">readme ↗</a>, installa e prova</li>
+      <li><a href="https://luc4leone.github.io/how-to-think-clearly-nick-saraev/flashcards/iterations.html" target="_blank" rel="noopener">La gallery delle iterazioni di design ↗</a></li>
+      <li>e girerei un video Loom di due minuti per presentare il progetto</li>
+    </ul>
+  </section>
+
+  <section id="annotando">
+    <h2>Annotando</h2>
+
+    <p>Mi sono creato un altro strumento, <strong>Annotando</strong>: un editor per file <code>txt</code> e <code>md</code> — per ora. Negli anni ho usato molti editor di testo, alcuni:</p>
+
+    <ul>
+      <li>TextEdit</li>
+      <li>Visual Studio Code</li>
+      <li>Devin (ex Windsurf)</li>
+      <li>Cursor</li>
+      <li>Antigravity</li>
+      <li>Bear</li>
+      <li>CotEditor</li>
+      <li>Vim</li>
+      <li>nano</li>
+      <li>micro</li>
+    </ul>
+
+    <p>E altri venti.</p>
+
+    <p>Ho un MacBook Air. Questo è il prompt che ho dato a Opus 5.5:</p>
+
+    <pre><code>Creami un editor di testo per macOS chiamato Annotando, con lo stesso
+metodo di Dettato (~/Apps/Dettato): un solo main.swift con AppKit, niente
+Xcode, build.sh che compila, firma e registra l'app in ~/Apps/Annotando.
+
+Base:
+- apre e salva testo semplice, Markdown e JSON; riconosce e mantiene la
+  codifica dei file non UTF-8
+- salvataggio automatico e cronologia versioni di macOS
+- ⌘N apre un nuovo documento come scheda; File → Nuova finestra (⌥⌘N)
+  lo apre in una finestra a sé
+- cerca ⌘F, cerca e sostituisci ⌥⌘F, stampa
+- controllo ortografico attivo; niente sostituzione automatica di
+  virgolette e trattini
+- ⌘+ ⌘- ⌘0 per la dimensione del testo, ricordata
+- menu tutti in italiano
+
+Evidenziazione Markdown mentre scrivo: titoli, grassetto, corsivo, codice
+inline e blocchi ```, link, citazioni, righe orizzontali. I simboli di
+sintassi (**, #, _) restano visibili ma attenuati.
+
+Due temi, da Vista → Tema, ricordati alla riapertura:
+- Chiaro: SF Mono 14
+- Scuro: copia il tema di CotEditor che uso ora (leggilo dal suo file
+  .cottheme e dalle sue preferenze, font compreso) ed evidenzia la riga
+  del cursore. Come colorare gli elementi partendo da quella palette
+
+Scrivi un README in italiano (senza tabelle) con come si lancia, cosa fa,
+i file del progetto, e una sezione "Maybe next step" con cosa manca per
+editare bene file HTML.</code></pre>
+
+    <p>Sto scrivendo questo articolo con questo editor. Perfetto… per ora :)</p>
+  </section>
+
+  <section id="dettato">
+    <h2>Dettato</h2>
+
+    <p>Mi sono creato anche <strong>Dettato</strong>. Sostituisce Superwhisper, l'app che uso per il voice-to-text, cioè per dettare ogni tanto qualcosa a Claude. Non ho più il prompt, ma è stato qualcosa di brutale tipo: «sto usando Superwhisper per voice-to-text, costruiamo una Swift app essenziale». E poi ho iterato. Tempo totale, credo un'ora.</p>
+  </section>
+
+  <section id="perche">
+    <h2>Tutti possono farlo</h2>
+
+    <p>È gratificante costruirsi i propri tool, e ormai tutti possono farlo. Li costruisci, li usi, iteri in base all'uso — non in base a opinioni o a ricerca indiretta, come fai quando lavori per un cliente. Qui lo user sei tu. È molto divertente. E l'app viene fuori meglio.</p>
+  </section>
+
+  <section id="spunti">
+    <h2>Spunti di riflessione per un junior designer</h2>
+
+    <ul>
+      <li>Posso mettere i miei tool in portfolio? Sono progetti validi, mi danno credibilità?</li>
+      <li>Che altri servizi posso vendere oltre allo UX/UI design, ora che c'è l'AI?</li>
+      <li>Posso imparare l'inglese in tre mesi con Speak o Loora e poi andare all'attacco su We Work Remotely, Working Nomads, Upwork e via così?</li>
+    </ul>
+  </section>
+
+  <p class="c-article__nota">Titolo e testo sono provvisori: questo pezzo è ancora una bozza, scritta il 26 settembre 2026. Hai domande o commenti? Scrivimi a <a href="mailto:luca@mucca.design">luca@mucca.design</a>.</p>
+
+</main>
+
+<footer class="l-card__footer">
+  <p>2026 • <a href="/">Mucca Design</a> di Luca Leone • VAT IT08200720962</p>
+</footer>
+
+</body>
+</html>
